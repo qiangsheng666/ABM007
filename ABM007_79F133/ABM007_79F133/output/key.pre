@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c"
+# 1 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -667,105 +667,131 @@ extern void FCTloop(void);
 # 9 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_user.h"
 uint8_t GkeyLoop();
 
-# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c"
-BYTE fctBits001;
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_Private.h"
+volatile uint8_t CurrentIO;
+typedef enum _SignalLines{
+PortA,
+PortB,
+}SignalLines;
+volatile SignalLines SeletedLine;
 
-
-
-volatile unsigned char CNTfctStart;
-volatile unsigned char CNTfctSensior;
-volatile unsigned char CNTfctFlashLed;
-volatile unsigned int CNTfct;
-
-void FCTkey(void);
-void FCTjudge(void);
-
-void FCTloop(void)
+# 20
+typedef struct _KEY_PRIVATE
 {
-FCTkey();
-FCTjudge();
+struct
+{
+unsigned char is_forbidden : 1;
+unsigned char is_pressing : 1;
+unsigned char level : 1;
+unsigned char : 1;
+
+unsigned char : 1;
+unsigned char : 1;
+unsigned char : 1;
+unsigned char : 1;
+}flags;
+uint8_t cnt;
+uint16_t cnt_timeout;
+}KEY_PRIVATE;
+
+volatile KEY_PRIVATE KeyLines[2];
+
+
+
+
+uint8_t GkeyLoop();
+uint8_t ScanKey(SignalLines line_num) ;
+uint8_t KeyControl(KEY_PRIVATE* this);
+
+# 7 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c"
+uint8_t GkeyLoop(void)
+{
+for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
+{
+KeyLines[SeletedLine].flags.level =ScanKey(SeletedLine);
+
+if(KeyLines[SeletedLine].flags.is_forbidden)
+{
+if (KeyLines[SeletedLine].flags.level)
+{
+KeyLines[SeletedLine].flags.is_forbidden = 0;
+}
+continue;
+}
+if (KeyControl(&KeyLines[SeletedLine]))
+{
+switch (SeletedLine)
+{
+case PortA:
+Fflush1.bits.bit_0 = 1;
+KeyLines[PortB].flags.is_forbidden = 1;
+return FLUSH_BIG_0;
+case PortB:
+Fflush1.bits.bit_2 = 1;
+KeyLines[PortA].flags.is_forbidden = 1;
+return FLUSH_SML_0;
+
+default:
+break;
 }
 
-void FCTkey(void)
-{
-if(RB2 == 1)
-{
-if(++CNTfctStart >= 50)
-{
-CNTfctStart = 50;
-fctBits001.bits.bit_0 = 1;
 }
+}
+return 0;
+
+}
+
+
+uint8_t ScanKey(SignalLines line_num)
+{
+switch (line_num)
+{
+case PortA:
+return RA6;
+case PortB:
+return RB0;
+}
+}
+
+
+
+uint8_t KeyControl(KEY_PRIVATE* this)
+{
+if(!(this->flags.level))
+{
+if (this->flags.is_pressing)
+{
+this->cnt = 0;
+
+if (((++(this->cnt_timeout)) > (600)?(0 == ((this->cnt_timeout) = 0)):0))
+{
+this->flags.is_forbidden = 1;
+}
+
+}else
+{
+if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+{
+this->flags.is_pressing = 1;
+return 1;
+}
+}
+
 }
 else
 {
-fctBits001.bits.bit_0 = 0;
-CNTfctStart = 0;
+if (this->flags.is_pressing)
+{
+if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+{
+this->flags.is_pressing = 0;
 }
+}else
+{
+this->cnt = 0;
+this->cnt_timeout = 0;
 }
 
-void FCTjudge(void)
-{
-if(fctBits001.bits.bit_0 == 1)
-{
-if(RB1 == 0)
-{
-if(++CNTfctSensior >= 50)
-{
-CNTfct = 0;
-CNTfctSensior = 50;
-if(++CNTfctFlashLed >= 50)
-{
-CNTfctFlashLed = 0;
 }
-else if(CNTfctFlashLed == 25)
-{
-RA5 = 1;
-RA2 = 1;
-RA4 = 1;
+return 0;
 }
-else if(CNTfctFlashLed == 1)
-{
-RA5 = 0;
-RA2 = 0;
-RA4 = 0;
-}
-}
-}
-else
-{
-CNTfctSensior = 0;
-if(++CNTfct >= 100)
-{
-CNTfct = 0;
-
-RA5 = 0;
-RA2 = 0;
-RA4 = 0;
-}
-else if(CNTfct == 75)
-{
-RA5 = 1;
-RA2 = 0;
-RA4 = 0;
-}
-else if(CNTfct == 50)
-{
-RA5 = 0;
-RA2 = 1;
-RA4 = 0;
-}
-else if(CNTfct == 25)
-{
-RA5 = 0;
-RA2 = 0;
-RA4 = 1;
-}
-}
-}
-else
-{
-CNTfctSensior = 0;
-CNTfct = 0;
-}
-}
-

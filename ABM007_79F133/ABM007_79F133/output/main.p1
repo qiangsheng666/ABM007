@@ -1,22 +1,22 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"39 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
 [p mainexit ]
-"9 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h
+"9 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct_user.h
 [v _FCTloop `(v ~T0 @X0 0 ef ]
 "4
 [v _fctBits001 `S2 ~T0 @X0 0 e ]
-"25 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h
+"25 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor_user.h
 [v _GsensorLoop `(v ~T0 @X0 0 ef ]
-"13 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h
+"26 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush_user.h
 [v _GflushLoop `(v ~T0 @X0 0 ef ]
-"10 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h
+"10 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light_user.h
 [v _GledLoop `(v ~T0 @X0 0 ef ]
-"22 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"22 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
 [v _INT_LED_SHOW `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1376,7 +1376,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"55 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1388,11 +1388,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;light_user.h: 4: extern BYTE FledBits01;
 [; ;light_user.h: 10: extern void GledLoop(void);
 [; ;flush_user.h: 4: extern BYTE Fflush1;
-[; ;flush_user.h: 13: extern void GflushLoop(void);
+[; ;flush_user.h: 12: enum{
+[; ;flush_user.h: 13: FLUSH_INIT_0 = 0,
+[; ;flush_user.h: 14: FLUSH_INIT_1,
+[; ;flush_user.h: 15: FLUSH_INIT_2,
+[; ;flush_user.h: 16: FLUSH_BIG_0,
+[; ;flush_user.h: 17: FLUSH_BIG_1,
+[; ;flush_user.h: 18: FLUSH_BIG_2,
+[; ;flush_user.h: 19: FLUSH_SML_0,
+[; ;flush_user.h: 20: FLUSH_SML_1,
+[; ;flush_user.h: 21: FLUSH_SML_2,
+[; ;flush_user.h: 22: FLUSH_END_0,
+[; ;flush_user.h: 23: FLUSH_END_1,
+[; ;flush_user.h: 24: FLUSH_END_2,
+[; ;flush_user.h: 25: };
+[; ;flush_user.h: 26: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
 [; ;fct_user.h: 9: extern void FCTloop(void);
+[; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;math.h: 30: extern double fabs(double);
 [; ;math.h: 31: extern double floor(double);
 [; ;math.h: 32: extern double ceil(double);
@@ -1446,7 +1461,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 56: extern char * strichr(const char *, int);
 [; ;string.h: 57: extern char * strrchr(const char *, int);
 [; ;string.h: 58: extern char * strrichr(const char *, int);
-"7 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"7 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
 [v _TMR1 `Vui ~T0 @X0 1 e@14 ]
 [; ;main.c: 7: volatile unsigned int TMR1 @0x000E;
 "15
@@ -1588,21 +1603,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 63: {
 [e :U _Init_GPIO ]
 [f ]
-[; ;main.c: 66: PORTA = 0B00000000;
+[; ;main.c: 66: PORTA = 0B01000000;
 "66
-[e = _PORTA -> -> 0 `i `uc ]
-[; ;main.c: 67: PORTB = 0B00000000;
+[e = _PORTA -> -> 64 `i `uc ]
+[; ;main.c: 67: PORTB = 0B00000001;
 "67
-[e = _PORTB -> -> 0 `i `uc ]
+[e = _PORTB -> -> 1 `i `uc ]
 [; ;main.c: 68: PORTC = 0B00000000;
 "68
 [e = _PORTC -> -> 0 `i `uc ]
-[; ;main.c: 71: TRISA = 0B00000000;
+[; ;main.c: 71: TRISA = 0B01000000;
 "71
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 72: TRISB = 0B00000011;
+[e = _TRISA -> -> 64 `i `uc ]
+[; ;main.c: 72: TRISB = 0B00000111;
 "72
-[e = _TRISB -> -> 3 `i `uc ]
+[e = _TRISB -> -> 7 `i `uc ]
 [; ;main.c: 73: TRISC = 0B00000000;
 "73
 [e = _TRISC -> -> 0 `i `uc ]
@@ -2180,128 +2195,128 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 503: asm("clrwdt");
 "503
 [; <" clrwdt ;# ">
-[; ;main.c: 504: Fsys1.bits.bit_1 = 0;
-"504
-[e = . . _Fsys1 1 1 -> -> 0 `i `uc ]
-[; ;main.c: 505: switch (SEQmain)
+[; ;main.c: 505: Fsys1.bits.bit_1 = 0;
 "505
-[e $U 48  ]
-[; ;main.c: 506: {
+[e = . . _Fsys1 1 1 -> -> 0 `i `uc ]
+[; ;main.c: 506: switch (SEQmain)
 "506
-{
-[; ;main.c: 507: case 0:
+[e $U 48  ]
+[; ;main.c: 507: {
 "507
-[e :U 49 ]
-[; ;main.c: 508: FCTloop();
-"508
-[e ( _FCTloop ..  ]
-[; ;main.c: 509: break;
-"509
-[e $U 47  ]
-[; ;main.c: 510: case 1:
-"510
-[e :U 50 ]
-[; ;main.c: 511: if(fctBits001.bits.bit_0 == 0)
-"511
-[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 51  ]
-[; ;main.c: 512: {
-"512
 {
-[; ;main.c: 513: GsensorLoop();
+[; ;main.c: 508: case 0:
+"508
+[e :U 49 ]
+[; ;main.c: 509: FCTloop();
+"509
+[e ( _FCTloop ..  ]
+[; ;main.c: 510: break;
+"510
+[e $U 47  ]
+[; ;main.c: 511: case 1:
+"511
+[e :U 50 ]
+[; ;main.c: 512: if(fctBits001.bits.bit_0 == 0)
+"512
+[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 51  ]
+[; ;main.c: 513: {
 "513
-[e ( _GsensorLoop ..  ]
+{
+[; ;main.c: 514: GsensorLoop();
 "514
+[e ( _GsensorLoop ..  ]
+"515
 }
 [e :U 51 ]
-[; ;main.c: 514: }
-[; ;main.c: 515: break;
-"515
-[e $U 47  ]
-[; ;main.c: 516: case 2:
+[; ;main.c: 515: }
+[; ;main.c: 516: break;
 "516
+[e $U 47  ]
+[; ;main.c: 517: case 2:
+"517
 [e :U 52 ]
-[; ;main.c: 518: break;
-"518
-[e $U 47  ]
-[; ;main.c: 519: case 3:
+[; ;main.c: 519: break;
 "519
-[e :U 53 ]
-[; ;main.c: 521: break;
-"521
 [e $U 47  ]
-[; ;main.c: 522: case 4:
+[; ;main.c: 520: case 3:
+"520
+[e :U 53 ]
+[; ;main.c: 522: break;
 "522
-[e :U 54 ]
-[; ;main.c: 523: if(fctBits001.bits.bit_0 == 0)
+[e $U 47  ]
+[; ;main.c: 523: case 4:
 "523
-[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 55  ]
-[; ;main.c: 524: {
+[e :U 54 ]
+[; ;main.c: 524: if(fctBits001.bits.bit_0 == 0)
 "524
-{
-[; ;main.c: 525: GflushLoop();
+[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 55  ]
+[; ;main.c: 525: {
 "525
-[e ( _GflushLoop ..  ]
+{
+[; ;main.c: 526: GflushLoop();
 "526
+[e ( _GflushLoop ..  ]
+"527
 }
 [e :U 55 ]
-[; ;main.c: 526: }
-[; ;main.c: 527: break;
-"527
-[e $U 47  ]
-[; ;main.c: 528: case 5:
+[; ;main.c: 527: }
+[; ;main.c: 528: break;
 "528
+[e $U 47  ]
+[; ;main.c: 529: case 5:
+"529
 [e :U 56 ]
-[; ;main.c: 530: break;
-"530
-[e $U 47  ]
-[; ;main.c: 531: case 6:
+[; ;main.c: 531: break;
 "531
+[e $U 47  ]
+[; ;main.c: 532: case 6:
+"532
 [e :U 57 ]
-[; ;main.c: 533: break;
-"533
-[e $U 47  ]
-[; ;main.c: 534: case 7:
+[; ;main.c: 534: break;
 "534
-[e :U 58 ]
-[; ;main.c: 536: break;
-"536
 [e $U 47  ]
-[; ;main.c: 537: case 8:
+[; ;main.c: 535: case 7:
+"535
+[e :U 58 ]
+[; ;main.c: 537: break;
 "537
-[e :U 59 ]
-[; ;main.c: 538: if(fctBits001.bits.bit_0 == 0)
+[e $U 47  ]
+[; ;main.c: 538: case 8:
 "538
-[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 60  ]
-[; ;main.c: 539: {
+[e :U 59 ]
+[; ;main.c: 539: if(fctBits001.bits.bit_0 == 0)
 "539
-{
-[; ;main.c: 540: GledLoop();
+[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 60  ]
+[; ;main.c: 540: {
 "540
-[e ( _GledLoop ..  ]
+{
+[; ;main.c: 541: GledLoop();
 "541
+[e ( _GledLoop ..  ]
+"542
 }
 [e :U 60 ]
-[; ;main.c: 541: }
-[; ;main.c: 542: break;
-"542
-[e $U 47  ]
-[; ;main.c: 543: case 9:
+[; ;main.c: 542: }
+[; ;main.c: 543: break;
 "543
+[e $U 47  ]
+[; ;main.c: 544: case 9:
+"544
 [e :U 61 ]
-[; ;main.c: 545: break;
-"545
-[e $U 47  ]
-[; ;main.c: 546: default:
+[; ;main.c: 546: break;
 "546
+[e $U 47  ]
+[; ;main.c: 547: default:
+"547
 [e :U 62 ]
-[; ;main.c: 548: break;
-"548
-[e $U 47  ]
+[; ;main.c: 549: break;
 "549
-}
-[; ;main.c: 549: }
 [e $U 47  ]
-"505
+"550
+}
+[; ;main.c: 550: }
+[e $U 47  ]
+"506
 [e :U 48 ]
 [e [\ _SEQmain , $ -> -> 0 `i `uc 49
  , $ -> -> 1 `i `uc 50
@@ -2314,98 +2329,98 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 8 `i `uc 59
  , $ -> -> 9 `i `uc 61
  62 ]
-"549
-[e :U 47 ]
-[; ;main.c: 550: if (++SEQmain >= 10)
 "550
-[e $ ! >= -> =+ _SEQmain -> -> 1 `i `uc `i -> 10 `i 63  ]
-[; ;main.c: 551: {
+[e :U 47 ]
+[; ;main.c: 551: if (++SEQmain >= 10)
 "551
-{
-[; ;main.c: 552: SEQmain = 0;
+[e $ ! >= -> =+ _SEQmain -> -> 1 `i `uc `i -> 10 `i 63  ]
+[; ;main.c: 552: {
 "552
-[e = _SEQmain -> -> 0 `i `uc ]
+{
+[; ;main.c: 553: SEQmain = 0;
 "553
-}
-[e :U 63 ]
+[e = _SEQmain -> -> 0 `i `uc ]
 "554
 }
-[e :U 46 ]
+[e :U 63 ]
 "555
+}
+[e :U 46 ]
+"556
 }
 [e :U 43 ]
 "498
 [e $U 44  ]
 [e :U 45 ]
-[; ;main.c: 553: }
 [; ;main.c: 554: }
 [; ;main.c: 555: }
 [; ;main.c: 556: }
-"556
+[; ;main.c: 557: }
+"557
 [e :UE 42 ]
 }
 [v $root$_Int_ALL `(v ~T0 @X0 0 e ]
-[v F1054 `(v ~T0 @X0 1 tf ]
-"562
-[v _Int_ALL `IF1054 ~T0 @X0 1 e ]
+[v F1068 `(v ~T0 @X0 1 tf ]
 "563
+[v _Int_ALL `IF1068 ~T0 @X0 1 e ]
+"564
 {
-[; ;main.c: 562: void interrupt Int_ALL(void)
-[; ;main.c: 563: {
+[; ;main.c: 563: void interrupt Int_ALL(void)
+[; ;main.c: 564: {
 [e :U _Int_ALL ]
 [f ]
-[; ;main.c: 565: if (TMR1IF)
-"565
-[e $ ! _TMR1IF 65  ]
-[; ;main.c: 566: {
+[; ;main.c: 566: if (TMR1IF)
 "566
+[e $ ! _TMR1IF 65  ]
+[; ;main.c: 567: {
+"567
 {
-[; ;main.c: 572: TMR1 = 0xE0C0;
-"572
-[e = _TMR1 -> 57536 `ui ]
-[; ;main.c: 573: TMR1IF = 0;
+[; ;main.c: 573: TMR1 = 0xE0C0;
 "573
+[e = _TMR1 -> 57536 `ui ]
+[; ;main.c: 574: TMR1IF = 0;
+"574
 [e = _TMR1IF -> -> 0 `i `b ]
-[; ;main.c: 576: Fsys1.bits.bit_1 = 1;
-"576
+[; ;main.c: 577: Fsys1.bits.bit_1 = 1;
+"577
 [e = . . _Fsys1 1 1 -> -> 1 `i `uc ]
-[; ;main.c: 579: if (++MainTime_1s >= 1000)
-"579
-[e $ ! >= =+ _MainTime_1s -> -> 1 `i `ui -> -> 1000 `i `ui 66  ]
-[; ;main.c: 580: {
+[; ;main.c: 580: if (++MainTime_1s >= 1000)
 "580
-{
-[; ;main.c: 581: MainTime_1s = 0;
+[e $ ! >= =+ _MainTime_1s -> -> 1 `i `ui -> -> 1000 `i `ui 66  ]
+[; ;main.c: 581: {
 "581
-[e = _MainTime_1s -> -> 0 `i `ui ]
-[; ;main.c: 582: Fsys1s.byte = 0xFF;
+{
+[; ;main.c: 582: MainTime_1s = 0;
 "582
+[e = _MainTime_1s -> -> 0 `i `ui ]
+[; ;main.c: 583: Fsys1s.byte = 0xFF;
+"583
 [e = . _Fsys1s 0 -> -> 255 `i `uc ]
-"590
-}
-[e :U 66 ]
 "591
 }
+[e :U 66 ]
+"592
+}
 [e :U 65 ]
-[; ;main.c: 590: }
 [; ;main.c: 591: }
-[; ;main.c: 594: if (TMR2IF)
-"594
-[e $ ! _TMR2IF 67  ]
-[; ;main.c: 595: {
+[; ;main.c: 592: }
+[; ;main.c: 595: if (TMR2IF)
 "595
-{
-[; ;main.c: 596: TMR2IF = 0;
+[e $ ! _TMR2IF 67  ]
+[; ;main.c: 596: {
 "596
-[e = _TMR2IF -> -> 0 `i `b ]
-[; ;main.c: 597: INT_LED_SHOW();
+{
+[; ;main.c: 597: TMR2IF = 0;
 "597
-[e ( _INT_LED_SHOW ..  ]
+[e = _TMR2IF -> -> 0 `i `b ]
+[; ;main.c: 598: INT_LED_SHOW();
 "598
+[e ( _INT_LED_SHOW ..  ]
+"599
 }
 [e :U 67 ]
-[; ;main.c: 598: }
-[; ;main.c: 656: }
-"656
+[; ;main.c: 599: }
+[; ;main.c: 657: }
+"657
 [e :UE 64 ]
 }

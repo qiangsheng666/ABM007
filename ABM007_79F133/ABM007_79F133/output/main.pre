@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 1 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h"
+# 25 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,31 +624,48 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light_user.h"
 extern BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush_user.h"
 extern BYTE Fflush1;
 
-# 13
+# 12
+enum{
+FLUSH_INIT_0 = 0,
+FLUSH_INIT_1,
+FLUSH_INIT_2,
+FLUSH_BIG_0,
+FLUSH_BIG_1,
+FLUSH_BIG_2,
+FLUSH_SML_0,
+FLUSH_SML_1,
+FLUSH_SML_2,
+FLUSH_END_0,
+FLUSH_END_1,
+FLUSH_END_2,
+};
 extern void GflushLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor_user.h"
 extern BYTE Fbodysensor;
 
 # 25
 extern void GsensorLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct_user.h"
 extern BYTE fctBits001;
 
 
 
 
 extern void FCTloop(void);
+
+# 9 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_user.h"
+uint8_t GkeyLoop();
 
 # 30 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\math.h"
 extern double fabs(double);
@@ -713,7 +730,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 7 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 7 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
 volatile unsigned int TMR1 @0x000E;
 
 # 15
@@ -759,13 +776,13 @@ void Init_GPIO(void)
 {
 
 
-PORTA = 0B00000000;
-PORTB = 0B00000000;
+PORTA = 0B01000000;
+PORTB = 0B00000001;
 PORTC = 0B00000000;
 
 
-TRISA = 0B00000000;
-TRISB = 0B00000011;
+TRISA = 0B01000000;
+TRISB = 0B00000111;
 TRISC = 0B00000000;
 
 
@@ -1027,6 +1044,7 @@ while (1)
 if (Fsys1.bits.bit_1 == 1)
 {
 asm("clrwdt");
+
 Fsys1.bits.bit_1 = 0;
 switch (SEQmain)
 {
@@ -1081,14 +1099,14 @@ SEQmain = 0;
 }
 }
 
-# 562
+# 563
 void interrupt Int_ALL(void)
 {
 
 if (TMR1IF)
 {
 
-# 572
+# 573
 TMR1 = 0xE0C0;
 TMR1IF = 0;
 
@@ -1101,7 +1119,7 @@ if (++MainTime_1s >= 1000)
 MainTime_1s = 0;
 Fsys1s.byte = 0xFF;
 
-# 590
+# 591
 }
 }
 
@@ -1112,5 +1130,5 @@ TMR2IF = 0;
 INT_LED_SHOW();
 }
 
-# 656
+# 657
 }

@@ -63,17 +63,17 @@ void Init_GPIO(void)
 {
 
 	/*引脚数据*/
-	PORTA = 0B00000000;
-	PORTB = 0B00000000;
+	PORTA = 0B01000000;
+	PORTB = 0B00000001;
 	PORTC = 0B00000000;
 
 	/* 全部配置成输入状态，1: 输入，0: 输出 */
-	TRISA = 0B00000000; /* RA2-气泵	RA4-主阀 RA5-氛围灯 */
-	TRISB = 0B00000011; /* RB1-龙头感应，RB0测试点 */
+	TRISA = 0B01000000; /*RA1直流阀 RA2-气泵	RA4-主阀  RA5-氛围灯 RA6按键1*/
+	TRISB = 0B00000111; /* RB0按键2	RB1-龙头感应，RB0测试点 */
 	TRISC = 0B00000000;
 
 	/*内部上拉关闭, 1: 开启, 0: 关闭 */
-	WPUA = 0B00000000; /* RA2-气泵	RA4-主阀 RA5-氛围灯 */
+	WPUA = 0B00000000; /* RA1直流阀		RA2-气泵	RA4-主阀 RA5-氛围灯 */
 	WPUB = 0B00000010; /* RB1-龙头感应<置1则不插为有人状态，RB1低有效>，RB0-测试点，硬件下拉 */
 	WPUC = 0B00000000;
 
@@ -501,6 +501,7 @@ void main(void)
 		if (F1ms == SET)
 		{
 			CLRWDT(); /*清看门狗*/
+			// ScanIO();
 			F1ms = CLR;
 			switch (SEQmain)
 			{
@@ -514,7 +515,7 @@ void main(void)
 					}
 					break;
 				case 2:
-
+						// GkeyLoop();
 					break;
 				case 3:
 

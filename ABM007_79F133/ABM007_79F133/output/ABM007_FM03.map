@@ -4,19 +4,19 @@ Linker command line:
 
 -W-2 \
   --edf=D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\dat\en_msgs.txt \
-  -cs -h+ABM007.sym --cmf=ABM007.cmf -z -Q79F133 \
-  -oC:\Users\ÍôÇ¿Éý\AppData\Local\Temp\s1m4.2 -MABM007.map -E1 -ver=XC8 \
-  -ASTACK=0A0h-0efh -pstack=STACK -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh \
-  -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 -AENTRY=00h-0FFhx32 \
-  -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
-  -ABANK2=0120h-016Fh -ABANK3=01A0h-01EFh \
+  -cs -h+ABM007_FM03.sym --cmf=ABM007_FM03.cmf -z -Q79F133 \
+  -oC:\Users\ÍôÇ¿Éý\AppData\Local\Temp\sgl8.2 -MABM007_FM03.map -E1 \
+  -ver=XC8 -ASTACK=0A0h-0efh -pstack=STACK -ACODE=00h-07FFhx4 \
+  -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
+  -AENTRY=00h-0FFhx32 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
+  -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh -ABANK3=01A0h-01EFh \
   -ARAM=020h-06Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh \
   -AABS1=020h-07Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh -ASFR0=00h-01Fh \
   -ASFR1=080h-09Fh -ASFR2=0100h-011Fh -ASFR3=0180h-019Fh \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
   -pfunctab=ENTRY -ACONFIG=02007h-02008h -pconfig=CONFIG -DCONFIG=2 \
   -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 -DCODE=2 -DSTRCODE=2 \
-  -DSTRING=2 -DCONST=2 -DENTRY=2 -k startup.obj ABM007.obj 
+  -DSTRING=2 -DCONST=2 -DENTRY=2 -k startup.obj ABM007_FM03.obj 
 
 Object code version is 3.11
 
@@ -27,7 +27,7 @@ Machine type is 79F133
                 Name                               Link     Load   Length Selector   Space Scale
 startup.obj     end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
-ABM007.obj      cinit                                 F        F        D        8       0
+ABM007_FM03.obj cinit                                 F        F        D        8       0
                 intentry                              4        4        8        8       0
                 text27                              4C6      4C6       3C        8       0
                 text25                              502      502       2B        8       0
@@ -464,7 +464,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 473 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 473 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -501,7 +501,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_TIMER2 *****************
  Defined at:
-		line 174 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 174 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -531,7 +531,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_TIMER1 *****************
  Defined at:
-		line 152 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 152 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -561,7 +561,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_IC *****************
  Defined at:
-		line 96 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 96 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -591,7 +591,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_GPIO *****************
  Defined at:
-		line 62 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 62 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -621,7 +621,7 @@ Total ram usage:        0 bytes
 
  *************** function _GsensorLoop *****************
  Defined at:
-		line 19 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+		line 19 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -654,7 +654,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorTime *****************
  Defined at:
-		line 33 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+		line 33 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -684,7 +684,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorKey *****************
  Defined at:
-		line 27 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+		line 27 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -714,7 +714,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorJudge *****************
  Defined at:
-		line 73 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+		line 73 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -744,7 +744,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorControl *****************
  Defined at:
-		line 179 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+		line 179 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -774,7 +774,7 @@ Total ram usage:        1 bytes
 
  *************** function _GledLoop *****************
  Defined at:
-		line 16 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 16 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -807,7 +807,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Time *****************
  Defined at:
-		line 45 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 45 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -837,7 +837,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Key *****************
  Defined at:
-		line 24 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 24 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -867,7 +867,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Judge *****************
  Defined at:
-		line 53 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 53 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -897,7 +897,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Con *****************
  Defined at:
-		line 84 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 84 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -927,7 +927,7 @@ Total ram usage:        0 bytes
 
  *************** function _GflushLoop *****************
  Defined at:
-		line 15 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+		line 15 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -959,7 +959,7 @@ Total ram usage:        0 bytes
 
  *************** function _FlushTime *****************
  Defined at:
-		line 22 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+		line 22 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -989,7 +989,7 @@ Total ram usage:        0 bytes
 
  *************** function _FlushJudge *****************
  Defined at:
-		line 26 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+		line 26 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1019,7 +1019,7 @@ Total ram usage:        1 bytes
 
  *************** function _GkeyLoop *****************
  Defined at:
-		line 7 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\key.c"
+		line 7 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1050,7 +1050,7 @@ Total ram usage:        2 bytes
 
  *************** function _ScanKey *****************
  Defined at:
-		line 45 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\key.c"
+		line 45 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c"
  Parameters:    Size  Location     Type
   line_num        1    wreg     enum E872
  Auto vars:     Size  Location     Type
@@ -1080,7 +1080,7 @@ Total ram usage:        1 bytes
 
  *************** function _KeyControl *****************
  Defined at:
-		line 58 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\key.c"
+		line 58 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c"
  Parameters:    Size  Location     Type
   this            1    wreg     PTR struct _KEY_PRIVATE
 		 -> KeyLines(8), 
@@ -1112,7 +1112,7 @@ Total ram usage:        9 bytes
 
  *************** function _FlushCon *****************
  Defined at:
-		line 107 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+		line 107 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1142,7 +1142,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTloop *****************
  Defined at:
-		line 16 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+		line 16 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1173,7 +1173,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTkey *****************
  Defined at:
-		line 22 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+		line 22 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1203,7 +1203,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTjudge *****************
  Defined at:
-		line 39 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+		line 39 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1233,7 +1233,7 @@ Total ram usage:        0 bytes
 
  *************** function _Delay_nms *****************
  Defined at:
-		line 35 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 35 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
   inittempl       2    4[COMMON] unsigned int 
  Auto vars:     Size  Location     Type
@@ -1264,7 +1264,7 @@ Total ram usage:        5 bytes
 
  *************** function _Delay *****************
  Defined at:
-		line 27 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 27 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
   dtemp           2    2[COMMON] unsigned int 
  Auto vars:     Size  Location     Type
@@ -1294,7 +1294,7 @@ Total ram usage:        2 bytes
 
  *************** function _Int_ALL *****************
  Defined at:
-		line 563 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+		line 563 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1324,7 +1324,7 @@ Total ram usage:        2 bytes
 
  *************** function _INT_LED_SHOW *****************
  Defined at:
-		line 193 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+		line 193 in file "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1355,14 +1355,7 @@ Total ram usage:        0 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\key.c
-		_GkeyLoop      		CODE           	011B	0000	107
-		_ScanKey       		CODE           	0202	0000	20
-		_KeyControl    		CODE           	0185	0000	126
-
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\key.c estimated size: 253
-
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
 		_Delay_nms     		CODE           	0502	0000	32
 		_Init_TIMER1   		CODE           	0554	0000	14
 		_Init_TIMER2   		CODE           	0561	0000	12
@@ -1372,7 +1365,14 @@ D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
 		_Delay         		CODE           	0521	0000	13
 		_Int_ALL       		CODE           	04C6	0000	36
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c estimated size: 260
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c estimated size: 260
+
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c
+		_FCTkey        		CODE           	04B8	0000	15
+		_FCTjudge      		CODE           	0467	0000	82
+		_FCTloop       		CODE           	0463	0000	5
+
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c estimated size: 102
 
 shared
 		PL12           		CODE           	03EE	0000	7
@@ -1385,24 +1385,22 @@ shared
 
 shared estimated size: 64
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
 		_FlushTime     		CODE           	0023	0000	2
 		_FlushCon      		CODE           	0024	0000	201
 		_GflushLoop    		CODE           	001C	0000	8
 		_FlushJudge    		CODE           	00EC	0000	48
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c estimated size: 259
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c estimated size: 259
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
-		_SensorControl 		CODE           	0273	0000	28
-		_GsensorLoop   		CODE           	0230	0000	11
-		_SensorKey     		CODE           	023A	0000	2
-		_SensorTime    		CODE           	023B	0000	57
-		_SensorJudge   		CODE           	028E	0000	144
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c
+		_GkeyLoop      		CODE           	011B	0000	107
+		_ScanKey       		CODE           	0202	0000	20
+		_KeyControl    		CODE           	0185	0000	126
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c estimated size: 242
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c estimated size: 253
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c
 		_LED_Time      		CODE           	0331	0000	4
 		_LED_Judge     		CODE           	03E0	0000	9
 		_LED_Key       		CODE           	0330	0000	2
@@ -1410,12 +1408,14 @@ D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
 		_LED_Con       		CODE           	0334	0000	173
 		_INT_LED_SHOW  		CODE           	04E9	0000	26
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c estimated size: 225
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c estimated size: 225
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
-		_FCTkey        		CODE           	04B8	0000	15
-		_FCTjudge      		CODE           	0467	0000	82
-		_FCTloop       		CODE           	0463	0000	5
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c
+		_SensorControl 		CODE           	0273	0000	28
+		_GsensorLoop   		CODE           	0230	0000	11
+		_SensorKey     		CODE           	023A	0000	2
+		_SensorTime    		CODE           	023B	0000	57
+		_SensorJudge   		CODE           	028E	0000	144
 
-D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c estimated size: 102
+D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c estimated size: 242
 

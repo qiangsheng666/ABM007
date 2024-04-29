@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+# 1 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h"
+# 25 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,35 +624,16 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light_user.h"
 extern BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h"
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush_user.h"
 extern BYTE Fflush1;
 
-# 13
-extern void GflushLoop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h"
-extern BYTE Fbodysensor;
-
-# 25
-extern void GsensorLoop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h"
-extern BYTE fctBits001;
-
-
-
-
-extern void FCTloop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-BYTE Fflush1;
-
+# 12
 enum{
 FLUSH_INIT_0 = 0,
 FLUSH_INIT_1,
@@ -667,6 +648,29 @@ FLUSH_END_0,
 FLUSH_END_1,
 FLUSH_END_2,
 };
+extern void GflushLoop(void);
+
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor_user.h"
+extern BYTE Fbodysensor;
+
+# 25
+extern void GsensorLoop(void);
+
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct_user.h"
+extern BYTE fctBits001;
+
+
+
+
+extern void FCTloop(void);
+
+# 9 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_user.h"
+uint8_t GkeyLoop();
+
+# 4 "D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c"
+BYTE Fflush1;
+
+
 
 v_uint8 SEQflsuh = 0;
 v_uint16 CNTflush = 0;
@@ -688,23 +692,40 @@ void FlushTime(void)
 }
 void FlushJudge(void)
 {
+uint8_t Key_Step = 0;
 
-# 59
-if(Fbodysensor.bits.bit_4 == 1)
+
+if(Fbodysensor.bits.bit_3 == 1)
 {
-
-
-Fflush1.bits.bit_2 = 0;
 Fflush1.bits.bit_0 = 1;
+Fflush1.bits.bit_2 = 0;
 }
-else
+else if(Fbodysensor.bits.bit_4 == 1)
+{
+Fflush1.bits.bit_2 = 1;
+Fflush1.bits.bit_0 = 0;
+}
+else if (SEQflsuh)
 {
 Fflush1.bits.bit_2 = 0;
 Fflush1.bits.bit_0 = 0;
 }
+else
+{
+Key_Step = GkeyLoop();
+if (Key_Step)
+{
+SEQflsuh = Key_Step;
+CNTflush = 0;
+Fflush1.bits.bit_7 = 1;
+}else
+{
+Fflush1.bits.bit_2 = 0;
+Fflush1.bits.bit_0 = 0;
+}
+}
 
-
-
+# 76
 if (Fbodysensor.bits.bit_2 == 1)
 {
 Fflush1.bits.bit_7 = 1;
@@ -744,6 +765,7 @@ case FLUSH_INIT_0:
 Fflush1.bits.bit_6 = 0;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
 {
 SEQflsuh = FLUSH_INIT_1;
@@ -754,6 +776,7 @@ case FLUSH_INIT_1:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 if(Fbodysensor.bits.bit_0 == 1)
 {
 SEQflsuh = FLUSH_END_0;
@@ -770,6 +793,7 @@ case FLUSH_INIT_2:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 if(Fbodysensor.bits.bit_0 == 1)
 {
 SEQflsuh = FLUSH_END_0;
@@ -790,6 +814,7 @@ case FLUSH_BIG_0:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
 RA4 = 1;
+RA1 = 1;
 if(++CNTflush >= 10)
 {
 CNTflush = 0;
@@ -800,6 +825,7 @@ case FLUSH_BIG_1:
 Fflush1.bits.bit_6 = 1;
 RA2 = 1;
 RA4 = 1;
+RA1 = 1;
 
 if(++CNTflush >= 100)
 {
@@ -807,12 +833,13 @@ CNTflush = 0;
 SEQflsuh = FLUSH_BIG_2;
 }
 
-# 182
+# 190
 break;
 case FLUSH_BIG_2:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
 RA4 = 1;
+RA1 = 1;
 if(++CNTflush >= 10)
 {
 CNTflush = 0;
@@ -823,7 +850,8 @@ break;
 case FLUSH_SML_0:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
-RA4 = 0;
+RA4 = 1;
+RA1 = 0;
 if(++CNTflush >= 5)
 {
 CNTflush = 0;
@@ -833,8 +861,10 @@ break;
 case FLUSH_SML_1:
 Fflush1.bits.bit_6 = 1;
 RA2 = 1;
-RA4 = 0;
-if(++CNTflush >= 200)
+RA4 = 1;
+RA1 = 0;
+
+if(++CNTflush >= 100)
 {
 CNTflush = 0;
 SEQflsuh = FLUSH_SML_2;
@@ -843,7 +873,8 @@ break;
 case FLUSH_SML_2:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
-RA4 = 0;
+RA4 = 1;
+RA1 = 0;
 if(++CNTflush >= 5)
 {
 CNTflush = 0;
@@ -855,6 +886,7 @@ case FLUSH_END_0:
 Fflush1.bits.bit_6 = 1;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 if(++CNTflush >= 5)
 {
 CNTflush = 0;
@@ -865,6 +897,7 @@ case FLUSH_END_1:
 Fflush1.bits.bit_6 = 0;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 SEQflsuh = FLUSH_INIT_0;
 CNTflush = 0;
 Fflush1.bits.bit_1 = 0;
@@ -874,6 +907,7 @@ default:
 Fflush1.bits.bit_6 = 0;
 RA2 = 0;
 RA4 = 0;
+RA1 = 0;
 Fflush1.bits.bit_1 = 0;
 Fflush1.bits.bit_3 = 0;
 SEQflsuh = FLUSH_INIT_0;
