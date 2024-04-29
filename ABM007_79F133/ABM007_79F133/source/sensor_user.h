@@ -1,7 +1,7 @@
 #ifndef __SENSOR_USER_H__
 #define __SENSOR_USER_H__
 
-extern BYTE Fbodysensor;
+extern volatile BYTE Fbodysensor;
 
 #define Fbody       Fbodysensor.bits.bit_0  /* 人体感应标识 */
 #define FbodyEnter  Fbodysensor.bits.bit_1  /* 感应到有人瞬间标识 */

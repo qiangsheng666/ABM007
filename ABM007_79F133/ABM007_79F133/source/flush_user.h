@@ -1,7 +1,7 @@
 #ifndef __FLUSH_USER_H__
 #define __FLUSH_USER_H__
 
-extern BYTE Fflush1;
+extern volatile BYTE Fflush1;
 #define YKfls_Big		Fflush1.bits.bit_0
 #define OKfls_Big		Fflush1.bits.bit_1
 #define YKfls_Sml		Fflush1.bits.bit_2

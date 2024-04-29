@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\fct.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h"
+# 25 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,40 +624,30 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h"
-extern BYTE FledBits01;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light_user.h"
+extern volatile BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h"
-extern BYTE Fflush1;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush_user.h"
+extern volatile BYTE Fflush1;
 
 # 13
 extern void GflushLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h"
-extern BYTE Fbodysensor;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor_user.h"
+extern volatile BYTE Fbodysensor;
 
 # 25
 extern void GsensorLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h"
-extern BYTE fctBits001;
-
-
-
-
-extern void FCTloop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-BYTE fctBits001;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\fct.c"
+volatile BYTE fctBits001;
 
 
 
 volatile unsigned char CNTfctStart;
-volatile unsigned char CNTfctSensior;
-volatile unsigned char CNTfctFlashLed;
 volatile unsigned int CNTfct;
 
 void FCTkey(void);
@@ -671,17 +661,16 @@ FCTjudge();
 
 void FCTkey(void)
 {
-if(RB0 == 1)
+if(RB1 == 0)
 {
-if(++CNTfctStart >= 50)
+if(++CNTfctStart >= 100)
 {
-CNTfctStart = 50;
+CNTfctStart = 100;
 fctBits001.bits.bit_0 = 1;
 }
 }
 else
 {
-fctBits001.bits.bit_0 = 0;
 CNTfctStart = 0;
 }
 }
@@ -690,64 +679,35 @@ void FCTjudge(void)
 {
 if(fctBits001.bits.bit_0 == 1)
 {
-if(RB1 == 0)
+if(++CNTfct >= 500)
 {
-if(++CNTfctSensior >= 50)
-{
-CNTfct = 0;
-CNTfctSensior = 50;
-if(++CNTfctFlashLed >= 50)
-{
-CNTfctFlashLed = 0;
+CNTfct = 500;
+fctBits001.bits.bit_0 = 0;
+RA5 = 0;
+RA2 = 0;
+RA4 = 0;
 }
-else if(CNTfctFlashLed == 25)
+else if(CNTfct == 350)
 {
 RA5 = 1;
+RA2 = 0;
+RA4 = 0;
+}
+else if(CNTfct == 200)
+{
+RA5 = 0;
 RA2 = 1;
-RA4 = 1;
-}
-else if(CNTfctFlashLed == 1)
-{
-RA5 = 0;
-RA2 = 0;
-RA4 = 0;
-}
-}
-}
-else
-{
-CNTfctSensior = 0;
-if(++CNTfct >= 100)
-{
-CNTfct = 0;
-
-RA5 = 0;
-RA2 = 0;
-RA4 = 0;
-}
-else if(CNTfct == 75)
-{
-RA5 = 1;
-RA2 = 0;
 RA4 = 0;
 }
 else if(CNTfct == 50)
 {
 RA5 = 0;
-RA2 = 1;
-RA4 = 0;
-}
-else if(CNTfct == 25)
-{
-RA5 = 0;
 RA2 = 0;
 RA4 = 1;
 }
 }
-}
 else
 {
-CNTfctSensior = 0;
 CNTfct = 0;
 }
 }

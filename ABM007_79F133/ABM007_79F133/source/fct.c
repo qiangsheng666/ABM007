@@ -1,13 +1,11 @@
 #include "cfg_user.h"
 #include "cfg_case.h"
 
-BYTE fctBits001;
+volatile BYTE fctBits001;
 
-// #define FfctTest fctBits001.bits.bit_0
+#define FkeySta fctBits001.bits.bit_0
 
 volatile unsigned char CNTfctStart;
-volatile unsigned char CNTfctSensior;
-volatile unsigned char CNTfctFlashLed;
 volatile unsigned int CNTfct;
 
 void FCTkey(void);
@@ -21,83 +19,53 @@ void FCTloop(void)
 
 void FCTkey(void)
 {
-    if(PItest == HIGH)
+    if(PIsensor == LOW)
     {
-        if(++CNTfctStart >= 50)
+        if(++CNTfctStart >= 100)
         {
-            CNTfctStart = 50;
-            FfctTest = SET;
+            CNTfctStart = 100;
+            FkeySta = SET;
         }
     }
     else
     {
-        FfctTest = CLR;
         CNTfctStart = 0;
     }
 }
 
 void FCTjudge(void)
 {
-    if(FfctTest == SET)
+    if(FkeySta == SET)
     {
-        if(PIsensor == LOW)
+        if(++CNTfct >= 500)
         {
-            if(++CNTfctSensior >= 50)
-            {
-                CNTfct = 0;
-                CNTfctSensior = 50;
-                if(++CNTfctFlashLed >= 50)
-                {
-                    CNTfctFlashLed = 0;
-                }
-                else if(CNTfctFlashLed == 25)
-                {
-                    POlight = HIGH;
-                    POairPump = HIGH;
-                    POmainValue = HIGH;
-                }
-                else if(CNTfctFlashLed == 1)
-                {
-                    POlight = LOW;
-                    POairPump = LOW;
-                    POmainValue = LOW;
-                }
-            }
+            CNTfct = 500;
+            FkeySta = CLR;
+            POlight = LOW;
+            POairPump = LOW;
+            POmainValue = LOW;
         }
-        else
+        else if(CNTfct == 350)
         {
-            CNTfctSensior = 0;
-            if(++CNTfct >= 100)
-            {
-                CNTfct = 0;
-                // FfctTest = CLR;
-                POlight = LOW;
-                POairPump = LOW;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 75)
-            {
-                POlight = HIGH;
-                POairPump = LOW;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 50)
-            {
-                POlight = LOW;
-                POairPump = HIGH;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 25)
-            {
-                POlight = LOW;
-                POairPump = LOW;
-                POmainValue = HIGH;
-            }
+            POlight = HIGH;
+            POairPump = LOW;
+            POmainValue = LOW;
+        }
+        else if(CNTfct == 200)
+        {
+            POlight = LOW;
+            POairPump = HIGH;
+            POmainValue = LOW;
+        }
+        else if(CNTfct == 50)
+        {
+            POlight = LOW;
+            POairPump = LOW;
+            POmainValue = HIGH;
         }
     }
     else
     {
-        CNTfctSensior = 0;
         CNTfct = 0;
     }
 }

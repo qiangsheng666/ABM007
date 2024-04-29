@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h"
+# 25 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,31 +624,23 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h"
-extern BYTE FledBits01;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light_user.h"
+extern volatile BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h"
-extern BYTE Fflush1;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush_user.h"
+extern volatile BYTE Fflush1;
 
 # 13
 extern void GflushLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h"
-extern BYTE Fbodysensor;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor_user.h"
+extern volatile BYTE Fbodysensor;
 
 # 25
 extern void GsensorLoop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h"
-extern BYTE fctBits001;
-
-
-
-
-extern void FCTloop(void);
 
 # 30 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\math.h"
 extern double fabs(double);
@@ -713,7 +705,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 7 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 7 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c"
 volatile unsigned int TMR1 @0x000E;
 
 # 15
@@ -726,14 +718,14 @@ v_uint16 AD_Result = 0;
 
 extern void INT_LED_SHOW(void);
 
-# 27
+# 30
 void Delay(unsigned int dtemp)
 {
 while (dtemp--)
 ;
 }
 
-# 35
+# 38
 void Delay_nms(unsigned int inittempl)
 {
 unsigned int i;
@@ -754,7 +746,7 @@ if (gtemp == 1)
 GIE = 1;
 }
 
-# 62
+# 65
 void Init_GPIO(void)
 {
 
@@ -765,7 +757,7 @@ PORTC = 0B00000000;
 
 
 TRISA = 0B00000000;
-TRISB = 0B00000011;
+TRISB = 0B00000010;
 TRISC = 0B00000000;
 
 
@@ -773,10 +765,10 @@ WPUA = 0B00000000;
 WPUB = 0B00000010;
 WPUC = 0B00000000;
 
-# 87
+# 90
 }
 
-# 96
+# 99
 void Init_IC(void)
 {
 asm("clrwdt");
@@ -822,7 +814,7 @@ PIE1 = 0;
 PIE2 = 0;
 }
 
-# 152
+# 155
 void Init_TIMER1(void)
 {
 
@@ -833,7 +825,7 @@ TMR1IE = 1;
 T1CON = 0x01;
 }
 
-# 174
+# 177
 void Init_TIMER2(void)
 {
 PR2 = 24;
@@ -842,24 +834,24 @@ TMR2IE = 1;
 T2CON = 5;
 }
 
-# 201
+# 204
 void Set_CCP_PWM()
 {
 
-# 211
+# 214
 PWMT4L = 0x7C;
 PWMTH = 0B00011101;
 
-# 232
+# 235
 PWMD4L = 0xC7;
 
-# 238
+# 241
 PWMCON2 = 0B00000000;
 PWMCON1 = 0B00000000;
 PWMCON0 = 0B00110000;
 }
 
-# 252
+# 255
 unsigned char Memory_Write(unsigned char Addr, unsigned char Value)
 {
 
@@ -918,7 +910,7 @@ asm("clrwdt");
 } while ((0 == Memory_Write(bufAddress, bufValue)) && (templ--));
 }
 
-# 317
+# 320
 unsigned char Memory_Read(unsigned char Addr)
 {
 
@@ -932,7 +924,7 @@ asm("nop");
 return (EEDAT);
 }
 
-# 340
+# 343
 unsigned int AD_Testing(unsigned char ad_fd, unsigned char ad_ch, unsigned char ad_lr)
 {
 
@@ -980,7 +972,7 @@ data |= (unsigned int)ADRESL;
 return data;
 }
 
-# 396
+# 399
 void Set_Usart_Async()
 {
 BRGHEN1 = 1;
@@ -1003,7 +995,7 @@ CREN1 = 1;
 TXEN1 = 1;
 }
 
-# 473
+# 476
 void main(void)
 {
 
@@ -1017,7 +1009,7 @@ Delay_nms(200);
 Init_TIMER1();
 Init_TIMER2();
 
-# 495
+# 498
 INTCON = 0XC0;
 
 
@@ -1030,14 +1022,13 @@ asm("clrwdt");
 Fsys1.bits.bit_1 = 0;
 switch (SEQmain)
 {
+
+# 515
 case 0:
-FCTloop();
+GsensorLoop();
 break;
 case 1:
-if(fctBits001.bits.bit_0 == 0)
-{
-GsensorLoop();
-}
+
 break;
 case 2:
 
@@ -1046,10 +1037,7 @@ case 3:
 
 break;
 case 4:
-if(fctBits001.bits.bit_0 == 0)
-{
 GflushLoop();
-}
 break;
 case 5:
 
@@ -1061,14 +1049,12 @@ case 7:
 
 break;
 case 8:
-if(fctBits001.bits.bit_0 == 0)
-{
 GledLoop();
-}
 break;
 case 9:
 
 break;
+
 default:
 
 break;

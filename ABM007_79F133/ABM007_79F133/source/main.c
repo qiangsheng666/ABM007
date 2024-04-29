@@ -20,6 +20,9 @@ v_uint16 MainTime_1s = 0;	/* 定时1s计数 */
 v_uint16 AD_Result = 0;
 
 extern  void INT_LED_SHOW(void);
+#if FCT_TEST
+	extern void FCTloop(void);
+#endif
 
 /***********************************************************************
 函数功能：延时子函数，13个指令周期1循环
@@ -69,12 +72,12 @@ void Init_GPIO(void)
 
 	/* 全部配置成输入状态，1: 输入，0: 输出 */
 	TRISA = 0B00000000; /* RA2-气泵	RA4-主阀 RA5-氛围灯 */
-	TRISB = 0B00000011; /* RB1-龙头感应，RB0测试点 */
+	TRISB = 0B00000010; /* RB1-龙头感应 */
 	TRISC = 0B00000000;
 
 	/*内部上拉关闭, 1: 开启, 0: 关闭 */
 	WPUA = 0B00000000; /* RA2-气泵	RA4-主阀 RA5-氛围灯 */
-	WPUB = 0B00000010; /* RB1-龙头感应<置1则不插为有人状态，RB1低有效>，RB0-测试点，硬件下拉 */
+	WPUB = 0B00000010; /* RB1-龙头感应<置1则不插为有人状态，RB1低有效> */
 	WPUC = 0B00000000;
 
 	/* 内部下拉 */
@@ -504,14 +507,16 @@ void main(void)
 			F1ms = CLR;
 			switch (SEQmain)
 			{
+#if FCT_TEST
 				case 0:
 					FCTloop();
 					break;
+#else
+				case 0:
+					GsensorLoop();
+					break;
 				case 1:
-					if(FfctTest == CLR)
-					{
-						GsensorLoop();
-					}
+
 					break;
 				case 2:
 
@@ -520,10 +525,7 @@ void main(void)
 
 					break;
 				case 4:
-					if(FfctTest == CLR)
-					{
-						GflushLoop();
-					}
+					GflushLoop();
 					break;
 				case 5:
 
@@ -535,14 +537,12 @@ void main(void)
 
 					break;
 				case 8:
-					if(FfctTest == CLR)
-					{
-						GledLoop();
-					}
+					GledLoop();
 				break;
 				case 9:
 
 					break;
+#endif
 				default:
 					// SEQmain = 0;
 					break;

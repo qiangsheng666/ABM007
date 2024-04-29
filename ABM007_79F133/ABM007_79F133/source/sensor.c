@@ -1,7 +1,7 @@
 #include "cfg_user.h"
 #include "cfg_case.h"
 
-BYTE Fbodysensor;
+volatile BYTE Fbodysensor;
 
 v_uint8 u8stsBodySensor = 0;
 v_uint8 SEQbody = 0;

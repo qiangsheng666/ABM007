@@ -1,7 +1,7 @@
 #include "cfg_user.h"
 #include "cfg_case.h"
 
-BYTE Fflush1;
+volatile BYTE Fflush1;
 
 enum{
     FLUSH_INIT_0 = 0,

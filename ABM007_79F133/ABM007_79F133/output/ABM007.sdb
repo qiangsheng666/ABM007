@@ -3,8 +3,8 @@
 [d edition pro ]
 [d chip 79F133 ]
 [d frameptr 6 ]
-"115 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
-[e E857 . `uc
+"115 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
+[e E854 . `uc
 FLUSH_INIT_0 0
 FLUSH_INIT_1 1
 FLUSH_INIT_2 2
@@ -18,13 +18,11 @@ FLUSH_END_0 9
 FLUSH_END_1 10
 FLUSH_END_2 11
 ]
-"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
-[v _FCTloop FCTloop `(v  1 e 1 0 ]
-"22
+"20 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\fct.c
 [v _FCTkey FCTkey `(v  1 e 1 0 ]
-"39
+"36
 [v _FCTjudge FCTjudge `(v  1 e 1 0 ]
-"28 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+"28 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
 [v _GflushLoop GflushLoop `(v  1 e 1 0 ]
 "35
 [v _FlushTime FlushTime `(v  1 e 1 0 ]
@@ -32,7 +30,7 @@ FLUSH_END_2 11
 [v _FlushJudge FlushJudge `(v  1 e 1 0 ]
 "105
 [v _FlushCon FlushCon `(v  1 e 1 0 ]
-"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+"16 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light.c
 [v _GledLoop GledLoop `(v  1 e 1 0 ]
 "24
 [v _LED_Key LED_Key `(v  1 e 1 0 ]
@@ -42,27 +40,27 @@ FLUSH_END_2 11
 [v _LED_Judge LED_Judge `(v  1 e 1 0 ]
 "84
 [v _LED_Con LED_Con `(v  1 e 1 0 ]
-"193
+"192
 [v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
-"27 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"30 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c
 [v _Delay Delay `(v  1 e 1 0 ]
-"35
+"38
 [v _Delay_nms Delay_nms `(v  1 e 1 0 ]
-"62
+"65
 [v _Init_GPIO Init_GPIO `(v  1 e 1 0 ]
-"96
+"99
 [v _Init_IC Init_IC `(v  1 e 1 0 ]
-"152
+"155
 [v _Init_TIMER1 Init_TIMER1 `(v  1 e 1 0 ]
-"174
+"177
 [v _Init_TIMER2 Init_TIMER2 `(v  1 e 1 0 ]
-"252
+"255
 [v _Memory_Write Memory_Write `(uc  1 e 1 0 ]
-"473
+"476
 [v _main main `(v  1 e 1 0 ]
 "562
 [v _Int_ALL Int_ALL `II(v  1 e 1 0 ]
-"19 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+"19 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor.c
 [v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
 "27
 [v _SensorKey SensorKey `(v  1 e 1 0 ]
@@ -85,30 +83,26 @@ FLUSH_END_2 11
 `VEuc 1 bit_6 1 0 :1:6 
 `VEuc 1 bit_7 1 0 :1:7 
 ]
-"55 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\cfg_user.h
 [u S28 . 1 `VEuc 1 byte 1 0 `VES19 1 bits 1 0 ]
 [v _Fsys1 Fsys1 `VES28  1 e 1 0 ]
 "56
 [v _Fsys1s Fsys1s `VES28  1 e 1 0 ]
 "57
 [v _Fsys1m Fsys1m `VES28  1 e 1 0 ]
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\fct.c
 [v _fctBits001 fctBits001 `VES28  1 e 1 0 ]
 "8
 [v _CNTfctStart CNTfctStart `VEuc  1 e 1 0 ]
 "9
-[v _CNTfctSensior CNTfctSensior `VEuc  1 e 1 0 ]
-"10
-[v _CNTfctFlashLed CNTfctFlashLed `VEuc  1 e 1 0 ]
-"11
 [v _CNTfct CNTfct `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
 [v _Fflush1 Fflush1 `VES28  1 e 1 0 ]
 "21
 [v _SEQflsuh SEQflsuh `VEuc  1 e 1 0 ]
 "22
 [v _CNTflush CNTflush `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light.c
 [v _FledBits01 FledBits01 `VES28  1 e 1 0 ]
 "6
 [v _CNTbreath_Led CNTbreath_Led `VEui  1 e 2 0 ]
@@ -118,7 +112,7 @@ FLUSH_END_2 11
 [v _CNTbreath_Led2 CNTbreath_Led2 `VEui  1 e 2 0 ]
 "9
 [v _CNTbreath_Led3 CNTbreath_Led3 `VEui  1 e 2 0 ]
-"7 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"7 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c
 [v _TMR1 TMR1 `VEui  1 e 2 @14 ]
 "15
 [v _RX_Buf RX_Buf `VEuc  1 e 1 0 ]
@@ -132,7 +126,7 @@ FLUSH_END_2 11
 [v _MainTime_1s MainTime_1s `VEui  1 e 2 0 ]
 "20
 [v _AD_Result AD_Result `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor.c
 [v _Fbodysensor Fbodysensor `VES28  1 e 1 0 ]
 "6
 [v _u8stsBodySensor u8stsBodySensor `VEuc  1 e 1 0 ]
@@ -196,8 +190,6 @@ FLUSH_END_2 11
 [v _RA2 RA2 `VEb  1 e 0 @42 ]
 "125
 [v _RB1 RB1 `VEb  1 e 0 @49 ]
-"126
-[v _RB0 RB0 `VEb  1 e 0 @48 ]
 "133
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "149
@@ -208,32 +200,32 @@ FLUSH_END_2 11
 [v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
 "262
 [v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
-"473 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"476 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "556
 } 0
-"174
+"177
 [v _Init_TIMER2 Init_TIMER2 `(v  1 e 1 0 ]
 {
-"180
+"183
 } 0
-"152
+"155
 [v _Init_TIMER1 Init_TIMER1 `(v  1 e 1 0 ]
 {
-"160
+"163
 } 0
-"96
+"99
 [v _Init_IC Init_IC `(v  1 e 1 0 ]
 {
-"139
+"142
 } 0
-"62
+"65
 [v _Init_GPIO Init_GPIO `(v  1 e 1 0 ]
 {
-"87
+"90
 } 0
-"19 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+"19 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor.c
 [v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
 {
 "25
@@ -258,7 +250,7 @@ FLUSH_END_2 11
 {
 "195
 } 0
-"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+"16 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light.c
 [v _GledLoop GledLoop `(v  1 e 1 0 ]
 {
 "22
@@ -281,9 +273,9 @@ FLUSH_END_2 11
 "84
 [v _LED_Con LED_Con `(v  1 e 1 0 ]
 {
-"191
+"190
 } 0
-"28 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+"28 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
 [v _GflushLoop GflushLoop `(v  1 e 1 0 ]
 {
 "33
@@ -303,45 +295,30 @@ FLUSH_END_2 11
 {
 "254
 } 0
-"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
-[v _FCTloop FCTloop `(v  1 e 1 0 ]
-{
-"20
-} 0
-"22
-[v _FCTkey FCTkey `(v  1 e 1 0 ]
-{
-"37
-} 0
-"39
-[v _FCTjudge FCTjudge `(v  1 e 1 0 ]
-{
-"103
-} 0
-"35 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"38 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\main.c
 [v _Delay_nms Delay_nms `(v  1 e 1 0 ]
 {
-"37
+"40
 [v Delay_nms@i i `ui  1 a 2 0 ]
-"38
+"41
 [v Delay_nms@gtemp gtemp `uc  1 a 1 2 ]
-"35
+"38
 [v Delay_nms@inittempl inittempl `ui  1 p 2 4 ]
-"53
+"56
 } 0
-"27
+"30
 [v _Delay Delay `(v  1 e 1 0 ]
 {
 [v Delay@dtemp dtemp `ui  1 p 2 2 ]
-"31
+"34
 } 0
 "562
 [v _Int_ALL Int_ALL `II(v  1 e 1 0 ]
 {
 "656
 } 0
-"193 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+"192 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\light.c
 [v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
 {
-"211
+"210
 } 0

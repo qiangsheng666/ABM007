@@ -1,21 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"24 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+"24 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
 [v _FlushTime `(v ~T0 @X0 0 ef ]
 "25
 [v _FlushJudge `(v ~T0 @X0 0 ef ]
 "26
 [v _FlushCon `(v ~T0 @X0 0 ef ]
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h
-[v _Fbodysensor `S2 ~T0 @X0 0 e ]
-"115 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
-[c E857 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
-[n E857 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\sensor_user.h
+[v _Fbodysensor `VS2 ~T0 @X0 0 e ]
+"115 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
+[c E854 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
+[n E854 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1374,7 +1374,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1383,17 +1383,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 "57
 [v _Fsys1m `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 57: volatile BYTE Fsys1m;
-[; ;light_user.h: 4: extern BYTE FledBits01;
+[; ;light_user.h: 4: extern volatile BYTE FledBits01;
 [; ;light_user.h: 10: extern void GledLoop(void);
-[; ;flush_user.h: 4: extern BYTE Fflush1;
+[; ;flush_user.h: 4: extern volatile BYTE Fflush1;
 [; ;flush_user.h: 13: extern void GflushLoop(void);
-[; ;sensor_user.h: 4: extern BYTE Fbodysensor;
+[; ;sensor_user.h: 4: extern volatile BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
-[; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
-"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
-[v _Fflush1 `S2 ~T0 @X0 1 e ]
-[; ;flush.c: 4: BYTE Fflush1;
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133(2)\ABM007_79F133\source\flush.c
+[v _Fflush1 `VS2 ~T0 @X0 1 e ]
+[; ;flush.c: 4: volatile BYTE Fflush1;
 [; ;flush.c: 6: enum{
 [; ;flush.c: 7: FLUSH_INIT_0 = 0,
 [; ;flush.c: 8: FLUSH_INIT_1,
@@ -1464,41 +1462,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush.c: 40: {
 [e :U _FlushJudge ]
 [f ]
-[; ;flush.c: 59: if(Fbodysensor.bits.bit_4 == 1)
-"59
-[e $ ! == -> . . _Fbodysensor 1 4 `i -> 1 `i 6  ]
-[; ;flush.c: 60: {
-"60
+[; ;flush.c: 43: if(Fbodysensor.bits.bit_3 == 1)
+"43
+[e $ ! == -> . . _Fbodysensor 1 3 `i -> 1 `i 6  ]
+[; ;flush.c: 44: {
+"44
 {
-[; ;flush.c: 63: Fflush1.bits.bit_2 = 0;
-"63
-[e = . . _Fflush1 1 2 -> -> 0 `i `uc ]
-[; ;flush.c: 64: Fflush1.bits.bit_0 = 1;
-"64
+[; ;flush.c: 45: Fflush1.bits.bit_0 = 1;
+"45
 [e = . . _Fflush1 1 0 -> -> 1 `i `uc ]
-"65
-}
-[; ;flush.c: 65: }
-[e $U 7  ]
-"66
-[e :U 6 ]
-[; ;flush.c: 66: else
-[; ;flush.c: 67: {
-"67
-{
-[; ;flush.c: 68: Fflush1.bits.bit_2 = 0;
-"68
+[; ;flush.c: 46: Fflush1.bits.bit_2 = 0;
+"46
 [e = . . _Fflush1 1 2 -> -> 0 `i `uc ]
-[; ;flush.c: 69: Fflush1.bits.bit_0 = 0;
-"69
-[e = . . _Fflush1 1 0 -> -> 0 `i `uc ]
-"70
+"47
 }
+[; ;flush.c: 47: }
+[e $U 7  ]
+"48
+[e :U 6 ]
+[; ;flush.c: 48: else if(Fbodysensor.bits.bit_4 == 1)
+[e $ ! == -> . . _Fbodysensor 1 4 `i -> 1 `i 8  ]
+[; ;flush.c: 49: {
+"49
+{
+[; ;flush.c: 50: Fflush1.bits.bit_2 = 1;
+"50
+[e = . . _Fflush1 1 2 -> -> 1 `i `uc ]
+[; ;flush.c: 51: Fflush1.bits.bit_0 = 0;
+"51
+[e = . . _Fflush1 1 0 -> -> 0 `i `uc ]
+"52
+}
+[; ;flush.c: 52: }
+[e $U 9  ]
+"53
+[e :U 8 ]
+[; ;flush.c: 53: else
+[; ;flush.c: 54: {
+"54
+{
+[; ;flush.c: 55: Fflush1.bits.bit_2 = 0;
+"55
+[e = . . _Fflush1 1 2 -> -> 0 `i `uc ]
+[; ;flush.c: 56: Fflush1.bits.bit_0 = 0;
+"56
+[e = . . _Fflush1 1 0 -> -> 0 `i `uc ]
+"57
+}
+[e :U 9 ]
 [e :U 7 ]
-[; ;flush.c: 70: }
+[; ;flush.c: 57: }
 [; ;flush.c: 74: if (Fbodysensor.bits.bit_2 == 1)
 "74
-[e $ ! == -> . . _Fbodysensor 1 2 `i -> 1 `i 8  ]
+[e $ ! == -> . . _Fbodysensor 1 2 `i -> 1 `i 10  ]
 [; ;flush.c: 75: {
 "75
 {
@@ -1507,17 +1523,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 7 -> -> 1 `i `uc ]
 "77
 }
-[e :U 8 ]
+[e :U 10 ]
 [; ;flush.c: 77: }
 [; ;flush.c: 78: if (Fflush1.bits.bit_7 == 1)
 "78
-[e $ ! == -> . . _Fflush1 1 7 `i -> 1 `i 9  ]
+[e $ ! == -> . . _Fflush1 1 7 `i -> 1 `i 11  ]
 [; ;flush.c: 79: {
 "79
 {
 [; ;flush.c: 80: if (Fflush1.bits.bit_6 == 1)
 "80
-[e $ ! == -> . . _Fflush1 1 6 `i -> 1 `i 10  ]
+[e $ ! == -> . . _Fflush1 1 6 `i -> 1 `i 12  ]
 [; ;flush.c: 81: {
 "81
 {
@@ -1532,14 +1548,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $UE 5  ]
 "85
 }
-[e :U 10 ]
+[e :U 12 ]
 [; ;flush.c: 85: }
 [; ;flush.c: 86: Fflush1.bits.bit_7 = 0;
 "86
 [e = . . _Fflush1 1 7 -> -> 0 `i `uc ]
 [; ;flush.c: 87: if(Fflush1.bits.bit_0 == 1)
 "87
-[e $ ! == -> . . _Fflush1 1 0 `i -> 1 `i 11  ]
+[e $ ! == -> . . _Fflush1 1 0 `i -> 1 `i 13  ]
 [; ;flush.c: 88: {
 "88
 {
@@ -1554,11 +1570,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $UE 5  ]
 "92
 }
-[e :U 11 ]
+[e :U 13 ]
 [; ;flush.c: 92: }
 [; ;flush.c: 93: if(Fflush1.bits.bit_2 == 1)
 "93
-[e $ ! == -> . . _Fflush1 1 2 `i -> 1 `i 12  ]
+[e $ ! == -> . . _Fflush1 1 2 `i -> 1 `i 14  ]
 [; ;flush.c: 94: {
 "94
 {
@@ -1570,14 +1586,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 3 -> -> 1 `i `uc ]
 "97
 }
-[e :U 12 ]
+[e :U 14 ]
 [; ;flush.c: 97: }
 [; ;flush.c: 98: return;
 "98
 [e $UE 5  ]
 "99
 }
-[e :U 9 ]
+[e :U 11 ]
 [; ;flush.c: 99: }
 [; ;flush.c: 102: }
 "102
@@ -1593,13 +1609,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;flush.c: 107: switch (SEQflsuh)
 "107
-[e $U 15  ]
+[e $U 17  ]
 [; ;flush.c: 108: {
 "108
 {
 [; ;flush.c: 109: case FLUSH_INIT_0:
 "109
-[e :U 16 ]
+[e :U 18 ]
 [; ;flush.c: 110: Fflush1.bits.bit_6 = 0;
 "110
 [e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
@@ -1611,26 +1627,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 113: if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
 "113
-[e $ ! || == -> . . _Fflush1 1 1 `i -> 1 `i == -> . . _Fflush1 1 3 `i -> 1 `i 17  ]
+[e $ ! || == -> . . _Fflush1 1 1 `i -> 1 `i == -> . . _Fflush1 1 3 `i -> 1 `i 19  ]
 [; ;flush.c: 114: {
 "114
 {
 [; ;flush.c: 115: SEQflsuh = FLUSH_INIT_1;
 "115
-[e = _SEQflsuh -> . `E857 1 `uc ]
+[e = _SEQflsuh -> . `E854 1 `uc ]
 [; ;flush.c: 116: CNTflush = 0;
 "116
 [e = _CNTflush -> -> 0 `i `ui ]
 "117
 }
-[e :U 17 ]
+[e :U 19 ]
 [; ;flush.c: 117: }
 [; ;flush.c: 118: break;
 "118
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 119: case FLUSH_INIT_1:
 "119
-[e :U 18 ]
+[e :U 20 ]
 [; ;flush.c: 120: Fflush1.bits.bit_6 = 1;
 "120
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1642,26 +1658,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 123: if(Fbodysensor.bits.bit_0 == 1)
 "123
-[e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 19  ]
+[e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 21  ]
 [; ;flush.c: 124: {
 "124
 {
 [; ;flush.c: 125: SEQflsuh = FLUSH_END_0;
 "125
-[e = _SEQflsuh -> . `E857 9 `uc ]
+[e = _SEQflsuh -> . `E854 9 `uc ]
 [; ;flush.c: 126: CNTflush = 0;
 "126
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 127: break;
 "127
-[e $U 14  ]
+[e $U 16  ]
 "128
 }
-[e :U 19 ]
+[e :U 21 ]
 [; ;flush.c: 128: }
 [; ;flush.c: 129: if(++CNTflush >= 5)
 "129
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 20  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 22  ]
 [; ;flush.c: 130: {
 "130
 {
@@ -1670,17 +1686,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 132: SEQflsuh = FLUSH_INIT_2;
 "132
-[e = _SEQflsuh -> . `E857 2 `uc ]
+[e = _SEQflsuh -> . `E854 2 `uc ]
 "133
 }
-[e :U 20 ]
+[e :U 22 ]
 [; ;flush.c: 133: }
 [; ;flush.c: 134: break;
 "134
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 135: case FLUSH_INIT_2:
 "135
-[e :U 21 ]
+[e :U 23 ]
 [; ;flush.c: 136: Fflush1.bits.bit_6 = 1;
 "136
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1692,57 +1708,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 139: if(Fbodysensor.bits.bit_0 == 1)
 "139
-[e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 22  ]
+[e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 24  ]
 [; ;flush.c: 140: {
 "140
 {
 [; ;flush.c: 141: SEQflsuh = FLUSH_END_0;
 "141
-[e = _SEQflsuh -> . `E857 9 `uc ]
+[e = _SEQflsuh -> . `E854 9 `uc ]
 [; ;flush.c: 142: CNTflush = 0;
 "142
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 143: break;
 "143
-[e $U 14  ]
+[e $U 16  ]
 "144
 }
-[e :U 22 ]
+[e :U 24 ]
 [; ;flush.c: 144: }
 [; ;flush.c: 146: if(Fflush1.bits.bit_1 == 1)
 "146
-[e $ ! == -> . . _Fflush1 1 1 `i -> 1 `i 23  ]
+[e $ ! == -> . . _Fflush1 1 1 `i -> 1 `i 25  ]
 [; ;flush.c: 147: {
 "147
 {
 [; ;flush.c: 148: SEQflsuh = FLUSH_BIG_0;
 "148
-[e = _SEQflsuh -> . `E857 3 `uc ]
+[e = _SEQflsuh -> . `E854 3 `uc ]
 "149
 }
 [; ;flush.c: 149: }
-[e $U 24  ]
+[e $U 26  ]
 "150
-[e :U 23 ]
+[e :U 25 ]
 [; ;flush.c: 150: else if(Fflush1.bits.bit_3 == 1)
-[e $ ! == -> . . _Fflush1 1 3 `i -> 1 `i 25  ]
+[e $ ! == -> . . _Fflush1 1 3 `i -> 1 `i 27  ]
 [; ;flush.c: 151: {
 "151
 {
 [; ;flush.c: 152: SEQflsuh = FLUSH_SML_0;
 "152
-[e = _SEQflsuh -> . `E857 6 `uc ]
+[e = _SEQflsuh -> . `E854 6 `uc ]
 "153
 }
-[e :U 25 ]
+[e :U 27 ]
 "154
-[e :U 24 ]
+[e :U 26 ]
 [; ;flush.c: 153: }
 [; ;flush.c: 154: break;
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 155: case FLUSH_BIG_0:
 "155
-[e :U 26 ]
+[e :U 28 ]
 [; ;flush.c: 156: Fflush1.bits.bit_6 = 1;
 "156
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1754,7 +1770,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 1 `i `b ]
 [; ;flush.c: 159: if(++CNTflush >= 10)
 "159
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 27  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 29  ]
 [; ;flush.c: 160: {
 "160
 {
@@ -1763,17 +1779,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 162: SEQflsuh = FLUSH_BIG_1;
 "162
-[e = _SEQflsuh -> . `E857 4 `uc ]
+[e = _SEQflsuh -> . `E854 4 `uc ]
 "163
 }
-[e :U 27 ]
+[e :U 29 ]
 [; ;flush.c: 163: }
 [; ;flush.c: 164: break;
 "164
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 165: case FLUSH_BIG_1:
 "165
-[e :U 28 ]
+[e :U 30 ]
 [; ;flush.c: 166: Fflush1.bits.bit_6 = 1;
 "166
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1785,7 +1801,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 1 `i `b ]
 [; ;flush.c: 170: if(++CNTflush >= 100)
 "170
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 100 `i `ui 29  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 100 `i `ui 31  ]
 [; ;flush.c: 171: {
 "171
 {
@@ -1794,17 +1810,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 173: SEQflsuh = FLUSH_BIG_2;
 "173
-[e = _SEQflsuh -> . `E857 5 `uc ]
+[e = _SEQflsuh -> . `E854 5 `uc ]
 "174
 }
-[e :U 29 ]
+[e :U 31 ]
 [; ;flush.c: 174: }
 [; ;flush.c: 182: break;
 "182
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 183: case FLUSH_BIG_2:
 "183
-[e :U 30 ]
+[e :U 32 ]
 [; ;flush.c: 184: Fflush1.bits.bit_6 = 1;
 "184
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1816,7 +1832,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 1 `i `b ]
 [; ;flush.c: 187: if(++CNTflush >= 10)
 "187
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 31  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 33  ]
 [; ;flush.c: 188: {
 "188
 {
@@ -1825,17 +1841,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 190: SEQflsuh = FLUSH_END_0;
 "190
-[e = _SEQflsuh -> . `E857 9 `uc ]
+[e = _SEQflsuh -> . `E854 9 `uc ]
 "191
 }
-[e :U 31 ]
+[e :U 33 ]
 [; ;flush.c: 191: }
 [; ;flush.c: 192: break;
 "192
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 194: case FLUSH_SML_0:
 "194
-[e :U 32 ]
+[e :U 34 ]
 [; ;flush.c: 195: Fflush1.bits.bit_6 = 1;
 "195
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1847,7 +1863,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 198: if(++CNTflush >= 5)
 "198
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 33  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 35  ]
 [; ;flush.c: 199: {
 "199
 {
@@ -1856,17 +1872,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 201: SEQflsuh = FLUSH_SML_1;
 "201
-[e = _SEQflsuh -> . `E857 7 `uc ]
+[e = _SEQflsuh -> . `E854 7 `uc ]
 "202
 }
-[e :U 33 ]
+[e :U 35 ]
 [; ;flush.c: 202: }
 [; ;flush.c: 203: break;
 "203
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 204: case FLUSH_SML_1:
 "204
-[e :U 34 ]
+[e :U 36 ]
 [; ;flush.c: 205: Fflush1.bits.bit_6 = 1;
 "205
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1878,7 +1894,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 208: if(++CNTflush >= 200)
 "208
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 200 `i `ui 35  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 200 `i `ui 37  ]
 [; ;flush.c: 209: {
 "209
 {
@@ -1887,17 +1903,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 211: SEQflsuh = FLUSH_SML_2;
 "211
-[e = _SEQflsuh -> . `E857 8 `uc ]
+[e = _SEQflsuh -> . `E854 8 `uc ]
 "212
 }
-[e :U 35 ]
+[e :U 37 ]
 [; ;flush.c: 212: }
 [; ;flush.c: 213: break;
 "213
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 214: case FLUSH_SML_2:
 "214
-[e :U 36 ]
+[e :U 38 ]
 [; ;flush.c: 215: Fflush1.bits.bit_6 = 1;
 "215
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1909,7 +1925,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 218: if(++CNTflush >= 5)
 "218
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 37  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 39  ]
 [; ;flush.c: 219: {
 "219
 {
@@ -1918,17 +1934,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 221: SEQflsuh = FLUSH_END_0;
 "221
-[e = _SEQflsuh -> . `E857 9 `uc ]
+[e = _SEQflsuh -> . `E854 9 `uc ]
 "222
 }
-[e :U 37 ]
+[e :U 39 ]
 [; ;flush.c: 222: }
 [; ;flush.c: 223: break;
 "223
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 225: case FLUSH_END_0:
 "225
-[e :U 38 ]
+[e :U 40 ]
 [; ;flush.c: 226: Fflush1.bits.bit_6 = 1;
 "226
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
@@ -1940,7 +1956,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 229: if(++CNTflush >= 5)
 "229
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 39  ]
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 41  ]
 [; ;flush.c: 230: {
 "230
 {
@@ -1949,17 +1965,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 232: SEQflsuh = FLUSH_END_1;
 "232
-[e = _SEQflsuh -> . `E857 10 `uc ]
+[e = _SEQflsuh -> . `E854 10 `uc ]
 "233
 }
-[e :U 39 ]
+[e :U 41 ]
 [; ;flush.c: 233: }
 [; ;flush.c: 234: break;
 "234
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 235: case FLUSH_END_1:
 "235
-[e :U 40 ]
+[e :U 42 ]
 [; ;flush.c: 236: Fflush1.bits.bit_6 = 0;
 "236
 [e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
@@ -1971,7 +1987,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA4 -> -> 0 `i `b ]
 [; ;flush.c: 239: SEQflsuh = FLUSH_INIT_0;
 "239
-[e = _SEQflsuh -> . `E857 0 `uc ]
+[e = _SEQflsuh -> . `E854 0 `uc ]
 [; ;flush.c: 240: CNTflush = 0;
 "240
 [e = _CNTflush -> -> 0 `i `ui ]
@@ -1983,10 +1999,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 3 -> -> 0 `i `uc ]
 [; ;flush.c: 243: break;
 "243
-[e $U 14  ]
+[e $U 16  ]
 [; ;flush.c: 244: default:
 "244
-[e :U 41 ]
+[e :U 43 ]
 [; ;flush.c: 245: Fflush1.bits.bit_6 = 0;
 "245
 [e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
@@ -2004,34 +2020,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 3 -> -> 0 `i `uc ]
 [; ;flush.c: 250: SEQflsuh = FLUSH_INIT_0;
 "250
-[e = _SEQflsuh -> . `E857 0 `uc ]
+[e = _SEQflsuh -> . `E854 0 `uc ]
 [; ;flush.c: 251: CNTflush = 0;
 "251
 [e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 252: break;
 "252
-[e $U 14  ]
+[e $U 16  ]
 "253
 }
 [; ;flush.c: 253: }
-[e $U 14  ]
+[e $U 16  ]
 "107
-[e :U 15 ]
-[e [\ _SEQflsuh , $ -> . `E857 0 `uc 16
- , $ -> . `E857 1 `uc 18
- , $ -> . `E857 2 `uc 21
- , $ -> . `E857 3 `uc 26
- , $ -> . `E857 4 `uc 28
- , $ -> . `E857 5 `uc 30
- , $ -> . `E857 6 `uc 32
- , $ -> . `E857 7 `uc 34
- , $ -> . `E857 8 `uc 36
- , $ -> . `E857 9 `uc 38
- , $ -> . `E857 10 `uc 40
- 41 ]
+[e :U 17 ]
+[e [\ _SEQflsuh , $ -> . `E854 0 `uc 18
+ , $ -> . `E854 1 `uc 20
+ , $ -> . `E854 2 `uc 23
+ , $ -> . `E854 3 `uc 28
+ , $ -> . `E854 4 `uc 30
+ , $ -> . `E854 5 `uc 32
+ , $ -> . `E854 6 `uc 34
+ , $ -> . `E854 7 `uc 36
+ , $ -> . `E854 8 `uc 38
+ , $ -> . `E854 9 `uc 40
+ , $ -> . `E854 10 `uc 42
+ 43 ]
 "253
-[e :U 14 ]
+[e :U 16 ]
 [; ;flush.c: 254: }
 "254
-[e :UE 13 ]
+[e :UE 15 ]
 }

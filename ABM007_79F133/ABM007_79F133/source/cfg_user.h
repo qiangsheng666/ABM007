@@ -9,16 +9,16 @@
 #define ABM007_FLUSH_2	 		0x1002	/* 感应水箱(模式2，单冲水) */
 
 /******************	记得修改版本号	 *****************/
-#define SOFTWARE_VERSION         (ABM007_FLUSH_2)      		/*	记得修改版本号	*/
+#define SOFTWARE_VERSION         (ABM007_FLUSH_1)      		/*	记得修改版本号	*/
 /******************	记得修改版本号	 *****************/
 #if (SOFTWARE_VERSION == ABM007_FLUSH_1)
 	#define DUBLE_FLUSH_MODE	1								/* 1-双冲模式，0-单冲模式 */
-    #define SOFTWAREVERSION     "ABM007_MODE1_79F133_4113A"    	/* 输出程序版本号 */
+    #define SOFTWAREVERSION     "ABM007_MODE1_79F133_3B16A"    	/* 输出程序版本号 */
 #endif
 
 #if (SOFTWARE_VERSION == ABM007_FLUSH_2)
 	#define DUBLE_FLUSH_MODE	0								/* 1-双冲模式，0-单冲模式 */
-    #define SOFTWAREVERSION     "ABM007_MODE2_79F133_4113A"    	/* 输出程序版本号 */
+    #define SOFTWAREVERSION     "ABM007_MODE2_79F133_3B24A"    	/* 输出程序版本号 */
 #endif
 
 /* 数据类型定义 */
@@ -81,9 +81,12 @@ volatile BYTE Fsys1m;		/* 1min标识符 */
 /*  按键 */
 
 /* 端口定义 */
-#define PIsensor		RB1		/* 龙头感应 */
-#define PItest			RB0		/* 测试点 */
+// #if FCT
 
-#define POmainValue		RA4		/* 主阀 */
-#define	POlight			RA5		/* 氛围灯 */
-#define POairPump		RA2		/* 气泵 */
+// #else
+	#define PIsensor		RB1		/* 龙头感应 */
+
+	#define POmainValue		RA4		/* 主阀 */
+	#define	POlight			RA5		/* 氛围灯 */
+	#define POairPump		RA2		/* 气泵 */
+// #endif
