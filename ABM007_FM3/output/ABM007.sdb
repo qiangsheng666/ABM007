@@ -1,0 +1,347 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC PIC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 79F133 ]
+[d frameptr 6 ]
+"115 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+[e E857 . `uc
+FLUSH_INIT_0 0
+FLUSH_INIT_1 1
+FLUSH_INIT_2 2
+FLUSH_BIG_0 3
+FLUSH_BIG_1 4
+FLUSH_BIG_2 5
+FLUSH_SML_0 6
+FLUSH_SML_1 7
+FLUSH_SML_2 8
+FLUSH_END_0 9
+FLUSH_END_1 10
+FLUSH_END_2 11
+]
+"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
+[v _FCTloop FCTloop `(v  1 e 1 0 ]
+"22
+[v _FCTkey FCTkey `(v  1 e 1 0 ]
+"39
+[v _FCTjudge FCTjudge `(v  1 e 1 0 ]
+"28 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+[v _GflushLoop GflushLoop `(v  1 e 1 0 ]
+"35
+[v _FlushTime FlushTime `(v  1 e 1 0 ]
+"39
+[v _FlushJudge FlushJudge `(v  1 e 1 0 ]
+"105
+[v _FlushCon FlushCon `(v  1 e 1 0 ]
+"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+[v _GledLoop GledLoop `(v  1 e 1 0 ]
+"24
+[v _LED_Key LED_Key `(v  1 e 1 0 ]
+"45
+[v _LED_Time LED_Time `(v  1 e 1 0 ]
+"53
+[v _LED_Judge LED_Judge `(v  1 e 1 0 ]
+"84
+[v _LED_Con LED_Con `(v  1 e 1 0 ]
+"193
+[v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
+"27 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+[v _Delay Delay `(v  1 e 1 0 ]
+"35
+[v _Delay_nms Delay_nms `(v  1 e 1 0 ]
+"62
+[v _Init_GPIO Init_GPIO `(v  1 e 1 0 ]
+"96
+[v _Init_IC Init_IC `(v  1 e 1 0 ]
+"152
+[v _Init_TIMER1 Init_TIMER1 `(v  1 e 1 0 ]
+"174
+[v _Init_TIMER2 Init_TIMER2 `(v  1 e 1 0 ]
+"252
+[v _Memory_Write Memory_Write `(uc  1 e 1 0 ]
+"473
+[v _main main `(v  1 e 1 0 ]
+"562
+[v _Int_ALL Int_ALL `II(v  1 e 1 0 ]
+"19 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+[v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
+"27
+[v _SensorKey SensorKey `(v  1 e 1 0 ]
+"33
+[v _SensorTime SensorTime `(v  1 e 1 0 ]
+"73
+[v _SensorJudge SensorJudge `(v  1 e 1 0 ]
+"179
+[v _SensorControl SensorControl `(v  1 e 1 0 ]
+"62 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+[s S19 . 1 `VEuc 1 bit_0 1 0 :1:0 
+`VEuc 1 bit_1 1 0 :1:1 
+`VEuc 1 bit_2 1 0 :1:2 
+`VEuc 1 bit_3 1 0 :1:3 
+`VEuc 1 bit_4 1 0 :1:4 
+`VEuc 1 bit_5 1 0 :1:5 
+`VEuc 1 bit_6 1 0 :1:6 
+`VEuc 1 bit_7 1 0 :1:7 
+]
+"55 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+[u S28 . 1 `VEuc 1 byte 1 0 `VES19 1 bits 1 0 ]
+[v _Fsys1 Fsys1 `VES28  1 e 1 0 ]
+"56
+[v _Fsys1s Fsys1s `VES28  1 e 1 0 ]
+"57
+[v _Fsys1m Fsys1m `VES28  1 e 1 0 ]
+"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
+[v _fctBits001 fctBits001 `VES28  1 e 1 0 ]
+"8
+[v _CNTfctStart CNTfctStart `VEuc  1 e 1 0 ]
+"9
+[v _CNTfctSensior CNTfctSensior `VEuc  1 e 1 0 ]
+"10
+[v _CNTfctFlashLed CNTfctFlashLed `VEuc  1 e 1 0 ]
+"11
+[v _CNTfct CNTfct `VEui  1 e 2 0 ]
+"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+[v _Fflush1 Fflush1 `VES28  1 e 1 0 ]
+"21
+[v _SEQflsuh SEQflsuh `VEuc  1 e 1 0 ]
+"22
+[v _CNTflush CNTflush `VEui  1 e 2 0 ]
+"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+[v _FledBits01 FledBits01 `VES28  1 e 1 0 ]
+"6
+[v _CNTbreath_Led CNTbreath_Led `VEui  1 e 2 0 ]
+"7
+[v _CNTbreath_Led1 CNTbreath_Led1 `VEui  1 e 2 0 ]
+"8
+[v _CNTbreath_Led2 CNTbreath_Led2 `VEui  1 e 2 0 ]
+"9
+[v _CNTbreath_Led3 CNTbreath_Led3 `VEui  1 e 2 0 ]
+"7 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+[v _TMR1 TMR1 `VEui  1 e 2 @14 ]
+"15
+[v _RX_Buf RX_Buf `VEuc  1 e 1 0 ]
+"16
+[v _templ templ `VEuc  1 e 1 0 ]
+"17
+[v _SEQmain SEQmain `VEuc  1 e 1 0 ]
+"18
+[v _MainTime_1min MainTime_1min `VEuc  1 e 1 0 ]
+"19
+[v _MainTime_1s MainTime_1s `VEui  1 e 2 0 ]
+"20
+[v _AD_Result AD_Result `VEui  1 e 2 0 ]
+"4 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+[v _Fbodysensor Fbodysensor `VES28  1 e 1 0 ]
+"6
+[v _u8stsBodySensor u8stsBodySensor `VEuc  1 e 1 0 ]
+"7
+[v _SEQbody SEQbody `VEuc  1 e 1 0 ]
+"8
+[v _CNTbody_h CNTbody_h `VEui  1 e 2 0 ]
+"9
+[v _CNTbody_l CNTbody_l `VEui  1 e 2 0 ]
+"10
+[v _BufCntAdd BufCntAdd `VEui  1 e 2 0 ]
+"11
+[v _CNTbodyInTime CNTbodyInTime `VEui  1 e 2 0 ]
+"12
+[v _CNTbodyExitTime CNTbodyExitTime `VEui  1 e 2 0 ]
+"21 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"22
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"23
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"25
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"26
+[v _PIR1 PIR1 `VEuc  1 e 1 @12 ]
+"27
+[v _PIR2 PIR2 `VEuc  1 e 1 @13 ]
+"30
+[v _T1CON T1CON `VEuc  1 e 1 @16 ]
+"32
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
+"42
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
+"43
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"44
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"45
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"47
+[v _PIE1 PIE1 `VEuc  1 e 1 @140 ]
+"48
+[v _PIE2 PIE2 `VEuc  1 e 1 @141 ]
+"49
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"51
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"52
+[v _WPUB WPUB `VEuc  1 e 1 @149 ]
+"63
+[v _WDTCON WDTCON `VEuc  1 e 1 @261 ]
+"88
+[v _WPUA WPUA `VEuc  1 e 1 @398 ]
+"89
+[v _WPUC WPUC `VEuc  1 e 1 @399 ]
+"111
+[v _RA5 RA5 `VEb  1 e 0 @45 ]
+"112
+[v _RA4 RA4 `VEb  1 e 0 @44 ]
+"114
+[v _RA2 RA2 `VEb  1 e 0 @42 ]
+"125
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"126
+[v _RB0 RB0 `VEb  1 e 0 @48 ]
+"133
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"149
+[v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
+"150
+[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
+"261
+[v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
+"262
+[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"473 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"556
+} 0
+"174
+[v _Init_TIMER2 Init_TIMER2 `(v  1 e 1 0 ]
+{
+"180
+} 0
+"152
+[v _Init_TIMER1 Init_TIMER1 `(v  1 e 1 0 ]
+{
+"160
+} 0
+"96
+[v _Init_IC Init_IC `(v  1 e 1 0 ]
+{
+"139
+} 0
+"62
+[v _Init_GPIO Init_GPIO `(v  1 e 1 0 ]
+{
+"87
+} 0
+"19 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c
+[v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
+{
+"25
+} 0
+"33
+[v _SensorTime SensorTime `(v  1 e 1 0 ]
+{
+"70
+} 0
+"27
+[v _SensorKey SensorKey `(v  1 e 1 0 ]
+{
+"30
+} 0
+"73
+[v _SensorJudge SensorJudge `(v  1 e 1 0 ]
+{
+"177
+} 0
+"179
+[v _SensorControl SensorControl `(v  1 e 1 0 ]
+{
+"195
+} 0
+"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+[v _GledLoop GledLoop `(v  1 e 1 0 ]
+{
+"22
+} 0
+"45
+[v _LED_Time LED_Time `(v  1 e 1 0 ]
+{
+"51
+} 0
+"24
+[v _LED_Key LED_Key `(v  1 e 1 0 ]
+{
+"43
+} 0
+"53
+[v _LED_Judge LED_Judge `(v  1 e 1 0 ]
+{
+"82
+} 0
+"84
+[v _LED_Con LED_Con `(v  1 e 1 0 ]
+{
+"191
+} 0
+"28 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c
+[v _GflushLoop GflushLoop `(v  1 e 1 0 ]
+{
+"33
+} 0
+"35
+[v _FlushTime FlushTime `(v  1 e 1 0 ]
+{
+"38
+} 0
+"39
+[v _FlushJudge FlushJudge `(v  1 e 1 0 ]
+{
+"102
+} 0
+"105
+[v _FlushCon FlushCon `(v  1 e 1 0 ]
+{
+"254
+} 0
+"16 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c
+[v _FCTloop FCTloop `(v  1 e 1 0 ]
+{
+"20
+} 0
+"22
+[v _FCTkey FCTkey `(v  1 e 1 0 ]
+{
+"37
+} 0
+"39
+[v _FCTjudge FCTjudge `(v  1 e 1 0 ]
+{
+"103
+} 0
+"35 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+[v _Delay_nms Delay_nms `(v  1 e 1 0 ]
+{
+"37
+[v Delay_nms@i i `ui  1 a 2 0 ]
+"38
+[v Delay_nms@gtemp gtemp `uc  1 a 1 2 ]
+"35
+[v Delay_nms@inittempl inittempl `ui  1 p 2 4 ]
+"53
+} 0
+"27
+[v _Delay Delay `(v  1 e 1 0 ]
+{
+[v Delay@dtemp dtemp `ui  1 p 2 2 ]
+"31
+} 0
+"562
+[v _Int_ALL Int_ALL `II(v  1 e 1 0 ]
+{
+"656
+} 0
+"193 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c
+[v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
+{
+"211
+} 0
