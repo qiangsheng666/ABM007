@@ -5,10 +5,14 @@ BYTE fctBits001;
 
 // #define FfctTest fctBits001.bits.bit_0
 
-volatile unsigned char CNTfctStart;
+volatile unsigned int CNTfctStart;
 volatile unsigned char CNTfctSensior;
 volatile unsigned char CNTfctFlashLed;
 volatile unsigned int CNTfct;
+volatile unsigned int CNTkey1;
+volatile unsigned int CNTkey2;
+
+unsigned int Flag_G_Key = 0;
 
 void FCTkey(void);
 void FCTjudge(void);
@@ -23,82 +27,89 @@ void FCTkey(void)
 {
     if(PItest == HIGH)
     {
-        if(++CNTfctStart >= 50)
+        if(++CNTfctStart >= 100)
         {
-            CNTfctStart = 50;
-            FfctTest = SET;
+//            CNTfctStart = 20;
+            FfctTest = 1;
+			if(PItest == HIGH)
+			{
+				if(++CNTfctStart >= 500)
+				{
+					FfctTest = 0;
+					CNTfctStart = 0;
+					return;
+				}
+			}
+			return;
         }
     }
-    else
-    {
-        FfctTest = CLR;
-        CNTfctStart = 0;
-    }
+}
+
+void G_KEY(void)
+{
+	POlight = LOW;
+	POairPump = LOW;
+	POmainValue = HIGH;
+	POdirectValue = LOW;
+}
+
+void R_KEY(void)
+{
+	POlight = LOW;
+	POairPump = HIGH;
+	POmainValue = HIGH;
+	POdirectValue = LOW;
+}
+
+void key1(void)
+{
+	POlight = HIGH;
+	POairPump = LOW;
+	POmainValue = HIGH;
+	POdirectValue = LOW;
+}
+
+void key2(void)
+{
+	POlight = LOW;
+	POairPump = LOW;
+	POmainValue = HIGH;
+	POdirectValue = HIGH;
 }
 
 void FCTjudge(void)
 {
-    if(FfctTest == SET)
+    if(FfctTest == 1)
     {
         if(PIsensor == LOW)
         {
-            if(++CNTfctSensior >= 50)
-            {
-                CNTfct = 0;
-                CNTfctSensior = 50;
-                if(++CNTfctFlashLed >= 50)
-                {
-                    CNTfctFlashLed = 0;
-                }
-                else if(CNTfctFlashLed == 25)
-                {
-                    POlight = HIGH;
-                    POairPump = HIGH;
-                    POmainValue = HIGH;
-                }
-                else if(CNTfctFlashLed == 1)
-                {
-                    POlight = LOW;
-                    POairPump = LOW;
-                    POmainValue = LOW;
-                }
-            }
+			R_KEY();
         }
         else
         {
-            CNTfctSensior = 0;
-            if(++CNTfct >= 100)
-            {
-                CNTfct = 0;
-                // FfctTest = CLR;
-                POlight = LOW;
-                POairPump = LOW;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 75)
-            {
-                POlight = HIGH;
-                POairPump = LOW;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 50)
-            {
-                POlight = LOW;
-                POairPump = HIGH;
-                POmainValue = LOW;
-            }
-            else if(CNTfct == 25)
-            {
-                POlight = LOW;
-                POairPump = LOW;
-                POmainValue = HIGH;
-            }
+			if(PIKey1 == LOW)
+			{
+				key1();
+			}
+			else
+			{
+				if(PIKey2 == LOW)
+				{
+					key2();
+				}
+				else
+				{
+					G_KEY();
+				}
+			}
         }
     }
-    else
+    else if(FfctTest == 0)
     {
-        CNTfctSensior = 0;
-        CNTfct = 0;
+		POlight = LOW;
+		POairPump = LOW;
+		POmainValue = LOW;
+		POdirectValue = LOW;
     }
 }
 

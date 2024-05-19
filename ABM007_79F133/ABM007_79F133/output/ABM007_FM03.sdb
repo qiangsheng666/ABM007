@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 79F133 ]
 [d frameptr 6 ]
-"118 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
+"118 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\flush.c
 [e E849 . `uc
 FLUSH_INIT_0 0
 FLUSH_INIT_1 1
@@ -18,12 +18,12 @@ FLUSH_END_0 9
 FLUSH_END_1 10
 FLUSH_END_2 11
 ]
-"9 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_Private.h
+"9 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\key_Private.h
 [e E872 _SignalLines `uc
 PortA 0
 PortB 1
 ]
-"28 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c
+"28 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\key.c
 [e E849 . `uc
 FLUSH_INIT_0 0
 FLUSH_INIT_1 1
@@ -38,13 +38,21 @@ FLUSH_END_0 9
 FLUSH_END_1 10
 FLUSH_END_2 11
 ]
-"16 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c
+"20 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\fct.c
 [v _FCTloop FCTloop `(v  1 e 1 0 ]
-"22
+"26
 [v _FCTkey FCTkey `(v  1 e 1 0 ]
-"39
+"48
+[v _G_KEY G_KEY `(v  1 e 1 0 ]
+"56
+[v _R_KEY R_KEY `(v  1 e 1 0 ]
+"64
+[v _key1 key1 `(v  1 e 1 0 ]
+"72
+[v _key2 key2 `(v  1 e 1 0 ]
+"80
 [v _FCTjudge FCTjudge `(v  1 e 1 0 ]
-"15 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
+"15 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\flush.c
 [v _GflushLoop GflushLoop `(v  1 e 1 0 ]
 "22
 [v _FlushTime FlushTime `(v  1 e 1 0 ]
@@ -52,13 +60,13 @@ FLUSH_END_2 11
 [v _FlushJudge FlushJudge `(v  1 e 1 0 ]
 "107
 [v _FlushCon FlushCon `(v  1 e 1 0 ]
-"7 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c
+"7 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\key.c
 [v _GkeyLoop GkeyLoop `(uc  1 e 1 0 ]
 "45
 [v _ScanKey ScanKey `(uc  1 e 1 0 ]
 "58
 [v _KeyControl KeyControl `(uc  1 e 1 0 ]
-"16 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c
+"16 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\light.c
 [v _GledLoop GledLoop `(v  1 e 1 0 ]
 "24
 [v _LED_Key LED_Key `(v  1 e 1 0 ]
@@ -70,7 +78,7 @@ FLUSH_END_2 11
 [v _LED_Con LED_Con `(v  1 e 1 0 ]
 "193
 [v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
-"27 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
+"27 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\main.c
 [v _Delay Delay `(v  1 e 1 0 ]
 "35
 [v _Delay_nms Delay_nms `(v  1 e 1 0 ]
@@ -88,7 +96,7 @@ FLUSH_END_2 11
 [v _main main `(v  1 e 1 0 ]
 "563
 [v _Int_ALL Int_ALL `II(v  1 e 1 0 ]
-"19 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c
+"19 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\sensor.c
 [v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
 "27
 [v _SensorKey SensorKey `(v  1 e 1 0 ]
@@ -111,34 +119,38 @@ FLUSH_END_2 11
 `VEuc 1 bit_6 1 0 :1:6 
 `VEuc 1 bit_7 1 0 :1:7 
 ]
-"55 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\cfg_user.h
+"55 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\cfg_user.h
 [u S28 . 1 `VEuc 1 byte 1 0 `VES19 1 bits 1 0 ]
 [v _Fsys1 Fsys1 `VES28  1 e 1 0 ]
 "56
 [v _Fsys1s Fsys1s `VES28  1 e 1 0 ]
 "57
 [v _Fsys1m Fsys1m `VES28  1 e 1 0 ]
-"4 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c
+"4 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\fct.c
 [v _fctBits001 fctBits001 `VES28  1 e 1 0 ]
 "8
-[v _CNTfctStart CNTfctStart `VEuc  1 e 1 0 ]
+[v _CNTfctStart CNTfctStart `VEui  1 e 2 0 ]
 "9
 [v _CNTfctSensior CNTfctSensior `VEuc  1 e 1 0 ]
 "10
 [v _CNTfctFlashLed CNTfctFlashLed `VEuc  1 e 1 0 ]
 "11
 [v _CNTfct CNTfct `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
+"12
+[v _CNTkey1 CNTkey1 `VEui  1 e 2 0 ]
+"13
+[v _CNTkey2 CNTkey2 `VEui  1 e 2 0 ]
+"4 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\flush.c
 [v _Fflush1 Fflush1 `VES28  1 e 1 0 ]
 "8
 [v _SEQflsuh SEQflsuh `VEuc  1 e 1 0 ]
 "9
 [v _CNTflush CNTflush `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key_Private.h
+"4 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\key_Private.h
 [v _CurrentIO CurrentIO `VEuc  1 e 1 0 ]
 "9
 [v _SeletedLine SeletedLine `VEE872  1 e 1 0 ]
-[s S2615 . 1 `uc 1 is_forbidden 1 0 :1:0 
+[s S2626 . 1 `uc 1 is_forbidden 1 0 :1:0 
 `uc 1 is_pressing 1 0 :1:1 
 `uc 1 level 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -148,9 +160,9 @@ FLUSH_END_2 11
 `uc 1 . 1 0 :1:7 
 ]
 "38
-[s S2624 _KEY_PRIVATE 4 `S2615 1 flags 1 0 `uc 1 cnt 1 1 `ui 1 cnt_timeout 2 2 ]
-[v _KeyLines KeyLines `VE[2]S2624  1 e 8 0 ]
-"4 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c
+[s S2635 _KEY_PRIVATE 4 `S2626 1 flags 1 0 `uc 1 cnt 1 1 `ui 1 cnt_timeout 2 2 ]
+[v _KeyLines KeyLines `VE[2]S2635  1 e 8 0 ]
+"4 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\light.c
 [v _FledBits01 FledBits01 `VES28  1 e 1 0 ]
 "6
 [v _CNTbreath_Led CNTbreath_Led `VEui  1 e 2 0 ]
@@ -160,7 +172,7 @@ FLUSH_END_2 11
 [v _CNTbreath_Led2 CNTbreath_Led2 `VEui  1 e 2 0 ]
 "9
 [v _CNTbreath_Led3 CNTbreath_Led3 `VEui  1 e 2 0 ]
-"7 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
+"7 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\main.c
 [v _TMR1 TMR1 `VEui  1 e 2 @14 ]
 "15
 [v _RX_Buf RX_Buf `VEuc  1 e 1 0 ]
@@ -174,7 +186,7 @@ FLUSH_END_2 11
 [v _MainTime_1s MainTime_1s `VEui  1 e 2 0 ]
 "20
 [v _AD_Result AD_Result `VEui  1 e 2 0 ]
-"4 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c
+"4 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\sensor.c
 [v _Fbodysensor Fbodysensor `VES28  1 e 1 0 ]
 "6
 [v _u8stsBodySensor u8stsBodySensor `VEuc  1 e 1 0 ]
@@ -256,7 +268,7 @@ FLUSH_END_2 11
 [v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
 "262
 [v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
-"473 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
+"473 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "557
@@ -281,7 +293,7 @@ FLUSH_END_2 11
 {
 "87
 } 0
-"19 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\sensor.c
+"19 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\sensor.c
 [v _GsensorLoop GsensorLoop `(v  1 e 1 0 ]
 {
 "25
@@ -306,7 +318,7 @@ FLUSH_END_2 11
 {
 "195
 } 0
-"16 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c
+"16 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\light.c
 [v _GledLoop GledLoop `(v  1 e 1 0 ]
 {
 "22
@@ -331,7 +343,7 @@ FLUSH_END_2 11
 {
 "191
 } 0
-"15 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
+"15 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\flush.c
 [v _GflushLoop GflushLoop `(v  1 e 1 0 ]
 {
 "20
@@ -348,7 +360,7 @@ FLUSH_END_2 11
 [v FlushJudge@Key_Step Key_Step `uc  1 a 1 6 ]
 "104
 } 0
-"7 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\key.c
+"7 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\key.c
 [v _GkeyLoop GkeyLoop `(uc  1 e 1 0 ]
 {
 "42
@@ -364,7 +376,7 @@ FLUSH_END_2 11
 "58
 [v _KeyControl KeyControl `(uc  1 e 1 0 ]
 {
-[s S2615 . 1 `uc 1 is_forbidden 1 0 :1:0 
+[s S2626 . 1 `uc 1 is_forbidden 1 0 :1:0 
 `uc 1 is_pressing 1 0 :1:1 
 `uc 1 level 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -373,35 +385,55 @@ FLUSH_END_2 11
 `uc 1 . 1 0 :1:6 
 `uc 1 . 1 0 :1:7 
 ]
-[s S2624 _KEY_PRIVATE 4 `S2615 1 flags 1 0 `uc 1 cnt 1 1 `ui 1 cnt_timeout 2 2 ]
-[v KeyControl@this this `*.4S2624  1 a 1 wreg ]
-[v KeyControl@this this `*.4S2624  1 a 1 wreg ]
+[s S2635 _KEY_PRIVATE 4 `S2626 1 flags 1 0 `uc 1 cnt 1 1 `ui 1 cnt_timeout 2 2 ]
+[v KeyControl@this this `*.4S2635  1 a 1 wreg ]
+[v KeyControl@this this `*.4S2635  1 a 1 wreg ]
 "60
 "58
-[v KeyControl@this this `*.4S2624  1 a 1 6 ]
+[v KeyControl@this this `*.4S2635  1 a 1 6 ]
 "97
 } 0
-"107 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\flush.c
+"107 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\flush.c
 [v _FlushCon FlushCon `(v  1 e 1 0 ]
 {
 "270
 } 0
-"16 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\fct.c
+"20 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\fct.c
 [v _FCTloop FCTloop `(v  1 e 1 0 ]
 {
-"20
+"24
 } 0
-"22
+"26
 [v _FCTkey FCTkey `(v  1 e 1 0 ]
 {
-"37
+"46
 } 0
-"39
+"80
 [v _FCTjudge FCTjudge `(v  1 e 1 0 ]
 {
-"103
+"114
 } 0
-"35 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\main.c
+"72
+[v _key2 key2 `(v  1 e 1 0 ]
+{
+"78
+} 0
+"64
+[v _key1 key1 `(v  1 e 1 0 ]
+{
+"70
+} 0
+"56
+[v _R_KEY R_KEY `(v  1 e 1 0 ]
+{
+"62
+} 0
+"48
+[v _G_KEY G_KEY `(v  1 e 1 0 ]
+{
+"54
+} 0
+"35 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\main.c
 [v _Delay_nms Delay_nms `(v  1 e 1 0 ]
 {
 "37
@@ -423,7 +455,7 @@ FLUSH_END_2 11
 {
 "657
 } 0
-"193 D:\mywork.wqs\ARROW\FM03_79F133\ABM007_79F133\source\light.c
+"193 D:\mywork.wqs\SOUOCETREE\ABM\ABM007_79F133\ABM007_79F133\source\light.c
 [v _INT_LED_SHOW INT_LED_SHOW `(v  1 e 1 0 ]
 {
 "212
