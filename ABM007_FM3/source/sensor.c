@@ -194,3 +194,110 @@ void SensorControl(void)
     }
 }
 
+
+// void ScanIO(void){
+// 	for (SeletedLine = 0; SeletedLine < 2; SeletedLine++)
+// 	{
+// 		judgeIO();
+// 	}
+
+// }
+// uint8_t ScanSignal(uint8_t i)
+// {
+// 	current_IO_Trgging[(unsigned char)i] = CurrentIO ^ last_IO_value[(unsigned char)i];
+
+// 	if(current_IO_Trgging[(unsigned char)i])
+// 	{
+// 		if(last_IO_value[(unsigned char)i])
+// 		{
+// 			last_IO_value[(unsigned char)i] = CLR;
+// 			return TRUE;
+// 		}
+// 		else
+// 		{
+// 			last_IO_value[(unsigned char)i] = SET;
+// 			IrIrqCnt_H[(unsigned char)i] = CLR;
+// 		}
+// 	}else if(last_IO_value[(unsigned char)i])	{
+// 		if(IrIrqCnt_H[(unsigned char)i] < UINT16_MAX){
+// 			IrIrqCnt_H[(unsigned char)i]++;
+// 		}
+// 	}
+// 	else {
+// 		if(IrIrqCnt_L[(unsigned char)i] < UINT16_MAX){
+// 			IrIrqCnt_L[(unsigned char)i]++;
+// 		}
+// 	} 
+// 	return FALSE;
+// }
+
+// void judgeIO(void)
+// {
+//     switch (SeletedLine)
+// 	{
+// 	case PortA:
+// 		CurrentIO = PIKey1;
+// 		break;
+// 	case PortB:
+// 		CurrentIO = PIKey2;
+// 		break;
+// 	default:
+// 		break;
+// 	}
+
+//     if(ScanSignal(SeletedLine))
+//     {
+//         key_flag = SET;
+//         switch (SeletedLine)
+//         {
+//         case PortA:
+//         POairPump = SET;
+//         POmainValue = SET;
+//         POdirectValue = CLR;
+//             break;
+//         case PortB:
+//         POdirectValue= SET;
+//         POairPump =SET;
+//         POmainValue = CLR;
+//             break;
+//         default:
+//         POdirectValue= CLR;
+//         POairPump =CLR;
+//         POmainValue = CLR;
+//             break;
+//         }
+         
+
+//     }
+//     else
+//     {
+//         if(key_flag)
+//         {
+//              switch (SeletedLine)
+//             {
+//             case PortA:
+//             POairPump = CLR;
+//             POmainValue = CLR;
+//             POdirectValue = CLR;
+//                 break;
+//             case PortB:
+//             POdirectValue= CLR;
+//             POairPump =CLR;
+//             POmainValue = CLR;
+//                 break;
+//             default:
+//             POdirectValue= CLR;
+//             POairPump =CLR;
+//             POmainValue = CLR;
+//                 break;
+//             }
+//             key_flag = CLR;
+//         }
+//     }
+   
+ 
+
+
+// }
+
+

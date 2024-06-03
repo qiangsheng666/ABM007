@@ -21,7 +21,8 @@ extern BYTE Fbodysensor;
 #define SENSOR_ERROR                6      /* 错误信号 */
 #define SENSOR_BODY_ENTER_X_0S      30 /* 传感器感应到有人持续?*10ms */
 #define SENSOR_BODY_EXIT_X_0S       500 /* 传感器没有感应到有人持续?*10ms */
-
+// extern void ScanIO(void);
 extern void GsensorLoop(void);
-
+// uint8_t ScanSignal(uint8_t i);
+// extern void judgeIO(void);
 #endif

@@ -193,19 +193,20 @@ void LED_Con(void)
 void INT_LED_SHOW(void)
 {
 	// if((Flight == SET) && (FfctTest == CLR))
-	// {
-	// 	if (++CNTbreath_Led == 80)
-	// 	{
-	// 		CNTbreath_Led = 0;
-	// 		POlight = OFF;
-	// 	}
-	// 	if (CNTbreath_Led >= CNTbreath_Led2)
-	// 	{
-	// 		POlight = ON;
-	// 	}
-	// 	else
-	// 	{
-	// 		POlight = OFF;
-	// 	}
-	// }
+	if((Flight == SET) && (FfctTest == CLR))
+	{
+		if (++CNTbreath_Led == 80)
+		{
+			CNTbreath_Led = 0;
+			POlight = OFF;
+		}
+		if (CNTbreath_Led >= CNTbreath_Led2)
+		{
+			POlight = ON;
+		}
+		else
+		{
+			POlight = OFF;
+		}
+	}
 }

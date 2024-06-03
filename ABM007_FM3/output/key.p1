@@ -5,18 +5,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"14 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light.c
-[v _LED_Time `(v ~T0 @X0 0 ef ]
-"11
-[v _LED_Key `(v ~T0 @X0 0 ef ]
-"12
-[v _LED_Judge `(v ~T0 @X0 0 ef ]
-"13
-[v _LED_Con `(v ~T0 @X0 0 ef ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor_user.h
-[v _Fbodysensor `S2 ~T0 @X0 0 e ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct_user.h
-[v _fctBits001 `S2 ~T0 @X0 0 e ]
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_Private.h
+[c E876 0 1 .. ]
+[n E876 _SignalLines PortA PortB  ]
+"23
+[s S4 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S4 . is_forbidden is_pressing level . . . . . ]
+"20
+[s S3 `S4 1 `uc 1 `ui 1 ]
+[n S3 _KEY_PRIVATE flags cnt cnt_timeout ]
+"44
+[v _ScanKey `(uc ~T0 @X0 0 ef1`E876 ]
+"45
+[v _KeyControl `(uc ~T0 @X0 0 ef1`*S3 ]
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush_user.h
+[v _Fflush1 `S2 ~T0 @X0 0 e ]
+"28 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c
+[c E849 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
+[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1409,223 +1415,332 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light.c
-[v _FledBits01 `S2 ~T0 @X0 1 e ]
-[; ;light.c: 4: BYTE FledBits01;
-"6
-[v _CNTbreath_Led `Vui ~T0 @X0 1 e ]
-[; ;light.c: 6: v_uint16 CNTbreath_Led;
-"7
-[v _CNTbreath_Led1 `Vui ~T0 @X0 1 e ]
-[; ;light.c: 7: v_uint16 CNTbreath_Led1;
-"8
-[v _CNTbreath_Led2 `Vui ~T0 @X0 1 e ]
-[; ;light.c: 8: v_uint16 CNTbreath_Led2;
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_Private.h
+[v _CurrentIO `Vuc ~T0 @X0 1 e ]
+[; ;key_Private.h: 4: volatile uint8_t CurrentIO;
+[; ;key_Private.h: 5: typedef enum _SignalLines{
+[; ;key_Private.h: 6: PortA,
+[; ;key_Private.h: 7: PortB,
+[; ;key_Private.h: 8: }SignalLines;
 "9
-[v _CNTbreath_Led3 `Vui ~T0 @X0 1 e ]
-[; ;light.c: 9: v_uint16 CNTbreath_Led3;
-[; ;light.c: 11: void LED_Key(void);
-[; ;light.c: 12: void LED_Judge(void);
-[; ;light.c: 13: void LED_Con(void);
-[; ;light.c: 14: void LED_Time(void);
-"16
-[v _GledLoop `(v ~T0 @X0 1 ef ]
-"17
+[v _SeletedLine `VE876 ~T0 @X0 1 e ]
+[; ;key_Private.h: 9: volatile SignalLines SeletedLine;
+[; ;key_Private.h: 20: typedef struct _KEY_PRIVATE
+[; ;key_Private.h: 21: {
+[; ;key_Private.h: 22: struct
+[; ;key_Private.h: 23: {
+[; ;key_Private.h: 24: unsigned char is_forbidden : 1;
+[; ;key_Private.h: 25: unsigned char is_pressing : 1;
+[; ;key_Private.h: 26: unsigned char level : 1;
+[; ;key_Private.h: 27: unsigned char : 1;
+[; ;key_Private.h: 29: unsigned char : 1;
+[; ;key_Private.h: 30: unsigned char : 1;
+[; ;key_Private.h: 31: unsigned char : 1;
+[; ;key_Private.h: 32: unsigned char : 1;
+[; ;key_Private.h: 33: }flags;
+[; ;key_Private.h: 34: uint8_t cnt;
+[; ;key_Private.h: 35: uint16_t cnt_timeout;
+[; ;key_Private.h: 36: }KEY_PRIVATE;
+"38
+[v _KeyLines `VS3 ~T0 @X0 -> 2 `i e ]
+[; ;key_Private.h: 38: volatile KEY_PRIVATE KeyLines[2];
+[; ;key_Private.h: 43: uint8_t GkeyLoop();
+[; ;key_Private.h: 44: uint8_t ScanKey(SignalLines line_num) ;
+[; ;key_Private.h: 45: uint8_t KeyControl(KEY_PRIVATE* this);
+"7 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c
+[v _GkeyLoop `(uc ~T0 @X0 1 ef ]
+"8
 {
-[; ;light.c: 16: void GledLoop(void)
-[; ;light.c: 17: {
-[e :U _GledLoop ]
+[; ;key.c: 7: uint8_t GkeyLoop(void)
+[; ;key.c: 8: {
+[e :U _GkeyLoop ]
 [f ]
-[; ;light.c: 18: LED_Time();
-"18
-[e ( _LED_Time ..  ]
-[; ;light.c: 19: LED_Key();
-"19
-[e ( _LED_Key ..  ]
-[; ;light.c: 20: LED_Judge();
-"20
-[e ( _LED_Judge ..  ]
-[; ;light.c: 21: LED_Con();
-"21
-[e ( _LED_Con ..  ]
-[; ;light.c: 22: }
-"22
-[e :UE 3 ]
-}
-"24
-[v _LED_Key `(v ~T0 @X0 1 ef ]
-"25
+[; ;key.c: 9: for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
+"9
 {
-[; ;light.c: 24: void LED_Key(void)
-[; ;light.c: 25: {
-[e :U _LED_Key ]
-[f ]
-[; ;light.c: 43: }
-"43
-[e :UE 4 ]
-}
-"45
-[v _LED_Time `(v ~T0 @X0 1 ef ]
-"46
-{
-[; ;light.c: 45: void LED_Time(void)
-[; ;light.c: 46: {
-[e :U _LED_Time ]
-[f ]
-[; ;light.c: 47: if(Fsys1m.bits.bit_0 == 1)
-"47
-[e $ ! == -> . . _Fsys1m 1 0 `i -> 1 `i 6  ]
-[; ;light.c: 48: {
-"48
-{
-[; ;light.c: 49: Fsys1m.bits.bit_0 = 0;
-"49
-[e = . . _Fsys1m 1 0 -> -> 0 `i `uc ]
-"50
-}
+[e = _SeletedLine -> -> 0 `i `VE876 ]
+[e $ < -> _SeletedLine `i -> 2 `i 6  ]
+[e $U 7  ]
+"10
 [e :U 6 ]
-[; ;light.c: 50: }
-[; ;light.c: 51: }
-"51
-[e :UE 5 ]
-}
-"53
-[v _LED_Judge `(v ~T0 @X0 1 ef ]
-"54
+[; ;key.c: 10: {
 {
-[; ;light.c: 53: void LED_Judge(void)
-[; ;light.c: 54: {
-[e :U _LED_Judge ]
-[f ]
-[; ;light.c: 55: if(Fbodysensor.bits.bit_0 == 1)
-"55
-[e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 8  ]
-[; ;light.c: 56: {
-"56
+[; ;key.c: 11: KeyLines[SeletedLine].flags.level =ScanKey(SeletedLine);
+"11
+[e = . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 2 ( _ScanKey (1 _SeletedLine ]
+[; ;key.c: 13: if(KeyLines[SeletedLine].flags.is_forbidden)
+"13
+[e $ ! != -> . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 0 `i -> -> -> 0 `i `Vuc `i 9  ]
+[; ;key.c: 14: {
+"14
 {
-[; ;light.c: 57: FledBits01.bits.bit_0 = 1;
-"57
-[e = . . _FledBits01 1 0 -> -> 1 `i `uc ]
-[; ;light.c: 58: if(Fbodysensor.bits.bit_4 == 0)
-"58
-[e $ ! == -> . . _Fbodysensor 1 4 `i -> 0 `i 9  ]
-[; ;light.c: 59: {
-"59
+[; ;key.c: 15: if (KeyLines[SeletedLine].flags.level)
+"15
+[e $ ! != -> . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 2 `i -> -> -> 0 `i `Vuc `i 10  ]
+[; ;key.c: 16: {
+"16
 {
-[; ;light.c: 60: if(FledBits01.bits.bit_2 == 1)
-"60
-[e $ ! == -> . . _FledBits01 1 2 `i -> 1 `i 10  ]
-[; ;light.c: 61: {
-"61
-{
-[; ;light.c: 62: FledBits01.bits.bit_0 = 0;
-"62
-[e = . . _FledBits01 1 0 -> -> 0 `i `uc ]
-"63
+[; ;key.c: 17: KeyLines[SeletedLine].flags.is_forbidden = 0;
+"17
+[e = . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 0 `i `uc ]
+"18
 }
 [e :U 10 ]
-"64
+[; ;key.c: 18: }
+[; ;key.c: 19: continue;
+"19
+[e $U 8  ]
+"20
 }
 [e :U 9 ]
-"65
-}
-[; ;light.c: 63: }
-[; ;light.c: 64: }
-[; ;light.c: 65: }
-[e $U 11  ]
-"66
-[e :U 8 ]
-[; ;light.c: 66: else
-[; ;light.c: 67: {
-"67
+[; ;key.c: 20: }
+[; ;key.c: 21: if (KeyControl(&KeyLines[SeletedLine]))
+"21
+[e $ ! != -> ( _KeyControl (1 -> &U *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux `*S3 `i -> -> -> 0 `i `uc `i 11  ]
+[; ;key.c: 22: {
+"22
 {
-[; ;light.c: 79: FledBits01.bits.bit_0 = 0;
-"79
-[e = . . _FledBits01 1 0 -> -> 0 `i `uc ]
-"81
+[; ;key.c: 23: switch (SeletedLine)
+"23
+[e $U 13  ]
+[; ;key.c: 24: {
+"24
+{
+[; ;key.c: 25: case PortA:
+"25
+[e :U 14 ]
+[; ;key.c: 26: Fflush1.bits.bit_0 = 1;
+"26
+[e = . . _Fflush1 1 0 -> -> 1 `i `uc ]
+[; ;key.c: 27: KeyLines[PortB].flags.is_forbidden = 1;
+"27
+[e = . . *U + &U _KeyLines * -> . `E876 1 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[; ;key.c: 28: return FLUSH_BIG_0;
+"28
+[e ) -> . `E849 3 `uc ]
+[e $UE 5  ]
+[; ;key.c: 29: case PortB:
+"29
+[e :U 15 ]
+[; ;key.c: 30: Fflush1.bits.bit_2 = 1;
+"30
+[e = . . _Fflush1 1 2 -> -> 1 `i `uc ]
+[; ;key.c: 31: KeyLines[PortA].flags.is_forbidden = 1;
+"31
+[e = . . *U + &U _KeyLines * -> . `E876 0 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[; ;key.c: 32: return FLUSH_SML_0;
+"32
+[e ) -> . `E849 6 `uc ]
+[e $UE 5  ]
+[; ;key.c: 34: default:
+"34
+[e :U 16 ]
+[; ;key.c: 35: break;
+"35
+[e $U 12  ]
+"36
+}
+[; ;key.c: 36: }
+[e $U 12  ]
+"23
+[e :U 13 ]
+[e [\ _SeletedLine , $ . `E876 0 14
+ , $ . `E876 1 15
+ 16 ]
+"36
+[e :U 12 ]
+"38
 }
 [e :U 11 ]
-[; ;light.c: 81: }
-[; ;light.c: 82: }
+"39
+}
+"9
+[e :U 8 ]
+[e ++ _SeletedLine -> -> 1 `i `VE876 ]
+[e $ < -> _SeletedLine `i -> 2 `i 6  ]
+[e :U 7 ]
+"39
+}
+[; ;key.c: 38: }
+[; ;key.c: 39: }
+[; ;key.c: 40: return 0;
+"40
+[e ) -> -> 0 `i `uc ]
+[e $UE 5  ]
+[; ;key.c: 42: }
+"42
+[e :UE 5 ]
+}
+"45
+[v _ScanKey `(uc ~T0 @X0 1 ef1`E876 ]
+"46
+{
+[; ;key.c: 45: uint8_t ScanKey(SignalLines line_num)
+[; ;key.c: 46: {
+[e :U _ScanKey ]
+"45
+[v _line_num `E876 ~T0 @X0 1 r1 ]
+"46
+[f ]
+[; ;key.c: 47: switch (line_num)
+"47
+[e $U 19  ]
+[; ;key.c: 48: {
+"48
+{
+[; ;key.c: 49: case PortA:
+"49
+[e :U 20 ]
+[; ;key.c: 50: return RA6;
+"50
+[e ) -> -> _RA6 `i `uc ]
+[e $UE 17  ]
+[; ;key.c: 51: case PortB:
+"51
+[e :U 21 ]
+[; ;key.c: 52: return RB0;
+"52
+[e ) -> -> _RB0 `i `uc ]
+[e $UE 17  ]
+"53
+}
+[; ;key.c: 53: }
+[e $U 18  ]
+"47
+[e :U 19 ]
+[e [\ _line_num , $ . `E876 0 20
+ , $ . `E876 1 21
+ 18 ]
+"53
+[e :U 18 ]
+[; ;key.c: 54: }
+"54
+[e :UE 17 ]
+}
+"58
+[v _KeyControl `(uc ~T0 @X0 1 ef1`*S3 ]
+"59
+{
+[; ;key.c: 58: uint8_t KeyControl(KEY_PRIVATE* this)
+[; ;key.c: 59: {
+[e :U _KeyControl ]
+"58
+[v _this `*S3 ~T0 @X0 1 r1 ]
+"59
+[f ]
+[; ;key.c: 60: if(!(this->flags.level))
+"60
+[e $ ! ! != -> . . *U _this 0 2 `i -> -> -> 0 `i `uc `i 23  ]
+[; ;key.c: 61: {
+"61
+{
+[; ;key.c: 62: if (this->flags.is_pressing)
+"62
+[e $ ! != -> . . *U _this 0 1 `i -> -> -> 0 `i `uc `i 24  ]
+[; ;key.c: 63: {
+"63
+{
+[; ;key.c: 64: this->cnt = 0;
+"64
+[e = . *U _this 1 -> -> 0 `i `uc ]
+[; ;key.c: 66: if (((++(this->cnt_timeout)) > (600)?(0 == ((this->cnt_timeout) = 0)):0))
+"66
+[e $ ! != ? > =+ . *U _this 2 -> -> 1 `i `ui -> -> 600 `i `ui : -> == -> -> 0 `i `ui = . *U _this 2 -> -> 0 `i `ui `i -> 0 `i -> 0 `i 25  ]
+[; ;key.c: 67: {
+"67
+{
+[; ;key.c: 68: this->flags.is_forbidden = 1;
+"68
+[e = . . *U _this 0 0 -> -> 1 `i `uc ]
+"69
+}
+[e :U 25 ]
+"71
+}
+[; ;key.c: 69: }
+[; ;key.c: 71: }else
+[e $U 26  ]
+[e :U 24 ]
+[; ;key.c: 72: {
+"72
+{
+[; ;key.c: 73: if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+"73
+[e $ ! != ? > -> =+ . *U _this 1 -> -> 1 `i `uc `i -> 10 `i : -> == -> 0 `i -> = . *U _this 1 -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 27  ]
+[; ;key.c: 74: {
+"74
+{
+[; ;key.c: 75: this->flags.is_pressing = 1;
+"75
+[e = . . *U _this 0 1 -> -> 1 `i `uc ]
+[; ;key.c: 76: return 1;
+"76
+[e ) -> -> 1 `i `uc ]
+[e $UE 22  ]
+"77
+}
+[e :U 27 ]
+"78
+}
+[e :U 26 ]
+"80
+}
+[; ;key.c: 77: }
+[; ;key.c: 78: }
+[; ;key.c: 80: }
+[e $U 28  ]
+"81
+[e :U 23 ]
+[; ;key.c: 81: else
+[; ;key.c: 82: {
 "82
-[e :UE 7 ]
-}
+{
+[; ;key.c: 83: if (this->flags.is_pressing)
+"83
+[e $ ! != -> . . *U _this 0 1 `i -> -> -> 0 `i `uc `i 29  ]
+[; ;key.c: 84: {
 "84
-[v _LED_Con `(v ~T0 @X0 1 ef ]
+{
+[; ;key.c: 85: if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
 "85
-{
-[; ;light.c: 84: void LED_Con(void)
-[; ;light.c: 85: {
-[e :U _LED_Con ]
-[f ]
-[; ;light.c: 86: RA5 = FledBits01.bits.bit_0;
+[e $ ! != ? > -> =+ . *U _this 1 -> -> 1 `i `uc `i -> 10 `i : -> == -> 0 `i -> = . *U _this 1 -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 30  ]
+[; ;key.c: 86: {
 "86
-[e = _RA5 -> . . _FledBits01 1 0 `b ]
-[; ;light.c: 191: }
-"191
-[e :UE 12 ]
-}
-"193
-[v _INT_LED_SHOW `(v ~T0 @X0 1 ef ]
-"194
 {
-[; ;light.c: 193: void INT_LED_SHOW(void)
-[; ;light.c: 194: {
-[e :U _INT_LED_SHOW ]
-[f ]
-[; ;light.c: 196: if((FledBits01.bits.bit_0 == 1) && (fctBits001.bits.bit_0 == 0))
-"196
-[e $ ! && == -> . . _FledBits01 1 0 `i -> 1 `i == -> . . _fctBits001 1 0 `i -> 0 `i 14  ]
-[; ;light.c: 197: {
-"197
-{
-[; ;light.c: 198: if (++CNTbreath_Led == 80)
-"198
-[e $ ! == =+ _CNTbreath_Led -> -> 1 `i `ui -> -> 80 `i `ui 15  ]
-[; ;light.c: 199: {
-"199
-{
-[; ;light.c: 200: CNTbreath_Led = 0;
-"200
-[e = _CNTbreath_Led -> -> 0 `i `ui ]
-[; ;light.c: 201: RA5 = 0;
-"201
-[e = _RA5 -> -> 0 `i `b ]
-"202
+[; ;key.c: 87: this->flags.is_pressing = 0;
+"87
+[e = . . *U _this 0 1 -> -> 0 `i `uc ]
+"88
 }
-[e :U 15 ]
-[; ;light.c: 202: }
-[; ;light.c: 203: if (CNTbreath_Led >= CNTbreath_Led2)
-"203
-[e $ ! >= _CNTbreath_Led _CNTbreath_Led2 16  ]
-[; ;light.c: 204: {
-"204
+[e :U 30 ]
+"89
+}
+[; ;key.c: 88: }
+[; ;key.c: 89: }else
+[e $U 31  ]
+[e :U 29 ]
+[; ;key.c: 90: {
+"90
 {
-[; ;light.c: 205: RA5 = 1;
-"205
-[e = _RA5 -> -> 1 `i `b ]
-"206
+[; ;key.c: 91: this->cnt = 0;
+"91
+[e = . *U _this 1 -> -> 0 `i `uc ]
+[; ;key.c: 92: this->cnt_timeout = 0;
+"92
+[e = . *U _this 2 -> -> 0 `i `ui ]
+"93
 }
-[; ;light.c: 206: }
-[e $U 17  ]
-"207
-[e :U 16 ]
-[; ;light.c: 207: else
-[; ;light.c: 208: {
-"208
-{
-[; ;light.c: 209: RA5 = 0;
-"209
-[e = _RA5 -> -> 0 `i `b ]
-"210
+[e :U 31 ]
+"95
 }
-[e :U 17 ]
-"211
-}
-[e :U 14 ]
-[; ;light.c: 210: }
-[; ;light.c: 211: }
-[; ;light.c: 212: }
-"212
-[e :UE 13 ]
+[e :U 28 ]
+[; ;key.c: 93: }
+[; ;key.c: 95: }
+[; ;key.c: 96: return 0;
+"96
+[e ) -> -> 0 `i `uc ]
+[e $UE 22  ]
+[; ;key.c: 97: }
+"97
+[e :UE 22 ]
 }

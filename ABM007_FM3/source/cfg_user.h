@@ -9,7 +9,7 @@
 #define ABM007_FLUSH_2	 		0x1002	/* 感应水箱(模式2，单冲水) */
 
 /******************	记得修改版本号	 *****************/
-#define SOFTWARE_VERSION         (ABM007_FLUSH_2)      		/*	记得修改版本号	*/
+#define SOFTWARE_VERSION         (ABM007_FLUSH_1)      		/*	记得修改版本号	*/
 /******************	记得修改版本号	 *****************/
 #if (SOFTWARE_VERSION == ABM007_FLUSH_1)
 	#define DUBLE_FLUSH_MODE	1								/* 1-双冲模式，0-单冲模式 */
@@ -76,14 +76,28 @@ volatile BYTE Fsys1m;		/* 1min标识符 */
 #define	ON					1				/*	开				*/
 #define	OFF					0				/*	关				*/
 
+#define	TRUE					1				/*	开				*/
+#define	FALSE					0				/*	关				*/
+
+
+
 // v_uint8 SiCon_SETkey;	/* 全局控制指令 */
 
 /*  按键 */
 
 /* 端口定义 */
 #define PIsensor		RB1		/* 龙头感应 */
-#define PItest			RB0		/* 测试点 */
+#define PItest			RB2		/* 测试点 */
+#define PIKey1			RA6		/*按键1*/
+#define PIKey2			RB0		/*按键2*/
 
-#define POmainValue		RA4		/* 主阀 */
+#define POmainValue		RA4		/* 主阀 */  
+#define POdirectValue   RA1		/* 直流阀 */
 #define	POlight			RA5		/* 氛围灯 */
 #define POairPump		RA2		/* 气泵 */
+
+
+
+/*		该伪函数会将变量自增加1后进行比较,如大于比较值则清零并返回TRUE,否则返回FALSE		*/
+#define IncrementJudgeToCLR(now, target) \
+		((++(now)) > (target)?(CLR == ((now) = CLR)):0)         \

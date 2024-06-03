@@ -1,5 +1,5 @@
 
-# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor.c"
+# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -671,197 +671,131 @@ uint8_t GkeyLoop();
 extern void Delay(unsigned int dtemp);
 extern void Delay_nms(unsigned int inittempl);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor.c"
-BYTE Fbodysensor;
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_Private.h"
+volatile uint8_t CurrentIO;
+typedef enum _SignalLines{
+PortA,
+PortB,
+}SignalLines;
+volatile SignalLines SeletedLine;
 
-v_uint8 u8stsBodySensor = 0;
-v_uint8 SEQbody = 0;
-v_uint16 CNTbody_h = 0;
-v_uint16 CNTbody_l = 0;
-v_uint16 BufCntAdd = 0;
-v_uint16 CNTbodyInTime = 0;
-v_uint16 CNTbodyExitTime = 0;
+# 20
+typedef struct _KEY_PRIVATE
+{
+struct
+{
+unsigned char is_forbidden : 1;
+unsigned char is_pressing : 1;
+unsigned char level : 1;
+unsigned char : 1;
 
-void SensorKey(void);
-void SensorTime(void);
-void SensorJudge(void);
-void SensorControl(void);
+unsigned char : 1;
+unsigned char : 1;
+unsigned char : 1;
+unsigned char : 1;
+}flags;
+uint8_t cnt;
+uint16_t cnt_timeout;
+}KEY_PRIVATE;
 
-void GsensorLoop(void)
-{
-SensorKey();
-SensorTime();
-SensorJudge();
-SensorControl();
-}
-
-void SensorKey(void)
-{
-
-}
-
-
-void SensorTime(void)
-{
-if(Fbodysensor.bits.bit_0 == 1)
-{
-Fbodysensor.bits.bit_5 = 0;
-CNTbodyExitTime = 0;
-if(FledBits01.bits.bit_2 == 0)
-{
-if(++CNTbodyInTime >= 6000)
-{
-CNTbodyInTime = 6000;
-Fbodysensor.bits.bit_3 = 1;
-}
-else if(CNTbodyInTime >= 500)
-{
-Fbodysensor.bits.bit_4 = 1;
-}
-}
-else
-{
-if(Fbodysensor.bits.bit_4 == 0)
-{
-CNTbodyInTime = 0;
-}
-}
-}
-else
-{
-CNTbodyInTime = 0;
-Fbodysensor.bits.bit_4 = 0;
-Fbodysensor.bits.bit_3 = 0;
-if(++CNTbodyExitTime >= 500)
-{
-CNTbodyExitTime = 500;
-Fbodysensor.bits.bit_5 = 1;
-}
-}
-}
+volatile KEY_PRIVATE KeyLines[2];
 
 
-void SensorJudge(void)
-{
-switch (SEQbody)
-{
-case 0:
-Fbodysensor.bits.bit_0 = 0;
-FledBits01.bits.bit_2 = 0;
-SEQbody = 1;
-break;
 
 
-case 1:
-Fbodysensor.bits.bit_0 = 0;
-FledBits01.bits.bit_2 = 0;
-if(RB1 == 0)
-{
-if(++CNTbody_h >= 3)
-{
-CNTbody_h = 0;
-CNTbody_l = 0;
-SEQbody = 2;
-break;
-}
-}
-else
-{
-CNTbody_h = 0;
-}
-break;
+uint8_t GkeyLoop();
+uint8_t ScanKey(SignalLines line_num) ;
+uint8_t KeyControl(KEY_PRIVATE* this);
 
+# 7 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c"
+uint8_t GkeyLoop(void)
+{
+for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
+{
+KeyLines[SeletedLine].flags.level =ScanKey(SeletedLine);
 
-case 2:
-Fbodysensor.bits.bit_0 = 0;
-FledBits01.bits.bit_2 = 0;
-if(RB1 == 0)
+if(KeyLines[SeletedLine].flags.is_forbidden)
 {
-++CNTbody_h;
-}
-else
+if (KeyLines[SeletedLine].flags.level)
 {
-if(++CNTbody_l >= 6)
+KeyLines[SeletedLine].flags.is_forbidden = 0;
+}
+continue;
+}
+if (KeyControl(&KeyLines[SeletedLine]))
 {
-CNTbody_h = 0;
-CNTbody_l = 0;
-SEQbody = 1;
-break;
-}
-}
-BufCntAdd = CNTbody_h +CNTbody_l;
-if(BufCntAdd >= 30)
+switch (SeletedLine)
 {
-SEQbody = 3;
-break;
-}
-break;
+case PortA:
+Fflush1.bits.bit_0 = 1;
+KeyLines[PortB].flags.is_forbidden = 1;
+return FLUSH_BIG_0;
+case PortB:
+Fflush1.bits.bit_2 = 1;
+KeyLines[PortA].flags.is_forbidden = 1;
+return FLUSH_SML_0;
 
-case 3:
-Fbodysensor.bits.bit_0 = 1;
-FledBits01.bits.bit_2 = 0;
-if(RB1 == 1)
-{
-if(++CNTbody_l >= 3)
-{
-CNTbody_h = 0;
-CNTbody_l = 0;
-SEQbody = 4;
-break;
-}
-}
-else
-{
-CNTbody_l = 0;
-}
-break;
-
-case 4:
-Fbodysensor.bits.bit_0 = 1;
-FledBits01.bits.bit_2 = 1;
-if(RB1 == 0)
-{
-if(++CNTbody_h >= 6)
-{
-CNTbody_h = 0;
-CNTbody_l = 0;
-SEQbody = 3;
-break;
-}
-}
-else
-{
-++CNTbody_l;
-}
-BufCntAdd = CNTbody_h +CNTbody_l;
-if(BufCntAdd >= 500)
-{
-SEQbody = 1;
-break;
-}
-break;
 default:
-SEQbody = 0;
-FledBits01.bits.bit_2 = 0;
 break;
+}
+
+}
+}
+return 0;
+
+}
+
+
+uint8_t ScanKey(SignalLines line_num)
+{
+switch (line_num)
+{
+case PortA:
+return RA6;
+case PortB:
+return RB0;
 }
 }
 
-void SensorControl(void)
+
+
+uint8_t KeyControl(KEY_PRIVATE* this)
 {
-Fbodysensor.bits.bit_1 = 0;
-Fbodysensor.bits.bit_2 = 0;
-if(Fbodysensor.bits.bit_6 != Fbodysensor.bits.bit_0)
+if(!(this->flags.level))
 {
-if(Fbodysensor.bits.bit_0 == 1)
+if (this->flags.is_pressing)
 {
-Fbodysensor.bits.bit_1 = 1;
+this->cnt = 0;
+
+if (((++(this->cnt_timeout)) > (600)?(0 == ((this->cnt_timeout) = 0)):0))
+{
+this->flags.is_forbidden = 1;
+}
+
+}else
+{
+if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+{
+this->flags.is_pressing = 1;
+return 1;
+}
+}
+
 }
 else
 {
-Fbodysensor.bits.bit_2 = 1;
+if (this->flags.is_pressing)
+{
+if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+{
+this->flags.is_pressing = 0;
 }
-Fbodysensor.bits.bit_6 = Fbodysensor.bits.bit_0;
-}
+}else
+{
+this->cnt = 0;
+this->cnt_timeout = 0;
 }
 
+}
+return 0;
+}
