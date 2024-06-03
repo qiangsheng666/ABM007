@@ -1,22 +1,22 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
 [p mainexit ]
-"9 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h
+"9 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct_user.h
 [v _FCTloop `(v ~T0 @X0 0 ef ]
 "4
 [v _fctBits001 `S2 ~T0 @X0 0 e ]
-"25 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h
+"25 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor_user.h
 [v _GsensorLoop `(v ~T0 @X0 0 ef ]
-"13 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h
+"27 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush_user.h
 [v _GflushLoop `(v ~T0 @X0 0 ef ]
-"10 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h
+"10 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light_user.h
 [v _GledLoop `(v ~T0 @X0 0 ef ]
-"22 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"22 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c
 [v _INT_LED_SHOW `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1376,7 +1376,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1388,11 +1388,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;light_user.h: 4: extern BYTE FledBits01;
 [; ;light_user.h: 10: extern void GledLoop(void);
 [; ;flush_user.h: 4: extern BYTE Fflush1;
-[; ;flush_user.h: 13: extern void GflushLoop(void);
+[; ;flush_user.h: 13: enum{
+[; ;flush_user.h: 14: FLUSH_INIT_0 = 0,
+[; ;flush_user.h: 15: FLUSH_INIT_1,
+[; ;flush_user.h: 16: FLUSH_INIT_2,
+[; ;flush_user.h: 17: FLUSH_BIG_0,
+[; ;flush_user.h: 18: FLUSH_BIG_1,
+[; ;flush_user.h: 19: FLUSH_BIG_2,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
 [; ;fct_user.h: 9: extern void FCTloop(void);
+[; ;key_user.h: 9: uint8_t GkeyLoop();
+[; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
+[; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
 [; ;math.h: 30: extern double fabs(double);
 [; ;math.h: 31: extern double floor(double);
 [; ;math.h: 32: extern double ceil(double);
@@ -1446,7 +1463,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 56: extern char * strichr(const char *, int);
 [; ;string.h: 57: extern char * strrchr(const char *, int);
 [; ;string.h: 58: extern char * strrichr(const char *, int);
-"7 D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c
+"7 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c
 [v _TMR1 `Vui ~T0 @X0 1 e@14 ]
 [; ;main.c: 7: volatile unsigned int TMR1 @0x000E;
 "15
@@ -1597,12 +1614,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 68: PORTC = 0B00000000;
 "68
 [e = _PORTC -> -> 0 `i `uc ]
-[; ;main.c: 71: TRISA = 0B00000000;
+[; ;main.c: 71: TRISA = 0B01000000;
 "71
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;main.c: 72: TRISB = 0B00000011;
+[e = _TRISA -> -> 64 `i `uc ]
+[; ;main.c: 72: TRISB = 0B00000111;
 "72
-[e = _TRISB -> -> 3 `i `uc ]
+[e = _TRISB -> -> 7 `i `uc ]
 [; ;main.c: 73: TRISC = 0B00000000;
 "73
 [e = _TRISC -> -> 0 `i `uc ]
@@ -2345,9 +2362,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 42 ]
 }
 [v $root$_Int_ALL `(v ~T0 @X0 0 e ]
-[v F1054 `(v ~T0 @X0 1 tf ]
+[v F1070 `(v ~T0 @X0 1 tf ]
 "562
-[v _Int_ALL `IF1054 ~T0 @X0 1 e ]
+[v _Int_ALL `IF1070 ~T0 @X0 1 e ]
 "563
 {
 [; ;main.c: 562: void interrupt Int_ALL(void)

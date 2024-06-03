@@ -9,7 +9,7 @@
 	;
 	; -oABM007.cof -mABM007.map --summary=default,-psect,-class \
 	; --fill=0xFFFF --output=intel light.p1 main.p1 flush.p1 sensor.p1 \
-	; fct.p1 --chip=79F133 -P --runtime=default, \
+	; fct.p1 key.p1 test.p1 --chip=79F133 -P --runtime=default, \
 	; --opt=-local,-asmfile,+asm,-speed,+space,-debug -E+cmscerr.err \
 	; -D__DEBUG=1 -g --asmlist --warn=-2 --stack=compiled:auto:auto:auto \
 	; --addrqual=request --mode=pro --errformat=Error[%n]:	%f	µÚ%lÐÐ	%s \

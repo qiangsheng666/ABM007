@@ -5,12 +5,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"18 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c
-[v _FCTkey `(v ~T0 @X0 0 ef ]
-"19
-[v _FCTjudge `(v ~T0 @X0 0 ef ]
-"13 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\cfg_case.h
-[v _Delay_nms `(v ~T0 @X0 0 ef1`ui ]
+"9 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\key_Private.h
+[c E876 0 1 .. ]
+[n E876 _SignalLines PortA PortB  ]
+"23
+[s S4 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S4 . is_forbidden is_pressing level . . . . . ]
+"20
+[s S3 `S4 1 `uc 1 `ui 1 ]
+[n S3 _KEY_PRIVATE flags cnt cnt_timeout ]
+"44
+[v _ScanKey `(uc ~T0 @X0 0 ef1`E876 ]
+"45
+[v _KeyControl `(uc ~T0 @X0 0 ef1`*S3 ]
+"4 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush_user.h
+[v _Fflush1 `S2 ~T0 @X0 0 e ]
+"28 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\key.c
+[c E849 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
+[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1403,366 +1415,332 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c
-[v _fctBits001 `S2 ~T0 @X0 1 e ]
-[; ;fct.c: 4: BYTE fctBits001;
-"8
-[v _CNTfctStart `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 8: volatile unsigned int CNTfctStart;
+"4 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\key_Private.h
+[v _CurrentIO `Vuc ~T0 @X0 1 e ]
+[; ;key_Private.h: 4: volatile uint8_t CurrentIO;
+[; ;key_Private.h: 5: typedef enum _SignalLines{
+[; ;key_Private.h: 6: PortA,
+[; ;key_Private.h: 7: PortB,
+[; ;key_Private.h: 8: }SignalLines;
 "9
-[v _CNTfctSensior `Vuc ~T0 @X0 1 e ]
-[; ;fct.c: 9: volatile unsigned char CNTfctSensior;
+[v _SeletedLine `VE876 ~T0 @X0 1 e ]
+[; ;key_Private.h: 9: volatile SignalLines SeletedLine;
+[; ;key_Private.h: 20: typedef struct _KEY_PRIVATE
+[; ;key_Private.h: 21: {
+[; ;key_Private.h: 22: struct
+[; ;key_Private.h: 23: {
+[; ;key_Private.h: 24: unsigned char is_forbidden : 1;
+[; ;key_Private.h: 25: unsigned char is_pressing : 1;
+[; ;key_Private.h: 26: unsigned char level : 1;
+[; ;key_Private.h: 27: unsigned char : 1;
+[; ;key_Private.h: 29: unsigned char : 1;
+[; ;key_Private.h: 30: unsigned char : 1;
+[; ;key_Private.h: 31: unsigned char : 1;
+[; ;key_Private.h: 32: unsigned char : 1;
+[; ;key_Private.h: 33: }flags;
+[; ;key_Private.h: 34: uint8_t cnt;
+[; ;key_Private.h: 35: uint16_t cnt_timeout;
+[; ;key_Private.h: 36: }KEY_PRIVATE;
+"38
+[v _KeyLines `VS3 ~T0 @X0 -> 2 `i e ]
+[; ;key_Private.h: 38: volatile KEY_PRIVATE KeyLines[2];
+[; ;key_Private.h: 43: uint8_t GkeyLoop();
+[; ;key_Private.h: 44: uint8_t ScanKey(SignalLines line_num) ;
+[; ;key_Private.h: 45: uint8_t KeyControl(KEY_PRIVATE* this);
+"7 C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\key.c
+[v _GkeyLoop `(uc ~T0 @X0 1 ef ]
+"8
+{
+[; ;key.c: 7: uint8_t GkeyLoop(void)
+[; ;key.c: 8: {
+[e :U _GkeyLoop ]
+[f ]
+[; ;key.c: 9: for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
+"9
+{
+[e = _SeletedLine -> -> 0 `i `VE876 ]
+[e $ < -> _SeletedLine `i -> 2 `i 6  ]
+[e $U 7  ]
 "10
-[v _CNTfctFlashLed `Vuc ~T0 @X0 1 e ]
-[; ;fct.c: 10: volatile unsigned char CNTfctFlashLed;
-"11
-[v _CNTfct `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 11: volatile unsigned int CNTfct;
-"12
-[v _CNTkey1 `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 12: volatile unsigned int CNTkey1;
-"13
-[v _CNTkey2 `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 13: volatile unsigned int CNTkey2;
-"14
-[v _flag_time `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 14: volatile unsigned int flag_time;
-"16
-[v _Flag_G_Key `ui ~T0 @X0 1 e ]
-[i _Flag_G_Key
--> -> 0 `i `ui
-]
-[; ;fct.c: 16: unsigned int Flag_G_Key = 0;
-[; ;fct.c: 18: void FCTkey(void);
-[; ;fct.c: 19: void FCTjudge(void);
-"21
-[v _FCTloop `(v ~T0 @X0 1 ef ]
-"22
-{
-[; ;fct.c: 21: void FCTloop(void)
-[; ;fct.c: 22: {
-[e :U _FCTloop ]
-[f ]
-[; ;fct.c: 23: FCTkey();
-"23
-[e ( _FCTkey ..  ]
-[; ;fct.c: 24: FCTjudge();
-"24
-[e ( _FCTjudge ..  ]
-[; ;fct.c: 25: }
-"25
-[e :UE 3 ]
-}
-"50
-[v _FCTkey `(v ~T0 @X0 1 ef ]
-"51
-{
-[; ;fct.c: 50: void FCTkey(void)
-[; ;fct.c: 51: {
-[e :U _FCTkey ]
-[f ]
-[; ;fct.c: 52: if(fctBits001.bits.bit_0 == 1)
-"52
-[e $ ! == -> . . _fctBits001 1 0 `i -> 1 `i 5  ]
-[; ;fct.c: 53: {
-"53
-{
-[; ;fct.c: 54: if(RB2 == 1)
-"54
-[e $ ! == -> _RB2 `i -> 1 `i 6  ]
-[; ;fct.c: 55: {
-"55
-{
-[; ;fct.c: 56: Delay_nms(1000);
-"56
-[e ( _Delay_nms (1 -> -> 1000 `i `ui ]
-[; ;fct.c: 57: if(RB2 == 1)
-"57
-[e $ ! == -> _RB2 `i -> 1 `i 7  ]
-[; ;fct.c: 58: {
-"58
-{
-[; ;fct.c: 59: fctBits001.bits.bit_0 = 0;
-"59
-[e = . . _fctBits001 1 0 -> -> 0 `i `uc ]
-[; ;fct.c: 60: return;
-"60
-[e $UE 4  ]
-"61
-}
-[e :U 7 ]
-"62
-}
 [e :U 6 ]
-"63
+[; ;key.c: 10: {
+{
+[; ;key.c: 11: KeyLines[SeletedLine].flags.level =ScanKey(SeletedLine);
+"11
+[e = . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 2 ( _ScanKey (1 _SeletedLine ]
+[; ;key.c: 13: if(KeyLines[SeletedLine].flags.is_forbidden)
+"13
+[e $ ! != -> . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 0 `i -> -> -> 0 `i `Vuc `i 9  ]
+[; ;key.c: 14: {
+"14
+{
+[; ;key.c: 15: if (KeyLines[SeletedLine].flags.level)
+"15
+[e $ ! != -> . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 2 `i -> -> -> 0 `i `Vuc `i 10  ]
+[; ;key.c: 16: {
+"16
+{
+[; ;key.c: 17: KeyLines[SeletedLine].flags.is_forbidden = 0;
+"17
+[e = . . *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 0 `i `uc ]
+"18
 }
-[e :U 5 ]
-[; ;fct.c: 61: }
-[; ;fct.c: 62: }
-[; ;fct.c: 63: }
-[; ;fct.c: 64: if(RB2 == 1)
-"64
-[e $ ! == -> _RB2 `i -> 1 `i 8  ]
-[; ;fct.c: 65: {
-"65
-{
-[; ;fct.c: 66: Delay_nms(1000);
-"66
-[e ( _Delay_nms (1 -> -> 1000 `i `ui ]
-[; ;fct.c: 67: if(RB2 == 1)
-"67
-[e $ ! == -> _RB2 `i -> 1 `i 9  ]
-[; ;fct.c: 68: {
-"68
-{
-[; ;fct.c: 69: fctBits001.bits.bit_0 = 1;
-"69
-[e = . . _fctBits001 1 0 -> -> 1 `i `uc ]
-[; ;fct.c: 70: return;
-"70
-[e $UE 4  ]
-"71
+[e :U 10 ]
+[; ;key.c: 18: }
+[; ;key.c: 19: continue;
+"19
+[e $U 8  ]
+"20
 }
 [e :U 9 ]
-"72
-}
-[e :U 8 ]
-[; ;fct.c: 71: }
-[; ;fct.c: 72: }
-[; ;fct.c: 73: }
-"73
-[e :UE 4 ]
-}
-"75
-[v _G_KEY `(v ~T0 @X0 1 ef ]
-"76
+[; ;key.c: 20: }
+[; ;key.c: 21: if (KeyControl(&KeyLines[SeletedLine]))
+"21
+[e $ ! != -> ( _KeyControl (1 -> &U *U + &U _KeyLines * -> _SeletedLine `ux -> -> # *U &U _KeyLines `ui `ux `*S3 `i -> -> -> 0 `i `uc `i 11  ]
+[; ;key.c: 22: {
+"22
 {
-[; ;fct.c: 75: void G_KEY(void)
-[; ;fct.c: 76: {
-[e :U _G_KEY ]
-[f ]
-[; ;fct.c: 77: RA5 = 0;
-"77
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 78: RA2 = 0;
-"78
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 79: RA4 = 1;
-"79
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 80: RA1 = 0;
-"80
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 81: }
-"81
-[e :UE 10 ]
+[; ;key.c: 23: switch (SeletedLine)
+"23
+[e $U 13  ]
+[; ;key.c: 24: {
+"24
+{
+[; ;key.c: 25: case PortA:
+"25
+[e :U 14 ]
+[; ;key.c: 26: Fflush1.bits.bit_0 = 1;
+"26
+[e = . . _Fflush1 1 0 -> -> 1 `i `uc ]
+[; ;key.c: 27: KeyLines[PortB].flags.is_forbidden = 1;
+"27
+[e = . . *U + &U _KeyLines * -> . `E876 1 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[; ;key.c: 28: return FLUSH_BIG_0;
+"28
+[e ) -> . `E849 3 `uc ]
+[e $UE 5  ]
+[; ;key.c: 29: case PortB:
+"29
+[e :U 15 ]
+[; ;key.c: 30: Fflush1.bits.bit_2 = 1;
+"30
+[e = . . _Fflush1 1 2 -> -> 1 `i `uc ]
+[; ;key.c: 31: KeyLines[PortA].flags.is_forbidden = 1;
+"31
+[e = . . *U + &U _KeyLines * -> . `E876 0 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[; ;key.c: 32: return FLUSH_SML_0;
+"32
+[e ) -> . `E849 6 `uc ]
+[e $UE 5  ]
+[; ;key.c: 34: default:
+"34
+[e :U 16 ]
+[; ;key.c: 35: break;
+"35
+[e $U 12  ]
+"36
 }
+[; ;key.c: 36: }
+[e $U 12  ]
+"23
+[e :U 13 ]
+[e [\ _SeletedLine , $ . `E876 0 14
+ , $ . `E876 1 15
+ 16 ]
+"36
+[e :U 12 ]
+"38
+}
+[e :U 11 ]
+"39
+}
+"9
+[e :U 8 ]
+[e ++ _SeletedLine -> -> 1 `i `VE876 ]
+[e $ < -> _SeletedLine `i -> 2 `i 6  ]
+[e :U 7 ]
+"39
+}
+[; ;key.c: 38: }
+[; ;key.c: 39: }
+[; ;key.c: 40: return 0;
+"40
+[e ) -> -> 0 `i `uc ]
+[e $UE 5  ]
+[; ;key.c: 42: }
+"42
+[e :UE 5 ]
+}
+"45
+[v _ScanKey `(uc ~T0 @X0 1 ef1`E876 ]
+"46
+{
+[; ;key.c: 45: uint8_t ScanKey(SignalLines line_num)
+[; ;key.c: 46: {
+[e :U _ScanKey ]
+"45
+[v _line_num `E876 ~T0 @X0 1 r1 ]
+"46
+[f ]
+[; ;key.c: 47: switch (line_num)
+"47
+[e $U 19  ]
+[; ;key.c: 48: {
+"48
+{
+[; ;key.c: 49: case PortA:
+"49
+[e :U 20 ]
+[; ;key.c: 50: return RA6;
+"50
+[e ) -> -> _RA6 `i `uc ]
+[e $UE 17  ]
+[; ;key.c: 51: case PortB:
+"51
+[e :U 21 ]
+[; ;key.c: 52: return RB0;
+"52
+[e ) -> -> _RB0 `i `uc ]
+[e $UE 17  ]
+"53
+}
+[; ;key.c: 53: }
+[e $U 18  ]
+"47
+[e :U 19 ]
+[e [\ _line_num , $ . `E876 0 20
+ , $ . `E876 1 21
+ 18 ]
+"53
+[e :U 18 ]
+[; ;key.c: 54: }
+"54
+[e :UE 17 ]
+}
+"58
+[v _KeyControl `(uc ~T0 @X0 1 ef1`*S3 ]
+"59
+{
+[; ;key.c: 58: uint8_t KeyControl(KEY_PRIVATE* this)
+[; ;key.c: 59: {
+[e :U _KeyControl ]
+"58
+[v _this `*S3 ~T0 @X0 1 r1 ]
+"59
+[f ]
+[; ;key.c: 60: if(!(this->flags.level))
+"60
+[e $ ! ! != -> . . *U _this 0 2 `i -> -> -> 0 `i `uc `i 23  ]
+[; ;key.c: 61: {
+"61
+{
+[; ;key.c: 62: if (this->flags.is_pressing)
+"62
+[e $ ! != -> . . *U _this 0 1 `i -> -> -> 0 `i `uc `i 24  ]
+[; ;key.c: 63: {
+"63
+{
+[; ;key.c: 64: this->cnt = 0;
+"64
+[e = . *U _this 1 -> -> 0 `i `uc ]
+[; ;key.c: 66: if (((++(this->cnt_timeout)) > (600)?(0 == ((this->cnt_timeout) = 0)):0))
+"66
+[e $ ! != ? > =+ . *U _this 2 -> -> 1 `i `ui -> -> 600 `i `ui : -> == -> -> 0 `i `ui = . *U _this 2 -> -> 0 `i `ui `i -> 0 `i -> 0 `i 25  ]
+[; ;key.c: 67: {
+"67
+{
+[; ;key.c: 68: this->flags.is_forbidden = 1;
+"68
+[e = . . *U _this 0 0 -> -> 1 `i `uc ]
+"69
+}
+[e :U 25 ]
+"71
+}
+[; ;key.c: 69: }
+[; ;key.c: 71: }else
+[e $U 26  ]
+[e :U 24 ]
+[; ;key.c: 72: {
+"72
+{
+[; ;key.c: 73: if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
+"73
+[e $ ! != ? > -> =+ . *U _this 1 -> -> 1 `i `uc `i -> 10 `i : -> == -> 0 `i -> = . *U _this 1 -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 27  ]
+[; ;key.c: 74: {
+"74
+{
+[; ;key.c: 75: this->flags.is_pressing = 1;
+"75
+[e = . . *U _this 0 1 -> -> 1 `i `uc ]
+[; ;key.c: 76: return 1;
+"76
+[e ) -> -> 1 `i `uc ]
+[e $UE 22  ]
+"77
+}
+[e :U 27 ]
+"78
+}
+[e :U 26 ]
+"80
+}
+[; ;key.c: 77: }
+[; ;key.c: 78: }
+[; ;key.c: 80: }
+[e $U 28  ]
+"81
+[e :U 23 ]
+[; ;key.c: 81: else
+[; ;key.c: 82: {
+"82
+{
+[; ;key.c: 83: if (this->flags.is_pressing)
 "83
-[v _R_KEY `(v ~T0 @X0 1 ef ]
+[e $ ! != -> . . *U _this 0 1 `i -> -> -> 0 `i `uc `i 29  ]
+[; ;key.c: 84: {
 "84
 {
-[; ;fct.c: 83: void R_KEY(void)
-[; ;fct.c: 84: {
-[e :U _R_KEY ]
-[f ]
-[; ;fct.c: 85: RA5 = 0;
+[; ;key.c: 85: if (((++(this->cnt)) > (10)?(0 == ((this->cnt) = 0)):0))
 "85
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 86: RA2 = 1;
+[e $ ! != ? > -> =+ . *U _this 1 -> -> 1 `i `uc `i -> 10 `i : -> == -> 0 `i -> = . *U _this 1 -> -> 0 `i `uc `i `i -> 0 `i -> 0 `i 30  ]
+[; ;key.c: 86: {
 "86
-[e = _RA2 -> -> 1 `i `b ]
-[; ;fct.c: 87: RA4 = 1;
+{
+[; ;key.c: 87: this->flags.is_pressing = 0;
 "87
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 88: RA1 = 0;
+[e = . . *U _this 0 1 -> -> 0 `i `uc ]
 "88
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 89: }
+}
+[e :U 30 ]
 "89
-[e :UE 11 ]
 }
+[; ;key.c: 88: }
+[; ;key.c: 89: }else
+[e $U 31  ]
+[e :U 29 ]
+[; ;key.c: 90: {
+"90
+{
+[; ;key.c: 91: this->cnt = 0;
 "91
-[v _key1 `(v ~T0 @X0 1 ef ]
+[e = . *U _this 1 -> -> 0 `i `uc ]
+[; ;key.c: 92: this->cnt_timeout = 0;
 "92
-{
-[; ;fct.c: 91: void key1(void)
-[; ;fct.c: 92: {
-[e :U _key1 ]
-[f ]
-[; ;fct.c: 93: RA5 = 1;
+[e = . *U _this 2 -> -> 0 `i `ui ]
 "93
-[e = _RA5 -> -> 1 `i `b ]
-[; ;fct.c: 94: RA2 = 0;
-"94
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 95: RA4 = 1;
+}
+[e :U 31 ]
 "95
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 96: RA1 = 0;
+}
+[e :U 28 ]
+[; ;key.c: 93: }
+[; ;key.c: 95: }
+[; ;key.c: 96: return 0;
 "96
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 97: }
+[e ) -> -> 0 `i `uc ]
+[e $UE 22  ]
+[; ;key.c: 97: }
 "97
-[e :UE 12 ]
-}
-"99
-[v _key2 `(v ~T0 @X0 1 ef ]
-"100
-{
-[; ;fct.c: 99: void key2(void)
-[; ;fct.c: 100: {
-[e :U _key2 ]
-[f ]
-[; ;fct.c: 101: RA5 = 0;
-"101
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 102: RA2 = 0;
-"102
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 103: RA4 = 1;
-"103
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 104: RA1 = 1;
-"104
-[e = _RA1 -> -> 1 `i `b ]
-[; ;fct.c: 105: }
-"105
-[e :UE 13 ]
-}
-"107
-[v _FCTjudge `(v ~T0 @X0 1 ef ]
-"108
-{
-[; ;fct.c: 107: void FCTjudge(void)
-[; ;fct.c: 108: {
-[e :U _FCTjudge ]
-[f ]
-[; ;fct.c: 109: if(fctBits001.bits.bit_0 == 1)
-"109
-[e $ ! == -> . . _fctBits001 1 0 `i -> 1 `i 15  ]
-[; ;fct.c: 110: {
-"110
-{
-[; ;fct.c: 111: if(++flag_time == 1500)
-"111
-[e $ ! == =+ _flag_time -> -> 1 `i `ui -> -> 1500 `i `ui 16  ]
-[; ;fct.c: 112: {
-"112
-{
-[; ;fct.c: 113: fctBits001.bits.bit_0 = 0;
-"113
-[e = . . _fctBits001 1 0 -> -> 0 `i `uc ]
-[; ;fct.c: 114: flag_time = 0;
-"114
-[e = _flag_time -> -> 0 `i `ui ]
-"115
-}
-[e :U 16 ]
-[; ;fct.c: 115: }
-[; ;fct.c: 116: if(RB1 == 0)
-"116
-[e $ ! == -> _RB1 `i -> 0 `i 17  ]
-[; ;fct.c: 117: {
-"117
-{
-[; ;fct.c: 118: R_KEY();
-"118
-[e ( _R_KEY ..  ]
-"119
-}
-[; ;fct.c: 119: }
-[e $U 18  ]
-"120
-[e :U 17 ]
-[; ;fct.c: 120: else
-[; ;fct.c: 121: {
-"121
-{
-[; ;fct.c: 122: if(RA6 == 0)
-"122
-[e $ ! == -> _RA6 `i -> 0 `i 19  ]
-[; ;fct.c: 123: {
-"123
-{
-[; ;fct.c: 124: key1();
-"124
-[e ( _key1 ..  ]
-"125
-}
-[; ;fct.c: 125: }
-[e $U 20  ]
-"126
-[e :U 19 ]
-[; ;fct.c: 126: else
-[; ;fct.c: 127: {
-"127
-{
-[; ;fct.c: 128: if(RB0 == 0)
-"128
-[e $ ! == -> _RB0 `i -> 0 `i 21  ]
-[; ;fct.c: 129: {
-"129
-{
-[; ;fct.c: 130: key2();
-"130
-[e ( _key2 ..  ]
-"131
-}
-[; ;fct.c: 131: }
-[e $U 22  ]
-"132
-[e :U 21 ]
-[; ;fct.c: 132: else
-[; ;fct.c: 133: {
-"133
-{
-[; ;fct.c: 134: G_KEY();
-"134
-[e ( _G_KEY ..  ]
-"135
-}
-[e :U 22 ]
-"136
-}
-[e :U 20 ]
-"137
-}
-[e :U 18 ]
-"138
-}
-[; ;fct.c: 135: }
-[; ;fct.c: 136: }
-[; ;fct.c: 137: }
-[; ;fct.c: 138: }
-[e $U 23  ]
-"139
-[e :U 15 ]
-[; ;fct.c: 139: else if(fctBits001.bits.bit_0 == 0)
-[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 24  ]
-[; ;fct.c: 140: {
-"140
-{
-[; ;fct.c: 141: RA5 = 0;
-"141
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 142: RA2 = 0;
-"142
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 143: RA4 = 0;
-"143
-[e = _RA4 -> -> 0 `i `b ]
-[; ;fct.c: 144: RA1 = 0;
-"144
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 145: flag_time = 0;
-"145
-[e = _flag_time -> -> 0 `i `ui ]
-"146
-}
-[e :U 24 ]
-"147
-[e :U 23 ]
-[; ;fct.c: 146: }
-[; ;fct.c: 147: }
-[e :UE 14 ]
+[e :UE 22 ]
 }

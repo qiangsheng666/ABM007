@@ -52,7 +52,12 @@ skipnz	macro
 	FNCALL	_GflushLoop,_FlushTime
 	FNCALL	_FCTloop,_FCTjudge
 	FNCALL	_FCTloop,_FCTkey
+	FNCALL	_FCTkey,_Delay_nms
 	FNCALL	_Delay_nms,_Delay
+	FNCALL	_FCTjudge,_G_KEY
+	FNCALL	_FCTjudge,_R_KEY
+	FNCALL	_FCTjudge,_key1
+	FNCALL	_FCTjudge,_key2
 	FNROOT	_main
 	FNCALL	_Int_ALL,_INT_LED_SHOW
 	FNCALL	intlevel1,_Int_ALL
@@ -62,7 +67,11 @@ skipnz	macro
 	global	_Fflush1
 	global	_fctBits001
 	global	_Fbodysensor
+	global	_flag_time
+	global	_CNTkey2
+	global	_CNTkey1
 	global	_CNTfct
+	global	_CNTfctStart
 	global	_CNTbodyExitTime
 	global	_CNTbodyInTime
 	global	_BufCntAdd
@@ -74,9 +83,10 @@ skipnz	macro
 	global	_CNTbreath_Led2
 	global	_CNTbreath_Led1
 	global	_CNTbreath_Led
+	global	_SeletedLine
+	global	_CurrentIO
 	global	_CNTfctFlashLed
 	global	_CNTfctSensior
-	global	_CNTfctStart
 	global	_SEQbody
 	global	_u8stsBodySensor
 	global	_SEQflsuh
@@ -88,6 +98,7 @@ skipnz	macro
 	global	_Fsys1m
 	global	_Fsys1s
 	global	_Fsys1
+	global	_KeyLines
 	global	_TMR1
 psect	text0,local,class=CODE,delta=2,merge=1
 global __ptext0
@@ -119,12 +130,18 @@ _GIE	set	95
 _RB0	set	48
 	global	_RB1
 _RB1	set	49
+	global	_RB2
+_RB2	set	50
+	global	_RA1
+_RA1	set	41
 	global	_RA2
 _RA2	set	42
 	global	_RA4
 _RA4	set	44
 	global	_RA5
 _RA5	set	45
+	global	_RA6
+_RA6	set	46
 	global	_WPUB
 _WPUB	set	149
 	global	_PR2
@@ -180,7 +197,19 @@ _Fbodysensor:
 psect	bssBANK0,class=BANK0,space=1,noexec
 global __pbssBANK0
 __pbssBANK0:
+_flag_time:
+       ds      2
+
+_CNTkey2:
+       ds      2
+
+_CNTkey1:
+       ds      2
+
 _CNTfct:
+       ds      2
+
+_CNTfctStart:
        ds      2
 
 _CNTbodyExitTime:
@@ -216,13 +245,16 @@ _CNTbreath_Led1:
 _CNTbreath_Led:
        ds      2
 
+_SeletedLine:
+       ds      1
+
+_CurrentIO:
+       ds      1
+
 _CNTfctFlashLed:
        ds      1
 
 _CNTfctSensior:
-       ds      1
-
-_CNTfctStart:
        ds      1
 
 _SEQbody:
@@ -258,6 +290,9 @@ _Fsys1s:
 _Fsys1:
        ds      1
 
+_KeyLines:
+       ds      8
+
 	file	"ABM007.as"
 	line	#
 psect clrtext,class=CODE,delta=2
@@ -287,7 +322,7 @@ psect cinit,class=CODE,delta=2,merge=1
 	bcf	status, 7	;select IRP bank0
 	movlw	low(__pbssBANK0)
 	movwf	fsr
-	movlw	low((__pbssBANK0)+026h)
+	movlw	low((__pbssBANK0)+037h)
 	fcall	clear_ram0
 psect cinit,class=CODE,delta=2,merge=1
 global end_of_initialization,__end_of__initialization
@@ -327,12 +362,15 @@ __pcstackCOMMON:
 ?_main:	; 1 bytes @ 0x0
 ?_Int_ALL:	; 1 bytes @ 0x0
 ??_Int_ALL:	; 1 bytes @ 0x0
+?_G_KEY:	; 1 bytes @ 0x0
+?_R_KEY:	; 1 bytes @ 0x0
+?_key1:	; 1 bytes @ 0x0
+?_key2:	; 1 bytes @ 0x0
 	ds	2
 ??_LED_Time:	; 1 bytes @ 0x2
 ??_LED_Key:	; 1 bytes @ 0x2
 ??_LED_Judge:	; 1 bytes @ 0x2
 ??_LED_Con:	; 1 bytes @ 0x2
-??_FCTloop:	; 1 bytes @ 0x2
 ??_GflushLoop:	; 1 bytes @ 0x2
 ??_FlushTime:	; 1 bytes @ 0x2
 ??_FlushJudge:	; 1 bytes @ 0x2
@@ -341,7 +379,6 @@ __pcstackCOMMON:
 ??_SensorTime:	; 1 bytes @ 0x2
 ??_SensorJudge:	; 1 bytes @ 0x2
 ??_SensorControl:	; 1 bytes @ 0x2
-??_FCTkey:	; 1 bytes @ 0x2
 ??_FCTjudge:	; 1 bytes @ 0x2
 ??_GledLoop:	; 1 bytes @ 0x2
 ?_Delay:	; 1 bytes @ 0x2
@@ -349,6 +386,10 @@ __pcstackCOMMON:
 ??_Init_IC:	; 1 bytes @ 0x2
 ??_Init_TIMER1:	; 1 bytes @ 0x2
 ??_Init_TIMER2:	; 1 bytes @ 0x2
+??_G_KEY:	; 1 bytes @ 0x2
+??_R_KEY:	; 1 bytes @ 0x2
+??_key1:	; 1 bytes @ 0x2
+??_key2:	; 1 bytes @ 0x2
 	global	Delay@dtemp
 Delay@dtemp:	; 2 bytes @ 0x2
 	ds	1
@@ -359,6 +400,8 @@ Delay@dtemp:	; 2 bytes @ 0x2
 	global	Delay_nms@inittempl
 Delay_nms@inittempl:	; 2 bytes @ 0x4
 	ds	2
+??_FCTloop:	; 1 bytes @ 0x6
+??_FCTkey:	; 1 bytes @ 0x6
 ??_Delay_nms:	; 1 bytes @ 0x6
 ??_main:	; 1 bytes @ 0x6
 psect	cstackBANK0,class=BANK0,space=1,noexec
@@ -375,14 +418,14 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!    Strings     0
 ;!    Constant    0
 ;!    Data        0
-;!    BSS         43
+;!    BSS         60
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
 ;!    COMMON           14      6      11
-;!    BANK0            80      3      41
+;!    BANK0            80      3      58
 ;!    BANK1            80      0       0
 ;!    BANK3            80      0       0
 ;!    BANK2            80      0       0
@@ -398,6 +441,7 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!
 ;!    _main->_Delay_nms
 ;!    _GsensorLoop->_SensorControl
+;!    _FCTkey->_Delay_nms
 ;!    _Delay_nms->_Delay
 ;!
 ;!Critical Paths under _Int_ALL in COMMON
@@ -407,6 +451,7 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!Critical Paths under _main in BANK0
 ;!
 ;!    _main->_Delay_nms
+;!    _FCTkey->_Delay_nms
 ;!
 ;!Critical Paths under _Int_ALL in BANK0
 ;!
@@ -446,7 +491,7 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 0     0      0     244
+;! (0) _main                                                 0     0      0     888
 ;!                          _Delay_nms
 ;!                            _FCTloop
 ;!                         _GflushLoop
@@ -505,33 +550,46 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;! ---------------------------------------------------------------------------------
 ;! (2) _FlushCon                                             0     0      0       0
 ;! ---------------------------------------------------------------------------------
-;! (1) _FCTloop                                              0     0      0       0
+;! (1) _FCTloop                                              0     0      0     444
 ;!                           _FCTjudge
 ;!                             _FCTkey
 ;! ---------------------------------------------------------------------------------
-;! (2) _FCTkey                                               0     0      0       0
+;! (2) _FCTkey                                               0     0      0     444
+;!                          _Delay_nms
 ;! ---------------------------------------------------------------------------------
-;! (2) _FCTjudge                                             0     0      0       0
-;! ---------------------------------------------------------------------------------
-;! (1) _Delay_nms                                            5     3      2     244
+;! (3) _Delay_nms                                            5     3      2     444
 ;!                                              4 COMMON     2     0      2
 ;!                                              0 BANK0      3     3      0
 ;!                              _Delay
 ;! ---------------------------------------------------------------------------------
-;! (2) _Delay                                                2     0      2      85
+;! (4) _Delay                                                2     0      2     108
 ;!                                              2 COMMON     2     0      2
 ;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 2
+;! (2) _FCTjudge                                             0     0      0       0
+;!                              _G_KEY
+;!                              _R_KEY
+;!                               _key1
+;!                               _key2
+;! ---------------------------------------------------------------------------------
+;! (3) _key2                                                 0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! (3) _key1                                                 0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! (3) _R_KEY                                                0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! (3) _G_KEY                                                0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! Estimated maximum stack depth 4
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (3) _Int_ALL                                              2     2      0       0
+;! (5) _Int_ALL                                              2     2      0       0
 ;!                                              0 COMMON     2     2      0
 ;!                       _INT_LED_SHOW
 ;! ---------------------------------------------------------------------------------
-;! (4) _INT_LED_SHOW                                         0     0      0       0
+;! (6) _INT_LED_SHOW                                         0     0      0       0
 ;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 4
+;! Estimated maximum stack depth 6
 ;! ---------------------------------------------------------------------------------
 ;!
 ;! Call Graph Graphs:
@@ -541,7 +599,13 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!     _Delay
 ;!   _FCTloop
 ;!     _FCTjudge
+;!       _G_KEY
+;!       _R_KEY
+;!       _key1
+;!       _key2
 ;!     _FCTkey
+;!       _Delay_nms
+;!         _Delay
 ;!   _GflushLoop
 ;!     _FlushCon
 ;!     _FlushJudge
@@ -578,7 +642,7 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!SFR1                 0      0       0       2        0.0%
 ;!STACK                0      0       0       2        0.0%
 ;!BITBANK0            50      0       0       3        0.0%
-;!BANK0               50      3      29       4       51.3%
+;!BANK0               50      3      3A       4       72.5%
 ;!BITSFR3              0      0       0       4        0.0%
 ;!SFR3                 0      0       0       4        0.0%
 ;!BITBANK1            50      0       0       5        0.0%
@@ -589,14 +653,14 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;!BANK3               50      0       0       8        0.0%
 ;!BITBANK2            50      0       0       9        0.0%
 ;!BANK2               50      0       0      10        0.0%
-;!ABS                  0      0      34      11        0.0%
-;!DATA                 0      0      34      12        0.0%
+;!ABS                  0      0      45      11        0.0%
+;!DATA                 0      0      45      12        0.0%
 
 	global	_main
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 473 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 473 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -615,7 +679,7 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;;      Temps:          0       0       0       0       0
 ;;      Totals:         0       0       0       0       0
 ;;Total ram usage:        0 bytes
-;; Hardware stack levels required when called:    4
+;; Hardware stack levels required when called:    6
 ;; This function calls:
 ;;		_Delay_nms
 ;;		_FCTloop
@@ -631,47 +695,47 @@ Delay_nms@gtemp:	; 1 bytes @ 0x2
 ;; This function uses a non-reentrant model
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	473
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	473
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
 _main:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
 	line	476
 	
-l5951:	
-# 476 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+l7803:	
+# 476 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 nop ;# 
 	line	477
-# 477 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 477 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 clrwdt ;# 
 psect	maintext
 	line	478
 	
-l5953:	
+l7805:	
 ;main.c: 478: INTCON = 0;
 	clrf	(11)	;volatile
 	line	480
 	
-l5955:	
+l7807:	
 ;main.c: 480: Init_GPIO();
 	fcall	_Init_GPIO
 	line	481
 	
-l5957:	
+l7809:	
 ;main.c: 481: Init_IC();
 	fcall	_Init_IC
 	line	482
 	
-l5959:	
+l7811:	
 ;main.c: 482: Delay_nms(200);
 	movlw	0C8h
 	movwf	(Delay_nms@inittempl)
@@ -679,35 +743,35 @@ l5959:
 	fcall	_Delay_nms
 	line	483
 	
-l5961:	
+l7813:	
 ;main.c: 483: Init_TIMER1();
 	fcall	_Init_TIMER1
 	line	484
 	
-l5963:	
+l7815:	
 ;main.c: 484: Init_TIMER2();
 	fcall	_Init_TIMER2
 	line	495
 	
-l5965:	
+l7817:	
 ;main.c: 495: INTCON = 0XC0;
 	movlw	low(0C0h)
 	movwf	(11)	;volatile
 	line	501
 	
-l5967:	
+l7819:	
 ;main.c: 499: {
 ;main.c: 501: if (Fsys1.bits.bit_1 == 1)
 	btfss	(_Fsys1),1	;volatile
-	goto	u1311
-	goto	u1310
-u1311:
-	goto	l5967
-u1310:
+	goto	u1321
+	goto	u1320
+u1321:
+	goto	l7819
+u1320:
 	line	503
 	
-l5969:	
-# 503 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+l7821:	
+# 503 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 clrwdt ;# 
 psect	maintext
 	line	504
@@ -717,15 +781,15 @@ psect	maintext
 	bcf	(_Fsys1),1	;volatile
 	line	505
 ;main.c: 505: switch (SEQmain)
-	goto	l5981
+	goto	l7833
 	line	508
 	
-l5971:	
+l7823:	
 ;main.c: 508: FCTloop();
 	fcall	_FCTloop
 	line	509
 ;main.c: 509: break;
-	goto	l5983
+	goto	l7835
 	line	510
 ;main.c: 510: case 1:
 	
@@ -733,18 +797,18 @@ l1918:
 	line	511
 ;main.c: 511: if(fctBits001.bits.bit_0 == 0)
 	btfsc	(_fctBits001),0	;volatile
-	goto	u1321
-	goto	u1320
-u1321:
-	goto	l5983
-u1320:
+	goto	u1331
+	goto	u1330
+u1331:
+	goto	l7835
+u1330:
 	line	513
 	
-l5973:	
+l7825:	
 ;main.c: 512: {
 ;main.c: 513: GsensorLoop();
 	fcall	_GsensorLoop
-	goto	l5983
+	goto	l7835
 	line	522
 ;main.c: 522: case 4:
 	
@@ -752,18 +816,18 @@ l1922:
 	line	523
 ;main.c: 523: if(fctBits001.bits.bit_0 == 0)
 	btfsc	(_fctBits001),0	;volatile
-	goto	u1331
-	goto	u1330
-u1331:
-	goto	l5983
-u1330:
+	goto	u1341
+	goto	u1340
+u1341:
+	goto	l7835
+u1340:
 	line	525
 	
-l5975:	
+l7827:	
 ;main.c: 524: {
 ;main.c: 525: GflushLoop();
 	fcall	_GflushLoop
-	goto	l5983
+	goto	l7835
 	line	537
 ;main.c: 537: case 8:
 	
@@ -771,21 +835,21 @@ l1927:
 	line	538
 ;main.c: 538: if(fctBits001.bits.bit_0 == 0)
 	btfsc	(_fctBits001),0	;volatile
-	goto	u1341
-	goto	u1340
-u1341:
-	goto	l5983
-u1340:
+	goto	u1351
+	goto	u1350
+u1351:
+	goto	l7835
+u1350:
 	line	540
 	
-l5977:	
+l7829:	
 ;main.c: 539: {
 ;main.c: 540: GledLoop();
 	fcall	_GledLoop
-	goto	l5983
+	goto	l7835
 	line	505
 	
-l5981:	
+l7833:	
 	movf	(_SEQmain),w	;volatile
 	; Switch size 1, requested type "space"
 ; Number of cases is 10, Range of values is 0 to 9
@@ -800,40 +864,40 @@ l5981:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l5971
+	goto	l7823
 	xorlw	1^0	; case 1
 	skipnz
 	goto	l1918
 	xorlw	2^1	; case 2
 	skipnz
-	goto	l5983
+	goto	l7835
 	xorlw	3^2	; case 3
 	skipnz
-	goto	l5983
+	goto	l7835
 	xorlw	4^3	; case 4
 	skipnz
 	goto	l1922
 	xorlw	5^4	; case 5
 	skipnz
-	goto	l5983
+	goto	l7835
 	xorlw	6^5	; case 6
 	skipnz
-	goto	l5983
+	goto	l7835
 	xorlw	7^6	; case 7
 	skipnz
-	goto	l5983
+	goto	l7835
 	xorlw	8^7	; case 8
 	skipnz
 	goto	l1927
 	xorlw	9^8	; case 9
 	skipnz
-	goto	l5983
-	goto	l5983
+	goto	l7835
+	goto	l7835
 	opt asmopt_pop
 
 	line	550
 	
-l5983:	
+l7835:	
 ;main.c: 550: if (++SEQmain >= 10)
 	movlw	low(0Ah)
 	bcf	status, 5	;RP0=0, select bank0
@@ -841,18 +905,18 @@ l5983:
 	incf	(_SEQmain),f	;volatile
 	subwf	((_SEQmain)),w	;volatile
 	skipc
-	goto	u1351
-	goto	u1350
-u1351:
-	goto	l5967
-u1350:
+	goto	u1361
+	goto	u1360
+u1361:
+	goto	l7819
+u1360:
 	line	552
 	
-l5985:	
+l7837:	
 ;main.c: 551: {
 ;main.c: 552: SEQmain = 0;
 	clrf	(_SEQmain)	;volatile
-	goto	l5967
+	goto	l7819
 	global	start
 	ljmp	start
 	opt stack 0
@@ -864,7 +928,7 @@ GLOBAL	__end_of_main
 
 ;; *************** function _Init_TIMER2 *****************
 ;; Defined at:
-;;		line 174 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 174 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -896,7 +960,7 @@ psect	text1,local,class=CODE,delta=2,merge=1,group=0
 global __ptext1
 __ptext1:	;psect for function _Init_TIMER2
 psect	text1
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	174
 	global	__size_of_Init_TIMER2
 	__size_of_Init_TIMER2	equ	__end_of_Init_TIMER2-_Init_TIMER2
@@ -907,20 +971,20 @@ _Init_TIMER2:
 ; Regs used in _Init_TIMER2: [wreg]
 	line	176
 	
-l5857:	
+l7691:	
 ;main.c: 176: PR2 = 24;
 	movlw	low(018h)
 	bsf	status, 5	;RP0=1, select bank1
 	movwf	(146)^080h	;volatile
 	line	177
 	
-l5859:	
+l7693:	
 ;main.c: 177: TMR2IF = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	(97/8),(97)&7	;volatile
 	line	178
 	
-l5861:	
+l7695:	
 ;main.c: 178: TMR2IE = 1;
 	bsf	status, 5	;RP0=1, select bank1
 	bsf	(1121/8)^080h,(1121)&7	;volatile
@@ -941,7 +1005,7 @@ GLOBAL	__end_of_Init_TIMER2
 
 ;; *************** function _Init_TIMER1 *****************
 ;; Defined at:
-;;		line 152 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 152 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -973,7 +1037,7 @@ psect	text2,local,class=CODE,delta=2,merge=1,group=0
 global __ptext2
 __ptext2:	;psect for function _Init_TIMER1
 psect	text2
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	152
 	global	__size_of_Init_TIMER1
 	__size_of_Init_TIMER1	equ	__end_of_Init_TIMER1-_Init_TIMER1
@@ -984,7 +1048,7 @@ _Init_TIMER1:
 ; Regs used in _Init_TIMER1: [wreg]
 	line	156
 	
-l5853:	
+l7687:	
 ;main.c: 156: TMR1 = 0xE0C0;
 	movlw	0E0h
 	movwf	(14+1)	;volatile
@@ -999,7 +1063,7 @@ l5853:
 	bsf	(1120/8)^080h,(1120)&7	;volatile
 	line	159
 	
-l5855:	
+l7689:	
 ;main.c: 159: T1CON = 0x01;
 	movlw	low(01h)
 	bcf	status, 5	;RP0=0, select bank0
@@ -1016,7 +1080,7 @@ GLOBAL	__end_of_Init_TIMER1
 
 ;; *************** function _Init_IC *****************
 ;; Defined at:
-;;		line 96 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 96 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1048,7 +1112,7 @@ psect	text3,local,class=CODE,delta=2,merge=1,group=0
 global __ptext3
 __ptext3:	;psect for function _Init_IC
 psect	text3
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	96
 	global	__size_of_Init_IC
 	__size_of_Init_IC	equ	__end_of_Init_IC-_Init_IC
@@ -1059,13 +1123,13 @@ _Init_IC:
 ; Regs used in _Init_IC: [wreg+status,2]
 	line	98
 	
-l5839:	
-# 98 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+l7673:	
+# 98 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 clrwdt ;# 
 psect	text3
 	line	103
 	
-l5841:	
+l7675:	
 ;main.c: 103: INTCON = 0x00;
 	clrf	(11)	;volatile
 	line	108
@@ -1078,14 +1142,14 @@ l5841:
 	clrf	(13)	;volatile
 	line	118
 	
-l5843:	
+l7677:	
 ;main.c: 118: WDTCON = 0x01;
 	movlw	low(01h)
 	bsf	status, 6	;RP1=1, select bank2
 	movwf	(261)^0100h	;volatile
 	line	123
 	
-l5845:	
+l7679:	
 ;main.c: 123: OPTION_REG = 0b00001110;
 	movlw	low(0Eh)
 	bsf	status, 5	;RP0=1, select bank1
@@ -1093,18 +1157,18 @@ l5845:
 	movwf	(129)^080h	;volatile
 	line	128
 	
-l5847:	
+l7681:	
 ;main.c: 128: OSCCON = 0x71;
 	movlw	low(071h)
 	movwf	(143)^080h	;volatile
 	line	133
 	
-l5849:	
+l7683:	
 ;main.c: 133: PIE1 = 0;
 	clrf	(140)^080h	;volatile
 	line	138
 	
-l5851:	
+l7685:	
 ;main.c: 138: PIE2 = 0;
 	clrf	(141)^080h	;volatile
 	line	139
@@ -1119,7 +1183,7 @@ GLOBAL	__end_of_Init_IC
 
 ;; *************** function _Init_GPIO *****************
 ;; Defined at:
-;;		line 62 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 62 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1151,7 +1215,7 @@ psect	text4,local,class=CODE,delta=2,merge=1,group=0
 global __ptext4
 __ptext4:	;psect for function _Init_GPIO
 psect	text4
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	62
 	global	__size_of_Init_GPIO
 	__size_of_Init_GPIO	equ	__end_of_Init_GPIO-_Init_GPIO
@@ -1162,7 +1226,7 @@ _Init_GPIO:
 ; Regs used in _Init_GPIO: [wreg+status,2]
 	line	66
 	
-l5829:	
+l7663:	
 ;main.c: 66: PORTA = 0B00000000;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
@@ -1174,34 +1238,35 @@ l5829:
 ;main.c: 68: PORTC = 0B00000000;
 	clrf	(7)	;volatile
 	line	71
-;main.c: 71: TRISA = 0B00000000;
+	
+l7665:	
+;main.c: 71: TRISA = 0B01000000;
+	movlw	low(040h)
 	bsf	status, 5	;RP0=1, select bank1
-	clrf	(133)^080h	;volatile
+	movwf	(133)^080h	;volatile
 	line	72
 	
-l5831:	
-;main.c: 72: TRISB = 0B00000011;
-	movlw	low(03h)
+l7667:	
+;main.c: 72: TRISB = 0B00000111;
+	movlw	low(07h)
 	movwf	(134)^080h	;volatile
 	line	73
-	
-l5833:	
 ;main.c: 73: TRISC = 0B00000000;
 	clrf	(135)^080h	;volatile
 	line	76
-	
-l5835:	
 ;main.c: 76: WPUA = 0B00000000;
 	bsf	status, 6	;RP1=1, select bank3
 	clrf	(398)^0180h	;volatile
 	line	77
 	
-l5837:	
+l7669:	
 ;main.c: 77: WPUB = 0B00000010;
 	movlw	low(02h)
 	bcf	status, 6	;RP1=0, select bank1
 	movwf	(149)^080h	;volatile
 	line	78
+	
+l7671:	
 ;main.c: 78: WPUC = 0B00000000;
 	bsf	status, 6	;RP1=1, select bank3
 	clrf	(399)^0180h	;volatile
@@ -1217,7 +1282,7 @@ GLOBAL	__end_of_Init_GPIO
 
 ;; *************** function _GsensorLoop *****************
 ;; Defined at:
-;;		line 19 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+;;		line 19 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1248,12 +1313,12 @@ GLOBAL	__end_of_Init_GPIO
 ;; This function uses a non-reentrant model
 ;;
 psect	text5,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	19
 global __ptext5
 __ptext5:	;psect for function _GsensorLoop
 psect	text5
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	19
 	global	__size_of_GsensorLoop
 	__size_of_GsensorLoop	equ	__end_of_GsensorLoop-_GsensorLoop
@@ -1264,22 +1329,22 @@ _GsensorLoop:
 ; Regs used in _GsensorLoop: [wreg-fsr0h+status,2+status,0+pclath+cstack]
 	line	21
 	
-l5865:	
+l7699:	
 ;sensor.c: 21: SensorKey();
 	fcall	_SensorKey
 	line	22
 	
-l5867:	
+l7701:	
 ;sensor.c: 22: SensorTime();
 	fcall	_SensorTime
 	line	23
 	
-l5869:	
+l7703:	
 ;sensor.c: 23: SensorJudge();
 	fcall	_SensorJudge
 	line	24
 	
-l5871:	
+l7705:	
 ;sensor.c: 24: SensorControl();
 	fcall	_SensorControl
 	line	25
@@ -1294,7 +1359,7 @@ GLOBAL	__end_of_GsensorLoop
 
 ;; *************** function _SensorTime *****************
 ;; Defined at:
-;;		line 33 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+;;		line 33 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1326,7 +1391,7 @@ psect	text6,local,class=CODE,delta=2,merge=1,group=0
 global __ptext6
 __ptext6:	;psect for function _SensorTime
 psect	text6
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	33
 	global	__size_of_SensorTime
 	__size_of_SensorTime	equ	__end_of_SensorTime-_SensorTime
@@ -1337,29 +1402,29 @@ _SensorTime:
 ; Regs used in _SensorTime: [wreg+status,2+status,0]
 	line	35
 	
-l5657:	
+l7529:	
 ;sensor.c: 35: if(Fbodysensor.bits.bit_0 == 1)
 	btfss	(_Fbodysensor),0	;volatile
 	goto	u821
 	goto	u820
 u821:
-	goto	l5677
+	goto	l7549
 u820:
 	line	37
 	
-l5659:	
+l7531:	
 ;sensor.c: 36: {
 ;sensor.c: 37: Fbodysensor.bits.bit_5 = 0;
 	bcf	(_Fbodysensor),5	;volatile
 	line	38
 	
-l5661:	
+l7533:	
 ;sensor.c: 38: CNTbodyExitTime = 0;
 	clrf	(_CNTbodyExitTime)	;volatile
 	clrf	(_CNTbodyExitTime+1)	;volatile
 	line	39
 	
-l5663:	
+l7535:	
 ;sensor.c: 39: if(FledBits01.bits.bit_2 == 0)
 	btfsc	(_FledBits01),2	;volatile
 	goto	u831
@@ -1369,7 +1434,7 @@ u831:
 u830:
 	line	41
 	
-l5665:	
+l7537:	
 ;sensor.c: 40: {
 ;sensor.c: 41: if(++CNTbodyInTime >= 6000)
 	incf	(_CNTbodyInTime),f	;volatile
@@ -1384,11 +1449,11 @@ l5665:
 	goto	u841
 	goto	u840
 u841:
-	goto	l5671
+	goto	l7543
 u840:
 	line	43
 	
-l5667:	
+l7539:	
 ;sensor.c: 42: {
 ;sensor.c: 43: CNTbodyInTime = 6000;
 	movlw	070h
@@ -1397,7 +1462,7 @@ l5667:
 	movwf	((_CNTbodyInTime))+1	;volatile
 	line	44
 	
-l5669:	
+l7541:	
 ;sensor.c: 44: Fbodysensor.bits.bit_3 = 1;
 	bsf	(_Fbodysensor),3	;volatile
 	line	45
@@ -1405,7 +1470,7 @@ l5669:
 	goto	l3825
 	line	46
 	
-l5671:	
+l7543:	
 ;sensor.c: 46: else if(CNTbodyInTime >= 500)
 	movlw	01h
 	subwf	(_CNTbodyInTime+1),w	;volatile
@@ -1420,7 +1485,7 @@ u851:
 u850:
 	line	48
 	
-l5673:	
+l7545:	
 ;sensor.c: 47: {
 ;sensor.c: 48: Fbodysensor.bits.bit_4 = 1;
 	bsf	(_Fbodysensor),4	;volatile
@@ -1440,7 +1505,7 @@ u861:
 u860:
 	line	55
 	
-l5675:	
+l7547:	
 ;sensor.c: 54: {
 ;sensor.c: 55: CNTbodyInTime = 0;
 	clrf	(_CNTbodyInTime)	;volatile
@@ -1456,7 +1521,7 @@ l3821:
 	goto	l3825
 	line	61
 	
-l5677:	
+l7549:	
 ;sensor.c: 59: else
 ;sensor.c: 60: {
 ;sensor.c: 61: CNTbodyInTime = 0;
@@ -1464,17 +1529,17 @@ l5677:
 	clrf	(_CNTbodyInTime+1)	;volatile
 	line	62
 	
-l5679:	
+l7551:	
 ;sensor.c: 62: Fbodysensor.bits.bit_4 = 0;
 	bcf	(_Fbodysensor),4	;volatile
 	line	63
 	
-l5681:	
+l7553:	
 ;sensor.c: 63: Fbodysensor.bits.bit_3 = 0;
 	bcf	(_Fbodysensor),3	;volatile
 	line	64
 	
-l5683:	
+l7555:	
 ;sensor.c: 64: if(++CNTbodyExitTime >= 500)
 	incf	(_CNTbodyExitTime),f	;volatile
 	skipnz
@@ -1492,7 +1557,7 @@ u871:
 u870:
 	line	66
 	
-l5685:	
+l7557:	
 ;sensor.c: 65: {
 ;sensor.c: 66: CNTbodyExitTime = 500;
 	movlw	0F4h
@@ -1501,7 +1566,7 @@ l5685:
 	movwf	((_CNTbodyExitTime))+1	;volatile
 	line	67
 	
-l5687:	
+l7559:	
 ;sensor.c: 67: Fbodysensor.bits.bit_5 = 1;
 	bsf	(_Fbodysensor),5	;volatile
 	line	70
@@ -1516,7 +1581,7 @@ GLOBAL	__end_of_SensorTime
 
 ;; *************** function _SensorKey *****************
 ;; Defined at:
-;;		line 27 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+;;		line 27 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1548,7 +1613,7 @@ psect	text7,local,class=CODE,delta=2,merge=1,group=0
 global __ptext7
 __ptext7:	;psect for function _SensorKey
 psect	text7
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	27
 	global	__size_of_SensorKey
 	__size_of_SensorKey	equ	__end_of_SensorKey-_SensorKey
@@ -1569,7 +1634,7 @@ GLOBAL	__end_of_SensorKey
 
 ;; *************** function _SensorJudge *****************
 ;; Defined at:
-;;		line 73 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+;;		line 73 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1601,7 +1666,7 @@ psect	text8,local,class=CODE,delta=2,merge=1,group=0
 global __ptext8
 __ptext8:	;psect for function _SensorJudge
 psect	text8
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	73
 	global	__size_of_SensorJudge
 	__size_of_SensorJudge	equ	__end_of_SensorJudge-_SensorJudge
@@ -1612,9 +1677,9 @@ _SensorJudge:
 ; Regs used in _SensorJudge: [wreg-fsr0h+status,2+status,0]
 	line	75
 	
-l5689:	
+l7561:	
 ;sensor.c: 75: switch (SEQbody)
-	goto	l5741
+	goto	l7613
 	line	77
 ;sensor.c: 76: {
 ;sensor.c: 77: case 0:
@@ -1628,7 +1693,7 @@ l3829:
 	bcf	(_FledBits01),2	;volatile
 	line	80
 	
-l5691:	
+l7563:	
 ;sensor.c: 80: SEQbody = 1;
 	movlw	low(01h)
 	movwf	(_SEQbody)	;volatile
@@ -1651,11 +1716,11 @@ l3831:
 	goto	u881
 	goto	u880
 u881:
-	goto	l5699
+	goto	l7571
 u880:
 	line	89
 	
-l5693:	
+l7565:	
 ;sensor.c: 88: {
 ;sensor.c: 89: if(++CNTbody_h >= 3)
 	incf	(_CNTbody_h),f	;volatile
@@ -1674,7 +1739,7 @@ u891:
 u890:
 	line	91
 	
-l5695:	
+l7567:	
 ;sensor.c: 90: {
 ;sensor.c: 91: CNTbody_h = 0;
 	clrf	(_CNTbody_h)	;volatile
@@ -1685,7 +1750,7 @@ l5695:
 	clrf	(_CNTbody_l+1)	;volatile
 	line	93
 	
-l5697:	
+l7569:	
 ;sensor.c: 93: SEQbody = 2;
 	movlw	low(02h)
 	movwf	(_SEQbody)	;volatile
@@ -1694,7 +1759,7 @@ l5697:
 	goto	l3850
 	line	99
 	
-l5699:	
+l7571:	
 ;sensor.c: 97: else
 ;sensor.c: 98: {
 ;sensor.c: 99: CNTbody_h = 0;
@@ -1717,11 +1782,11 @@ l3835:
 	goto	u901
 	goto	u900
 u901:
-	goto	l5703
+	goto	l7575
 u900:
 	line	109
 	
-l5701:	
+l7573:	
 ;sensor.c: 108: {
 ;sensor.c: 109: ++CNTbody_h;
 	incf	(_CNTbody_h),f	;volatile
@@ -1729,10 +1794,10 @@ l5701:
 	incf	(_CNTbody_h+1),f	;volatile
 	line	110
 ;sensor.c: 110: }
-	goto	l5709
+	goto	l7581
 	line	113
 	
-l5703:	
+l7575:	
 ;sensor.c: 111: else
 ;sensor.c: 112: {
 ;sensor.c: 113: if(++CNTbody_l >= 6)
@@ -1748,11 +1813,11 @@ l5703:
 	goto	u911
 	goto	u910
 u911:
-	goto	l5709
+	goto	l7581
 u910:
 	line	115
 	
-l5705:	
+l7577:	
 ;sensor.c: 114: {
 ;sensor.c: 115: CNTbody_h = 0;
 	clrf	(_CNTbody_h)	;volatile
@@ -1761,10 +1826,10 @@ l5705:
 ;sensor.c: 116: CNTbody_l = 0;
 	clrf	(_CNTbody_l)	;volatile
 	clrf	(_CNTbody_l+1)	;volatile
-	goto	l5691
+	goto	l7563
 	line	121
 	
-l5709:	
+l7581:	
 ;sensor.c: 119: }
 ;sensor.c: 120: }
 ;sensor.c: 121: BufCntAdd = CNTbody_h +CNTbody_l;
@@ -1778,7 +1843,7 @@ l5709:
 	movwf	1+(_BufCntAdd)	;volatile
 	line	122
 	
-l5711:	
+l7583:	
 ;sensor.c: 122: if(BufCntAdd >= 30)
 	movlw	0
 	subwf	(_BufCntAdd+1),w	;volatile
@@ -1793,7 +1858,7 @@ u921:
 u920:
 	line	124
 	
-l5713:	
+l7585:	
 ;sensor.c: 123: {
 ;sensor.c: 124: SEQbody = 3;
 	movlw	low(03h)
@@ -1817,11 +1882,11 @@ l3840:
 	goto	u931
 	goto	u930
 u931:
-	goto	l5721
+	goto	l7593
 u930:
 	line	134
 	
-l5715:	
+l7587:	
 ;sensor.c: 133: {
 ;sensor.c: 134: if(++CNTbody_l >= 3)
 	incf	(_CNTbody_l),f	;volatile
@@ -1840,7 +1905,7 @@ u941:
 u940:
 	line	136
 	
-l5717:	
+l7589:	
 ;sensor.c: 135: {
 ;sensor.c: 136: CNTbody_h = 0;
 	clrf	(_CNTbody_h)	;volatile
@@ -1851,7 +1916,7 @@ l5717:
 	clrf	(_CNTbody_l+1)	;volatile
 	line	138
 	
-l5719:	
+l7591:	
 ;sensor.c: 138: SEQbody = 4;
 	movlw	low(04h)
 	movwf	(_SEQbody)	;volatile
@@ -1860,7 +1925,7 @@ l5719:
 	goto	l3850
 	line	144
 	
-l5721:	
+l7593:	
 ;sensor.c: 142: else
 ;sensor.c: 143: {
 ;sensor.c: 144: CNTbody_l = 0;
@@ -1883,11 +1948,11 @@ l3844:
 	goto	u951
 	goto	u950
 u951:
-	goto	l5729
+	goto	l7601
 u950:
 	line	153
 	
-l5723:	
+l7595:	
 ;sensor.c: 152: {
 ;sensor.c: 153: if(++CNTbody_h >= 6)
 	incf	(_CNTbody_h),f	;volatile
@@ -1902,11 +1967,11 @@ l5723:
 	goto	u961
 	goto	u960
 u961:
-	goto	l5731
+	goto	l7603
 u960:
 	line	155
 	
-l5725:	
+l7597:	
 ;sensor.c: 154: {
 ;sensor.c: 155: CNTbody_h = 0;
 	clrf	(_CNTbody_h)	;volatile
@@ -1915,10 +1980,10 @@ l5725:
 ;sensor.c: 156: CNTbody_l = 0;
 	clrf	(_CNTbody_l)	;volatile
 	clrf	(_CNTbody_l+1)	;volatile
-	goto	l5713
+	goto	l7585
 	line	163
 	
-l5729:	
+l7601:	
 ;sensor.c: 161: else
 ;sensor.c: 162: {
 ;sensor.c: 163: ++CNTbody_l;
@@ -1927,7 +1992,7 @@ l5729:
 	incf	(_CNTbody_l+1),f	;volatile
 	line	165
 	
-l5731:	
+l7603:	
 ;sensor.c: 164: }
 ;sensor.c: 165: BufCntAdd = CNTbody_h +CNTbody_l;
 	movf	(_CNTbody_l),w	;volatile
@@ -1951,15 +2016,15 @@ l5731:
 u971:
 	goto	l3850
 u970:
-	goto	l5691
+	goto	l7563
 	line	173
 	
-l5735:	
+l7607:	
 ;sensor.c: 173: SEQbody = 0;
 	clrf	(_SEQbody)	;volatile
 	line	174
 	
-l5737:	
+l7609:	
 ;sensor.c: 174: FledBits01.bits.bit_2 = 0;
 	bcf	(_FledBits01),2	;volatile
 	line	175
@@ -1967,7 +2032,7 @@ l5737:
 	goto	l3850
 	line	75
 	
-l5741:	
+l7613:	
 	movf	(_SEQbody),w	;volatile
 	; Switch size 1, requested type "space"
 ; Number of cases is 5, Range of values is 0 to 4
@@ -1995,7 +2060,7 @@ l5741:
 	xorlw	4^3	; case 4
 	skipnz
 	goto	l3844
-	goto	l5735
+	goto	l7607
 	opt asmopt_pop
 
 	line	177
@@ -2010,7 +2075,7 @@ GLOBAL	__end_of_SensorJudge
 
 ;; *************** function _SensorControl *****************
 ;; Defined at:
-;;		line 179 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+;;		line 179 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2042,7 +2107,7 @@ psect	text9,local,class=CODE,delta=2,merge=1,group=0
 global __ptext9
 __ptext9:	;psect for function _SensorControl
 psect	text9
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor.c"
 	line	179
 	global	__size_of_SensorControl
 	__size_of_SensorControl	equ	__end_of_SensorControl-_SensorControl
@@ -2053,7 +2118,7 @@ _SensorControl:
 ; Regs used in _SensorControl: [wreg]
 	line	181
 	
-l5743:	
+l7615:	
 ;sensor.c: 181: Fbodysensor.bits.bit_1 = 0;
 	bcf	(_Fbodysensor),1	;volatile
 	line	182
@@ -2061,7 +2126,7 @@ l5743:
 	bcf	(_Fbodysensor),2	;volatile
 	line	183
 	
-l5745:	
+l7617:	
 ;sensor.c: 183: if(Fbodysensor.bits.bit_6 != Fbodysensor.bits.bit_0)
 	btfsc	(_Fbodysensor),0	;volatile
 	goto	u981
@@ -2091,7 +2156,7 @@ u1001:
 u1000:
 	line	185
 	
-l5747:	
+l7619:	
 ;sensor.c: 184: {
 ;sensor.c: 185: if(Fbodysensor.bits.bit_0 == 1)
 	btfss	(_Fbodysensor),0	;volatile
@@ -2102,7 +2167,7 @@ u1011:
 u1010:
 	line	187
 	
-l5749:	
+l7621:	
 ;sensor.c: 186: {
 ;sensor.c: 187: Fbodysensor.bits.bit_1 = 1;
 	bsf	(_Fbodysensor),1	;volatile
@@ -2145,7 +2210,7 @@ GLOBAL	__end_of_SensorControl
 
 ;; *************** function _GledLoop *****************
 ;; Defined at:
-;;		line 16 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 16 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2176,12 +2241,12 @@ GLOBAL	__end_of_SensorControl
 ;; This function uses a non-reentrant model
 ;;
 psect	text10,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	16
 global __ptext10
 __ptext10:	;psect for function _GledLoop
 psect	text10
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	16
 	global	__size_of_GledLoop
 	__size_of_GledLoop	equ	__end_of_GledLoop-_GledLoop
@@ -2192,7 +2257,7 @@ _GledLoop:
 ; Regs used in _GledLoop: [status,2+status,0+pclath+cstack]
 	line	18
 	
-l5809:	
+l7661:	
 ;light.c: 18: LED_Time();
 	fcall	_LED_Time
 	line	19
@@ -2216,7 +2281,7 @@ GLOBAL	__end_of_GledLoop
 
 ;; *************** function _LED_Time *****************
 ;; Defined at:
-;;		line 45 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 45 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2248,7 +2313,7 @@ psect	text11,local,class=CODE,delta=2,merge=1,group=0
 global __ptext11
 __ptext11:	;psect for function _LED_Time
 psect	text11
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	45
 	global	__size_of_LED_Time
 	__size_of_LED_Time	equ	__end_of_LED_Time-_LED_Time
@@ -2259,17 +2324,17 @@ _LED_Time:
 ; Regs used in _LED_Time: []
 	line	47
 	
-l5545:	
+l7421:	
 ;light.c: 47: if(Fsys1m.bits.bit_0 == 1)
 	btfss	(_Fsys1m),0	;volatile
-	goto	u551
-	goto	u550
-u551:
+	goto	u561
+	goto	u560
+u561:
 	goto	l918
-u550:
+u560:
 	line	49
 	
-l5547:	
+l7423:	
 ;light.c: 48: {
 ;light.c: 49: Fsys1m.bits.bit_0 = 0;
 	bcf	(_Fsys1m),0	;volatile
@@ -2285,7 +2350,7 @@ GLOBAL	__end_of_LED_Time
 
 ;; *************** function _LED_Key *****************
 ;; Defined at:
-;;		line 24 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 24 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2317,7 +2382,7 @@ psect	text12,local,class=CODE,delta=2,merge=1,group=0
 global __ptext12
 __ptext12:	;psect for function _LED_Key
 psect	text12
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	24
 	global	__size_of_LED_Key
 	__size_of_LED_Key	equ	__end_of_LED_Key-_LED_Key
@@ -2338,7 +2403,7 @@ GLOBAL	__end_of_LED_Key
 
 ;; *************** function _LED_Judge *****************
 ;; Defined at:
-;;		line 53 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 53 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2370,7 +2435,7 @@ psect	text13,local,class=CODE,delta=2,merge=1,group=0
 global __ptext13
 __ptext13:	;psect for function _LED_Judge
 psect	text13
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	53
 	global	__size_of_LED_Judge
 	__size_of_LED_Judge	equ	__end_of_LED_Judge-_LED_Judge
@@ -2381,42 +2446,42 @@ _LED_Judge:
 ; Regs used in _LED_Judge: []
 	line	55
 	
-l5549:	
+l7425:	
 ;light.c: 55: if(Fbodysensor.bits.bit_0 == 1)
 	btfss	(_Fbodysensor),0	;volatile
-	goto	u561
-	goto	u560
-u561:
-	goto	l5555
-u560:
+	goto	u571
+	goto	u570
+u571:
+	goto	l7431
+u570:
 	line	57
 	
-l5551:	
+l7427:	
 ;light.c: 56: {
 ;light.c: 57: FledBits01.bits.bit_0 = 1;
 	bsf	(_FledBits01),0	;volatile
 	line	58
 ;light.c: 58: if(Fbodysensor.bits.bit_4 == 0)
 	btfsc	(_Fbodysensor),4	;volatile
-	goto	u571
-	goto	u570
-u571:
-	goto	l925
-u570:
-	line	60
-	
-l5553:	
-;light.c: 59: {
-;light.c: 60: if(FledBits01.bits.bit_2 == 1)
-	btfss	(_FledBits01),2	;volatile
 	goto	u581
 	goto	u580
 u581:
 	goto	l925
 u580:
+	line	60
+	
+l7429:	
+;light.c: 59: {
+;light.c: 60: if(FledBits01.bits.bit_2 == 1)
+	btfss	(_FledBits01),2	;volatile
+	goto	u591
+	goto	u590
+u591:
+	goto	l925
+u590:
 	line	62
 	
-l5555:	
+l7431:	
 ;light.c: 61: {
 ;light.c: 62: FledBits01.bits.bit_0 = 0;
 	bcf	(_FledBits01),0	;volatile
@@ -2432,7 +2497,7 @@ GLOBAL	__end_of_LED_Judge
 
 ;; *************** function _LED_Con *****************
 ;; Defined at:
-;;		line 84 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 84 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2464,7 +2529,7 @@ psect	text14,local,class=CODE,delta=2,merge=1,group=0
 global __ptext14
 __ptext14:	;psect for function _LED_Con
 psect	text14
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	84
 	global	__size_of_LED_Con
 	__size_of_LED_Con	equ	__end_of_LED_Con-_LED_Con
@@ -2475,22 +2540,22 @@ _LED_Con:
 ; Regs used in _LED_Con: []
 	line	86
 	
-l5557:	
+l7433:	
 ;light.c: 86: RA5 = FledBits01.bits.bit_0;
 	btfsc	(_FledBits01),0	;volatile
-	goto	u591
-	goto	u590
+	goto	u601
+	goto	u600
 	
-u591:
+u601:
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bsf	(45/8),(45)&7	;volatile
-	goto	u604
-u590:
+	goto	u614
+u600:
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bcf	(45/8),(45)&7	;volatile
-u604:
+u614:
 	line	191
 	
 l928:	
@@ -2503,7 +2568,7 @@ GLOBAL	__end_of_LED_Con
 
 ;; *************** function _GflushLoop *****************
 ;; Defined at:
-;;		line 28 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+;;		line 15 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2533,13 +2598,13 @@ GLOBAL	__end_of_LED_Con
 ;; This function uses a non-reentrant model
 ;;
 psect	text15,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-	line	28
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+	line	15
 global __ptext15
 __ptext15:	;psect for function _GflushLoop
 psect	text15
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-	line	28
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+	line	15
 	global	__size_of_GflushLoop
 	__size_of_GflushLoop	equ	__end_of_GflushLoop-_GflushLoop
 	
@@ -2547,20 +2612,20 @@ _GflushLoop:
 ;incstack = 0
 	opt	stack 4
 ; Regs used in _GflushLoop: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	30
+	line	17
 	
-l5873:	
-;flush.c: 30: FlushTime();
+l7707:	
+;flush.c: 17: FlushTime();
 	fcall	_FlushTime
-	line	31
-;flush.c: 31: FlushJudge();
+	line	18
+;flush.c: 18: FlushJudge();
 	fcall	_FlushJudge
-	line	32
+	line	19
 	
-l5875:	
-;flush.c: 32: FlushCon();
+l7709:	
+;flush.c: 19: FlushCon();
 	fcall	_FlushCon
-	line	33
+	line	20
 	
 l2847:	
 	return
@@ -2572,7 +2637,7 @@ GLOBAL	__end_of_GflushLoop
 
 ;; *************** function _FlushTime *****************
 ;; Defined at:
-;;		line 35 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+;;		line 22 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2600,12 +2665,12 @@ GLOBAL	__end_of_GflushLoop
 ;; This function uses a non-reentrant model
 ;;
 psect	text16,local,class=CODE,delta=2,merge=1,group=0
-	line	35
+	line	22
 global __ptext16
 __ptext16:	;psect for function _FlushTime
 psect	text16
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-	line	35
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+	line	22
 	global	__size_of_FlushTime
 	__size_of_FlushTime	equ	__end_of_FlushTime-_FlushTime
 	
@@ -2613,7 +2678,7 @@ _FlushTime:
 ;incstack = 0
 	opt	stack 4
 ; Regs used in _FlushTime: []
-	line	38
+	line	25
 	
 l2850:	
 	return
@@ -2625,7 +2690,7 @@ GLOBAL	__end_of_FlushTime
 
 ;; *************** function _FlushJudge *****************
 ;; Defined at:
-;;		line 39 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+;;		line 26 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2653,12 +2718,12 @@ GLOBAL	__end_of_FlushTime
 ;; This function uses a non-reentrant model
 ;;
 psect	text17,local,class=CODE,delta=2,merge=1,group=0
-	line	39
+	line	26
 global __ptext17
 __ptext17:	;psect for function _FlushJudge
 psect	text17
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-	line	39
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+	line	26
 	global	__size_of_FlushJudge
 	__size_of_FlushJudge	equ	__end_of_FlushJudge-_FlushJudge
 	
@@ -2666,141 +2731,141 @@ _FlushJudge:
 ;incstack = 0
 	opt	stack 4
 ; Regs used in _FlushJudge: []
-	line	59
+	line	46
 	
-l5563:	
-;flush.c: 59: if(Fbodysensor.bits.bit_4 == 1)
+l7435:	
+;flush.c: 46: if(Fbodysensor.bits.bit_4 == 1)
 	btfss	(_Fbodysensor),4	;volatile
 	goto	u621
 	goto	u620
 u621:
 	goto	l2853
 u620:
-	line	63
+	line	50
 	
-l5565:	
-;flush.c: 60: {
-;flush.c: 63: Fflush1.bits.bit_2 = 0;
+l7437:	
+;flush.c: 47: {
+;flush.c: 50: Fflush1.bits.bit_2 = 0;
 	bcf	(_Fflush1),2	;volatile
-	line	64
-;flush.c: 64: Fflush1.bits.bit_0 = 1;
+	line	51
+;flush.c: 51: Fflush1.bits.bit_0 = 1;
 	bsf	(_Fflush1),0	;volatile
-	line	65
-;flush.c: 65: }
+	line	52
+;flush.c: 52: }
 	goto	l2854
-	line	66
+	line	53
 	
 l2853:	
-	line	68
-;flush.c: 66: else
-;flush.c: 67: {
-;flush.c: 68: Fflush1.bits.bit_2 = 0;
+	line	55
+;flush.c: 53: else
+;flush.c: 54: {
+;flush.c: 55: Fflush1.bits.bit_2 = 0;
 	bcf	(_Fflush1),2	;volatile
-	line	69
-;flush.c: 69: Fflush1.bits.bit_0 = 0;
+	line	56
+;flush.c: 56: Fflush1.bits.bit_0 = 0;
 	bcf	(_Fflush1),0	;volatile
-	line	70
+	line	57
 	
 l2854:	
-	line	74
-;flush.c: 70: }
-;flush.c: 74: if (Fbodysensor.bits.bit_2 == 1)
+	line	61
+;flush.c: 57: }
+;flush.c: 61: if (Fbodysensor.bits.bit_2 == 1)
 	btfss	(_Fbodysensor),2	;volatile
 	goto	u631
 	goto	u630
 u631:
 	goto	l2855
 u630:
-	line	76
+	line	63
 	
-l5567:	
-;flush.c: 75: {
-;flush.c: 76: Fflush1.bits.bit_7 = 1;
+l7439:	
+;flush.c: 62: {
+;flush.c: 63: Fflush1.bits.bit_7 = 1;
 	bsf	(_Fflush1),7	;volatile
-	line	77
+	line	64
 	
 l2855:	
-	line	78
-;flush.c: 77: }
-;flush.c: 78: if (Fflush1.bits.bit_7 == 1)
+	line	65
+;flush.c: 64: }
+;flush.c: 65: if (Fflush1.bits.bit_7 == 1)
 	btfss	(_Fflush1),7	;volatile
 	goto	u641
 	goto	u640
 u641:
 	goto	l2858
 u640:
-	line	80
+	line	67
 	
-l5569:	
-;flush.c: 79: {
-;flush.c: 80: if (Fflush1.bits.bit_6 == 1)
+l7441:	
+;flush.c: 66: {
+;flush.c: 67: if (Fflush1.bits.bit_6 == 1)
 	btfss	(_Fflush1),6	;volatile
 	goto	u651
 	goto	u650
 u651:
 	goto	l2857
 u650:
-	line	82
+	line	69
 	
-l5571:	
-;flush.c: 81: {
-;flush.c: 82: Fflush1.bits.bit_2 = 0;
+l7443:	
+;flush.c: 68: {
+;flush.c: 69: Fflush1.bits.bit_2 = 0;
 	bcf	(_Fflush1),2	;volatile
-	line	83
-;flush.c: 83: Fflush1.bits.bit_0 = 0;
+	line	70
+;flush.c: 70: Fflush1.bits.bit_0 = 0;
 	bcf	(_Fflush1),0	;volatile
-	line	84
-;flush.c: 84: return;
+	line	71
+;flush.c: 71: return;
 	goto	l2858
-	line	85
+	line	72
 	
 l2857:	
-	line	86
-;flush.c: 85: }
-;flush.c: 86: Fflush1.bits.bit_7 = 0;
+	line	73
+;flush.c: 72: }
+;flush.c: 73: Fflush1.bits.bit_7 = 0;
 	bcf	(_Fflush1),7	;volatile
-	line	87
-;flush.c: 87: if(Fflush1.bits.bit_0 == 1)
+	line	74
+;flush.c: 74: if(Fflush1.bits.bit_0 == 1)
 	btfss	(_Fflush1),0	;volatile
 	goto	u661
 	goto	u660
 u661:
 	goto	l2859
 u660:
-	line	89
+	line	76
 	
-l5573:	
-;flush.c: 88: {
-;flush.c: 89: Fflush1.bits.bit_0 = 0;
+l7445:	
+;flush.c: 75: {
+;flush.c: 76: Fflush1.bits.bit_0 = 0;
 	bcf	(_Fflush1),0	;volatile
-	line	90
-;flush.c: 90: Fflush1.bits.bit_1 = 1;
+	line	77
+;flush.c: 77: Fflush1.bits.bit_1 = 1;
 	bsf	(_Fflush1),1	;volatile
-	line	91
-;flush.c: 91: return;
+	line	78
+;flush.c: 78: return;
 	goto	l2858
-	line	92
+	line	79
 	
 l2859:	
-	line	93
-;flush.c: 92: }
-;flush.c: 93: if(Fflush1.bits.bit_2 == 1)
+	line	80
+;flush.c: 79: }
+;flush.c: 80: if(Fflush1.bits.bit_2 == 1)
 	btfss	(_Fflush1),2	;volatile
 	goto	u671
 	goto	u670
 u671:
 	goto	l2858
 u670:
-	line	95
+	line	82
 	
-l5575:	
-;flush.c: 94: {
-;flush.c: 95: Fflush1.bits.bit_2 = 0;
+l7447:	
+;flush.c: 81: {
+;flush.c: 82: Fflush1.bits.bit_2 = 0;
 	bcf	(_Fflush1),2	;volatile
-	line	96
-;flush.c: 96: Fflush1.bits.bit_3 = 1;
+	line	83
+;flush.c: 83: Fflush1.bits.bit_3 = 1;
 	bsf	(_Fflush1),3	;volatile
-	line	102
+	line	89
 	
 l2858:	
 	return
@@ -2812,7 +2877,7 @@ GLOBAL	__end_of_FlushJudge
 
 ;; *************** function _FlushCon *****************
 ;; Defined at:
-;;		line 105 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+;;		line 92 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -2840,12 +2905,12 @@ GLOBAL	__end_of_FlushJudge
 ;; This function uses a non-reentrant model
 ;;
 psect	text18,local,class=CODE,delta=2,merge=1,group=0
-	line	105
+	line	92
 global __ptext18
 __ptext18:	;psect for function _FlushCon
 psect	text18
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-	line	105
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+	line	92
 	global	__size_of_FlushCon
 	__size_of_FlushCon	equ	__end_of_FlushCon-_FlushCon
 	
@@ -2853,89 +2918,89 @@ _FlushCon:
 ;incstack = 0
 	opt	stack 4
 ; Regs used in _FlushCon: [wreg-fsr0h+status,2+status,0]
-	line	107
+	line	94
 	
-l5577:	
-;flush.c: 107: switch (SEQflsuh)
-	goto	l5655
-	line	109
-;flush.c: 108: {
-;flush.c: 109: case FLUSH_INIT_0:
+l7449:	
+;flush.c: 94: switch (SEQflsuh)
+	goto	l7527
+	line	96
+;flush.c: 95: {
+;flush.c: 96: case FLUSH_INIT_0:
 	
 l2864:	
-	line	110
-;flush.c: 110: Fflush1.bits.bit_6 = 0;
+	line	97
+;flush.c: 97: Fflush1.bits.bit_6 = 0;
 	bcf	(_Fflush1),6	;volatile
-	line	111
-;flush.c: 111: RA2 = 0;
+	line	98
+;flush.c: 98: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	112
-;flush.c: 112: RA4 = 0;
+	line	99
+;flush.c: 99: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	113
-;flush.c: 113: if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
+	line	100
+;flush.c: 100: if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
 	btfsc	(_Fflush1),1	;volatile
 	goto	u681
 	goto	u680
 u681:
-	goto	l5581
+	goto	l7453
 u680:
 	
-l5579:	
+l7451:	
 	btfss	(_Fflush1),3	;volatile
 	goto	u691
 	goto	u690
 u691:
 	goto	l2893
 u690:
-	line	115
+	line	102
 	
-l5581:	
-;flush.c: 114: {
-;flush.c: 115: SEQflsuh = FLUSH_INIT_1;
+l7453:	
+;flush.c: 101: {
+;flush.c: 102: SEQflsuh = FLUSH_INIT_1;
 	movlw	low(01h)
 	movwf	(_SEQflsuh)	;volatile
-	line	116
+	line	103
 	
-l5583:	
-;flush.c: 116: CNTflush = 0;
+l7455:	
+;flush.c: 103: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
 	goto	l2893
-	line	119
-;flush.c: 119: case FLUSH_INIT_1:
+	line	106
+;flush.c: 106: case FLUSH_INIT_1:
 	
 l2869:	
-	line	120
-;flush.c: 120: Fflush1.bits.bit_6 = 1;
+	line	107
+;flush.c: 107: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	121
-;flush.c: 121: RA2 = 0;
+	line	108
+;flush.c: 108: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	122
-;flush.c: 122: RA4 = 0;
+	line	109
+;flush.c: 109: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	123
-;flush.c: 123: if(Fbodysensor.bits.bit_0 == 1)
+	line	110
+;flush.c: 110: if(Fbodysensor.bits.bit_0 == 1)
 	btfss	(_Fbodysensor),0	;volatile
 	goto	u701
 	goto	u700
 u701:
-	goto	l5589
+	goto	l7461
 u700:
-	line	125
+	line	112
 	
-l5585:	
-;flush.c: 124: {
-;flush.c: 125: SEQflsuh = FLUSH_END_0;
+l7457:	
+;flush.c: 111: {
+;flush.c: 112: SEQflsuh = FLUSH_END_0;
 	movlw	low(09h)
 	movwf	(_SEQflsuh)	;volatile
-	goto	l5583
-	line	129
+	goto	l7455
+	line	116
 	
-l5589:	
-;flush.c: 128: }
-;flush.c: 129: if(++CNTflush >= 5)
+l7461:	
+;flush.c: 115: }
+;flush.c: 116: if(++CNTflush >= 5)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -2950,99 +3015,99 @@ l5589:
 u711:
 	goto	l2893
 u710:
-	line	131
+	line	118
 	
-l5591:	
-;flush.c: 130: {
-;flush.c: 131: CNTflush = 0;
+l7463:	
+;flush.c: 117: {
+;flush.c: 118: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	132
+	line	119
 	
-l5593:	
-;flush.c: 132: SEQflsuh = FLUSH_INIT_2;
+l7465:	
+;flush.c: 119: SEQflsuh = FLUSH_INIT_2;
 	movlw	low(02h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	135
-;flush.c: 135: case FLUSH_INIT_2:
+	line	122
+;flush.c: 122: case FLUSH_INIT_2:
 	
 l2872:	
-	line	136
-;flush.c: 136: Fflush1.bits.bit_6 = 1;
+	line	123
+;flush.c: 123: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	137
-;flush.c: 137: RA2 = 0;
+	line	124
+;flush.c: 124: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	138
-;flush.c: 138: RA4 = 0;
+	line	125
+;flush.c: 125: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	139
-;flush.c: 139: if(Fbodysensor.bits.bit_0 == 1)
+	line	126
+;flush.c: 126: if(Fbodysensor.bits.bit_0 == 1)
 	btfss	(_Fbodysensor),0	;volatile
 	goto	u721
 	goto	u720
 u721:
 	goto	l2873
 u720:
-	goto	l5585
-	line	144
+	goto	l7457
+	line	131
 	
 l2873:	
-	line	146
-;flush.c: 144: }
-;flush.c: 146: if(Fflush1.bits.bit_1 == 1)
+	line	133
+;flush.c: 131: }
+;flush.c: 133: if(Fflush1.bits.bit_1 == 1)
 	btfss	(_Fflush1),1	;volatile
 	goto	u731
 	goto	u730
 u731:
 	goto	l2874
 u730:
-	line	148
+	line	135
 	
-l5599:	
-;flush.c: 147: {
-;flush.c: 148: SEQflsuh = FLUSH_BIG_0;
+l7471:	
+;flush.c: 134: {
+;flush.c: 135: SEQflsuh = FLUSH_BIG_0;
 	movlw	low(03h)
 	movwf	(_SEQflsuh)	;volatile
-	line	149
-;flush.c: 149: }
+	line	136
+;flush.c: 136: }
 	goto	l2893
-	line	150
+	line	137
 	
 l2874:	
-;flush.c: 150: else if(Fflush1.bits.bit_3 == 1)
+;flush.c: 137: else if(Fflush1.bits.bit_3 == 1)
 	btfss	(_Fflush1),3	;volatile
 	goto	u741
 	goto	u740
 u741:
 	goto	l2893
 u740:
-	line	152
+	line	139
 	
-l5601:	
-;flush.c: 151: {
-;flush.c: 152: SEQflsuh = FLUSH_SML_0;
+l7473:	
+;flush.c: 138: {
+;flush.c: 139: SEQflsuh = FLUSH_SML_0;
 	movlw	low(06h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	155
-;flush.c: 155: case FLUSH_BIG_0:
+	line	142
+;flush.c: 142: case FLUSH_BIG_0:
 	
 l2877:	
-	line	156
-;flush.c: 156: Fflush1.bits.bit_6 = 1;
+	line	143
+;flush.c: 143: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	157
-;flush.c: 157: RA2 = 0;
+	line	144
+;flush.c: 144: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	158
-;flush.c: 158: RA4 = 1;
+	line	145
+;flush.c: 145: RA4 = 1;
 	bsf	(44/8),(44)&7	;volatile
-	line	159
+	line	146
 	
-l5603:	
-;flush.c: 159: if(++CNTflush >= 10)
+l7475:	
+;flush.c: 146: if(++CNTflush >= 10)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3057,37 +3122,37 @@ l5603:
 u751:
 	goto	l2893
 u750:
-	line	161
+	line	148
 	
-l5605:	
-;flush.c: 160: {
-;flush.c: 161: CNTflush = 0;
+l7477:	
+;flush.c: 147: {
+;flush.c: 148: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	162
+	line	149
 	
-l5607:	
-;flush.c: 162: SEQflsuh = FLUSH_BIG_1;
+l7479:	
+;flush.c: 149: SEQflsuh = FLUSH_BIG_1;
 	movlw	low(04h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	165
-;flush.c: 165: case FLUSH_BIG_1:
+	line	152
+;flush.c: 152: case FLUSH_BIG_1:
 	
 l2879:	
-	line	166
-;flush.c: 166: Fflush1.bits.bit_6 = 1;
+	line	153
+;flush.c: 153: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	167
-;flush.c: 167: RA2 = 1;
+	line	154
+;flush.c: 154: RA2 = 1;
 	bsf	(42/8),(42)&7	;volatile
-	line	168
-;flush.c: 168: RA4 = 1;
+	line	155
+;flush.c: 155: RA4 = 1;
 	bsf	(44/8),(44)&7	;volatile
-	line	170
+	line	157
 	
-l5609:	
-;flush.c: 170: if(++CNTflush >= 100)
+l7481:	
+;flush.c: 157: if(++CNTflush >= 100)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3102,37 +3167,37 @@ l5609:
 u761:
 	goto	l2893
 u760:
-	line	172
+	line	159
 	
-l5611:	
-;flush.c: 171: {
-;flush.c: 172: CNTflush = 0;
+l7483:	
+;flush.c: 158: {
+;flush.c: 159: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	173
+	line	160
 	
-l5613:	
-;flush.c: 173: SEQflsuh = FLUSH_BIG_2;
+l7485:	
+;flush.c: 160: SEQflsuh = FLUSH_BIG_2;
 	movlw	low(05h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	183
-;flush.c: 183: case FLUSH_BIG_2:
+	line	170
+;flush.c: 170: case FLUSH_BIG_2:
 	
 l2881:	
-	line	184
-;flush.c: 184: Fflush1.bits.bit_6 = 1;
+	line	171
+;flush.c: 171: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	185
-;flush.c: 185: RA2 = 0;
+	line	172
+;flush.c: 172: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	186
-;flush.c: 186: RA4 = 1;
+	line	173
+;flush.c: 173: RA4 = 1;
 	bsf	(44/8),(44)&7	;volatile
-	line	187
+	line	174
 	
-l5615:	
-;flush.c: 187: if(++CNTflush >= 10)
+l7487:	
+;flush.c: 174: if(++CNTflush >= 10)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3147,37 +3212,37 @@ l5615:
 u771:
 	goto	l2893
 u770:
-	line	189
+	line	176
 	
-l5617:	
-;flush.c: 188: {
-;flush.c: 189: CNTflush = 0;
+l7489:	
+;flush.c: 175: {
+;flush.c: 176: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	190
+	line	177
 	
-l5619:	
-;flush.c: 190: SEQflsuh = FLUSH_END_0;
+l7491:	
+;flush.c: 177: SEQflsuh = FLUSH_END_0;
 	movlw	low(09h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	194
-;flush.c: 194: case FLUSH_SML_0:
+	line	181
+;flush.c: 181: case FLUSH_SML_0:
 	
 l2883:	
-	line	195
-;flush.c: 195: Fflush1.bits.bit_6 = 1;
+	line	182
+;flush.c: 182: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	196
-;flush.c: 196: RA2 = 0;
+	line	183
+;flush.c: 183: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	197
-;flush.c: 197: RA4 = 0;
+	line	184
+;flush.c: 184: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	198
+	line	185
 	
-l5621:	
-;flush.c: 198: if(++CNTflush >= 5)
+l7493:	
+;flush.c: 185: if(++CNTflush >= 5)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3192,37 +3257,37 @@ l5621:
 u781:
 	goto	l2893
 u780:
-	line	200
+	line	187
 	
-l5623:	
-;flush.c: 199: {
-;flush.c: 200: CNTflush = 0;
+l7495:	
+;flush.c: 186: {
+;flush.c: 187: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	201
+	line	188
 	
-l5625:	
-;flush.c: 201: SEQflsuh = FLUSH_SML_1;
+l7497:	
+;flush.c: 188: SEQflsuh = FLUSH_SML_1;
 	movlw	low(07h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	204
-;flush.c: 204: case FLUSH_SML_1:
+	line	191
+;flush.c: 191: case FLUSH_SML_1:
 	
 l2885:	
-	line	205
-;flush.c: 205: Fflush1.bits.bit_6 = 1;
+	line	192
+;flush.c: 192: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	206
-;flush.c: 206: RA2 = 1;
+	line	193
+;flush.c: 193: RA2 = 1;
 	bsf	(42/8),(42)&7	;volatile
-	line	207
-;flush.c: 207: RA4 = 0;
+	line	194
+;flush.c: 194: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	208
+	line	195
 	
-l5627:	
-;flush.c: 208: if(++CNTflush >= 200)
+l7499:	
+;flush.c: 195: if(++CNTflush >= 200)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3237,37 +3302,37 @@ l5627:
 u791:
 	goto	l2893
 u790:
-	line	210
+	line	197
 	
-l5629:	
-;flush.c: 209: {
-;flush.c: 210: CNTflush = 0;
+l7501:	
+;flush.c: 196: {
+;flush.c: 197: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	211
+	line	198
 	
-l5631:	
-;flush.c: 211: SEQflsuh = FLUSH_SML_2;
+l7503:	
+;flush.c: 198: SEQflsuh = FLUSH_SML_2;
 	movlw	low(08h)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	214
-;flush.c: 214: case FLUSH_SML_2:
+	line	201
+;flush.c: 201: case FLUSH_SML_2:
 	
 l2887:	
-	line	215
-;flush.c: 215: Fflush1.bits.bit_6 = 1;
+	line	202
+;flush.c: 202: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	216
-;flush.c: 216: RA2 = 0;
+	line	203
+;flush.c: 203: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	217
-;flush.c: 217: RA4 = 0;
+	line	204
+;flush.c: 204: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	218
+	line	205
 	
-l5633:	
-;flush.c: 218: if(++CNTflush >= 5)
+l7505:	
+;flush.c: 205: if(++CNTflush >= 5)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3282,24 +3347,24 @@ l5633:
 u801:
 	goto	l2893
 u800:
-	goto	l5617
-	line	225
-;flush.c: 225: case FLUSH_END_0:
+	goto	l7489
+	line	212
+;flush.c: 212: case FLUSH_END_0:
 	
 l2889:	
-	line	226
-;flush.c: 226: Fflush1.bits.bit_6 = 1;
+	line	213
+;flush.c: 213: Fflush1.bits.bit_6 = 1;
 	bsf	(_Fflush1),6	;volatile
-	line	227
-;flush.c: 227: RA2 = 0;
+	line	214
+;flush.c: 214: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	228
-;flush.c: 228: RA4 = 0;
+	line	215
+;flush.c: 215: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	229
+	line	216
 	
-l5639:	
-;flush.c: 229: if(++CNTflush >= 5)
+l7511:	
+;flush.c: 216: if(++CNTflush >= 5)
 	incf	(_CNTflush),f	;volatile
 	skipnz
 	incf	(_CNTflush+1),f	;volatile
@@ -3314,89 +3379,89 @@ l5639:
 u811:
 	goto	l2893
 u810:
-	line	231
+	line	218
 	
-l5641:	
-;flush.c: 230: {
-;flush.c: 231: CNTflush = 0;
+l7513:	
+;flush.c: 217: {
+;flush.c: 218: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	232
+	line	219
 	
-l5643:	
-;flush.c: 232: SEQflsuh = FLUSH_END_1;
+l7515:	
+;flush.c: 219: SEQflsuh = FLUSH_END_1;
 	movlw	low(0Ah)
 	movwf	(_SEQflsuh)	;volatile
 	goto	l2893
-	line	235
-;flush.c: 235: case FLUSH_END_1:
+	line	222
+;flush.c: 222: case FLUSH_END_1:
 	
 l2891:	
-	line	236
-;flush.c: 236: Fflush1.bits.bit_6 = 0;
+	line	223
+;flush.c: 223: Fflush1.bits.bit_6 = 0;
 	bcf	(_Fflush1),6	;volatile
-	line	237
-;flush.c: 237: RA2 = 0;
+	line	224
+;flush.c: 224: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	238
-;flush.c: 238: RA4 = 0;
+	line	225
+;flush.c: 225: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	239
+	line	226
 	
-l5645:	
-;flush.c: 239: SEQflsuh = FLUSH_INIT_0;
+l7517:	
+;flush.c: 226: SEQflsuh = FLUSH_INIT_0;
 	clrf	(_SEQflsuh)	;volatile
-	line	240
-;flush.c: 240: CNTflush = 0;
+	line	227
+;flush.c: 227: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	241
+	line	228
 	
-l5647:	
-;flush.c: 241: Fflush1.bits.bit_1 = 0;
+l7519:	
+;flush.c: 228: Fflush1.bits.bit_1 = 0;
 	bcf	(_Fflush1),1	;volatile
-	line	242
+	line	229
 	
-l5649:	
-;flush.c: 242: Fflush1.bits.bit_3 = 0;
+l7521:	
+;flush.c: 229: Fflush1.bits.bit_3 = 0;
 	bcf	(_Fflush1),3	;volatile
-	line	243
-;flush.c: 243: break;
+	line	230
+;flush.c: 230: break;
 	goto	l2893
-	line	244
-;flush.c: 244: default:
+	line	231
+;flush.c: 231: default:
 	
 l2892:	
-	line	245
-;flush.c: 245: Fflush1.bits.bit_6 = 0;
+	line	232
+;flush.c: 232: Fflush1.bits.bit_6 = 0;
 	bcf	(_Fflush1),6	;volatile
-	line	246
-;flush.c: 246: RA2 = 0;
+	line	233
+;flush.c: 233: RA2 = 0;
 	bcf	(42/8),(42)&7	;volatile
-	line	247
-;flush.c: 247: RA4 = 0;
+	line	234
+;flush.c: 234: RA4 = 0;
 	bcf	(44/8),(44)&7	;volatile
-	line	248
-;flush.c: 248: Fflush1.bits.bit_1 = 0;
+	line	235
+;flush.c: 235: Fflush1.bits.bit_1 = 0;
 	bcf	(_Fflush1),1	;volatile
-	line	249
-;flush.c: 249: Fflush1.bits.bit_3 = 0;
+	line	236
+;flush.c: 236: Fflush1.bits.bit_3 = 0;
 	bcf	(_Fflush1),3	;volatile
-	line	250
+	line	237
 	
-l5651:	
-;flush.c: 250: SEQflsuh = FLUSH_INIT_0;
+l7523:	
+;flush.c: 237: SEQflsuh = FLUSH_INIT_0;
 	clrf	(_SEQflsuh)	;volatile
-	line	251
-;flush.c: 251: CNTflush = 0;
+	line	238
+;flush.c: 238: CNTflush = 0;
 	clrf	(_CNTflush)	;volatile
 	clrf	(_CNTflush+1)	;volatile
-	line	252
-;flush.c: 252: break;
+	line	239
+;flush.c: 239: break;
 	goto	l2893
-	line	107
+	line	94
 	
-l5655:	
+l7527:	
 	movf	(_SEQflsuh),w	;volatile
 	; Switch size 1, requested type "space"
 ; Number of cases is 11, Range of values is 0 to 10
@@ -3445,7 +3510,7 @@ l5655:
 	goto	l2892
 	opt asmopt_pop
 
-	line	254
+	line	241
 	
 l2893:	
 	return
@@ -3457,7 +3522,7 @@ GLOBAL	__end_of_FlushCon
 
 ;; *************** function _FCTloop *****************
 ;; Defined at:
-;;		line 16 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+;;		line 21 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -3477,7 +3542,7 @@ GLOBAL	__end_of_FlushCon
 ;;      Totals:         0       0       0       0       0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    3
+;; Hardware stack levels required when called:    5
 ;; This function calls:
 ;;		_FCTjudge
 ;;		_FCTkey
@@ -3486,31 +3551,31 @@ GLOBAL	__end_of_FlushCon
 ;; This function uses a non-reentrant model
 ;;
 psect	text19,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-	line	16
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	21
 global __ptext19
 __ptext19:	;psect for function _FCTloop
 psect	text19
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-	line	16
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	21
 	global	__size_of_FCTloop
 	__size_of_FCTloop	equ	__end_of_FCTloop-_FCTloop
 	
 _FCTloop:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _FCTloop: [wreg+status,2+status,0+pclath+cstack]
-	line	18
+	line	23
 	
-l5863:	
-;fct.c: 18: FCTkey();
+l7801:	
+;fct.c: 23: FCTkey();
 	fcall	_FCTkey
-	line	19
-;fct.c: 19: FCTjudge();
+	line	24
+;fct.c: 24: FCTjudge();
 	fcall	_FCTjudge
-	line	20
+	line	25
 	
-l4761:	
+l4771:	
 	return
 	opt stack 0
 GLOBAL	__end_of_FCTloop
@@ -3520,7 +3585,7 @@ GLOBAL	__end_of_FCTloop
 
 ;; *************** function _FCTkey *****************
 ;; Defined at:
-;;		line 22 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
+;;		line 50 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -3528,7 +3593,7 @@ GLOBAL	__end_of_FCTloop
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      void 
 ;; Registers used:
-;;		wreg, status,2, status,0
+;;		wreg, status,2, status,0, pclath, cstack
 ;; Tracked objects:
 ;;		On entry : 300/0
 ;;		On exit  : 300/0
@@ -3540,415 +3605,131 @@ GLOBAL	__end_of_FCTloop
 ;;      Totals:         0       0       0       0       0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
+;; Hardware stack levels required when called:    4
 ;; This function calls:
-;;		Nothing
+;;		_Delay_nms
 ;; This function is called by:
 ;;		_FCTloop
 ;; This function uses a non-reentrant model
 ;;
 psect	text20,local,class=CODE,delta=2,merge=1,group=0
-	line	22
+	line	50
 global __ptext20
 __ptext20:	;psect for function _FCTkey
 psect	text20
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-	line	22
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	50
 	global	__size_of_FCTkey
 	__size_of_FCTkey	equ	__end_of_FCTkey-_FCTkey
 	
 _FCTkey:	
 ;incstack = 0
-	opt	stack 4
-; Regs used in _FCTkey: [wreg+status,2+status,0]
-	line	24
+	opt	stack 2
+; Regs used in _FCTkey: [wreg+status,2+status,0+pclath+cstack]
+	line	52
 	
-l5751:	
-;fct.c: 24: if(RB0 == 1)
-	btfss	(48/8),(48)&7	;volatile
-	goto	u1041
-	goto	u1040
-u1041:
-	goto	l4764
-u1040:
-	line	26
+l7785:	
+;fct.c: 52: if(fctBits001.bits.bit_0 == 1)
+	btfss	(_fctBits001),0	;volatile
+	goto	u1271
+	goto	u1270
+u1271:
+	goto	l4774
+u1270:
+	line	54
 	
-l5753:	
-;fct.c: 25: {
-;fct.c: 26: if(++CNTfctStart >= 50)
-	movlw	low(032h)
-	incf	(_CNTfctStart),f	;volatile
-	subwf	((_CNTfctStart)),w	;volatile
-	skipc
-	goto	u1051
-	goto	u1050
-u1051:
-	goto	l4767
-u1050:
-	line	28
+l7787:	
+;fct.c: 53: {
+;fct.c: 54: if(RB2 == 1)
+	btfss	(50/8),(50)&7	;volatile
+	goto	u1281
+	goto	u1280
+u1281:
+	goto	l4774
+u1280:
+	line	56
 	
-l5755:	
-;fct.c: 27: {
-;fct.c: 28: CNTfctStart = 50;
-	movlw	low(032h)
-	movwf	(_CNTfctStart)	;volatile
-	line	29
+l7789:	
+;fct.c: 55: {
+;fct.c: 56: Delay_nms(1000);
+	movlw	0E8h
+	movwf	(Delay_nms@inittempl)
+	movlw	03h
+	movwf	((Delay_nms@inittempl))+1
+	fcall	_Delay_nms
+	line	57
 	
-l5757:	
-;fct.c: 29: fctBits001.bits.bit_0 = 1;
-	bsf	(_fctBits001),0	;volatile
-	goto	l4767
-	line	32
+l7791:	
+;fct.c: 57: if(RB2 == 1)
+	btfss	(50/8),(50)&7	;volatile
+	goto	u1291
+	goto	u1290
+u1291:
+	goto	l4774
+u1290:
+	line	59
 	
-l4764:	
-	line	34
-;fct.c: 32: else
-;fct.c: 33: {
-;fct.c: 34: fctBits001.bits.bit_0 = 0;
+l7793:	
+;fct.c: 58: {
+;fct.c: 59: fctBits001.bits.bit_0 = 0;
 	bcf	(_fctBits001),0	;volatile
-	line	35
+	line	60
+;fct.c: 60: return;
+	goto	l4777
+	line	63
 	
-l5759:	
-;fct.c: 35: CNTfctStart = 0;
-	clrf	(_CNTfctStart)	;volatile
-	line	37
+l4774:	
+	line	64
+;fct.c: 61: }
+;fct.c: 62: }
+;fct.c: 63: }
+;fct.c: 64: if(RB2 == 1)
+	btfss	(50/8),(50)&7	;volatile
+	goto	u1301
+	goto	u1300
+u1301:
+	goto	l4777
+u1300:
+	line	66
 	
-l4767:	
+l7795:	
+;fct.c: 65: {
+;fct.c: 66: Delay_nms(1000);
+	movlw	0E8h
+	movwf	(Delay_nms@inittempl)
+	movlw	03h
+	movwf	((Delay_nms@inittempl))+1
+	fcall	_Delay_nms
+	line	67
+	
+l7797:	
+;fct.c: 67: if(RB2 == 1)
+	btfss	(50/8),(50)&7	;volatile
+	goto	u1311
+	goto	u1310
+u1311:
+	goto	l4777
+u1310:
+	line	69
+	
+l7799:	
+;fct.c: 68: {
+;fct.c: 69: fctBits001.bits.bit_0 = 1;
+	bsf	(_fctBits001),0	;volatile
+	line	73
+;fct.c: 70: return;
+	
+l4777:	
 	return
 	opt stack 0
 GLOBAL	__end_of_FCTkey
 	__end_of_FCTkey:
 	signat	_FCTkey,89
-	global	_FCTjudge
-
-;; *************** function _FCTjudge *****************
-;; Defined at:
-;;		line 39 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-;; Parameters:    Size  Location     Type
-;;		None
-;; Auto vars:     Size  Location     Type
-;;		None
-;; Return value:  Size  Location     Type
-;;                  1    wreg      void 
-;; Registers used:
-;;		wreg, status,2, status,0
-;; Tracked objects:
-;;		On entry : 300/0
-;;		On exit  : 300/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         0       0       0       0       0
-;;      Locals:         0       0       0       0       0
-;;      Temps:          0       0       0       0       0
-;;      Totals:         0       0       0       0       0
-;;Total ram usage:        0 bytes
-;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
-;; This function calls:
-;;		Nothing
-;; This function is called by:
-;;		_FCTloop
-;; This function uses a non-reentrant model
-;;
-psect	text21,local,class=CODE,delta=2,merge=1,group=0
-	line	39
-global __ptext21
-__ptext21:	;psect for function _FCTjudge
-psect	text21
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct.c"
-	line	39
-	global	__size_of_FCTjudge
-	__size_of_FCTjudge	equ	__end_of_FCTjudge-_FCTjudge
-	
-_FCTjudge:	
-;incstack = 0
-	opt	stack 4
-; Regs used in _FCTjudge: [wreg+status,2+status,0]
-	line	41
-	
-l5761:	
-;fct.c: 41: if(fctBits001.bits.bit_0 == 1)
-	btfss	(_fctBits001),0	;volatile
-	goto	u1061
-	goto	u1060
-u1061:
-	goto	l5807
-u1060:
-	line	43
-	
-l5763:	
-;fct.c: 42: {
-;fct.c: 43: if(RB1 == 0)
-	btfsc	(49/8),(49)&7	;volatile
-	goto	u1071
-	goto	u1070
-u1071:
-	goto	l5783
-u1070:
-	line	45
-	
-l5765:	
-;fct.c: 44: {
-;fct.c: 45: if(++CNTfctSensior >= 50)
-	movlw	low(032h)
-	incf	(_CNTfctSensior),f	;volatile
-	subwf	((_CNTfctSensior)),w	;volatile
-	skipc
-	goto	u1081
-	goto	u1080
-u1081:
-	goto	l4787
-u1080:
-	line	47
-	
-l5767:	
-;fct.c: 46: {
-;fct.c: 47: CNTfct = 0;
-	clrf	(_CNTfct)	;volatile
-	clrf	(_CNTfct+1)	;volatile
-	line	48
-	
-l5769:	
-;fct.c: 48: CNTfctSensior = 50;
-	movlw	low(032h)
-	movwf	(_CNTfctSensior)	;volatile
-	line	49
-	
-l5771:	
-;fct.c: 49: if(++CNTfctFlashLed >= 50)
-	movlw	low(032h)
-	incf	(_CNTfctFlashLed),f	;volatile
-	subwf	((_CNTfctFlashLed)),w	;volatile
-	skipc
-	goto	u1091
-	goto	u1090
-u1091:
-	goto	l5775
-u1090:
-	line	51
-	
-l5773:	
-;fct.c: 50: {
-;fct.c: 51: CNTfctFlashLed = 0;
-	clrf	(_CNTfctFlashLed)	;volatile
-	line	52
-;fct.c: 52: }
-	goto	l4787
-	line	53
-	
-l5775:	
-;fct.c: 53: else if(CNTfctFlashLed == 25)
-		movlw	25
-	xorwf	((_CNTfctFlashLed)),w	;volatile
-	btfss	status,2
-	goto	u1101
-	goto	u1100
-u1101:
-	goto	l5779
-u1100:
-	line	55
-	
-l5777:	
-;fct.c: 54: {
-;fct.c: 55: RA5 = 1;
-	bsf	(45/8),(45)&7	;volatile
-	line	56
-;fct.c: 56: RA2 = 1;
-	bsf	(42/8),(42)&7	;volatile
-	line	57
-;fct.c: 57: RA4 = 1;
-	bsf	(44/8),(44)&7	;volatile
-	line	58
-;fct.c: 58: }
-	goto	l4787
-	line	59
-	
-l5779:	
-;fct.c: 59: else if(CNTfctFlashLed == 1)
-		decf	((_CNTfctFlashLed)),w	;volatile
-	btfss	status,2
-	goto	u1111
-	goto	u1110
-u1111:
-	goto	l4772
-u1110:
-	line	61
-	
-l5781:	
-;fct.c: 60: {
-;fct.c: 61: RA5 = 0;
-	bcf	(45/8),(45)&7	;volatile
-	line	62
-;fct.c: 62: RA2 = 0;
-	bcf	(42/8),(42)&7	;volatile
-	line	63
-;fct.c: 63: RA4 = 0;
-	bcf	(44/8),(44)&7	;volatile
-	goto	l4787
-	line	65
-	
-l4772:	
-	line	66
-;fct.c: 64: }
-;fct.c: 65: }
-;fct.c: 66: }
-	goto	l4787
-	line	69
-	
-l5783:	
-;fct.c: 67: else
-;fct.c: 68: {
-;fct.c: 69: CNTfctSensior = 0;
-	clrf	(_CNTfctSensior)	;volatile
-	line	70
-	
-l5785:	
-;fct.c: 70: if(++CNTfct >= 100)
-	incf	(_CNTfct),f	;volatile
-	skipnz
-	incf	(_CNTfct+1),f	;volatile
-	movlw	0
-	subwf	((_CNTfct+1)),w	;volatile
-	movlw	064h
-	skipnz
-	subwf	((_CNTfct)),w	;volatile
-	skipc
-	goto	u1121
-	goto	u1120
-u1121:
-	goto	l5795
-u1120:
-	line	72
-	
-l5787:	
-;fct.c: 71: {
-;fct.c: 72: CNTfct = 0;
-	clrf	(_CNTfct)	;volatile
-	clrf	(_CNTfct+1)	;volatile
-	line	74
-	
-l5789:	
-;fct.c: 74: RA5 = 0;
-	bcf	(45/8),(45)&7	;volatile
-	line	75
-	
-l5791:	
-;fct.c: 75: RA2 = 0;
-	bcf	(42/8),(42)&7	;volatile
-	line	76
-	
-l5793:	
-;fct.c: 76: RA4 = 0;
-	bcf	(44/8),(44)&7	;volatile
-	line	77
-;fct.c: 77: }
-	goto	l4787
-	line	78
-	
-l5795:	
-;fct.c: 78: else if(CNTfct == 75)
-		movlw	75
-	xorwf	((_CNTfct)),w	;volatile
-iorwf	((_CNTfct+1)),w	;volatile
-	btfss	status,2
-	goto	u1131
-	goto	u1130
-u1131:
-	goto	l5799
-u1130:
-	line	80
-	
-l5797:	
-;fct.c: 79: {
-;fct.c: 80: RA5 = 1;
-	bsf	(45/8),(45)&7	;volatile
-	line	81
-;fct.c: 81: RA2 = 0;
-	bcf	(42/8),(42)&7	;volatile
-	line	82
-;fct.c: 82: RA4 = 0;
-	bcf	(44/8),(44)&7	;volatile
-	line	83
-;fct.c: 83: }
-	goto	l4787
-	line	84
-	
-l5799:	
-;fct.c: 84: else if(CNTfct == 50)
-		movlw	50
-	xorwf	((_CNTfct)),w	;volatile
-iorwf	((_CNTfct+1)),w	;volatile
-	btfss	status,2
-	goto	u1141
-	goto	u1140
-u1141:
-	goto	l5803
-u1140:
-	line	86
-	
-l5801:	
-;fct.c: 85: {
-;fct.c: 86: RA5 = 0;
-	bcf	(45/8),(45)&7	;volatile
-	line	87
-;fct.c: 87: RA2 = 1;
-	bsf	(42/8),(42)&7	;volatile
-	line	88
-;fct.c: 88: RA4 = 0;
-	bcf	(44/8),(44)&7	;volatile
-	line	89
-;fct.c: 89: }
-	goto	l4787
-	line	90
-	
-l5803:	
-;fct.c: 90: else if(CNTfct == 25)
-		movlw	25
-	xorwf	((_CNTfct)),w	;volatile
-iorwf	((_CNTfct+1)),w	;volatile
-	btfss	status,2
-	goto	u1151
-	goto	u1150
-u1151:
-	goto	l4772
-u1150:
-	line	92
-	
-l5805:	
-;fct.c: 91: {
-;fct.c: 92: RA5 = 0;
-	bcf	(45/8),(45)&7	;volatile
-	line	93
-;fct.c: 93: RA2 = 0;
-	bcf	(42/8),(42)&7	;volatile
-	line	94
-;fct.c: 94: RA4 = 1;
-	bsf	(44/8),(44)&7	;volatile
-	goto	l4787
-	line	100
-	
-l5807:	
-;fct.c: 98: else
-;fct.c: 99: {
-;fct.c: 100: CNTfctSensior = 0;
-	clrf	(_CNTfctSensior)	;volatile
-	line	101
-;fct.c: 101: CNTfct = 0;
-	clrf	(_CNTfct)	;volatile
-	clrf	(_CNTfct+1)	;volatile
-	line	103
-	
-l4787:	
-	return
-	opt stack 0
-GLOBAL	__end_of_FCTjudge
-	__end_of_FCTjudge:
-	signat	_FCTjudge,89
 	global	_Delay_nms
 
 ;; *************** function _Delay_nms *****************
 ;; Defined at:
-;;		line 35 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 35 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;  inittempl       2    4[COMMON] unsigned int 
 ;; Auto vars:     Size  Location     Type
@@ -3959,7 +3740,7 @@ GLOBAL	__end_of_FCTjudge
 ;; Registers used:
 ;;		wreg, status,2, status,0, pclath, cstack
 ;; Tracked objects:
-;;		On entry : 300/100
+;;		On entry : 200/100
 ;;		On exit  : 300/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
@@ -3974,26 +3755,27 @@ GLOBAL	__end_of_FCTjudge
 ;;		_Delay
 ;; This function is called by:
 ;;		_main
+;;		_FCTkey
 ;; This function uses a non-reentrant model
 ;;
-psect	text22,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+psect	text21,local,class=CODE,delta=2,merge=1,group=0
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	35
-global __ptext22
-__ptext22:	;psect for function _Delay_nms
-psect	text22
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+global __ptext21
+__ptext21:	;psect for function _Delay_nms
+psect	text21
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	35
 	global	__size_of_Delay_nms
 	__size_of_Delay_nms	equ	__end_of_Delay_nms-_Delay_nms
 	
 _Delay_nms:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _Delay_nms: [wreg+status,2+status,0+pclath+cstack]
 	line	40
 	
-l5933:	
+l7767:	
 ;main.c: 37: unsigned int i;
 ;main.c: 38: unsigned char gtemp;
 ;main.c: 40: gtemp = 0;
@@ -4001,17 +3783,17 @@ l5933:
 	clrf	(Delay_nms@gtemp)
 	line	41
 	
-l5935:	
+l7769:	
 ;main.c: 41: if (GIE == 1)
 	btfss	(95/8),(95)&7	;volatile
-	goto	u1281
-	goto	u1280
-u1281:
-	goto	l5939
-u1280:
+	goto	u1241
+	goto	u1240
+u1241:
+	goto	l7773
+u1240:
 	line	43
 	
-l5937:	
+l7771:	
 ;main.c: 42: {
 ;main.c: 43: gtemp = 1;
 	clrf	(Delay_nms@gtemp)
@@ -4021,15 +3803,15 @@ l5937:
 	bcf	(95/8),(95)&7	;volatile
 	line	46
 	
-l5939:	
+l7773:	
 ;main.c: 45: }
 ;main.c: 46: for (i = 0; i < inittempl; i++)
 	clrf	(Delay_nms@i)
 	clrf	(Delay_nms@i+1)
-	goto	l5945
+	goto	l7779
 	line	48
 	
-l5941:	
+l7775:	
 ;main.c: 47: {
 ;main.c: 48: Delay(154);
 	movlw	09Ah
@@ -4037,47 +3819,47 @@ l5941:
 	clrf	(Delay@dtemp+1)
 	fcall	_Delay
 	line	49
-# 49 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+# 49 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 clrwdt ;# 
-psect	text22
+psect	text21
 	line	46
 	
-l5943:	
+l7777:	
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	incf	(Delay_nms@i),f
 	skipnz
 	incf	(Delay_nms@i+1),f
 	
-l5945:	
+l7779:	
 	movf	(Delay_nms@inittempl+1),w
 	subwf	(Delay_nms@i+1),w
 	skipz
-	goto	u1295
+	goto	u1255
 	movf	(Delay_nms@inittempl),w
 	subwf	(Delay_nms@i),w
-u1295:
+u1255:
 	skipc
-	goto	u1291
-	goto	u1290
-u1291:
-	goto	l5941
-u1290:
+	goto	u1251
+	goto	u1250
+u1251:
+	goto	l7775
+u1250:
 	line	51
 	
-l5947:	
+l7781:	
 ;main.c: 50: }
 ;main.c: 51: if (gtemp == 1)
 		decf	((Delay_nms@gtemp)),w
 	btfss	status,2
-	goto	u1301
-	goto	u1300
-u1301:
+	goto	u1261
+	goto	u1260
+u1261:
 	goto	l1859
-u1300:
+u1260:
 	line	52
 	
-l5949:	
+l7783:	
 ;main.c: 52: GIE = 1;
 	bsf	(95/8),(95)&7	;volatile
 	line	53
@@ -4092,7 +3874,7 @@ GLOBAL	__end_of_Delay_nms
 
 ;; *************** function _Delay *****************
 ;; Defined at:
-;;		line 27 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 27 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;  dtemp           2    2[COMMON] unsigned int 
 ;; Auto vars:     Size  Location     Type
@@ -4119,26 +3901,26 @@ GLOBAL	__end_of_Delay_nms
 ;;		_Delay_nms
 ;; This function uses a non-reentrant model
 ;;
-psect	text23,local,class=CODE,delta=2,merge=1,group=0
+psect	text22,local,class=CODE,delta=2,merge=1,group=0
 	line	27
-global __ptext23
-__ptext23:	;psect for function _Delay
-psect	text23
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+global __ptext22
+__ptext22:	;psect for function _Delay
+psect	text22
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	27
 	global	__size_of_Delay
 	__size_of_Delay	equ	__end_of_Delay-_Delay
 	
 _Delay:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _Delay: [wreg+status,2+status,0]
 	line	29
 	
-l5929:	
+l7763:	
 ;main.c: 29: while (dtemp--)
 	
-l5931:	
+l7765:	
 	movlw	01h
 	subwf	(Delay@dtemp),f
 	movlw	0
@@ -4147,14 +3929,14 @@ l5931:
 	subwf	(Delay@dtemp+1),f
 		incf	(((Delay@dtemp))),w
 	skipz
-	goto	u1271
+	goto	u1231
 	incf	(((Delay@dtemp+1))),w
 	btfss	status,2
-	goto	u1271
-	goto	u1270
-u1271:
-	goto	l5931
-u1270:
+	goto	u1231
+	goto	u1230
+u1231:
+	goto	l7765
+u1230:
 	line	31
 	
 l1851:	
@@ -4163,11 +3945,480 @@ l1851:
 GLOBAL	__end_of_Delay
 	__end_of_Delay:
 	signat	_Delay,4217
+	global	_FCTjudge
+
+;; *************** function _FCTjudge *****************
+;; Defined at:
+;;		line 107 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, status,2, status,0, pclath, cstack
+;; Tracked objects:
+;;		On entry : 300/0
+;;		On exit  : 300/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    3
+;; This function calls:
+;;		_G_KEY
+;;		_R_KEY
+;;		_key1
+;;		_key2
+;; This function is called by:
+;;		_FCTloop
+;; This function uses a non-reentrant model
+;;
+psect	text23,local,class=CODE,delta=2,merge=1,group=0
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	107
+global __ptext23
+__ptext23:	;psect for function _FCTjudge
+psect	text23
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	107
+	global	__size_of_FCTjudge
+	__size_of_FCTjudge	equ	__end_of_FCTjudge-_FCTjudge
+	
+_FCTjudge:	
+;incstack = 0
+	opt	stack 3
+; Regs used in _FCTjudge: [wreg+status,2+status,0+pclath+cstack]
+	line	109
+	
+l7639:	
+;fct.c: 109: if(fctBits001.bits.bit_0 == 1)
+	btfss	(_fctBits001),0	;volatile
+	goto	u1091
+	goto	u1090
+u1091:
+	goto	l4794
+u1090:
+	line	111
+	
+l7641:	
+;fct.c: 110: {
+;fct.c: 111: if(++flag_time == 1500)
+	incf	(_flag_time),f	;volatile
+	skipnz
+	incf	(_flag_time+1),f	;volatile
+		movlw	220
+	xorwf	(((_flag_time))),w	;volatile
+	movlw	5
+	skipnz
+	xorwf	(((_flag_time+1))),w	;volatile
+	btfss	status,2
+	goto	u1101
+	goto	u1100
+u1101:
+	goto	l7647
+u1100:
+	line	113
+	
+l7643:	
+;fct.c: 112: {
+;fct.c: 113: fctBits001.bits.bit_0 = 0;
+	bcf	(_fctBits001),0	;volatile
+	line	114
+	
+l7645:	
+;fct.c: 114: flag_time = 0;
+	clrf	(_flag_time)	;volatile
+	clrf	(_flag_time+1)	;volatile
+	line	116
+	
+l7647:	
+;fct.c: 115: }
+;fct.c: 116: if(RB1 == 0)
+	btfsc	(49/8),(49)&7	;volatile
+	goto	u1111
+	goto	u1110
+u1111:
+	goto	l4796
+u1110:
+	line	118
+	
+l7649:	
+;fct.c: 117: {
+;fct.c: 118: R_KEY();
+	fcall	_R_KEY
+	line	119
+;fct.c: 119: }
+	goto	l4804
+	line	120
+	
+l4796:	
+	line	122
+;fct.c: 120: else
+;fct.c: 121: {
+;fct.c: 122: if(RA6 == 0)
+	btfsc	(46/8),(46)&7	;volatile
+	goto	u1121
+	goto	u1120
+u1121:
+	goto	l4798
+u1120:
+	line	124
+	
+l7651:	
+;fct.c: 123: {
+;fct.c: 124: key1();
+	fcall	_key1
+	line	125
+;fct.c: 125: }
+	goto	l4804
+	line	126
+	
+l4798:	
+	line	128
+;fct.c: 126: else
+;fct.c: 127: {
+;fct.c: 128: if(RB0 == 0)
+	btfsc	(48/8),(48)&7	;volatile
+	goto	u1131
+	goto	u1130
+u1131:
+	goto	l7655
+u1130:
+	line	130
+	
+l7653:	
+;fct.c: 129: {
+;fct.c: 130: key2();
+	fcall	_key2
+	line	131
+;fct.c: 131: }
+	goto	l4804
+	line	134
+	
+l7655:	
+;fct.c: 132: else
+;fct.c: 133: {
+;fct.c: 134: G_KEY();
+	fcall	_G_KEY
+	goto	l4804
+	line	139
+	
+l4794:	
+;fct.c: 139: else if(fctBits001.bits.bit_0 == 0)
+	btfsc	(_fctBits001),0	;volatile
+	goto	u1141
+	goto	u1140
+u1141:
+	goto	l4804
+u1140:
+	line	141
+	
+l7657:	
+;fct.c: 140: {
+;fct.c: 141: RA5 = 0;
+	bcf	(45/8),(45)&7	;volatile
+	line	142
+;fct.c: 142: RA2 = 0;
+	bcf	(42/8),(42)&7	;volatile
+	line	143
+;fct.c: 143: RA4 = 0;
+	bcf	(44/8),(44)&7	;volatile
+	line	144
+;fct.c: 144: RA1 = 0;
+	bcf	(41/8),(41)&7	;volatile
+	line	145
+	
+l7659:	
+;fct.c: 145: flag_time = 0;
+	clrf	(_flag_time)	;volatile
+	clrf	(_flag_time+1)	;volatile
+	line	147
+	
+l4804:	
+	return
+	opt stack 0
+GLOBAL	__end_of_FCTjudge
+	__end_of_FCTjudge:
+	signat	_FCTjudge,89
+	global	_key2
+
+;; *************** function _key2 *****************
+;; Defined at:
+;;		line 99 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		None
+;; Tracked objects:
+;;		On entry : 300/0
+;;		On exit  : 300/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_FCTjudge
+;; This function uses a non-reentrant model
+;;
+psect	text24,local,class=CODE,delta=2,merge=1,group=0
+	line	99
+global __ptext24
+__ptext24:	;psect for function _key2
+psect	text24
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	99
+	global	__size_of_key2
+	__size_of_key2	equ	__end_of_key2-_key2
+	
+_key2:	
+;incstack = 0
+	opt	stack 3
+; Regs used in _key2: []
+	line	101
+	
+l7419:	
+;fct.c: 101: RA5 = 0;
+	bcf	(45/8),(45)&7	;volatile
+	line	102
+;fct.c: 102: RA2 = 0;
+	bcf	(42/8),(42)&7	;volatile
+	line	103
+;fct.c: 103: RA4 = 1;
+	bsf	(44/8),(44)&7	;volatile
+	line	104
+;fct.c: 104: RA1 = 1;
+	bsf	(41/8),(41)&7	;volatile
+	line	105
+	
+l4791:	
+	return
+	opt stack 0
+GLOBAL	__end_of_key2
+	__end_of_key2:
+	signat	_key2,89
+	global	_key1
+
+;; *************** function _key1 *****************
+;; Defined at:
+;;		line 91 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		None
+;; Tracked objects:
+;;		On entry : 300/0
+;;		On exit  : 300/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_FCTjudge
+;; This function uses a non-reentrant model
+;;
+psect	text25,local,class=CODE,delta=2,merge=1,group=0
+	line	91
+global __ptext25
+__ptext25:	;psect for function _key1
+psect	text25
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	91
+	global	__size_of_key1
+	__size_of_key1	equ	__end_of_key1-_key1
+	
+_key1:	
+;incstack = 0
+	opt	stack 3
+; Regs used in _key1: []
+	line	93
+	
+l7417:	
+;fct.c: 93: RA5 = 1;
+	bsf	(45/8),(45)&7	;volatile
+	line	94
+;fct.c: 94: RA2 = 0;
+	bcf	(42/8),(42)&7	;volatile
+	line	95
+;fct.c: 95: RA4 = 1;
+	bsf	(44/8),(44)&7	;volatile
+	line	96
+;fct.c: 96: RA1 = 0;
+	bcf	(41/8),(41)&7	;volatile
+	line	97
+	
+l4788:	
+	return
+	opt stack 0
+GLOBAL	__end_of_key1
+	__end_of_key1:
+	signat	_key1,89
+	global	_R_KEY
+
+;; *************** function _R_KEY *****************
+;; Defined at:
+;;		line 83 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		None
+;; Tracked objects:
+;;		On entry : 300/0
+;;		On exit  : 300/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_FCTjudge
+;; This function uses a non-reentrant model
+;;
+psect	text26,local,class=CODE,delta=2,merge=1,group=0
+	line	83
+global __ptext26
+__ptext26:	;psect for function _R_KEY
+psect	text26
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	83
+	global	__size_of_R_KEY
+	__size_of_R_KEY	equ	__end_of_R_KEY-_R_KEY
+	
+_R_KEY:	
+;incstack = 0
+	opt	stack 3
+; Regs used in _R_KEY: []
+	line	85
+	
+l7415:	
+;fct.c: 85: RA5 = 0;
+	bcf	(45/8),(45)&7	;volatile
+	line	86
+;fct.c: 86: RA2 = 1;
+	bsf	(42/8),(42)&7	;volatile
+	line	87
+;fct.c: 87: RA4 = 1;
+	bsf	(44/8),(44)&7	;volatile
+	line	88
+;fct.c: 88: RA1 = 0;
+	bcf	(41/8),(41)&7	;volatile
+	line	89
+	
+l4785:	
+	return
+	opt stack 0
+GLOBAL	__end_of_R_KEY
+	__end_of_R_KEY:
+	signat	_R_KEY,89
+	global	_G_KEY
+
+;; *************** function _G_KEY *****************
+;; Defined at:
+;;		line 75 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		None
+;; Tracked objects:
+;;		On entry : 300/0
+;;		On exit  : 300/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    2
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_FCTjudge
+;; This function uses a non-reentrant model
+;;
+psect	text27,local,class=CODE,delta=2,merge=1,group=0
+	line	75
+global __ptext27
+__ptext27:	;psect for function _G_KEY
+psect	text27
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct.c"
+	line	75
+	global	__size_of_G_KEY
+	__size_of_G_KEY	equ	__end_of_G_KEY-_G_KEY
+	
+_G_KEY:	
+;incstack = 0
+	opt	stack 3
+; Regs used in _G_KEY: []
+	line	77
+	
+l7413:	
+;fct.c: 77: RA5 = 0;
+	bcf	(45/8),(45)&7	;volatile
+	line	78
+;fct.c: 78: RA2 = 0;
+	bcf	(42/8),(42)&7	;volatile
+	line	79
+;fct.c: 79: RA4 = 1;
+	bsf	(44/8),(44)&7	;volatile
+	line	80
+;fct.c: 80: RA1 = 0;
+	bcf	(41/8),(41)&7	;volatile
+	line	81
+	
+l4782:	
+	return
+	opt stack 0
+GLOBAL	__end_of_G_KEY
+	__end_of_G_KEY:
+	signat	_G_KEY,89
 	global	_Int_ALL
 
 ;; *************** function _Int_ALL *****************
 ;; Defined at:
-;;		line 562 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+;;		line 562 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -4194,19 +4445,20 @@ GLOBAL	__end_of_Delay
 ;;		Interrupt level 1
 ;; This function uses a non-reentrant model
 ;;
-psect	text24,local,class=CODE,delta=2,merge=1,group=0
+psect	text28,local,class=CODE,delta=2,merge=1,group=0
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	562
-global __ptext24
-__ptext24:	;psect for function _Int_ALL
-psect	text24
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\main.c"
+global __ptext28
+__ptext28:	;psect for function _Int_ALL
+psect	text28
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\main.c"
 	line	562
 	global	__size_of_Int_ALL
 	__size_of_Int_ALL	equ	__end_of_Int_ALL-_Int_ALL
 	
 _Int_ALL:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _Int_ALL: [wreg+status,2+status,0+pclath+cstack]
 psect	intentry,class=CODE,delta=2
 global __pintentry
@@ -4221,22 +4473,22 @@ interrupt_function:
 	movf	pclath,w
 	movwf	(??_Int_ALL+1)
 	ljmp	_Int_ALL
-psect	text24
+psect	text28
 	line	565
 	
-i1l5913:	
+i1l7747:	
 ;main.c: 565: if (TMR1IF)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	btfss	(96/8),(96)&7	;volatile
-	goto	u124_21
-	goto	u124_20
-u124_21:
-	goto	i1l5923
-u124_20:
+	goto	u120_21
+	goto	u120_20
+u120_21:
+	goto	i1l7757
+u120_20:
 	line	572
 	
-i1l5915:	
+i1l7749:	
 ;main.c: 566: {
 ;main.c: 572: TMR1 = 0xE0C0;
 	movlw	0E0h
@@ -4251,7 +4503,7 @@ i1l5915:
 	bsf	(_Fsys1),1	;volatile
 	line	579
 	
-i1l5917:	
+i1l7751:	
 ;main.c: 579: if (++MainTime_1s >= 1000)
 	incf	(_MainTime_1s),f	;volatile
 	skipnz
@@ -4262,45 +4514,45 @@ i1l5917:
 	skipnz
 	subwf	((_MainTime_1s)),w	;volatile
 	skipc
-	goto	u125_21
-	goto	u125_20
-u125_21:
-	goto	i1l5923
-u125_20:
+	goto	u121_21
+	goto	u121_20
+u121_21:
+	goto	i1l7757
+u121_20:
 	line	581
 	
-i1l5919:	
+i1l7753:	
 ;main.c: 580: {
 ;main.c: 581: MainTime_1s = 0;
 	clrf	(_MainTime_1s)	;volatile
 	clrf	(_MainTime_1s+1)	;volatile
 	line	582
 	
-i1l5921:	
+i1l7755:	
 ;main.c: 582: Fsys1s.byte = 0xFF;
 	movlw	low(0FFh)
 	movwf	(_Fsys1s)	;volatile
 	line	594
 	
-i1l5923:	
+i1l7757:	
 ;main.c: 590: }
 ;main.c: 591: }
 ;main.c: 594: if (TMR2IF)
 	btfss	(97/8),(97)&7	;volatile
-	goto	u126_21
-	goto	u126_20
-u126_21:
+	goto	u122_21
+	goto	u122_20
+u122_21:
 	goto	i1l1942
-u126_20:
+u122_20:
 	line	596
 	
-i1l5925:	
+i1l7759:	
 ;main.c: 595: {
 ;main.c: 596: TMR2IF = 0;
 	bcf	(97/8),(97)&7	;volatile
 	line	597
 	
-i1l5927:	
+i1l7761:	
 ;main.c: 597: INT_LED_SHOW();
 	fcall	_INT_LED_SHOW
 	line	656
@@ -4321,7 +4573,7 @@ GLOBAL	__end_of_Int_ALL
 
 ;; *************** function _INT_LED_SHOW *****************
 ;; Defined at:
-;;		line 193 in file "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+;;		line 193 in file "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -4347,20 +4599,20 @@ GLOBAL	__end_of_Int_ALL
 ;;		_Int_ALL
 ;; This function uses a non-reentrant model
 ;;
-psect	text25,local,class=CODE,delta=2,merge=1,group=0
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+psect	text29,local,class=CODE,delta=2,merge=1,group=0
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	193
-global __ptext25
-__ptext25:	;psect for function _INT_LED_SHOW
-psect	text25
-	file	"D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light.c"
+global __ptext29
+__ptext29:	;psect for function _INT_LED_SHOW
+psect	text29
+	file	"C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light.c"
 	line	193
 	global	__size_of_INT_LED_SHOW
 	__size_of_INT_LED_SHOW	equ	__end_of_INT_LED_SHOW-_INT_LED_SHOW
 	
 _INT_LED_SHOW:	
 ;incstack = 0
-	opt	stack 4
+	opt	stack 2
 ; Regs used in _INT_LED_SHOW: []
 	line	211
 	

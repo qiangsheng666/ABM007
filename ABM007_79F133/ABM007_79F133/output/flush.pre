@@ -1,5 +1,5 @@
 
-# 1 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
+# 1 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\cfg_user.h"
+# 25 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,35 +624,16 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\light_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\light_user.h"
 extern BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush_user.h"
 extern BYTE Fflush1;
 
 # 13
-extern void GflushLoop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\sensor_user.h"
-extern BYTE Fbodysensor;
-
-# 25
-extern void GsensorLoop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\fct_user.h"
-extern BYTE fctBits001;
-
-
-
-
-extern void FCTloop(void);
-
-# 4 "D:\mywork.wqs\ARROW\ABM007_79F133\ABM007_79F133\source\flush.c"
-BYTE Fflush1;
-
 enum{
 FLUSH_INIT_0 = 0,
 FLUSH_INIT_1,
@@ -667,6 +648,33 @@ FLUSH_END_0,
 FLUSH_END_1,
 FLUSH_END_2,
 };
+extern void GflushLoop(void);
+
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\sensor_user.h"
+extern BYTE Fbodysensor;
+
+# 25
+extern void GsensorLoop(void);
+
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\fct_user.h"
+extern BYTE fctBits001;
+
+
+
+
+extern void FCTloop(void);
+
+# 9 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\key_user.h"
+uint8_t GkeyLoop();
+
+# 12 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\cfg_case.h"
+extern void Delay(unsigned int dtemp);
+extern void Delay_nms(unsigned int inittempl);
+
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\3\ABM007_FM3(1)\ABM007_FM3\ABM007_FM3\source\flush.c"
+BYTE Fflush1;
+
+
 
 v_uint8 SEQflsuh = 0;
 v_uint16 CNTflush = 0;
@@ -689,7 +697,7 @@ void FlushTime(void)
 void FlushJudge(void)
 {
 
-# 59
+# 46
 if(Fbodysensor.bits.bit_4 == 1)
 {
 
@@ -807,7 +815,7 @@ CNTflush = 0;
 SEQflsuh = FLUSH_BIG_2;
 }
 
-# 182
+# 169
 break;
 case FLUSH_BIG_2:
 Fflush1.bits.bit_6 = 1;

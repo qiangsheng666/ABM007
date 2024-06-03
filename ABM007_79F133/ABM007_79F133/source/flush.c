@@ -3,20 +3,7 @@
 
 BYTE Fflush1;
 
-enum{
-    FLUSH_INIT_0 = 0,
-    FLUSH_INIT_1,
-    FLUSH_INIT_2,
-    FLUSH_BIG_0,
-    FLUSH_BIG_1,
-    FLUSH_BIG_2,
-    FLUSH_SML_0,
-    FLUSH_SML_1,
-    FLUSH_SML_2,
-    FLUSH_END_0,
-    FLUSH_END_1,
-    FLUSH_END_2,
-};
+
 
 v_uint8 SEQflsuh = 0;
 v_uint16 CNTflush = 0;  /* ³åË®¼ÆÊ± */
