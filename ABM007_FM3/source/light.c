@@ -85,109 +85,109 @@ void LED_Con(void)
 {
 	POlight	= Flight;
 	/* ºôÎüµÆÆµÂÊ */
-	// if (Flight == SET)
-	// {
-	// 	if (FbreathDir == CLR)
-	// 	{
-	// 		if (CNTbreath_Led2 >= 80)	/* ÁÁ¶È½µµÍ */
-	// 		{
-	// 			CNTbreath_Led2 = 80;
-	// 			if (++CNTbreath_Led3 > 10)	/* 100ms£¬min */
-	// 			{
-	// 				FbreathDir = SET;
-	// 				CNTbreath_Led3 = 0;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 > 45)	/* 35*4*10=1050ms */
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 3)
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2++;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 > 30)	/* 15*8*10 = 1200ms */
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 8)
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2++;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 > 10)	/* 1000ms */
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 5)
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2++;
-	// 			}
-	// 		}
-	// 		else
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 11)	/* (11-5)*10=600ms£¬max */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2++;
-	// 			}
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		if (CNTbreath_Led2 < 5)	/* max */
-	// 		{
-	// 			CNTbreath_Led2 = 5;
-	// 			FbreathDir = CLR;
-	// 		}
-	// 		else if (CNTbreath_Led2 < 10)
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 6)	/* 600ms */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2--;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 < 30)
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 6)	/* 1200ms */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2--;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 < 40)
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 8)	/* 800ms */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2--;
-	// 			}
-	// 		}
-	// 		else if (CNTbreath_Led2 < 60)
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 4)	/* 800ms */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2--;
-	// 			}
-	// 		}
-	// 		else
-	// 		{
-	// 			if (++CNTbreath_Led1 >= 3)	/* 600ms£¬min */
-	// 			{
-	// 				CNTbreath_Led1 = 0;
-	// 				CNTbreath_Led2--;
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// else
-	// {
-	// 	CNTbreath_Led1 = 0;
-	// 	CNTbreath_Led2 = 0;
-	// 	CNTbreath_Led3 = 0;
-	// 	FbreathDir = CLR;
-	// 	POlight = OFF;
-	// }
+	if (Flight == SET)
+	{
+		if (FbreathDir == CLR)
+		{
+			if (CNTbreath_Led2 >= 80)	/* ÁÁ¶È½µµÍ */
+			{
+				CNTbreath_Led2 = 80;
+				if (++CNTbreath_Led3 > 10)	/* 100ms£¬min */
+				{
+					FbreathDir = SET;
+					CNTbreath_Led3 = 0;
+				}
+			}
+			else if (CNTbreath_Led2 > 45)	/* 35*4*10=1050ms */
+			{
+				if (++CNTbreath_Led1 >= 3)
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2++;
+				}
+			}
+			else if (CNTbreath_Led2 > 30)	/* 15*8*10 = 1200ms */
+			{
+				if (++CNTbreath_Led1 >= 8)
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2++;
+				}
+			}
+			else if (CNTbreath_Led2 > 10)	/* 1000ms */
+			{
+				if (++CNTbreath_Led1 >= 5)
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2++;
+				}
+			}
+			else
+			{
+				if (++CNTbreath_Led1 >= 11)	/* (11-5)*10=600ms£¬max */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2++;
+				}
+			}
+		}
+		else
+		{
+			if (CNTbreath_Led2 < 5)	/* max */
+			{
+				CNTbreath_Led2 = 5;
+				FbreathDir = CLR;
+			}
+			else if (CNTbreath_Led2 < 10)
+			{
+				if (++CNTbreath_Led1 >= 6)	/* 600ms */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2--;
+				}
+			}
+			else if (CNTbreath_Led2 < 30)
+			{
+				if (++CNTbreath_Led1 >= 6)	/* 1200ms */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2--;
+				}
+			}
+			else if (CNTbreath_Led2 < 40)
+			{
+				if (++CNTbreath_Led1 >= 8)	/* 800ms */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2--;
+				}
+			}
+			else if (CNTbreath_Led2 < 60)
+			{
+				if (++CNTbreath_Led1 >= 4)	/* 800ms */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2--;
+				}
+			}
+			else
+			{
+				if (++CNTbreath_Led1 >= 3)	/* 600ms£¬min */
+				{
+					CNTbreath_Led1 = 0;
+					CNTbreath_Led2--;
+				}
+			}
+		}
+	}
+	else
+	{
+		CNTbreath_Led1 = 0;
+		CNTbreath_Led2 = 0;
+		CNTbreath_Led3 = 0;
+		FbreathDir = CLR;
+		POlight = OFF;
+	}
 }
 
 void INT_LED_SHOW(void)

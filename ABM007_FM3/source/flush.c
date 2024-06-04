@@ -173,11 +173,11 @@ void FlushCon(void)
             POairPump = ON;
             POmainValue = ON;
             POdirectValue = ON;
-#if ABM007_FLUSH_2
+#if (SOFTWARE_VERSION == ABM007_FLUSH_2) 
             if(++CNTflush >= 100)   /* 冲水1s */
             {
                 CNTflush = 0;
-                SEQflsuh = FLUSH_BIG_2;
+                SEQflsuh = FLUSH_SML_0;
             }
 #else
             //if(++CNTflush >= 200)   /* 冲水2s */
@@ -191,8 +191,8 @@ void FlushCon(void)
         case FLUSH_BIG_2:
             f_STSflush = SET;
             POairPump = OFF;        /* 关气泵，停止冲水 */
-            POmainValue = SET;      /* 大冲先关气泵停止冲水，后关主阀 */    /* 冲水通道2 */
-            POdirectValue = SET;
+            POmainValue = ON;      /* 大冲先关气泵停止冲水，后关主阀 */    /* 冲水通道2 */
+            POdirectValue = ON;
             if(++CNTflush >= 10)
             {
                 CNTflush = 0;
@@ -231,7 +231,7 @@ void FlushCon(void)
             if(++CNTflush >= 5)
             {
                 CNTflush = 0;
-                SEQflsuh = FLUSH_END_0;
+                SEQflsuh = FLUSH_END_1;
             }
             break;
 
@@ -239,10 +239,11 @@ void FlushCon(void)
             f_STSflush = SET;
             POairPump = OFF;        /* 停止冲水 */
             POmainValue = OFF;      /* 返回通道1 */
-            POdirectValue = OFF;
-            if(++CNTflush >= 5)
+             POdirectValue = ON;        
+            if(++CNTflush >= 200)
             {
                 CNTflush = 0;
+               
                 SEQflsuh = FLUSH_END_1;
             }
             break;

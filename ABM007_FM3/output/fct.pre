@@ -1,5 +1,5 @@
 
-# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c"
+# 1 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
 
 # 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h"
+# 25 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,13 +624,13 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light_user.h"
+# 4 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light_user.h"
 extern BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush_user.h"
+# 4 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush_user.h"
 extern BYTE Fflush1;
 
 # 12
@@ -650,13 +650,13 @@ FLUSH_END_2,
 };
 extern void GflushLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor_user.h"
+# 4 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor_user.h"
 extern BYTE Fbodysensor;
 
 # 25
 extern void GsensorLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct_user.h"
+# 4 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct_user.h"
 extern BYTE fctBits001;
 
 
@@ -664,14 +664,14 @@ extern BYTE fctBits001;
 
 extern void FCTloop(void);
 
-# 9 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_user.h"
+# 9 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key_user.h"
 uint8_t GkeyLoop();
 
-# 12 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_case.h"
+# 12 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\cfg_case.h"
 extern void Delay(unsigned int dtemp);
 extern void Delay_nms(unsigned int inittempl);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c"
+# 4 "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
 BYTE fctBits001;
 
 
