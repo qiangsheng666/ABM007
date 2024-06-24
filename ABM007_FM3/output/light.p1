@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"14 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light.c
+"14 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c
 [v _LED_Time `(v ~T0 @X0 0 ef ]
 "11
 [v _LED_Key `(v ~T0 @X0 0 ef ]
@@ -13,14 +13,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LED_Judge `(v ~T0 @X0 0 ef ]
 "13
 [v _LED_Con `(v ~T0 @X0 0 ef ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor_user.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor_user.h
 [v _Fbodysensor `S2 ~T0 @X0 0 e ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct_user.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
 [v _fctBits001 `S2 ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
-"16 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+"16 D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
 [v _INDF `Vuc ~T0 @X0 1 e@0 ]
 [; ;cms79f13x.h: 16: volatile unsigned char INDF @ 0x00;
 "17
@@ -1375,7 +1375,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1394,22 +1394,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush_user.h: 16: FLUSH_BIG_0,
 [; ;flush_user.h: 17: FLUSH_BIG_1,
 [; ;flush_user.h: 18: FLUSH_BIG_2,
-[; ;flush_user.h: 19: FLUSH_SML_0,
-[; ;flush_user.h: 20: FLUSH_SML_1,
-[; ;flush_user.h: 21: FLUSH_SML_2,
-[; ;flush_user.h: 22: FLUSH_END_0,
-[; ;flush_user.h: 23: FLUSH_END_1,
-[; ;flush_user.h: 24: FLUSH_END_2,
-[; ;flush_user.h: 25: };
-[; ;flush_user.h: 26: extern void GflushLoop(void);
+[; ;flush_user.h: 19: FLUSH_BIG_3,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
+[v _My_test_time `ui ~T0 @X0 1 e ]
+[i _My_test_time
+-> -> 100 `i `ui
+]
+[; ;fct_user.h: 9: uint16_t My_test_time = 100;
+"10
+[v _My_test_cnt `ui ~T0 @X0 1 e ]
+[; ;fct_user.h: 10: uint16_t My_test_cnt;
+[; ;fct_user.h: 12: extern void FCTloop(void);
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c
 [v _FledBits01 `S2 ~T0 @X0 1 e ]
 [; ;light.c: 4: BYTE FledBits01;
 "6
@@ -1561,6 +1571,354 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;light.c: 86: RA5 = FledBits01.bits.bit_0;
 "86
 [e = _RA5 -> . . _FledBits01 1 0 `b ]
+[; ;light.c: 88: if (FledBits01.bits.bit_0 == 1)
+"88
+[e $ ! == -> . . _FledBits01 1 0 `i -> 1 `i 13  ]
+[; ;light.c: 89: {
+"89
+{
+[; ;light.c: 90: if (FledBits01.bits.bit_3 == 0)
+"90
+[e $ ! == -> . . _FledBits01 1 3 `i -> 0 `i 14  ]
+[; ;light.c: 91: {
+"91
+{
+[; ;light.c: 92: if (CNTbreath_Led2 >= 80)
+"92
+[e $ ! >= _CNTbreath_Led2 -> -> 80 `i `ui 15  ]
+[; ;light.c: 93: {
+"93
+{
+[; ;light.c: 94: CNTbreath_Led2 = 80;
+"94
+[e = _CNTbreath_Led2 -> -> 80 `i `ui ]
+[; ;light.c: 95: if (++CNTbreath_Led3 > 10)
+"95
+[e $ ! > =+ _CNTbreath_Led3 -> -> 1 `i `ui -> -> 10 `i `ui 16  ]
+[; ;light.c: 96: {
+"96
+{
+[; ;light.c: 97: FledBits01.bits.bit_3 = 1;
+"97
+[e = . . _FledBits01 1 3 -> -> 1 `i `uc ]
+[; ;light.c: 98: CNTbreath_Led3 = 0;
+"98
+[e = _CNTbreath_Led3 -> -> 0 `i `ui ]
+"99
+}
+[e :U 16 ]
+"100
+}
+[; ;light.c: 99: }
+[; ;light.c: 100: }
+[e $U 17  ]
+"101
+[e :U 15 ]
+[; ;light.c: 101: else if (CNTbreath_Led2 > 45)
+[e $ ! > _CNTbreath_Led2 -> -> 45 `i `ui 18  ]
+[; ;light.c: 102: {
+"102
+{
+[; ;light.c: 103: if (++CNTbreath_Led1 >= 3)
+"103
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 3 `i `ui 19  ]
+[; ;light.c: 104: {
+"104
+{
+[; ;light.c: 105: CNTbreath_Led1 = 0;
+"105
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 106: CNTbreath_Led2++;
+"106
+[e ++ _CNTbreath_Led2 -> -> 1 `i `ui ]
+"107
+}
+[e :U 19 ]
+"108
+}
+[; ;light.c: 107: }
+[; ;light.c: 108: }
+[e $U 20  ]
+"109
+[e :U 18 ]
+[; ;light.c: 109: else if (CNTbreath_Led2 > 30)
+[e $ ! > _CNTbreath_Led2 -> -> 30 `i `ui 21  ]
+[; ;light.c: 110: {
+"110
+{
+[; ;light.c: 111: if (++CNTbreath_Led1 >= 8)
+"111
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 8 `i `ui 22  ]
+[; ;light.c: 112: {
+"112
+{
+[; ;light.c: 113: CNTbreath_Led1 = 0;
+"113
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 114: CNTbreath_Led2++;
+"114
+[e ++ _CNTbreath_Led2 -> -> 1 `i `ui ]
+"115
+}
+[e :U 22 ]
+"116
+}
+[; ;light.c: 115: }
+[; ;light.c: 116: }
+[e $U 23  ]
+"117
+[e :U 21 ]
+[; ;light.c: 117: else if (CNTbreath_Led2 > 10)
+[e $ ! > _CNTbreath_Led2 -> -> 10 `i `ui 24  ]
+[; ;light.c: 118: {
+"118
+{
+[; ;light.c: 119: if (++CNTbreath_Led1 >= 5)
+"119
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 5 `i `ui 25  ]
+[; ;light.c: 120: {
+"120
+{
+[; ;light.c: 121: CNTbreath_Led1 = 0;
+"121
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 122: CNTbreath_Led2++;
+"122
+[e ++ _CNTbreath_Led2 -> -> 1 `i `ui ]
+"123
+}
+[e :U 25 ]
+"124
+}
+[; ;light.c: 123: }
+[; ;light.c: 124: }
+[e $U 26  ]
+"125
+[e :U 24 ]
+[; ;light.c: 125: else
+[; ;light.c: 126: {
+"126
+{
+[; ;light.c: 127: if (++CNTbreath_Led1 >= 11)
+"127
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 11 `i `ui 27  ]
+[; ;light.c: 128: {
+"128
+{
+[; ;light.c: 129: CNTbreath_Led1 = 0;
+"129
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 130: CNTbreath_Led2++;
+"130
+[e ++ _CNTbreath_Led2 -> -> 1 `i `ui ]
+"131
+}
+[e :U 27 ]
+"132
+}
+[e :U 26 ]
+[e :U 23 ]
+[e :U 20 ]
+[e :U 17 ]
+"133
+}
+[; ;light.c: 131: }
+[; ;light.c: 132: }
+[; ;light.c: 133: }
+[e $U 28  ]
+"134
+[e :U 14 ]
+[; ;light.c: 134: else
+[; ;light.c: 135: {
+"135
+{
+[; ;light.c: 136: if (CNTbreath_Led2 < 5)
+"136
+[e $ ! < _CNTbreath_Led2 -> -> 5 `i `ui 29  ]
+[; ;light.c: 137: {
+"137
+{
+[; ;light.c: 138: CNTbreath_Led2 = 5;
+"138
+[e = _CNTbreath_Led2 -> -> 5 `i `ui ]
+[; ;light.c: 139: FledBits01.bits.bit_3 = 0;
+"139
+[e = . . _FledBits01 1 3 -> -> 0 `i `uc ]
+"140
+}
+[; ;light.c: 140: }
+[e $U 30  ]
+"141
+[e :U 29 ]
+[; ;light.c: 141: else if (CNTbreath_Led2 < 10)
+[e $ ! < _CNTbreath_Led2 -> -> 10 `i `ui 31  ]
+[; ;light.c: 142: {
+"142
+{
+[; ;light.c: 143: if (++CNTbreath_Led1 >= 6)
+"143
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 6 `i `ui 32  ]
+[; ;light.c: 144: {
+"144
+{
+[; ;light.c: 145: CNTbreath_Led1 = 0;
+"145
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 146: CNTbreath_Led2--;
+"146
+[e -- _CNTbreath_Led2 -> -> 1 `i `ui ]
+"147
+}
+[e :U 32 ]
+"148
+}
+[; ;light.c: 147: }
+[; ;light.c: 148: }
+[e $U 33  ]
+"149
+[e :U 31 ]
+[; ;light.c: 149: else if (CNTbreath_Led2 < 30)
+[e $ ! < _CNTbreath_Led2 -> -> 30 `i `ui 34  ]
+[; ;light.c: 150: {
+"150
+{
+[; ;light.c: 151: if (++CNTbreath_Led1 >= 6)
+"151
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 6 `i `ui 35  ]
+[; ;light.c: 152: {
+"152
+{
+[; ;light.c: 153: CNTbreath_Led1 = 0;
+"153
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 154: CNTbreath_Led2--;
+"154
+[e -- _CNTbreath_Led2 -> -> 1 `i `ui ]
+"155
+}
+[e :U 35 ]
+"156
+}
+[; ;light.c: 155: }
+[; ;light.c: 156: }
+[e $U 36  ]
+"157
+[e :U 34 ]
+[; ;light.c: 157: else if (CNTbreath_Led2 < 40)
+[e $ ! < _CNTbreath_Led2 -> -> 40 `i `ui 37  ]
+[; ;light.c: 158: {
+"158
+{
+[; ;light.c: 159: if (++CNTbreath_Led1 >= 8)
+"159
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 8 `i `ui 38  ]
+[; ;light.c: 160: {
+"160
+{
+[; ;light.c: 161: CNTbreath_Led1 = 0;
+"161
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 162: CNTbreath_Led2--;
+"162
+[e -- _CNTbreath_Led2 -> -> 1 `i `ui ]
+"163
+}
+[e :U 38 ]
+"164
+}
+[; ;light.c: 163: }
+[; ;light.c: 164: }
+[e $U 39  ]
+"165
+[e :U 37 ]
+[; ;light.c: 165: else if (CNTbreath_Led2 < 60)
+[e $ ! < _CNTbreath_Led2 -> -> 60 `i `ui 40  ]
+[; ;light.c: 166: {
+"166
+{
+[; ;light.c: 167: if (++CNTbreath_Led1 >= 4)
+"167
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 4 `i `ui 41  ]
+[; ;light.c: 168: {
+"168
+{
+[; ;light.c: 169: CNTbreath_Led1 = 0;
+"169
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 170: CNTbreath_Led2--;
+"170
+[e -- _CNTbreath_Led2 -> -> 1 `i `ui ]
+"171
+}
+[e :U 41 ]
+"172
+}
+[; ;light.c: 171: }
+[; ;light.c: 172: }
+[e $U 42  ]
+"173
+[e :U 40 ]
+[; ;light.c: 173: else
+[; ;light.c: 174: {
+"174
+{
+[; ;light.c: 175: if (++CNTbreath_Led1 >= 3)
+"175
+[e $ ! >= =+ _CNTbreath_Led1 -> -> 1 `i `ui -> -> 3 `i `ui 43  ]
+[; ;light.c: 176: {
+"176
+{
+[; ;light.c: 177: CNTbreath_Led1 = 0;
+"177
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 178: CNTbreath_Led2--;
+"178
+[e -- _CNTbreath_Led2 -> -> 1 `i `ui ]
+"179
+}
+[e :U 43 ]
+"180
+}
+[e :U 42 ]
+[e :U 39 ]
+[e :U 36 ]
+[e :U 33 ]
+[e :U 30 ]
+"181
+}
+[e :U 28 ]
+"182
+}
+[; ;light.c: 179: }
+[; ;light.c: 180: }
+[; ;light.c: 181: }
+[; ;light.c: 182: }
+[e $U 44  ]
+"183
+[e :U 13 ]
+[; ;light.c: 183: else
+[; ;light.c: 184: {
+"184
+{
+[; ;light.c: 185: CNTbreath_Led1 = 0;
+"185
+[e = _CNTbreath_Led1 -> -> 0 `i `ui ]
+[; ;light.c: 186: CNTbreath_Led2 = 0;
+"186
+[e = _CNTbreath_Led2 -> -> 0 `i `ui ]
+[; ;light.c: 187: CNTbreath_Led3 = 0;
+"187
+[e = _CNTbreath_Led3 -> -> 0 `i `ui ]
+[; ;light.c: 188: FledBits01.bits.bit_3 = 0;
+"188
+[e = . . _FledBits01 1 3 -> -> 0 `i `uc ]
+[; ;light.c: 189: RA5 = 0;
+"189
+[e = _RA5 -> -> 0 `i `b ]
+"190
+}
+[e :U 44 ]
+[; ;light.c: 190: }
 [; ;light.c: 191: }
 "191
 [e :UE 12 ]
@@ -1575,13 +1933,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;light.c: 196: if((FledBits01.bits.bit_0 == 1) && (fctBits001.bits.bit_0 == 0))
 "196
-[e $ ! && == -> . . _FledBits01 1 0 `i -> 1 `i == -> . . _fctBits001 1 0 `i -> 0 `i 14  ]
+[e $ ! && == -> . . _FledBits01 1 0 `i -> 1 `i == -> . . _fctBits001 1 0 `i -> 0 `i 46  ]
 [; ;light.c: 197: {
 "197
 {
 [; ;light.c: 198: if (++CNTbreath_Led == 80)
 "198
-[e $ ! == =+ _CNTbreath_Led -> -> 1 `i `ui -> -> 80 `i `ui 15  ]
+[e $ ! == =+ _CNTbreath_Led -> -> 1 `i `ui -> -> 80 `i `ui 47  ]
 [; ;light.c: 199: {
 "199
 {
@@ -1593,11 +1951,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA5 -> -> 0 `i `b ]
 "202
 }
-[e :U 15 ]
+[e :U 47 ]
 [; ;light.c: 202: }
 [; ;light.c: 203: if (CNTbreath_Led >= CNTbreath_Led2)
 "203
-[e $ ! >= _CNTbreath_Led _CNTbreath_Led2 16  ]
+[e $ ! >= _CNTbreath_Led _CNTbreath_Led2 48  ]
 [; ;light.c: 204: {
 "204
 {
@@ -1607,9 +1965,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "206
 }
 [; ;light.c: 206: }
-[e $U 17  ]
+[e $U 49  ]
 "207
-[e :U 16 ]
+[e :U 48 ]
 [; ;light.c: 207: else
 [; ;light.c: 208: {
 "208
@@ -1619,13 +1977,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _RA5 -> -> 0 `i `b ]
 "210
 }
-[e :U 17 ]
+[e :U 49 ]
 "211
 }
-[e :U 14 ]
+[e :U 46 ]
 [; ;light.c: 210: }
 [; ;light.c: 211: }
 [; ;light.c: 212: }
 "212
-[e :UE 13 ]
+[e :UE 45 ]
 }

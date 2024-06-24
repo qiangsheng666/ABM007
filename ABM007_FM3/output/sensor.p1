@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"14 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor.c
+"14 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c
 [v _SensorKey `(v ~T0 @X0 0 ef ]
 "15
 [v _SensorTime `(v ~T0 @X0 0 ef ]
@@ -13,12 +13,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SensorJudge `(v ~T0 @X0 0 ef ]
 "17
 [v _SensorControl `(v ~T0 @X0 0 ef ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light_user.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light_user.h
 [v _FledBits01 `S2 ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
-"16 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+"16 D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
 [v _INDF `Vuc ~T0 @X0 1 e@0 ]
 [; ;cms79f13x.h: 16: volatile unsigned char INDF @ 0x00;
 "17
@@ -1373,7 +1373,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1392,22 +1392,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush_user.h: 16: FLUSH_BIG_0,
 [; ;flush_user.h: 17: FLUSH_BIG_1,
 [; ;flush_user.h: 18: FLUSH_BIG_2,
-[; ;flush_user.h: 19: FLUSH_SML_0,
-[; ;flush_user.h: 20: FLUSH_SML_1,
-[; ;flush_user.h: 21: FLUSH_SML_2,
-[; ;flush_user.h: 22: FLUSH_END_0,
-[; ;flush_user.h: 23: FLUSH_END_1,
-[; ;flush_user.h: 24: FLUSH_END_2,
-[; ;flush_user.h: 25: };
-[; ;flush_user.h: 26: extern void GflushLoop(void);
+[; ;flush_user.h: 19: FLUSH_BIG_3,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
+[v _My_test_time `ui ~T0 @X0 1 e ]
+[i _My_test_time
+-> -> 100 `i `ui
+]
+[; ;fct_user.h: 9: uint16_t My_test_time = 100;
+"10
+[v _My_test_cnt `ui ~T0 @X0 1 e ]
+[; ;fct_user.h: 10: uint16_t My_test_cnt;
+[; ;fct_user.h: 12: extern void FCTloop(void);
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c
 [v _Fbodysensor `S2 ~T0 @X0 1 e ]
 [; ;sensor.c: 4: BYTE Fbodysensor;
 "6

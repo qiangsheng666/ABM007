@@ -99,8 +99,6 @@ void FlushJudge(void)
         }
 		return;
 	}
-	/*	自动冲水判断	*/
-	/******************************************/
 }
 
 /* 主阀气泵控制函数 */
@@ -124,7 +122,7 @@ void FlushCon(void)
             POairPump = OFF;
             POmainValue = OFF;
             POdirectValue = OFF;
-            if(Fbody == SET)        /* 检测到有人，流程跳到结束阶段 */
+            if(Fbody == SET)      
             {
                 SEQflsuh = FLUSH_END_0;
                 CNTflush = 0;
@@ -138,10 +136,10 @@ void FlushCon(void)
             break;
         case FLUSH_INIT_2:
             f_STSflush = SET;
-            POairPump = OFF;        /* 冲水关闭 */
-            POmainValue = OFF;      /* 冲水通道1  默认冲水通道,先假设无默认尝试*/ 
+            POairPump = OFF;       
+            POmainValue = OFF;      
             POdirectValue = OFF;
-            if(Fbody == SET)        /* 检测到有人，流程跳到结束阶段 */
+            if(Fbody == SET)        
             {
                 SEQflsuh = FLUSH_END_0;
                 CNTflush = 0;
@@ -157,12 +155,12 @@ void FlushCon(void)
                 SEQflsuh = FLUSH_SML_0;
             }
             break;
-        case FLUSH_BIG_0:   /* 大冲阶段 */
+        case FLUSH_BIG_0:   
             f_STSflush = SET;
-            POairPump = OFF;        /* 大冲先开电磁阀换大冲，后开气泵冲水 */
-            POmainValue = ON;            /* 大冲*/
+            POairPump = OFF;       
+            POmainValue = ON;           
             POdirectValue = ON;
-            if(++CNTflush >= 10)    /* 延迟100ms后打开气泵冲水 */
+            if(++CNTflush >= 10)   
             {
                 CNTflush = 0;
                 SEQflsuh = FLUSH_BIG_1;
@@ -174,14 +172,14 @@ void FlushCon(void)
             POmainValue = ON;
             POdirectValue = ON;
 #if ABM007_FLUSH_2
-            if(++CNTflush >= 100)   /* 冲水1s */
+            if(++CNTflush >= 100)  
             {
                 CNTflush = 0;
                 SEQflsuh = FLUSH_BIG_2;
             }
 #else
-            //if(++CNTflush >= 200)   /* 冲水2s */
-            if(++CNTflush >= 100)   /* 冲水1s */
+            //if(++CNTflush >= 200)   
+            if(++CNTflush >= 100) 
             {
                 CNTflush = 0;
                 SEQflsuh = FLUSH_BIG_2;
@@ -190,20 +188,30 @@ void FlushCon(void)
             break;
         case FLUSH_BIG_2:
             f_STSflush = SET;
-            POairPump = OFF;        /* 关气泵，停止冲水 */
-            POmainValue = SET;      /* 大冲先关气泵停止冲水，后关主阀 */    /* 冲水通道2 */
-            POdirectValue = SET;
+            POairPump = OFF;       
+            POmainValue = ON;       
+            POdirectValue = ON;
             if(++CNTflush >= 10)
+            {
+                CNTflush = 0;
+                SEQflsuh = FLUSH_BIG_3;
+            }
+            break;
+        case FLUSH_BIG_3:
+            f_STSflush = SET;
+            POairPump = OFF;    
+            POmainValue = OFF;    
+            POdirectValue = ON;
+            if(++CNTflush >= 200)  
             {
                 CNTflush = 0;
                 SEQflsuh = FLUSH_END_0;
             }
             break;
-
-        case FLUSH_SML_0:           /* 小冲阶段 */
+        case FLUSH_SML_0:         
             f_STSflush = SET;
-            POairPump = OFF;        /* 小冲先开主阀阀换小冲，后开气泵冲水 */
-            POmainValue = ON;      /* 冲水通道1 */
+            POairPump = OFF;      
+            POmainValue = ON;      
             POdirectValue = OFF;
             if(++CNTflush >= 5)
             {
@@ -213,8 +221,8 @@ void FlushCon(void)
             break;
         case FLUSH_SML_1:
             f_STSflush = SET;
-            POairPump = ON;         /* 冲水 */
-            POmainValue = ON;      /* 冲水通道1 */
+            POairPump = ON;         
+            POmainValue = ON;    
             POdirectValue = OFF;
             // if(++CNTflush >= 200)
             if(++CNTflush >= 100)
@@ -225,8 +233,8 @@ void FlushCon(void)
             break;
         case FLUSH_SML_2:
             f_STSflush = SET;
-            POairPump = OFF;        /* 关气泵，停止冲水 */
-            POmainValue = ON;      /* 冲水通道1 */
+            POairPump = OFF;       
+            POmainValue = ON;     
             POdirectValue = OFF;
             if(++CNTflush >= 5)
             {
@@ -237,8 +245,8 @@ void FlushCon(void)
 
         case FLUSH_END_0:
             f_STSflush = SET;
-            POairPump = OFF;        /* 停止冲水 */
-            POmainValue = OFF;      /* 返回通道1 */
+            POairPump = OFF;        
+            POmainValue = OFF;   
             POdirectValue = OFF;
             if(++CNTflush >= 5)
             {

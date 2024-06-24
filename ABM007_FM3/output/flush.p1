@@ -1,27 +1,27 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"11 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush.c
+"11 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c
 [v _FlushTime `(v ~T0 @X0 0 ef ]
 "12
 [v _FlushJudge `(v ~T0 @X0 0 ef ]
 "13
 [v _FlushCon `(v ~T0 @X0 0 ef ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor_user.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor_user.h
 [v _Fbodysensor `S2 ~T0 @X0 0 e ]
-"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_user.h
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key_user.h
 [v _GkeyLoop `(uc ~T0 @X0 0 ef ]
-"118 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush.c
-[c E849 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
-[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
+"116 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c
+[c E849 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
+[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_BIG_3 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
-"16 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+"16 D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
 [v _INDF `Vuc ~T0 @X0 1 e@0 ]
 [; ;cms79f13x.h: 16: volatile unsigned char INDF @ 0x00;
 "17
@@ -1376,7 +1376,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1395,22 +1395,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush_user.h: 16: FLUSH_BIG_0,
 [; ;flush_user.h: 17: FLUSH_BIG_1,
 [; ;flush_user.h: 18: FLUSH_BIG_2,
-[; ;flush_user.h: 19: FLUSH_SML_0,
-[; ;flush_user.h: 20: FLUSH_SML_1,
-[; ;flush_user.h: 21: FLUSH_SML_2,
-[; ;flush_user.h: 22: FLUSH_END_0,
-[; ;flush_user.h: 23: FLUSH_END_1,
-[; ;flush_user.h: 24: FLUSH_END_2,
-[; ;flush_user.h: 25: };
-[; ;flush_user.h: 26: extern void GflushLoop(void);
+[; ;flush_user.h: 19: FLUSH_BIG_3,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
+[v _My_test_time `ui ~T0 @X0 1 e ]
+[i _My_test_time
+-> -> 100 `i `ui
+]
+[; ;fct_user.h: 9: uint16_t My_test_time = 100;
+"10
+[v _My_test_cnt `ui ~T0 @X0 1 e ]
+[; ;fct_user.h: 10: uint16_t My_test_cnt;
+[; ;fct_user.h: 12: extern void FCTloop(void);
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c
 [v _Fflush1 `S2 ~T0 @X0 1 e ]
 [; ;flush.c: 4: BYTE Fflush1;
 "8
@@ -1654,479 +1664,513 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 15 ]
 [; ;flush.c: 101: }
-[; ;flush.c: 104: }
-"104
+[; ;flush.c: 102: }
+"102
 [e :UE 5 ]
 }
-"107
+"105
 [v _FlushCon `(v ~T0 @X0 1 ef ]
-"108
+"106
 {
-[; ;flush.c: 107: void FlushCon(void)
-[; ;flush.c: 108: {
+[; ;flush.c: 105: void FlushCon(void)
+[; ;flush.c: 106: {
 [e :U _FlushCon ]
 [f ]
-[; ;flush.c: 109: switch (SEQflsuh)
-"109
+[; ;flush.c: 107: switch (SEQflsuh)
+"107
 [e $U 21  ]
-[; ;flush.c: 110: {
-"110
+[; ;flush.c: 108: {
+"108
 {
-[; ;flush.c: 111: case FLUSH_INIT_0:
-"111
+[; ;flush.c: 109: case FLUSH_INIT_0:
+"109
 [e :U 22 ]
-[; ;flush.c: 112: Fflush1.bits.bit_6 = 0;
-"112
+[; ;flush.c: 110: Fflush1.bits.bit_6 = 0;
+"110
 [e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
-[; ;flush.c: 113: RA2 = 0;
-"113
+[; ;flush.c: 111: RA2 = 0;
+"111
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 114: RA4 = 0;
-"114
+[; ;flush.c: 112: RA4 = 0;
+"112
 [e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 115: RA1 = 0;
-"115
+[; ;flush.c: 113: RA1 = 0;
+"113
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 116: if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
-"116
+[; ;flush.c: 114: if((Fflush1.bits.bit_1 == 1) || (Fflush1.bits.bit_3 == 1))
+"114
 [e $ ! || == -> . . _Fflush1 1 1 `i -> 1 `i == -> . . _Fflush1 1 3 `i -> 1 `i 23  ]
-[; ;flush.c: 117: {
-"117
+[; ;flush.c: 115: {
+"115
 {
-[; ;flush.c: 118: SEQflsuh = FLUSH_INIT_1;
-"118
+[; ;flush.c: 116: SEQflsuh = FLUSH_INIT_1;
+"116
 [e = _SEQflsuh -> . `E849 1 `uc ]
-[; ;flush.c: 119: CNTflush = 0;
-"119
+[; ;flush.c: 117: CNTflush = 0;
+"117
 [e = _CNTflush -> -> 0 `i `ui ]
-"120
+"118
 }
 [e :U 23 ]
-[; ;flush.c: 120: }
-[; ;flush.c: 121: break;
-"121
+[; ;flush.c: 118: }
+[; ;flush.c: 119: break;
+"119
 [e $U 20  ]
-[; ;flush.c: 122: case FLUSH_INIT_1:
-"122
+[; ;flush.c: 120: case FLUSH_INIT_1:
+"120
 [e :U 24 ]
-[; ;flush.c: 123: Fflush1.bits.bit_6 = 1;
-"123
+[; ;flush.c: 121: Fflush1.bits.bit_6 = 1;
+"121
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 124: RA2 = 0;
-"124
+[; ;flush.c: 122: RA2 = 0;
+"122
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 125: RA4 = 0;
-"125
+[; ;flush.c: 123: RA4 = 0;
+"123
 [e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 126: RA1 = 0;
-"126
+[; ;flush.c: 124: RA1 = 0;
+"124
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 127: if(Fbodysensor.bits.bit_0 == 1)
-"127
+[; ;flush.c: 125: if(Fbodysensor.bits.bit_0 == 1)
+"125
 [e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 25  ]
-[; ;flush.c: 128: {
-"128
+[; ;flush.c: 126: {
+"126
 {
-[; ;flush.c: 129: SEQflsuh = FLUSH_END_0;
-"129
-[e = _SEQflsuh -> . `E849 9 `uc ]
-[; ;flush.c: 130: CNTflush = 0;
-"130
+[; ;flush.c: 127: SEQflsuh = FLUSH_END_0;
+"127
+[e = _SEQflsuh -> . `E849 10 `uc ]
+[; ;flush.c: 128: CNTflush = 0;
+"128
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 131: break;
-"131
+[; ;flush.c: 129: break;
+"129
 [e $U 20  ]
-"132
+"130
 }
 [e :U 25 ]
-[; ;flush.c: 132: }
-[; ;flush.c: 133: if(++CNTflush >= 5)
-"133
+[; ;flush.c: 130: }
+[; ;flush.c: 131: if(++CNTflush >= 5)
+"131
 [e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 26  ]
-[; ;flush.c: 134: {
-"134
+[; ;flush.c: 132: {
+"132
 {
-[; ;flush.c: 135: CNTflush = 0;
-"135
+[; ;flush.c: 133: CNTflush = 0;
+"133
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 136: SEQflsuh = FLUSH_INIT_2;
-"136
+[; ;flush.c: 134: SEQflsuh = FLUSH_INIT_2;
+"134
 [e = _SEQflsuh -> . `E849 2 `uc ]
-"137
+"135
 }
 [e :U 26 ]
-[; ;flush.c: 137: }
-[; ;flush.c: 138: break;
-"138
+[; ;flush.c: 135: }
+[; ;flush.c: 136: break;
+"136
 [e $U 20  ]
-[; ;flush.c: 139: case FLUSH_INIT_2:
-"139
+[; ;flush.c: 137: case FLUSH_INIT_2:
+"137
 [e :U 27 ]
-[; ;flush.c: 140: Fflush1.bits.bit_6 = 1;
-"140
+[; ;flush.c: 138: Fflush1.bits.bit_6 = 1;
+"138
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 141: RA2 = 0;
-"141
+[; ;flush.c: 139: RA2 = 0;
+"139
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 142: RA4 = 0;
-"142
+[; ;flush.c: 140: RA4 = 0;
+"140
 [e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 143: RA1 = 0;
-"143
+[; ;flush.c: 141: RA1 = 0;
+"141
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 144: if(Fbodysensor.bits.bit_0 == 1)
-"144
+[; ;flush.c: 142: if(Fbodysensor.bits.bit_0 == 1)
+"142
 [e $ ! == -> . . _Fbodysensor 1 0 `i -> 1 `i 28  ]
-[; ;flush.c: 145: {
-"145
+[; ;flush.c: 143: {
+"143
 {
-[; ;flush.c: 146: SEQflsuh = FLUSH_END_0;
-"146
-[e = _SEQflsuh -> . `E849 9 `uc ]
-[; ;flush.c: 147: CNTflush = 0;
-"147
+[; ;flush.c: 144: SEQflsuh = FLUSH_END_0;
+"144
+[e = _SEQflsuh -> . `E849 10 `uc ]
+[; ;flush.c: 145: CNTflush = 0;
+"145
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 148: break;
-"148
+[; ;flush.c: 146: break;
+"146
 [e $U 20  ]
-"149
+"147
 }
 [e :U 28 ]
-[; ;flush.c: 149: }
-[; ;flush.c: 151: if(Fflush1.bits.bit_1 == 1)
-"151
+[; ;flush.c: 147: }
+[; ;flush.c: 149: if(Fflush1.bits.bit_1 == 1)
+"149
 [e $ ! == -> . . _Fflush1 1 1 `i -> 1 `i 29  ]
-[; ;flush.c: 152: {
-"152
+[; ;flush.c: 150: {
+"150
 {
-[; ;flush.c: 153: SEQflsuh = FLUSH_BIG_0;
-"153
+[; ;flush.c: 151: SEQflsuh = FLUSH_BIG_0;
+"151
 [e = _SEQflsuh -> . `E849 3 `uc ]
-"154
+"152
 }
-[; ;flush.c: 154: }
+[; ;flush.c: 152: }
 [e $U 30  ]
-"155
+"153
 [e :U 29 ]
-[; ;flush.c: 155: else if(Fflush1.bits.bit_3 == 1)
+[; ;flush.c: 153: else if(Fflush1.bits.bit_3 == 1)
 [e $ ! == -> . . _Fflush1 1 3 `i -> 1 `i 31  ]
-[; ;flush.c: 156: {
-"156
+[; ;flush.c: 154: {
+"154
 {
-[; ;flush.c: 157: SEQflsuh = FLUSH_SML_0;
-"157
-[e = _SEQflsuh -> . `E849 6 `uc ]
-"158
+[; ;flush.c: 155: SEQflsuh = FLUSH_SML_0;
+"155
+[e = _SEQflsuh -> . `E849 7 `uc ]
+"156
 }
 [e :U 31 ]
-"159
+"157
 [e :U 30 ]
-[; ;flush.c: 158: }
-[; ;flush.c: 159: break;
+[; ;flush.c: 156: }
+[; ;flush.c: 157: break;
 [e $U 20  ]
-[; ;flush.c: 160: case FLUSH_BIG_0:
-"160
+[; ;flush.c: 158: case FLUSH_BIG_0:
+"158
 [e :U 32 ]
-[; ;flush.c: 161: Fflush1.bits.bit_6 = 1;
-"161
+[; ;flush.c: 159: Fflush1.bits.bit_6 = 1;
+"159
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 162: RA2 = 0;
-"162
+[; ;flush.c: 160: RA2 = 0;
+"160
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 163: RA4 = 1;
-"163
+[; ;flush.c: 161: RA4 = 1;
+"161
 [e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 164: RA1 = 1;
-"164
+[; ;flush.c: 162: RA1 = 1;
+"162
 [e = _RA1 -> -> 1 `i `b ]
-[; ;flush.c: 165: if(++CNTflush >= 10)
-"165
+[; ;flush.c: 163: if(++CNTflush >= 10)
+"163
 [e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 33  ]
-[; ;flush.c: 166: {
-"166
+[; ;flush.c: 164: {
+"164
 {
-[; ;flush.c: 167: CNTflush = 0;
-"167
+[; ;flush.c: 165: CNTflush = 0;
+"165
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 168: SEQflsuh = FLUSH_BIG_1;
-"168
+[; ;flush.c: 166: SEQflsuh = FLUSH_BIG_1;
+"166
 [e = _SEQflsuh -> . `E849 4 `uc ]
-"169
+"167
 }
 [e :U 33 ]
-[; ;flush.c: 169: }
-[; ;flush.c: 170: break;
-"170
+[; ;flush.c: 167: }
+[; ;flush.c: 168: break;
+"168
 [e $U 20  ]
-[; ;flush.c: 171: case FLUSH_BIG_1:
-"171
+[; ;flush.c: 169: case FLUSH_BIG_1:
+"169
 [e :U 34 ]
-[; ;flush.c: 172: Fflush1.bits.bit_6 = 1;
-"172
+[; ;flush.c: 170: Fflush1.bits.bit_6 = 1;
+"170
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 173: RA2 = 1;
-"173
+[; ;flush.c: 171: RA2 = 1;
+"171
 [e = _RA2 -> -> 1 `i `b ]
-[; ;flush.c: 174: RA4 = 1;
-"174
+[; ;flush.c: 172: RA4 = 1;
+"172
 [e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 175: RA1 = 1;
-"175
+[; ;flush.c: 173: RA1 = 1;
+"173
 [e = _RA1 -> -> 1 `i `b ]
-[; ;flush.c: 177: if(++CNTflush >= 100)
-"177
+[; ;flush.c: 175: if(++CNTflush >= 100)
+"175
 [e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 100 `i `ui 35  ]
-[; ;flush.c: 178: {
-"178
+[; ;flush.c: 176: {
+"176
 {
-[; ;flush.c: 179: CNTflush = 0;
-"179
+[; ;flush.c: 177: CNTflush = 0;
+"177
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 180: SEQflsuh = FLUSH_BIG_2;
-"180
+[; ;flush.c: 178: SEQflsuh = FLUSH_BIG_2;
+"178
 [e = _SEQflsuh -> . `E849 5 `uc ]
-"181
+"179
 }
 [e :U 35 ]
-[; ;flush.c: 181: }
-[; ;flush.c: 190: break;
-"190
+[; ;flush.c: 179: }
+[; ;flush.c: 188: break;
+"188
 [e $U 20  ]
-[; ;flush.c: 191: case FLUSH_BIG_2:
-"191
+[; ;flush.c: 189: case FLUSH_BIG_2:
+"189
 [e :U 36 ]
-[; ;flush.c: 192: Fflush1.bits.bit_6 = 1;
-"192
+[; ;flush.c: 190: Fflush1.bits.bit_6 = 1;
+"190
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 193: RA2 = 0;
-"193
+[; ;flush.c: 191: RA2 = 0;
+"191
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 194: RA4 = 1;
-"194
+[; ;flush.c: 192: RA4 = 1;
+"192
 [e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 195: RA1 = 1;
-"195
+[; ;flush.c: 193: RA1 = 1;
+"193
 [e = _RA1 -> -> 1 `i `b ]
-[; ;flush.c: 196: if(++CNTflush >= 10)
-"196
+[; ;flush.c: 194: if(++CNTflush >= 10)
+"194
 [e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 10 `i `ui 37  ]
-[; ;flush.c: 197: {
-"197
+[; ;flush.c: 195: {
+"195
 {
-[; ;flush.c: 198: CNTflush = 0;
-"198
+[; ;flush.c: 196: CNTflush = 0;
+"196
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 199: SEQflsuh = FLUSH_END_0;
-"199
-[e = _SEQflsuh -> . `E849 9 `uc ]
-"200
+[; ;flush.c: 197: SEQflsuh = FLUSH_BIG_3;
+"197
+[e = _SEQflsuh -> . `E849 6 `uc ]
+"198
 }
 [e :U 37 ]
-[; ;flush.c: 200: }
-[; ;flush.c: 201: break;
-"201
+[; ;flush.c: 198: }
+[; ;flush.c: 199: break;
+"199
 [e $U 20  ]
-[; ;flush.c: 203: case FLUSH_SML_0:
-"203
+[; ;flush.c: 200: case FLUSH_BIG_3:
+"200
 [e :U 38 ]
-[; ;flush.c: 204: Fflush1.bits.bit_6 = 1;
-"204
+[; ;flush.c: 201: Fflush1.bits.bit_6 = 1;
+"201
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 205: RA2 = 0;
-"205
+[; ;flush.c: 202: RA2 = 0;
+"202
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 206: RA4 = 1;
+[; ;flush.c: 203: RA4 = 0;
+"203
+[e = _RA4 -> -> 0 `i `b ]
+[; ;flush.c: 204: RA1 = 1;
+"204
+[e = _RA1 -> -> 1 `i `b ]
+[; ;flush.c: 205: if(++CNTflush >= 200)
+"205
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 200 `i `ui 39  ]
+[; ;flush.c: 206: {
 "206
-[e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 207: RA1 = 0;
-"207
-[e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 208: if(++CNTflush >= 5)
-"208
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 39  ]
-[; ;flush.c: 209: {
-"209
 {
-[; ;flush.c: 210: CNTflush = 0;
-"210
+[; ;flush.c: 207: CNTflush = 0;
+"207
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 211: SEQflsuh = FLUSH_SML_1;
-"211
-[e = _SEQflsuh -> . `E849 7 `uc ]
-"212
+[; ;flush.c: 208: SEQflsuh = FLUSH_END_0;
+"208
+[e = _SEQflsuh -> . `E849 10 `uc ]
+"209
 }
 [e :U 39 ]
-[; ;flush.c: 212: }
-[; ;flush.c: 213: break;
-"213
+[; ;flush.c: 209: }
+[; ;flush.c: 210: break;
+"210
 [e $U 20  ]
-[; ;flush.c: 214: case FLUSH_SML_1:
-"214
+[; ;flush.c: 211: case FLUSH_SML_0:
+"211
 [e :U 40 ]
-[; ;flush.c: 215: Fflush1.bits.bit_6 = 1;
-"215
+[; ;flush.c: 212: Fflush1.bits.bit_6 = 1;
+"212
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 216: RA2 = 1;
-"216
-[e = _RA2 -> -> 1 `i `b ]
-[; ;flush.c: 217: RA4 = 1;
-"217
+[; ;flush.c: 213: RA2 = 0;
+"213
+[e = _RA2 -> -> 0 `i `b ]
+[; ;flush.c: 214: RA4 = 1;
+"214
 [e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 218: RA1 = 0;
-"218
+[; ;flush.c: 215: RA1 = 0;
+"215
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 220: if(++CNTflush >= 100)
-"220
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 100 `i `ui 41  ]
-[; ;flush.c: 221: {
-"221
+[; ;flush.c: 216: if(++CNTflush >= 5)
+"216
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 41  ]
+[; ;flush.c: 217: {
+"217
 {
-[; ;flush.c: 222: CNTflush = 0;
-"222
+[; ;flush.c: 218: CNTflush = 0;
+"218
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 223: SEQflsuh = FLUSH_SML_2;
-"223
+[; ;flush.c: 219: SEQflsuh = FLUSH_SML_1;
+"219
 [e = _SEQflsuh -> . `E849 8 `uc ]
-"224
+"220
 }
 [e :U 41 ]
-[; ;flush.c: 224: }
-[; ;flush.c: 225: break;
-"225
+[; ;flush.c: 220: }
+[; ;flush.c: 221: break;
+"221
 [e $U 20  ]
-[; ;flush.c: 226: case FLUSH_SML_2:
-"226
+[; ;flush.c: 222: case FLUSH_SML_1:
+"222
 [e :U 42 ]
-[; ;flush.c: 227: Fflush1.bits.bit_6 = 1;
-"227
+[; ;flush.c: 223: Fflush1.bits.bit_6 = 1;
+"223
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 228: RA2 = 0;
-"228
-[e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 229: RA4 = 1;
-"229
+[; ;flush.c: 224: RA2 = 1;
+"224
+[e = _RA2 -> -> 1 `i `b ]
+[; ;flush.c: 225: RA4 = 1;
+"225
 [e = _RA4 -> -> 1 `i `b ]
-[; ;flush.c: 230: RA1 = 0;
-"230
+[; ;flush.c: 226: RA1 = 0;
+"226
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 231: if(++CNTflush >= 5)
-"231
-[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 43  ]
-[; ;flush.c: 232: {
-"232
+[; ;flush.c: 228: if(++CNTflush >= 100)
+"228
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 100 `i `ui 43  ]
+[; ;flush.c: 229: {
+"229
 {
-[; ;flush.c: 233: CNTflush = 0;
-"233
+[; ;flush.c: 230: CNTflush = 0;
+"230
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 234: SEQflsuh = FLUSH_END_0;
-"234
+[; ;flush.c: 231: SEQflsuh = FLUSH_SML_2;
+"231
 [e = _SEQflsuh -> . `E849 9 `uc ]
-"235
+"232
 }
 [e :U 43 ]
-[; ;flush.c: 235: }
-[; ;flush.c: 236: break;
-"236
+[; ;flush.c: 232: }
+[; ;flush.c: 233: break;
+"233
 [e $U 20  ]
-[; ;flush.c: 238: case FLUSH_END_0:
-"238
+[; ;flush.c: 234: case FLUSH_SML_2:
+"234
 [e :U 44 ]
-[; ;flush.c: 239: Fflush1.bits.bit_6 = 1;
-"239
+[; ;flush.c: 235: Fflush1.bits.bit_6 = 1;
+"235
 [e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
-[; ;flush.c: 240: RA2 = 0;
-"240
+[; ;flush.c: 236: RA2 = 0;
+"236
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 241: RA4 = 0;
-"241
-[e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 242: RA1 = 0;
-"242
+[; ;flush.c: 237: RA4 = 1;
+"237
+[e = _RA4 -> -> 1 `i `b ]
+[; ;flush.c: 238: RA1 = 0;
+"238
 [e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 243: if(++CNTflush >= 5)
-"243
+[; ;flush.c: 239: if(++CNTflush >= 5)
+"239
 [e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 45  ]
-[; ;flush.c: 244: {
-"244
+[; ;flush.c: 240: {
+"240
 {
-[; ;flush.c: 245: CNTflush = 0;
-"245
+[; ;flush.c: 241: CNTflush = 0;
+"241
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 246: SEQflsuh = FLUSH_END_1;
-"246
+[; ;flush.c: 242: SEQflsuh = FLUSH_END_0;
+"242
 [e = _SEQflsuh -> . `E849 10 `uc ]
-"247
+"243
 }
 [e :U 45 ]
-[; ;flush.c: 247: }
-[; ;flush.c: 248: break;
-"248
+[; ;flush.c: 243: }
+[; ;flush.c: 244: break;
+"244
 [e $U 20  ]
-[; ;flush.c: 249: case FLUSH_END_1:
-"249
+[; ;flush.c: 246: case FLUSH_END_0:
+"246
 [e :U 46 ]
-[; ;flush.c: 250: Fflush1.bits.bit_6 = 0;
+[; ;flush.c: 247: Fflush1.bits.bit_6 = 1;
+"247
+[e = . . _Fflush1 1 6 -> -> 1 `i `uc ]
+[; ;flush.c: 248: RA2 = 0;
+"248
+[e = _RA2 -> -> 0 `i `b ]
+[; ;flush.c: 249: RA4 = 0;
+"249
+[e = _RA4 -> -> 0 `i `b ]
+[; ;flush.c: 250: RA1 = 0;
 "250
-[e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
-[; ;flush.c: 251: RA2 = 0;
+[e = _RA1 -> -> 0 `i `b ]
+[; ;flush.c: 251: if(++CNTflush >= 5)
 "251
-[e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 252: RA4 = 0;
+[e $ ! >= =+ _CNTflush -> -> 1 `i `ui -> -> 5 `i `ui 47  ]
+[; ;flush.c: 252: {
 "252
-[e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 253: RA1 = 0;
+{
+[; ;flush.c: 253: CNTflush = 0;
 "253
-[e = _RA1 -> -> 0 `i `b ]
-[; ;flush.c: 254: SEQflsuh = FLUSH_INIT_0;
-"254
-[e = _SEQflsuh -> . `E849 0 `uc ]
-[; ;flush.c: 255: CNTflush = 0;
-"255
 [e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 256: Fflush1.bits.bit_1 = 0;
-"256
-[e = . . _Fflush1 1 1 -> -> 0 `i `uc ]
-[; ;flush.c: 257: Fflush1.bits.bit_3 = 0;
-"257
-[e = . . _Fflush1 1 3 -> -> 0 `i `uc ]
-[; ;flush.c: 258: break;
-"258
-[e $U 20  ]
-[; ;flush.c: 259: default:
-"259
+[; ;flush.c: 254: SEQflsuh = FLUSH_END_1;
+"254
+[e = _SEQflsuh -> . `E849 11 `uc ]
+"255
+}
 [e :U 47 ]
-[; ;flush.c: 260: Fflush1.bits.bit_6 = 0;
-"260
+[; ;flush.c: 255: }
+[; ;flush.c: 256: break;
+"256
+[e $U 20  ]
+[; ;flush.c: 257: case FLUSH_END_1:
+"257
+[e :U 48 ]
+[; ;flush.c: 258: Fflush1.bits.bit_6 = 0;
+"258
 [e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
-[; ;flush.c: 261: RA2 = 0;
-"261
+[; ;flush.c: 259: RA2 = 0;
+"259
 [e = _RA2 -> -> 0 `i `b ]
-[; ;flush.c: 262: RA4 = 0;
-"262
+[; ;flush.c: 260: RA4 = 0;
+"260
 [e = _RA4 -> -> 0 `i `b ]
-[; ;flush.c: 263: RA1 = 0;
-"263
+[; ;flush.c: 261: RA1 = 0;
+"261
 [e = _RA1 -> -> 0 `i `b ]
+[; ;flush.c: 262: SEQflsuh = FLUSH_INIT_0;
+"262
+[e = _SEQflsuh -> . `E849 0 `uc ]
+[; ;flush.c: 263: CNTflush = 0;
+"263
+[e = _CNTflush -> -> 0 `i `ui ]
 [; ;flush.c: 264: Fflush1.bits.bit_1 = 0;
 "264
 [e = . . _Fflush1 1 1 -> -> 0 `i `uc ]
 [; ;flush.c: 265: Fflush1.bits.bit_3 = 0;
 "265
 [e = . . _Fflush1 1 3 -> -> 0 `i `uc ]
-[; ;flush.c: 266: SEQflsuh = FLUSH_INIT_0;
+[; ;flush.c: 266: break;
 "266
-[e = _SEQflsuh -> . `E849 0 `uc ]
-[; ;flush.c: 267: CNTflush = 0;
+[e $U 20  ]
+[; ;flush.c: 267: default:
 "267
-[e = _CNTflush -> -> 0 `i `ui ]
-[; ;flush.c: 268: break;
+[e :U 49 ]
+[; ;flush.c: 268: Fflush1.bits.bit_6 = 0;
 "268
-[e $U 20  ]
+[e = . . _Fflush1 1 6 -> -> 0 `i `uc ]
+[; ;flush.c: 269: RA2 = 0;
 "269
-}
-[; ;flush.c: 269: }
+[e = _RA2 -> -> 0 `i `b ]
+[; ;flush.c: 270: RA4 = 0;
+"270
+[e = _RA4 -> -> 0 `i `b ]
+[; ;flush.c: 271: RA1 = 0;
+"271
+[e = _RA1 -> -> 0 `i `b ]
+[; ;flush.c: 272: Fflush1.bits.bit_1 = 0;
+"272
+[e = . . _Fflush1 1 1 -> -> 0 `i `uc ]
+[; ;flush.c: 273: Fflush1.bits.bit_3 = 0;
+"273
+[e = . . _Fflush1 1 3 -> -> 0 `i `uc ]
+[; ;flush.c: 274: SEQflsuh = FLUSH_INIT_0;
+"274
+[e = _SEQflsuh -> . `E849 0 `uc ]
+[; ;flush.c: 275: CNTflush = 0;
+"275
+[e = _CNTflush -> -> 0 `i `ui ]
+[; ;flush.c: 276: break;
+"276
 [e $U 20  ]
-"109
+"277
+}
+[; ;flush.c: 277: }
+[e $U 20  ]
+"107
 [e :U 21 ]
 [e [\ _SEQflsuh , $ -> . `E849 0 `uc 22
  , $ -> . `E849 1 `uc 24
@@ -2139,10 +2183,11 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> . `E849 8 `uc 42
  , $ -> . `E849 9 `uc 44
  , $ -> . `E849 10 `uc 46
- 47 ]
-"269
+ , $ -> . `E849 11 `uc 48
+ 49 ]
+"277
 [e :U 20 ]
-[; ;flush.c: 270: }
-"270
+[; ;flush.c: 278: }
+"278
 [e :UE 19 ]
 }

@@ -1,20 +1,18 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"18 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c
+"20 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c
 [v _FCTkey `(v ~T0 @X0 0 ef ]
-"19
+"21
 [v _FCTjudge `(v ~T0 @X0 0 ef ]
-"13 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_case.h
-[v _Delay_nms `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
-"16 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+"16 D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
 [v _INDF `Vuc ~T0 @X0 1 e@0 ]
 [; ;cms79f13x.h: 16: volatile unsigned char INDF @ 0x00;
 "17
@@ -1369,7 +1367,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1388,136 +1386,141 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush_user.h: 16: FLUSH_BIG_0,
 [; ;flush_user.h: 17: FLUSH_BIG_1,
 [; ;flush_user.h: 18: FLUSH_BIG_2,
-[; ;flush_user.h: 19: FLUSH_SML_0,
-[; ;flush_user.h: 20: FLUSH_SML_1,
-[; ;flush_user.h: 21: FLUSH_SML_2,
-[; ;flush_user.h: 22: FLUSH_END_0,
-[; ;flush_user.h: 23: FLUSH_END_1,
-[; ;flush_user.h: 24: FLUSH_END_2,
-[; ;flush_user.h: 25: };
-[; ;flush_user.h: 26: extern void GflushLoop(void);
+[; ;flush_user.h: 19: FLUSH_BIG_3,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
+[v _My_test_time `ui ~T0 @X0 1 e ]
+[i _My_test_time
+-> -> 100 `i `ui
+]
+[; ;fct_user.h: 9: uint16_t My_test_time = 100;
+"10
+[v _My_test_cnt `ui ~T0 @X0 1 e ]
+[; ;fct_user.h: 10: uint16_t My_test_cnt;
+[; ;fct_user.h: 12: extern void FCTloop(void);
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c
 [v _fctBits001 `S2 ~T0 @X0 1 e ]
 [; ;fct.c: 4: BYTE fctBits001;
 "8
-[v _CNTfctStart `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 8: volatile unsigned int CNTfctStart;
-"9
-[v _CNTfctSensior `Vuc ~T0 @X0 1 e ]
-[; ;fct.c: 9: volatile unsigned char CNTfctSensior;
+[v _FCT `uc ~T0 @X0 1 e ]
+[i _FCT
+-> -> 0 `i `uc
+]
+[; ;fct.c: 8: unsigned char FCT = 0;
 "10
-[v _CNTfctFlashLed `Vuc ~T0 @X0 1 e ]
-[; ;fct.c: 10: volatile unsigned char CNTfctFlashLed;
+[v _CNTfctStart `Vui ~T0 @X0 1 e ]
+[; ;fct.c: 10: volatile unsigned int CNTfctStart;
 "11
-[v _CNTfct `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 11: volatile unsigned int CNTfct;
+[v _CNTfctSensior `Vuc ~T0 @X0 1 e ]
+[; ;fct.c: 11: volatile unsigned char CNTfctSensior;
 "12
-[v _CNTkey1 `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 12: volatile unsigned int CNTkey1;
+[v _CNTfctFlashLed `Vuc ~T0 @X0 1 e ]
+[; ;fct.c: 12: volatile unsigned char CNTfctFlashLed;
 "13
-[v _CNTkey2 `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 13: volatile unsigned int CNTkey2;
+[v _CNTfct `Vui ~T0 @X0 1 e ]
+[; ;fct.c: 13: volatile unsigned int CNTfct;
 "14
-[v _flag_time `Vui ~T0 @X0 1 e ]
-[; ;fct.c: 14: volatile unsigned int flag_time;
+[v _CNTkey1 `Vui ~T0 @X0 1 e ]
+[; ;fct.c: 14: volatile unsigned int CNTkey1;
+"15
+[v _CNTkey2 `Vui ~T0 @X0 1 e ]
+[; ;fct.c: 15: volatile unsigned int CNTkey2;
 "16
+[v _flag_time `Vui ~T0 @X0 1 e ]
+[; ;fct.c: 16: volatile unsigned int flag_time;
+"18
 [v _Flag_G_Key `ui ~T0 @X0 1 e ]
 [i _Flag_G_Key
 -> -> 0 `i `ui
 ]
-[; ;fct.c: 16: unsigned int Flag_G_Key = 0;
-[; ;fct.c: 18: void FCTkey(void);
-[; ;fct.c: 19: void FCTjudge(void);
-"21
+[; ;fct.c: 18: unsigned int Flag_G_Key = 0;
+[; ;fct.c: 20: void FCTkey(void);
+[; ;fct.c: 21: void FCTjudge(void);
+"23
 [v _FCTloop `(v ~T0 @X0 1 ef ]
-"22
+"24
 {
-[; ;fct.c: 21: void FCTloop(void)
-[; ;fct.c: 22: {
+[; ;fct.c: 23: void FCTloop(void)
+[; ;fct.c: 24: {
 [e :U _FCTloop ]
 [f ]
-[; ;fct.c: 23: FCTkey();
-"23
-[e ( _FCTkey ..  ]
-[; ;fct.c: 24: FCTjudge();
-"24
-[e ( _FCTjudge ..  ]
-[; ;fct.c: 25: }
+[; ;fct.c: 25: FCTkey();
 "25
+[e ( _FCTkey ..  ]
+[; ;fct.c: 26: FCTjudge();
+"26
+[e ( _FCTjudge ..  ]
+[; ;fct.c: 27: }
+"27
 [e :UE 3 ]
 }
-"50
-[v _FCTkey `(v ~T0 @X0 1 ef ]
-"51
-{
-[; ;fct.c: 50: void FCTkey(void)
-[; ;fct.c: 51: {
-[e :U _FCTkey ]
-[f ]
-[; ;fct.c: 52: if(fctBits001.bits.bit_0 == 1)
 "52
-[e $ ! == -> . . _fctBits001 1 0 `i -> 1 `i 5  ]
-[; ;fct.c: 53: {
+[v _FCTkey `(v ~T0 @X0 1 ef ]
 "53
 {
-[; ;fct.c: 54: if(RB2 == 1)
+[; ;fct.c: 52: void FCTkey(void)
+[; ;fct.c: 53: {
+[e :U _FCTkey ]
+[f ]
+[; ;fct.c: 54: if((FCT == 0) && (RB2 == 0))
 "54
-[e $ ! == -> _RB2 `i -> 1 `i 6  ]
+[e $ ! && == -> _FCT `i -> 0 `i == -> _RB2 `i -> 0 `i 5  ]
 [; ;fct.c: 55: {
 "55
 {
-[; ;fct.c: 56: Delay_nms(1000);
+[; ;fct.c: 56: FCT = 3;
 "56
-[e ( _Delay_nms (1 -> -> 1000 `i `ui ]
-[; ;fct.c: 57: if(RB2 == 1)
+[e = _FCT -> -> 3 `i `uc ]
 "57
-[e $ ! == -> _RB2 `i -> 1 `i 7  ]
-[; ;fct.c: 58: {
-"58
-{
-[; ;fct.c: 59: fctBits001.bits.bit_0 = 0;
-"59
-[e = . . _fctBits001 1 0 -> -> 0 `i `uc ]
-[; ;fct.c: 60: return;
-"60
-[e $UE 4  ]
-"61
-}
-[e :U 7 ]
-"62
-}
-[e :U 6 ]
-"63
 }
 [e :U 5 ]
-[; ;fct.c: 61: }
-[; ;fct.c: 62: }
-[; ;fct.c: 63: }
-[; ;fct.c: 64: if(RB2 == 1)
+[; ;fct.c: 57: }
+[; ;fct.c: 59: if(FCT == 3)
+"59
+[e $ ! == -> _FCT `i -> 3 `i 6  ]
+[; ;fct.c: 60: {
+"60
+{
+[; ;fct.c: 61: if(RB2 == 1)
+"61
+[e $ ! == -> _RB2 `i -> 1 `i 7  ]
+[; ;fct.c: 62: {
+"62
+{
+[; ;fct.c: 63: if(++My_test_cnt > My_test_time)
+"63
+[e $ ! > =+ _My_test_cnt -> -> 1 `i `ui _My_test_time 8  ]
+[; ;fct.c: 64: {
 "64
-[e $ ! == -> _RB2 `i -> 1 `i 8  ]
-[; ;fct.c: 65: {
+{
+[; ;fct.c: 65: if(RB2 == 1)
 "65
-{
-[; ;fct.c: 66: Delay_nms(1000);
-"66
-[e ( _Delay_nms (1 -> -> 1000 `i `ui ]
-[; ;fct.c: 67: if(RB2 == 1)
-"67
 [e $ ! == -> _RB2 `i -> 1 `i 9  ]
-[; ;fct.c: 68: {
-"68
+[; ;fct.c: 66: {
+"66
 {
-[; ;fct.c: 69: fctBits001.bits.bit_0 = 1;
-"69
+[; ;fct.c: 67: fctBits001.bits.bit_0 = 1;
+"67
 [e = . . _fctBits001 1 0 -> -> 1 `i `uc ]
+[; ;fct.c: 68: My_test_cnt = 0;
+"68
+[e = _My_test_cnt -> -> 0 `i `ui ]
+[; ;fct.c: 69: FCT = 1;
+"69
+[e = _FCT -> -> 1 `i `uc ]
 [; ;fct.c: 70: return;
 "70
 [e $UE 4  ]
@@ -1527,242 +1530,329 @@ Version 3.2 HI-TECH Software Intermediate Code
 "72
 }
 [e :U 8 ]
+"74
+}
 [; ;fct.c: 71: }
 [; ;fct.c: 72: }
-[; ;fct.c: 73: }
-"73
-[e :UE 4 ]
-}
+[; ;fct.c: 74: }
+[e $U 10  ]
 "75
-[v _G_KEY `(v ~T0 @X0 1 ef ]
+[e :U 7 ]
+[; ;fct.c: 75: else
+[; ;fct.c: 76: {
 "76
 {
-[; ;fct.c: 75: void G_KEY(void)
-[; ;fct.c: 76: {
-[e :U _G_KEY ]
-[f ]
-[; ;fct.c: 77: RA5 = 0;
+[; ;fct.c: 77: My_test_cnt = 0;
 "77
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 78: RA2 = 0;
+[e = _My_test_cnt -> -> 0 `i `ui ]
 "78
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 79: RA4 = 1;
+}
+[e :U 10 ]
 "79
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 80: RA1 = 0;
-"80
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 81: }
+}
+[e :U 6 ]
+[; ;fct.c: 78: }
+[; ;fct.c: 79: }
+[; ;fct.c: 81: if((FCT == 1) && (RB2 == 0))
 "81
-[e :UE 10 ]
-}
+[e $ ! && == -> _FCT `i -> 1 `i == -> _RB2 `i -> 0 `i 11  ]
+[; ;fct.c: 82: {
+"82
+{
+[; ;fct.c: 83: FCT = 2;
 "83
-[v _R_KEY `(v ~T0 @X0 1 ef ]
+[e = _FCT -> -> 2 `i `uc ]
 "84
-{
-[; ;fct.c: 83: void R_KEY(void)
-[; ;fct.c: 84: {
-[e :U _R_KEY ]
-[f ]
-[; ;fct.c: 85: RA5 = 0;
-"85
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 86: RA2 = 1;
+}
+[e :U 11 ]
+[; ;fct.c: 84: }
+[; ;fct.c: 86: if(FCT == 2)
 "86
-[e = _RA2 -> -> 1 `i `b ]
-[; ;fct.c: 87: RA4 = 1;
+[e $ ! == -> _FCT `i -> 2 `i 12  ]
+[; ;fct.c: 87: {
 "87
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 88: RA1 = 0;
+{
+[; ;fct.c: 88: if(RB2 == 1)
 "88
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 89: }
+[e $ ! == -> _RB2 `i -> 1 `i 13  ]
+[; ;fct.c: 89: {
 "89
-[e :UE 11 ]
-}
+{
+[; ;fct.c: 90: if(++My_test_cnt > My_test_time)
+"90
+[e $ ! > =+ _My_test_cnt -> -> 1 `i `ui _My_test_time 14  ]
+[; ;fct.c: 91: {
 "91
-[v _key1 `(v ~T0 @X0 1 ef ]
-"92
 {
-[; ;fct.c: 91: void key1(void)
-[; ;fct.c: 92: {
-[e :U _key1 ]
-[f ]
-[; ;fct.c: 93: RA5 = 1;
+[; ;fct.c: 93: if(RB2 == 1)
 "93
-[e = _RA5 -> -> 1 `i `b ]
-[; ;fct.c: 94: RA2 = 0;
+[e $ ! == -> _RB2 `i -> 1 `i 15  ]
+[; ;fct.c: 94: {
 "94
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 95: RA4 = 1;
+{
+[; ;fct.c: 95: fctBits001.bits.bit_0 = 0;
 "95
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 96: RA1 = 0;
-"96
-[e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 97: }
-"97
-[e :UE 12 ]
-}
-"99
-[v _key2 `(v ~T0 @X0 1 ef ]
-"100
-{
-[; ;fct.c: 99: void key2(void)
-[; ;fct.c: 100: {
-[e :U _key2 ]
-[f ]
-[; ;fct.c: 101: RA5 = 0;
-"101
-[e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 102: RA2 = 0;
-"102
-[e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 103: RA4 = 1;
-"103
-[e = _RA4 -> -> 1 `i `b ]
-[; ;fct.c: 104: RA1 = 1;
-"104
-[e = _RA1 -> -> 1 `i `b ]
-[; ;fct.c: 105: }
-"105
-[e :UE 13 ]
-}
-"107
-[v _FCTjudge `(v ~T0 @X0 1 ef ]
-"108
-{
-[; ;fct.c: 107: void FCTjudge(void)
-[; ;fct.c: 108: {
-[e :U _FCTjudge ]
-[f ]
-[; ;fct.c: 109: if(fctBits001.bits.bit_0 == 1)
-"109
-[e $ ! == -> . . _fctBits001 1 0 `i -> 1 `i 15  ]
-[; ;fct.c: 110: {
-"110
-{
-[; ;fct.c: 111: if(++flag_time == 1500)
-"111
-[e $ ! == =+ _flag_time -> -> 1 `i `ui -> -> 1500 `i `ui 16  ]
-[; ;fct.c: 112: {
-"112
-{
-[; ;fct.c: 113: fctBits001.bits.bit_0 = 0;
-"113
 [e = . . _fctBits001 1 0 -> -> 0 `i `uc ]
-[; ;fct.c: 114: flag_time = 0;
-"114
-[e = _flag_time -> -> 0 `i `ui ]
-"115
+[; ;fct.c: 96: My_test_cnt = 0;
+"96
+[e = _My_test_cnt -> -> 0 `i `ui ]
+[; ;fct.c: 97: FCT = 0;
+"97
+[e = _FCT -> -> 0 `i `uc ]
+[; ;fct.c: 98: return;
+"98
+[e $UE 4  ]
+"99
+}
+[e :U 15 ]
+"100
+}
+[e :U 14 ]
+"102
+}
+[; ;fct.c: 99: }
+[; ;fct.c: 100: }
+[; ;fct.c: 102: }
+[e $U 16  ]
+"103
+[e :U 13 ]
+[; ;fct.c: 103: else
+[; ;fct.c: 104: {
+"104
+{
+[; ;fct.c: 105: My_test_cnt = 0;
+"105
+[e = _My_test_cnt -> -> 0 `i `ui ]
+"106
 }
 [e :U 16 ]
-[; ;fct.c: 115: }
-[; ;fct.c: 116: if(RB1 == 0)
-"116
-[e $ ! == -> _RB1 `i -> 0 `i 17  ]
-[; ;fct.c: 117: {
-"117
-{
-[; ;fct.c: 118: R_KEY();
-"118
-[e ( _R_KEY ..  ]
-"119
+"108
 }
-[; ;fct.c: 119: }
-[e $U 18  ]
-"120
-[e :U 17 ]
-[; ;fct.c: 120: else
-[; ;fct.c: 121: {
-"121
-{
-[; ;fct.c: 122: if(RA6 == 0)
-"122
-[e $ ! == -> _RA6 `i -> 0 `i 19  ]
-[; ;fct.c: 123: {
-"123
-{
-[; ;fct.c: 124: key1();
-"124
-[e ( _key1 ..  ]
-"125
+[e :U 12 ]
+[; ;fct.c: 106: }
+[; ;fct.c: 108: }
+[; ;fct.c: 109: }
+"109
+[e :UE 4 ]
 }
-[; ;fct.c: 125: }
-[e $U 20  ]
-"126
-[e :U 19 ]
-[; ;fct.c: 126: else
-[; ;fct.c: 127: {
-"127
+"111
+[v _G_KEY `(v ~T0 @X0 1 ef ]
+"112
 {
-[; ;fct.c: 128: if(RB0 == 0)
-"128
-[e $ ! == -> _RB0 `i -> 0 `i 21  ]
-[; ;fct.c: 129: {
-"129
-{
-[; ;fct.c: 130: key2();
-"130
-[e ( _key2 ..  ]
-"131
-}
-[; ;fct.c: 131: }
-[e $U 22  ]
-"132
-[e :U 21 ]
-[; ;fct.c: 132: else
-[; ;fct.c: 133: {
-"133
-{
-[; ;fct.c: 134: G_KEY();
-"134
-[e ( _G_KEY ..  ]
-"135
-}
-[e :U 22 ]
-"136
-}
-[e :U 20 ]
-"137
-}
-[e :U 18 ]
-"138
-}
-[; ;fct.c: 135: }
-[; ;fct.c: 136: }
-[; ;fct.c: 137: }
-[; ;fct.c: 138: }
-[e $U 23  ]
-"139
-[e :U 15 ]
-[; ;fct.c: 139: else if(fctBits001.bits.bit_0 == 0)
-[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 24  ]
-[; ;fct.c: 140: {
-"140
-{
-[; ;fct.c: 141: RA5 = 0;
-"141
+[; ;fct.c: 111: void G_KEY(void)
+[; ;fct.c: 112: {
+[e :U _G_KEY ]
+[f ]
+[; ;fct.c: 113: RA5 = 0;
+"113
 [e = _RA5 -> -> 0 `i `b ]
-[; ;fct.c: 142: RA2 = 0;
-"142
+[; ;fct.c: 114: RA2 = 0;
+"114
 [e = _RA2 -> -> 0 `i `b ]
-[; ;fct.c: 143: RA4 = 0;
-"143
-[e = _RA4 -> -> 0 `i `b ]
-[; ;fct.c: 144: RA1 = 0;
-"144
+[; ;fct.c: 115: RA4 = 1;
+"115
+[e = _RA4 -> -> 1 `i `b ]
+[; ;fct.c: 116: RA1 = 0;
+"116
 [e = _RA1 -> -> 0 `i `b ]
-[; ;fct.c: 145: flag_time = 0;
-"145
-[e = _flag_time -> -> 0 `i `ui ]
-"146
+[; ;fct.c: 117: }
+"117
+[e :UE 17 ]
 }
-[e :U 24 ]
+"119
+[v _R_KEY `(v ~T0 @X0 1 ef ]
+"120
+{
+[; ;fct.c: 119: void R_KEY(void)
+[; ;fct.c: 120: {
+[e :U _R_KEY ]
+[f ]
+[; ;fct.c: 121: RA5 = 0;
+"121
+[e = _RA5 -> -> 0 `i `b ]
+[; ;fct.c: 122: RA2 = 1;
+"122
+[e = _RA2 -> -> 1 `i `b ]
+[; ;fct.c: 123: RA4 = 1;
+"123
+[e = _RA4 -> -> 1 `i `b ]
+[; ;fct.c: 124: RA1 = 0;
+"124
+[e = _RA1 -> -> 0 `i `b ]
+[; ;fct.c: 125: }
+"125
+[e :UE 18 ]
+}
+"127
+[v _key1 `(v ~T0 @X0 1 ef ]
+"128
+{
+[; ;fct.c: 127: void key1(void)
+[; ;fct.c: 128: {
+[e :U _key1 ]
+[f ]
+[; ;fct.c: 129: RA5 = 1;
+"129
+[e = _RA5 -> -> 1 `i `b ]
+[; ;fct.c: 130: RA2 = 0;
+"130
+[e = _RA2 -> -> 0 `i `b ]
+[; ;fct.c: 131: RA4 = 1;
+"131
+[e = _RA4 -> -> 1 `i `b ]
+[; ;fct.c: 132: RA1 = 0;
+"132
+[e = _RA1 -> -> 0 `i `b ]
+[; ;fct.c: 133: }
+"133
+[e :UE 19 ]
+}
+"135
+[v _key2 `(v ~T0 @X0 1 ef ]
+"136
+{
+[; ;fct.c: 135: void key2(void)
+[; ;fct.c: 136: {
+[e :U _key2 ]
+[f ]
+[; ;fct.c: 137: RA5 = 0;
+"137
+[e = _RA5 -> -> 0 `i `b ]
+[; ;fct.c: 138: RA2 = 0;
+"138
+[e = _RA2 -> -> 0 `i `b ]
+[; ;fct.c: 139: RA4 = 1;
+"139
+[e = _RA4 -> -> 1 `i `b ]
+[; ;fct.c: 140: RA1 = 1;
+"140
+[e = _RA1 -> -> 1 `i `b ]
+[; ;fct.c: 141: }
+"141
+[e :UE 20 ]
+}
+"143
+[v _FCTjudge `(v ~T0 @X0 1 ef ]
+"144
+{
+[; ;fct.c: 143: void FCTjudge(void)
+[; ;fct.c: 144: {
+[e :U _FCTjudge ]
+[f ]
+[; ;fct.c: 145: if(fctBits001.bits.bit_0 == 1)
+"145
+[e $ ! == -> . . _fctBits001 1 0 `i -> 1 `i 22  ]
+[; ;fct.c: 146: {
+"146
+{
+[; ;fct.c: 147: if(++flag_time == 1500)
 "147
+[e $ ! == =+ _flag_time -> -> 1 `i `ui -> -> 1500 `i `ui 23  ]
+[; ;fct.c: 148: {
+"148
+{
+[; ;fct.c: 149: fctBits001.bits.bit_0 = 0;
+"149
+[e = . . _fctBits001 1 0 -> -> 0 `i `uc ]
+[; ;fct.c: 150: flag_time = 0;
+"150
+[e = _flag_time -> -> 0 `i `ui ]
+"151
+}
 [e :U 23 ]
-[; ;fct.c: 146: }
-[; ;fct.c: 147: }
-[e :UE 14 ]
+[; ;fct.c: 151: }
+[; ;fct.c: 152: if(RB1 == 0)
+"152
+[e $ ! == -> _RB1 `i -> 0 `i 24  ]
+[; ;fct.c: 153: {
+"153
+{
+[; ;fct.c: 154: R_KEY();
+"154
+[e ( _R_KEY ..  ]
+"155
+}
+[; ;fct.c: 155: }
+[e $U 25  ]
+"156
+[e :U 24 ]
+[; ;fct.c: 156: else
+[; ;fct.c: 157: {
+"157
+{
+[; ;fct.c: 158: if(RA6 == 0)
+"158
+[e $ ! == -> _RA6 `i -> 0 `i 26  ]
+[; ;fct.c: 159: {
+"159
+{
+[; ;fct.c: 160: key1();
+"160
+[e ( _key1 ..  ]
+"161
+}
+[; ;fct.c: 161: }
+[e $U 27  ]
+"162
+[e :U 26 ]
+[; ;fct.c: 162: else
+[; ;fct.c: 163: {
+"163
+{
+[; ;fct.c: 164: if(RB0 == 0)
+"164
+[e $ ! == -> _RB0 `i -> 0 `i 28  ]
+[; ;fct.c: 165: {
+"165
+{
+[; ;fct.c: 166: key2();
+"166
+[e ( _key2 ..  ]
+"167
+}
+[; ;fct.c: 167: }
+[e $U 29  ]
+"168
+[e :U 28 ]
+[; ;fct.c: 168: else
+[; ;fct.c: 169: {
+"169
+{
+[; ;fct.c: 170: G_KEY();
+"170
+[e ( _G_KEY ..  ]
+"171
+}
+[e :U 29 ]
+"172
+}
+[e :U 27 ]
+"173
+}
+[e :U 25 ]
+"174
+}
+[; ;fct.c: 171: }
+[; ;fct.c: 172: }
+[; ;fct.c: 173: }
+[; ;fct.c: 174: }
+[e $U 30  ]
+"175
+[e :U 22 ]
+[; ;fct.c: 175: else if(fctBits001.bits.bit_0 == 0)
+[e $ ! == -> . . _fctBits001 1 0 `i -> 0 `i 31  ]
+[; ;fct.c: 176: {
+"176
+{
+[; ;fct.c: 177: flag_time = 0;
+"177
+[e = _flag_time -> -> 0 `i `ui ]
+"178
+}
+[e :U 31 ]
+"179
+[e :U 30 ]
+[; ;fct.c: 178: }
+[; ;fct.c: 179: }
+[e :UE 21 ]
 }

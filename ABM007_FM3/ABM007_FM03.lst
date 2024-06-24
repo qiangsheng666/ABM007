@@ -1,4 +1,4 @@
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\main.c ----------------------------------------------------------------------
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\main.c ----------------------------------------------------------------------
 1:                // #include <cms.h>	//芯片头文件，会根据工程选项自动寻找对应型号头文件
 2:                #include "cfg_user.h"
 3:                #include "cfg_case.h"
@@ -28,18 +28,18 @@
 27:               void Delay(unsigned int dtemp)
 28:               {
 29:               	while (dtemp--)
-  039B    3001    LDIA	0x1
-  039C    02F2    SUBR	0x72
-  039D    3000    LDIA	0x0
-  039E    1C03    SNZB	0x3,0
-  039F    03F3    DECR	0x73
-  03A0    02F3    SUBR	0x73
-  03A1    0F72    SZINCA	0x72
-  03A2    2B9B    JP	0x39B
-  03A3    0A73    INCA	0x73
-  03A4    1903    SZB	0x3,2
-  03A5    0008    RET
-  03A6    2B9B    JP	0x39B
+  054A    3001    LDIA	0x1
+  054B    02F2    SUBR	0x72
+  054C    3000    LDIA	0x0
+  054D    1C03    SNZB	0x3,0
+  054E    03F3    DECR	0x73
+  054F    02F3    SUBR	0x73
+  0550    0F72    SZINCA	0x72
+  0551    2D4A    JP	0x54A
+  0552    0A73    INCA	0x73
+  0553    1903    SZB	0x3,2
+  0554    0008    RET
+  0555    2D4A    JP	0x54A
 30:               		;
 31:               }
 32:               /***********************************************************************
@@ -51,49 +51,49 @@
 38:               	unsigned char gtemp;
 39:               	/******************************************************************/
 40:               	gtemp = 0;
-  037C    01F8    CLR	0x78
+  052B    01F8    CLR	0x78
 41:               	if (GIE == 1)
-  037D    1F8B    SNZB	0xB,7
-  037E    2B82    JP	0x382
+  052C    1F8B    SNZB	0xB,7
+  052D    2D31    JP	0x531
 42:               	{
 43:               		gtemp = 1;
-  037F    01F8    CLR	0x78
-  0380    0AF8    INCR	0x78
+  052E    01F8    CLR	0x78
+  052F    0AF8    INCR	0x78
 44:               		GIE = 0;
-  0381    138B    CLRB	0xB,7
+  0530    138B    CLRB	0xB,7
 45:               	}
 46:               	for (i = 0; i < inittempl; i++)
-  0382    01F6    CLR	0x76
-  0383    01F7    CLR	0x77
-  0384    0875    LD	A,0x75
-  0385    0277    SUBA	0x77
-  0386    1D03    SNZB	0x3,2
-  0387    2B8A    JP	0x38A
-  0388    0874    LD	A,0x74
-  0389    0276    SUBA	0x76
-  038A    1803    SZB	0x3,0
-  038B    2B97    JP	0x397
+  0531    01F6    CLR	0x76
+  0532    01F7    CLR	0x77
+  0533    0875    LD	A,0x75
+  0534    0277    SUBA	0x77
+  0535    1D03    SNZB	0x3,2
+  0536    2D39    JP	0x539
+  0537    0874    LD	A,0x74
+  0538    0276    SUBA	0x76
+  0539    1803    SZB	0x3,0
+  053A    2D46    JP	0x546
 47:               	{
 48:               		Delay(154);
-  038C    309A    LDIA	0x9A
-  038D    00F2    LD	0x72,A
-  038E    01F3    CLR	0x73
-  038F    239B    CALL	0x39B
-  0390    120A    CLRB	0xA,4
-  0391    118A    CLRB	0xA,3
-  0392    0064    CLRWDT
-  0393    0AF6    INCR	0x76
-  0394    1903    SZB	0x3,2
-  0395    0AF7    INCR	0x77
-  0396    2B84    JP	0x384
+  053B    309A    LDIA	0x9A
+  053C    00F2    LD	0x72,A
+  053D    01F3    CLR	0x73
+  053E    254A    CALL	0x54A
+  053F    120A    CLRB	0xA,4
+  0540    118A    CLRB	0xA,3
+  0541    0064    CLRWDT
+  0542    0AF6    INCR	0x76
+  0543    1903    SZB	0x3,2
+  0544    0AF7    INCR	0x77
+  0545    2D33    JP	0x533
 49:               		asm("clrwdt");
 50:               	}
 51:               	if (gtemp == 1)
-  0397    0B78    SZDECA	0x78
-  0398    0008    RET
+  0546    0B78    SZDECA	0x78
+  0547    0008    RET
 52:               		GIE = 1;
-  0399    178B    SETB	0xB,7
-  039A    0008    RET
+  0548    178B    SETB	0xB,7
+  0549    0008    RET
 53:               }
 54:               
 55:               /************************************************************
@@ -108,39 +108,39 @@
 64:               
 65:               	/*引脚数据*/
 66:               	PORTA = 0B01000000;
-  0473    3040    LDIA	0x40
-  0474    1283    CLRB	0x3,5
-  0475    1303    CLRB	0x3,6
-  0476    0085    LD	0x5,A
+  0556    3040    LDIA	0x40
+  0557    1283    CLRB	0x3,5
+  0558    1303    CLRB	0x3,6
+  0559    0085    LD	0x5,A
 67:               	PORTB = 0B00000001;
-  0477    3001    LDIA	0x1
-  0478    0086    LD	0x6,A
+  055A    3001    LDIA	0x1
+  055B    0086    LD	0x6,A
 68:               	PORTC = 0B00000000;
-  0479    0187    CLR	0x7
+  055C    0187    CLR	0x7
 69:               
 70:               	/* 全部配置成输入状态，1: 输入，0: 输出 */
 71:               	TRISA = 0B01000000; /*RA1直流阀 RA2-气泵	RA4-主阀  RA5-氛围灯 RA6按键1*/
-  047A    3040    LDIA	0x40
-  047B    1683    SETB	0x3,5
-  047C    0085    LD	0x5,A
+  055D    3040    LDIA	0x40
+  055E    1683    SETB	0x3,5
+  055F    0085    LD	0x5,A
 72:               	TRISB = 0B00000111; /* RB0按键2	RB1-龙头感应，RB0测试点 */
-  047D    3007    LDIA	0x7
-  047E    0086    LD	0x6,A
+  0560    3007    LDIA	0x7
+  0561    0086    LD	0x6,A
 73:               	TRISC = 0B00000000;
-  047F    0187    CLR	0x7
+  0562    0187    CLR	0x7
 74:               
 75:               	/*内部上拉关闭, 1: 开启, 0: 关闭 */
 76:               	WPUA = 0B00000000; /* RA1直流阀		RA2-气泵	RA4-主阀 RA5-氛围灯 */
-  0480    1703    SETB	0x3,6
-  0481    018E    CLR	0xE
+  0563    1703    SETB	0x3,6
+  0564    018E    CLR	0xE
 77:               	WPUB = 0B00000010; /* RB1-龙头感应<置1则不插为有人状态，RB1低有效>，RB0-测试点，硬件下拉 */
-  0482    3002    LDIA	0x2
-  0483    1303    CLRB	0x3,6
-  0484    0095    LD	0x15,A
+  0565    3002    LDIA	0x2
+  0566    1303    CLRB	0x3,6
+  0567    0095    LD	0x15,A
 78:               	WPUC = 0B00000000;
-  0485    1703    SETB	0x3,6
-  0486    018F    CLR	0xF
-  0487    0008    RET
+  0568    1703    SETB	0x3,6
+  0569    018F    CLR	0xF
+  056A    0008    RET
 79:               
 80:               	/* 内部下拉 */
 81:               	// WPDB =  0B00000000; /* RB1-龙头感应<1不插为无人状态，RB1高有效> */
@@ -159,7 +159,7 @@
 94:               备注：
 95:               ************************************************************/
 96:               void Init_IC(void)
-  0488    0064    CLRWDT
+  056B    0064    CLRWDT
 97:               {
 98:               	asm("clrwdt");
 99:               
@@ -167,58 +167,58 @@
 101:              	// GIE		PEIE		TOIE		INTE		RBIE		TOIF		INTF		RBIF
 102:              	// 全局允许	外设允许	T0允许		INT允许		PB允许		T0标志		INT标志		PB标志
 103:              	INTCON = 0x00; // 中断控制寄存器
-  0489    018B    CLR	0xB
+  056C    018B    CLR	0xB
 104:              
 105:              	// 7			6			5			4			3			2			1			0
 106:              	//--		ADIF		RCIF		TXIF		--			CCP1IF		TMR2IF		TMR1IF
 107:              	// NC		AD转换完成	UART接收满	UART发送满		NC		CCP1中断	T2与PR2匹配		T1
 108:              	PIR1 = 0; // 外设中断请求寄存器
-  048A    1283    CLRB	0x3,5
-  048B    1303    CLRB	0x3,6
-  048C    018C    CLR	0xC
+  056D    1283    CLRB	0x3,5
+  056E    1303    CLRB	0x3,6
+  056F    018C    CLR	0xC
 109:              
 110:              	// 7			6			5			4			3			2			1			0
 111:              	//--		TKIF		RACIF		EEIF		--			--			--			CCP2IF
 112:              	// NC		触摸检测结束 PA变化		 EEP写完成	  NC		  NC		  NC		  CCP2中断
 113:              	PIR2 = 0; // 外设中断请求寄存器
-  048D    018D    CLR	0xD
+  0570    018D    CLR	0xD
 114:              
 115:              	// 7			6			5			4			3			2			1			0
 116:              	//--		--			--			--			--			--			--			SWDTEN
 117:              	// NC		NC			NC			NC			NC			NC			NC			使能
 118:              	WDTCON = 0x01; // 看门狗
-  048E    3001    LDIA	0x1
-  048F    1703    SETB	0x3,6
-  0490    0085    LD	0x5,A
+  0571    3001    LDIA	0x1
+  0572    1703    SETB	0x3,6
+  0573    0085    LD	0x5,A
 119:              
 120:              	// 7				6			5			4			3			2			1		0
 121:              	// RBPU			INTEDG			T0CS		T0SE		PSA			PS2			PS1		PS0
 122:              	// PB上拉使能	中断边沿选择  	T0时钟源	  T0边沿选择	预分配		预分配参数
 123:              	OPTION_REG = 0b00001110; // 开启PORTB上来使能，看门狗复位时间=18*分频系数 (规格书 2.6/2.8.1)
-  0491    300E    LDIA	0xE
-  0492    1683    SETB	0x3,5
-  0493    1303    CLRB	0x3,6
-  0494    0081    LD	0x1,A
+  0574    300E    LDIA	0xE
+  0575    1683    SETB	0x3,5
+  0576    1303    CLRB	0x3,6
+  0577    0081    LD	0x1,A
 124:              
 125:              	// 7			6			5			4			3			2			1			0
 126:              	//--		IRCF2		IRCF1		IRCF0		--			--			--			--
 127:              	// NC		内振分频							NC			NC			NC			NC
 128:              	OSCCON = 0x71; // 振荡器控制
-  0495    3071    LDIA	0x71
-  0496    008F    LD	0xF,A
+  0578    3071    LDIA	0x71
+  0579    008F    LD	0xF,A
 129:              
 130:              	// 7			6			5			4			3			2			1				0
 131:              	//--		ADIE		RCIE		TXIE		--			CCP1IE		TMR2IE			TMR1IE
 132:              	// NC		AD转换允许	UART接收允许 UART发送允许 NC		  CCP1允许	  T2与PR2匹配允许	T1溢出允许
 133:              	PIE1 = 0; // 外设中断允许
-  0497    018C    CLR	0xC
+  057A    018C    CLR	0xC
 134:              
 135:              	//
 136:              	//--	TKIE				RACIE			EEIE			--		--		--		CCP2IE
 137:              	// NC	触摸检测结束允许	PA变化允许			EEP写允许		NC		NC		NC		CCP2中断允许
 138:              	PIE2 = 0; // 外设中断允许
-  0498    018D    CLR	0xD
-  0499    0008    RET
+  057B    018D    CLR	0xD
+  057C    0008    RET
 139:              }
 140:              
 141:              /************************************************************
@@ -237,22 +237,22 @@
 154:              	// TMR1L = 0xC0; //赋初值
 155:              	// TMR1H = 0xF9;
 156:              	TMR1 = TIMER1_TIME;
-  049A    30E0    LDIA	0xE0
-  049B    1283    CLRB	0x3,5
-  049C    1303    CLRB	0x3,6
-  049D    008F    LD	0xF,A
-  049E    30C0    LDIA	0xC0
-  049F    008E    LD	0xE,A
+  057D    30E0    LDIA	0xE0
+  057E    1283    CLRB	0x3,5
+  057F    1303    CLRB	0x3,6
+  0580    008F    LD	0xF,A
+  0581    30C0    LDIA	0xC0
+  0582    008E    LD	0xE,A
 157:              	TMR1IF = 0;	  // 清中断标志位
-  04A0    100C    CLRB	0xC,0
+  0583    100C    CLRB	0xC,0
 158:              	TMR1IE = 1;	  // 允许Timer1中断
-  04A1    1683    SETB	0x3,5
-  04A2    140C    SETB	0xC,0
+  0584    1683    SETB	0x3,5
+  0585    140C    SETB	0xC,0
 159:              	T1CON = 0x01; // 开启Timer1，使用内部时钟源Fosc，预分频比为1:1
-  04A3    3001    LDIA	0x1
-  04A4    1283    CLRB	0x3,5
-  04A5    0090    LD	0x10,A
-  04A6    0008    RET
+  0586    3001    LDIA	0x1
+  0587    1283    CLRB	0x3,5
+  0588    0090    LD	0x10,A
+  0589    0008    RET
 160:              }
 161:              
 162:              /************************************************************
@@ -270,20 +270,20 @@
 174:              void Init_TIMER2(void)
 175:              {
 176:              	PR2 = 24;	// 8M下将TMR2设置为50us中断?
-  04A7    3018    LDIA	0x18
-  04A8    1683    SETB	0x3,5
-  04A9    0092    LD	0x12,A
+  058A    3018    LDIA	0x18
+  058B    1683    SETB	0x3,5
+  058C    0092    LD	0x12,A
 177:              	TMR2IF = 0; // 清中断标志位
-  04AA    1283    CLRB	0x3,5
-  04AB    108C    CLRB	0xC,1
+  058D    1283    CLRB	0x3,5
+  058E    108C    CLRB	0xC,1
 178:              	TMR2IE = 1; // 允许Timer2中断
-  04AC    1683    SETB	0x3,5
-  04AD    148C    SETB	0xC,1
+  058F    1683    SETB	0x3,5
+  0590    148C    SETB	0xC,1
 179:              	T2CON = 5;	// 开启Timer2，预分频值为4，后分频比为1:1
-  04AE    3005    LDIA	0x5
-  04AF    1283    CLRB	0x3,5
-  04B0    0092    LD	0x12,A
-  04B1    0008    RET
+  0591    3005    LDIA	0x5
+  0592    1283    CLRB	0x3,5
+  0593    0092    LD	0x12,A
+  0594    0008    RET
 180:              }
 181:              
 182:              /* 遥控器接收数据时钟，50μs */
@@ -578,38 +578,38 @@
 471:              备    注：
 472:              ************************************************************/
 473:              void main(void)
-  03A7    0000    NOP
-  03A8    0064    CLRWDT
+  047F    0000    NOP
+  0480    0064    CLRWDT
 474:              {
 475:              	/******************************************************************/
 476:              	asm("nop");
 477:              	asm("clrwdt");
 478:              	INTCON = 0;		 //禁止中断
-  03A9    018B    CLR	0xB
+  0481    018B    CLR	0xB
 479:              
 480:              	Init_GPIO();	// 初始化GPIO
-  03AA    120A    CLRB	0xA,4
-  03AB    118A    CLRB	0xA,3
-  03AC    2473    CALL	0x473
+  0482    120A    CLRB	0xA,4
+  0483    118A    CLRB	0xA,3
+  0484    2556    CALL	0x556
 481:              	Init_IC();		// 相关寄存器初始化
-  03AF    120A    CLRB	0xA,4
-  03B0    118A    CLRB	0xA,3
-  03B1    2488    CALL	0x488
+  0487    120A    CLRB	0xA,4
+  0488    118A    CLRB	0xA,3
+  0489    256B    CALL	0x56B
 482:              	Delay_nms(200); // 上电延时200ms 非精准延时
-  03B4    30C8    LDIA	0xC8
-  03B5    00F4    LD	0x74,A
-  03B6    01F5    CLR	0x75
-  03B7    120A    CLRB	0xA,4
-  03B8    118A    CLRB	0xA,3
-  03B9    237C    CALL	0x37C
+  048C    30C8    LDIA	0xC8
+  048D    00F4    LD	0x74,A
+  048E    01F5    CLR	0x75
+  048F    120A    CLRB	0xA,4
+  0490    118A    CLRB	0xA,3
+  0491    252B    CALL	0x52B
 483:              	Init_TIMER1();	// 定时器1初始化
-  03BC    120A    CLRB	0xA,4
-  03BD    118A    CLRB	0xA,3
-  03BE    249A    CALL	0x49A
+  0494    120A    CLRB	0xA,4
+  0495    118A    CLRB	0xA,3
+  0496    257D    CALL	0x57D
 484:              	Init_TIMER2();	// 定时器2初始化
-  03C1    120A    CLRB	0xA,4
-  03C2    118A    CLRB	0xA,3
-  03C3    24A7    CALL	0x4A7
+  0499    120A    CLRB	0xA,4
+  049A    118A    CLRB	0xA,3
+  049B    258A    CALL	0x58A
 485:              //	Init_PA_Isr();		 //PA中断初始化函数
 486:              //	Init_PB_Isr();		 //PB中断初始化函数
 487:              // #if FCT
@@ -621,44 +621,44 @@
 493:              	//	Set_CCP_PWM();		 //PWM初始化
 494:              
 495:              	INTCON = 0XC0;	   // 允许所有未被屏蔽的中断、外设中断
-  03C6    30C0    LDIA	0xC0
-  03C7    008B    LD	0xB,A
+  049E    30C0    LDIA	0xC0
+  049F    008B    LD	0xB,A
 496:              
 497:              	// RemoFlash_Read();  /* 读取存储的数值 */
 498:              	while (1)
 499:              	{
 500:              		/*主循环10ms*/
 501:              		if (F1ms == SET)
-  03C8    1CD0    SNZB	0x50,1
-  03C9    2BC8    JP	0x3C8
-  03CA    0064    CLRWDT
+  04A0    1CD3    SNZB	0x53,1
+  04A1    2CA0    JP	0x4A0
+  04A2    0064    CLRWDT
 502:              		{
 503:              			CLRWDT(); /*清看门狗*/
 504:              			// ScanIO();
 505:              			F1ms = CLR;
-  03CB    1283    CLRB	0x3,5
-  03CC    1303    CLRB	0x3,6
-  03CD    10D0    CLRB	0x50,1
+  04A3    1283    CLRB	0x3,5
+  04A4    1303    CLRB	0x3,6
+  04A5    10D3    CLRB	0x53,1
 506:              			switch (SEQmain)
-  03CE    2BED    JP	0x3ED
+  04A6    2CC5    JP	0x4C5
 507:              			{
 508:              				case 0:
 509:              					FCTloop();
-  03CF    120A    CLRB	0xA,4
-  03D0    118A    CLRB	0xA,3
-  03D1    2326    CALL	0x326
+  04A7    120A    CLRB	0xA,4
+  04A8    118A    CLRB	0xA,3
+  04A9    240B    CALL	0x40B
 510:              					break;
-  03D4    2C0D    JP	0x40D
+  04AC    2CE5    JP	0x4E5
 511:              				case 1:
 512:              					if(FfctTest == CLR)
-  03D5    1851    SZB	0x51,0
-  03D6    2C0D    JP	0x40D
+  04AD    1854    SZB	0x54,0
+  04AE    2CE5    JP	0x4E5
 513:              					{
 514:              						GsensorLoop();
-  03D7    120A    CLRB	0xA,4
-  03D8    118A    CLRB	0xA,3
-  03D9    2230    CALL	0x230
-  03DC    2C0D    JP	0x40D
+  04AF    120A    CLRB	0xA,4
+  04B0    118A    CLRB	0xA,3
+  04B1    2247    CALL	0x247
+  04B4    2CE5    JP	0x4E5
 515:              					}
 516:              					break;
 517:              				case 2:
@@ -669,14 +669,14 @@
 522:              					break;
 523:              				case 4:
 524:              					if(FfctTest == CLR)
-  03DD    1851    SZB	0x51,0
-  03DE    2C0D    JP	0x40D
+  04B5    1854    SZB	0x54,0
+  04B6    2CE5    JP	0x4E5
 525:              					{
 526:              						GflushLoop();
-  03DF    120A    CLRB	0xA,4
-  03E0    118A    CLRB	0xA,3
-  03E1    201C    CALL	0x1C
-  03E4    2C0D    JP	0x40D
+  04B7    120A    CLRB	0xA,4
+  04B8    118A    CLRB	0xA,3
+  04B9    201C    CALL	0x1C
+  04BC    2CE5    JP	0x4E5
 527:              					}
 528:              					break;
 529:              				case 5:
@@ -690,46 +690,46 @@
 537:              					break;
 538:              				case 8:
 539:              					if(FfctTest == CLR)
-  03E5    1851    SZB	0x51,0
-  03E6    2C0D    JP	0x40D
+  04BD    1854    SZB	0x54,0
+  04BE    2CE5    JP	0x4E5
 540:              					{
 541:              						GledLoop();
-  03E7    120A    CLRB	0xA,4
-  03E8    118A    CLRB	0xA,3
-  03E9    2453    CALL	0x453
-  03EC    2C0D    JP	0x40D
-  03ED    084A    LD	A,0x4A
-  03EE    3A00    XORIA	0x0
-  03EF    1903    SZB	0x3,2
-  03F0    2BCF    JP	0x3CF
-  03F1    3A01    XORIA	0x1
-  03F2    1903    SZB	0x3,2
-  03F3    2BD5    JP	0x3D5
-  03F4    3A03    XORIA	0x3
-  03F5    1903    SZB	0x3,2
-  03F6    2C0D    JP	0x40D
-  03F7    3A01    XORIA	0x1
-  03F8    1903    SZB	0x3,2
-  03F9    2C0D    JP	0x40D
-  03FA    3A07    XORIA	0x7
-  03FB    1903    SZB	0x3,2
-  03FC    2BDD    JP	0x3DD
-  03FD    3A01    XORIA	0x1
-  03FE    1903    SZB	0x3,2
-  03FF    2C0D    JP	0x40D
-  0400    3A03    XORIA	0x3
-  0401    1903    SZB	0x3,2
-  0402    2C0D    JP	0x40D
-  0403    3A01    XORIA	0x1
-  0404    1903    SZB	0x3,2
-  0405    2C0D    JP	0x40D
-  0406    3A0F    XORIA	0xF
-  0407    1903    SZB	0x3,2
-  0408    2BE5    JP	0x3E5
-  0409    3A01    XORIA	0x1
-  040A    1903    SZB	0x3,2
-  040B    2C0D    JP	0x40D
-  040C    2C0D    JP	0x40D
+  04BF    120A    CLRB	0xA,4
+  04C0    118A    CLRB	0xA,3
+  04C1    233D    CALL	0x33D
+  04C4    2CE5    JP	0x4E5
+  04C5    084D    LD	A,0x4D
+  04C6    3A00    XORIA	0x0
+  04C7    1903    SZB	0x3,2
+  04C8    2CA7    JP	0x4A7
+  04C9    3A01    XORIA	0x1
+  04CA    1903    SZB	0x3,2
+  04CB    2CAD    JP	0x4AD
+  04CC    3A03    XORIA	0x3
+  04CD    1903    SZB	0x3,2
+  04CE    2CE5    JP	0x4E5
+  04CF    3A01    XORIA	0x1
+  04D0    1903    SZB	0x3,2
+  04D1    2CE5    JP	0x4E5
+  04D2    3A07    XORIA	0x7
+  04D3    1903    SZB	0x3,2
+  04D4    2CB5    JP	0x4B5
+  04D5    3A01    XORIA	0x1
+  04D6    1903    SZB	0x3,2
+  04D7    2CE5    JP	0x4E5
+  04D8    3A03    XORIA	0x3
+  04D9    1903    SZB	0x3,2
+  04DA    2CE5    JP	0x4E5
+  04DB    3A01    XORIA	0x1
+  04DC    1903    SZB	0x3,2
+  04DD    2CE5    JP	0x4E5
+  04DE    3A0F    XORIA	0xF
+  04DF    1903    SZB	0x3,2
+  04E0    2CBD    JP	0x4BD
+  04E1    3A01    XORIA	0x1
+  04E2    1903    SZB	0x3,2
+  04E3    2CE5    JP	0x4E5
+  04E4    2CE5    JP	0x4E5
 542:              					}
 543:              				break;
 544:              				case 9:
@@ -740,17 +740,17 @@
 549:              					break;
 550:              			}
 551:              			if (++SEQmain >= 10)
-  040D    300A    LDIA	0xA
-  040E    1283    CLRB	0x3,5
-  040F    1303    CLRB	0x3,6
-  0410    0ACA    INCR	0x4A
-  0411    024A    SUBA	0x4A
-  0412    1C03    SNZB	0x3,0
-  0413    2BC8    JP	0x3C8
+  04E5    300A    LDIA	0xA
+  04E6    1283    CLRB	0x3,5
+  04E7    1303    CLRB	0x3,6
+  04E8    0ACD    INCR	0x4D
+  04E9    024D    SUBA	0x4D
+  04EA    1C03    SNZB	0x3,0
+  04EB    2CA0    JP	0x4A0
 552:              			{
 553:              				SEQmain = 0;
-  0414    01CA    CLR	0x4A
-  0415    2BC8    JP	0x3C8
+  04EC    01CD    CLR	0x4D
+  04ED    2CA0    JP	0x4A0
 554:              			}
 555:              		}
 556:              	}
@@ -764,10 +764,10 @@
 564:              {
 565:              	// 1ms定时器中断服务函数
 566:              	if (TMR1IF)
-  0416    1283    CLRB	0x3,5
-  0417    1303    CLRB	0x3,6
-  0418    1C0C    SNZB	0xC,0
-  0419    2C2E    JP	0x42E
+  04EE    1283    CLRB	0x3,5
+  04EF    1303    CLRB	0x3,6
+  04F0    1C0C    SNZB	0xC,0
+  04F1    2D06    JP	0x506
 567:              	{
 568:              		// ---------------------------------------
 569:              		// TMR1L += 0xC0;
@@ -775,36 +775,36 @@
 571:              		// 在进入中断等过程中其实Time是一直在计数的
 572:              		// ---------------------------------------
 573:              		TMR1 = TIMER1_TIME;
-  041A    30E0    LDIA	0xE0
-  041B    008F    LD	0xF,A
-  041C    30C0    LDIA	0xC0
-  041D    008E    LD	0xE,A
+  04F2    30E0    LDIA	0xE0
+  04F3    008F    LD	0xF,A
+  04F4    30C0    LDIA	0xC0
+  04F5    008E    LD	0xE,A
 574:              		TMR1IF = 0; // 清中断标志位
-  041E    100C    CLRB	0xC,0
+  04F6    100C    CLRB	0xC,0
 575:              
 576:              		/* 主循环1ms标志位 */
 577:              		F1ms = 1;
-  041F    14D0    SETB	0x50,1
+  04F7    14D3    SETB	0x53,1
 578:              
 579:              		/* 1s标志位 */
 580:              		if (++MainTime_1s >= 1000)
-  0420    0AB8    INCR	0x38
-  0421    1903    SZB	0x3,2
-  0422    0AB9    INCR	0x39
-  0423    3003    LDIA	0x3
-  0424    0239    SUBA	0x39
-  0425    30E8    LDIA	0xE8
-  0426    1903    SZB	0x3,2
-  0427    0238    SUBA	0x38
-  0428    1C03    SNZB	0x3,0
-  0429    2C2E    JP	0x42E
+  04F8    0AB8    INCR	0x38
+  04F9    1903    SZB	0x3,2
+  04FA    0AB9    INCR	0x39
+  04FB    3003    LDIA	0x3
+  04FC    0239    SUBA	0x39
+  04FD    30E8    LDIA	0xE8
+  04FE    1903    SZB	0x3,2
+  04FF    0238    SUBA	0x38
+  0500    1C03    SNZB	0x3,0
+  0501    2D06    JP	0x506
 581:              		{
 582:              			MainTime_1s = 0;
-  042A    01B8    CLR	0x38
-  042B    01B9    CLR	0x39
+  0502    01B8    CLR	0x38
+  0503    01B9    CLR	0x39
 583:              			Fsys1s.byte = 0xFF; /* 1s' flag */
-  042C    30FF    LDIA	0xFF
-  042D    00CF    LD	0x4F,A
+  0504    30FF    LDIA	0xFF
+  0505    00D2    LD	0x52,A
 584:              // #if (VER_2510M || VER_2510U)
 585:              // 			if (++MainTime_1min >= 60) /* 1min标识位 */
 586:              // 			{
@@ -817,20 +817,20 @@
 593:              
 594:              	// 50us定时器中断服务函数
 595:              	if (TMR2IF)
-  042E    1C8C    SNZB	0xC,1
-  042F    2C32    JP	0x432
+  0506    1C8C    SNZB	0xC,1
+  0507    2D0A    JP	0x50A
 596:              	{
 597:              		TMR2IF = 0; /*	8位，自重载，无需二次配置	*/
-  0430    108C    CLRB	0xC,1
+  0508    108C    CLRB	0xC,1
 598:              		INT_LED_SHOW(); /* 氛围灯中断函数 */
-  0431    2439    CALL	0x439
-  0432    0871    LD	A,0x71
-  0433    008A    LD	0xA,A
-  0434    0E70    SWAPA	0x70
-  0435    0083    LD	0x3,A
-  0436    0EFE    SWAPR	0x7E
-  0437    0E7E    SWAPA	0x7E
-  0438    0009    RETI
+  0509    2511    CALL	0x511
+  050A    0871    LD	A,0x71
+  050B    008A    LD	0xA,A
+  050C    0E70    SWAPA	0x70
+  050D    0083    LD	0x3,A
+  050E    0EFE    SWAPR	0x7E
+  050F    0E7E    SWAPA	0x7E
+  0510    0009    RETI
 599:              	}
 600:              
 601:              // #if FCT
@@ -890,7 +890,7 @@
 655:              	// 	RBIF = 0; //清中断标志
 656:              	// }
 657:              }
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor.c ----------------------------------------------------------------------
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c ----------------------------------------------------------------------
 1:                #include "cfg_user.h"
 2:                #include "cfg_case.h"
 3:                
@@ -912,23 +912,23 @@
 19:               void GsensorLoop(void)
 20:               {
 21:                   SensorKey();
-  0230    223A    CALL	0x23A
-  0231    120A    CLRB	0xA,4
-  0232    118A    CLRB	0xA,3
+  0247    2251    CALL	0x251
+  0248    120A    CLRB	0xA,4
+  0249    118A    CLRB	0xA,3
 22:                   SensorTime();
-  0233    223B    CALL	0x23B
-  0234    120A    CLRB	0xA,4
-  0235    118A    CLRB	0xA,3
+  024A    2252    CALL	0x252
+  024B    120A    CLRB	0xA,4
+  024C    118A    CLRB	0xA,3
 23:                   SensorJudge();
-  0236    228E    CALL	0x28E
-  0237    120A    CLRB	0xA,4
-  0238    118A    CLRB	0xA,3
+  024D    22A5    CALL	0x2A5
+  024E    120A    CLRB	0xA,4
+  024F    118A    CLRB	0xA,3
 24:                   SensorControl();
-  0239    2A73    JP	0x273
+  0250    2A8A    JP	0x28A
 25:               }
 26:               
 27:               void SensorKey(void)
-  023A    0008    RET
+  0251    0008    RET
 28:               {
 29:               
 30:               }
@@ -937,94 +937,94 @@
 33:               void SensorTime(void)
 34:               {
 35:                   if(Fbody == SET)
-  023B    1C7A    SNZB	0x7A,0
-  023C    2A5F    JP	0x25F
+  0252    1C7A    SNZB	0x7A,0
+  0253    2A76    JP	0x276
 36:                   {
 37:                       FbodyEx5s = CLR;
-  023D    12FA    CLRB	0x7A,5
+  0254    12FA    CLRB	0x7A,5
 38:                       CNTbodyExitTime = 0;
-  023E    01AA    CLR	0x2A
-  023F    01AB    CLR	0x2B
+  0255    01AA    CLR	0x2A
+  0256    01AB    CLR	0x2B
 39:                       if(FlightLeave == CLR)  /* 检测到人有效时间 */
-  0240    194D    SZB	0x4D,2
-  0241    2A5A    JP	0x25A
+  0257    1950    SZB	0x50,2
+  0258    2A71    JP	0x271
 40:                       {
 41:                           if(++CNTbodyInTime >= BODY_ENTER_KEEP_60S)	/* 60s */
-  0242    0AAC    INCR	0x2C
-  0243    1903    SZB	0x3,2
-  0244    0AAD    INCR	0x2D
-  0245    3017    LDIA	0x17
-  0246    022D    SUBA	0x2D
-  0247    3070    LDIA	0x70
-  0248    1903    SZB	0x3,2
-  0249    022C    SUBA	0x2C
-  024A    1C03    SNZB	0x3,0
-  024B    2A52    JP	0x252
+  0259    0AAC    INCR	0x2C
+  025A    1903    SZB	0x3,2
+  025B    0AAD    INCR	0x2D
+  025C    3017    LDIA	0x17
+  025D    022D    SUBA	0x2D
+  025E    3070    LDIA	0x70
+  025F    1903    SZB	0x3,2
+  0260    022C    SUBA	0x2C
+  0261    1C03    SNZB	0x3,0
+  0262    2A69    JP	0x269
 42:                           {
 43:                               CNTbodyInTime = BODY_ENTER_KEEP_60S;
-  024C    3070    LDIA	0x70
-  024D    00AC    LD	0x2C,A
-  024E    3017    LDIA	0x17
-  024F    00AD    LD	0x2D,A
+  0263    3070    LDIA	0x70
+  0264    00AC    LD	0x2C,A
+  0265    3017    LDIA	0x17
+  0266    00AD    LD	0x2D,A
 44:                               FbodyIn60s = SET;
-  0250    15FA    SETB	0x7A,3
+  0267    15FA    SETB	0x7A,3
 45:                           }
-  0251    0008    RET
+  0268    0008    RET
 46:                           else if(CNTbodyInTime >= BODY_ENTER_KEEP_5S)		/* 5s */
-  0252    3001    LDIA	0x1
-  0253    022D    SUBA	0x2D
-  0254    30F4    LDIA	0xF4
-  0255    1903    SZB	0x3,2
-  0256    022C    SUBA	0x2C
-  0257    1803    SZB	0x3,0
+  0269    3001    LDIA	0x1
+  026A    022D    SUBA	0x2D
+  026B    30F4    LDIA	0xF4
+  026C    1903    SZB	0x3,2
+  026D    022C    SUBA	0x2C
+  026E    1803    SZB	0x3,0
 47:                           {
 48:                               FbodyIn5s = SET;
-  0258    167A    SETB	0x7A,4
-  0259    0008    RET
+  026F    167A    SETB	0x7A,4
+  0270    0008    RET
 49:                           }
 50:                       }
 51:                       else
 52:                       {
 53:                           if(FbodyIn5s == CLR)    /* 未待满5s，时间清零 */
-  025A    1A7A    SZB	0x7A,4
-  025B    0008    RET
+  0271    1A7A    SZB	0x7A,4
+  0272    0008    RET
 54:                           {
 55:                               CNTbodyInTime = 0;
-  025C    01AC    CLR	0x2C
-  025D    01AD    CLR	0x2D
+  0273    01AC    CLR	0x2C
+  0274    01AD    CLR	0x2D
 56:                           }
 57:                       }
 58:                   }
-  025E    0008    RET
+  0275    0008    RET
 59:                   else
 60:                   {
 61:                       CNTbodyInTime = 0;
-  025F    01AC    CLR	0x2C
-  0260    01AD    CLR	0x2D
+  0276    01AC    CLR	0x2C
+  0277    01AD    CLR	0x2D
 62:                       FbodyIn5s = CLR;
-  0261    127A    CLRB	0x7A,4
+  0278    127A    CLRB	0x7A,4
 63:                       FbodyIn60s = CLR;
-  0262    11FA    CLRB	0x7A,3
+  0279    11FA    CLRB	0x7A,3
 64:                       if(++CNTbodyExitTime >= BODY_EXIT_KEEP_5S)
-  0263    0AAA    INCR	0x2A
-  0264    1903    SZB	0x3,2
-  0265    0AAB    INCR	0x2B
-  0266    3001    LDIA	0x1
-  0267    022B    SUBA	0x2B
-  0268    30F4    LDIA	0xF4
-  0269    1903    SZB	0x3,2
-  026A    022A    SUBA	0x2A
-  026B    1C03    SNZB	0x3,0
-  026C    0008    RET
+  027A    0AAA    INCR	0x2A
+  027B    1903    SZB	0x3,2
+  027C    0AAB    INCR	0x2B
+  027D    3001    LDIA	0x1
+  027E    022B    SUBA	0x2B
+  027F    30F4    LDIA	0xF4
+  0280    1903    SZB	0x3,2
+  0281    022A    SUBA	0x2A
+  0282    1C03    SNZB	0x3,0
+  0283    0008    RET
 65:                       {
 66:                           CNTbodyExitTime = BODY_EXIT_KEEP_5S;
-  026D    30F4    LDIA	0xF4
-  026E    00AA    LD	0x2A,A
-  026F    3001    LDIA	0x1
-  0270    00AB    LD	0x2B,A
+  0284    30F4    LDIA	0xF4
+  0285    00AA    LD	0x2A,A
+  0286    3001    LDIA	0x1
+  0287    00AB    LD	0x2B,A
 67:                           FbodyEx5s = SET;        /* 人离开5秒 */
-  0271    16FA    SETB	0x7A,5
-  0272    0008    RET
+  0288    16FA    SETB	0x7A,5
+  0289    0008    RET
 68:                       }
 69:                   }
 70:               }
@@ -1033,195 +1033,195 @@
 73:               void SensorJudge(void)
 74:               {
 75:                   switch (SEQbody)
-  028E    2B0B    JP	0x30B
+  02A5    2B22    JP	0x322
 76:                   {
 77:                       case 0:
 78:                           Fbody = CLR;
-  028F    107A    CLRB	0x7A,0
+  02A6    107A    CLRB	0x7A,0
 79:                           FlightLeave = CLR;
-  0290    114D    CLRB	0x4D,2
+  02A7    1150    CLRB	0x50,2
 80:                           SEQbody = 1;
-  02A0    3001    LDIA	0x1
-  02A1    00C5    LD	0x45,A
+  02B7    3001    LDIA	0x1
+  02B8    00C8    LD	0x48,A
 81:                           break;
-  02A2    0008    RET
+  02B9    0008    RET
 82:               
 83:                       /* 人离开确认 */
 84:                       case 1:
 85:                           Fbody = CLR;
-  02A3    107A    CLRB	0x7A,0
+  02BA    107A    CLRB	0x7A,0
 86:                           FlightLeave = CLR;
-  02A4    114D    CLRB	0x4D,2
+  02BB    1150    CLRB	0x50,2
 87:                           if(PIsensor == LOW)
-  02A5    1886    SZB	0x6,1
-  02A6    2AB8    JP	0x2B8
+  02BC    1886    SZB	0x6,1
+  02BD    2ACF    JP	0x2CF
 88:                           {
 89:                               if(++CNTbody_h >= SENSOR_TRG)
-  02A7    0AB2    INCR	0x32
-  02A8    1903    SZB	0x3,2
-  02A9    0AB3    INCR	0x33
-  02AA    3000    LDIA	0x0
-  02AB    0233    SUBA	0x33
-  02AC    3003    LDIA	0x3
-  02AD    1903    SZB	0x3,2
-  02AE    0232    SUBA	0x32
-  02AF    1C03    SNZB	0x3,0
-  02B0    0008    RET
+  02BE    0AB2    INCR	0x32
+  02BF    1903    SZB	0x3,2
+  02C0    0AB3    INCR	0x33
+  02C1    3000    LDIA	0x0
+  02C2    0233    SUBA	0x33
+  02C3    3003    LDIA	0x3
+  02C4    1903    SZB	0x3,2
+  02C5    0232    SUBA	0x32
+  02C6    1C03    SNZB	0x3,0
+  02C7    0008    RET
 90:                               {
 91:                                   CNTbody_h = 0;
-  02B1    01B2    CLR	0x32
-  02B2    01B3    CLR	0x33
+  02C8    01B2    CLR	0x32
+  02C9    01B3    CLR	0x33
 92:               					CNTbody_l = 0;
-  02B3    01B0    CLR	0x30
-  02B4    01B1    CLR	0x31
+  02CA    01B0    CLR	0x30
+  02CB    01B1    CLR	0x31
 93:               					SEQbody = 2;
-  02B5    3002    LDIA	0x2
-  02B6    00C5    LD	0x45,A
+  02CC    3002    LDIA	0x2
+  02CD    00C8    LD	0x48,A
 94:               					break;
-  02B7    0008    RET
+  02CE    0008    RET
 95:                               }
 96:                           }
 97:                           else
 98:                           {
 99:                               CNTbody_h = 0;
-  02B8    01B2    CLR	0x32
-  02B9    01B3    CLR	0x33
-  02BA    0008    RET
+  02CF    01B2    CLR	0x32
+  02D0    01B3    CLR	0x33
+  02D1    0008    RET
 100:                          }
 101:                          break;
 102:              
 103:                      /* 感应到人判定开始 */
 104:                      case 2:
 105:                          Fbody = CLR;
-  02BB    107A    CLRB	0x7A,0
+  02D2    107A    CLRB	0x7A,0
 106:                          FlightLeave = CLR;
-  02BC    114D    CLRB	0x4D,2
+  02D3    1150    CLRB	0x50,2
 107:                          if(PIsensor == LOW)
-  02BD    1886    SZB	0x6,1
-  02BE    2A92    JP	0x292
+  02D4    1886    SZB	0x6,1
+  02D5    2AA9    JP	0x2A9
 108:                          {
 109:                              ++CNTbody_h;
-  02BF    0AB2    INCR	0x32
-  02C0    1903    SZB	0x3,2
-  02C1    0AB3    INCR	0x33
+  02D6    0AB2    INCR	0x32
+  02D7    1903    SZB	0x3,2
+  02D8    0AB3    INCR	0x33
 110:                          }
-  0291    2AA0    JP	0x2A0
+  02A8    2AB7    JP	0x2B7
 111:                          else
 112:                          {
 113:                              if(++CNTbody_l >= SENSOR_ERROR)
-  0292    0AB0    INCR	0x30
-  0293    1903    SZB	0x3,2
-  0294    0AB1    INCR	0x31
-  0295    3000    LDIA	0x0
-  0296    0231    SUBA	0x31
-  0297    3006    LDIA	0x6
-  0298    1903    SZB	0x3,2
-  0299    0230    SUBA	0x30
-  029A    1C03    SNZB	0x3,0
-  029B    2AC2    JP	0x2C2
+  02A9    0AB0    INCR	0x30
+  02AA    1903    SZB	0x3,2
+  02AB    0AB1    INCR	0x31
+  02AC    3000    LDIA	0x0
+  02AD    0231    SUBA	0x31
+  02AE    3006    LDIA	0x6
+  02AF    1903    SZB	0x3,2
+  02B0    0230    SUBA	0x30
+  02B1    1C03    SNZB	0x3,0
+  02B2    2AD9    JP	0x2D9
 114:                              {
 115:                                  CNTbody_h = 0;
-  029C    01B2    CLR	0x32
-  029D    01B3    CLR	0x33
+  02B3    01B2    CLR	0x32
+  02B4    01B3    CLR	0x33
 116:                                  CNTbody_l = 0;
-  029E    01B0    CLR	0x30
-  029F    01B1    CLR	0x31
+  02B5    01B0    CLR	0x30
+  02B6    01B1    CLR	0x31
 117:                                  SEQbody = 1;
 118:                                  break;
 119:                              }
 120:                          }
 121:                          BufCntAdd = CNTbody_h +CNTbody_l;
-  02C2    231D    CALL	0x31D
-  02C3    120A    CLRB	0xA,4
-  02C4    118A    CLRB	0xA,3
+  02D9    2334    CALL	0x334
+  02DA    120A    CLRB	0xA,4
+  02DB    118A    CLRB	0xA,3
 122:                          if(BufCntAdd >= SENSOR_BODY_ENTER_X_0S)
-  02C5    3000    LDIA	0x0
-  02C6    022F    SUBA	0x2F
-  02C7    301E    LDIA	0x1E
-  02C8    1903    SZB	0x3,2
-  02C9    022E    SUBA	0x2E
-  02CA    1C03    SNZB	0x3,0
-  02CB    0008    RET
+  02DC    3000    LDIA	0x0
+  02DD    022F    SUBA	0x2F
+  02DE    301E    LDIA	0x1E
+  02DF    1903    SZB	0x3,2
+  02E0    022E    SUBA	0x2E
+  02E1    1C03    SNZB	0x3,0
+  02E2    0008    RET
 123:                          {
 124:                              SEQbody = 3;
-  02CC    3003    LDIA	0x3
-  02CD    00C5    LD	0x45,A
+  02E3    3003    LDIA	0x3
+  02E4    00C8    LD	0x48,A
 125:                              break;
-  02CE    0008    RET
+  02E5    0008    RET
 126:                          }
 127:                          break;
 128:                      /* 感应到人确认 */
 129:                      case 3:
 130:                          Fbody = SET;
-  02CF    147A    SETB	0x7A,0
+  02E6    147A    SETB	0x7A,0
 131:                          FlightLeave = CLR;
-  02D0    114D    CLRB	0x4D,2
+  02E7    1150    CLRB	0x50,2
 132:                          if(PIsensor == HIGH)
-  02D1    1C86    SNZB	0x6,1
-  02D2    2AE4    JP	0x2E4
+  02E8    1C86    SNZB	0x6,1
+  02E9    2AFB    JP	0x2FB
 133:                          {
 134:                              if(++CNTbody_l >= SENSOR_TRG)
-  02D3    0AB0    INCR	0x30
-  02D4    1903    SZB	0x3,2
-  02D5    0AB1    INCR	0x31
-  02D6    3000    LDIA	0x0
-  02D7    0231    SUBA	0x31
-  02D8    3003    LDIA	0x3
-  02D9    1903    SZB	0x3,2
-  02DA    0230    SUBA	0x30
-  02DB    1C03    SNZB	0x3,0
-  02DC    0008    RET
+  02EA    0AB0    INCR	0x30
+  02EB    1903    SZB	0x3,2
+  02EC    0AB1    INCR	0x31
+  02ED    3000    LDIA	0x0
+  02EE    0231    SUBA	0x31
+  02EF    3003    LDIA	0x3
+  02F0    1903    SZB	0x3,2
+  02F1    0230    SUBA	0x30
+  02F2    1C03    SNZB	0x3,0
+  02F3    0008    RET
 135:                              {
 136:                                  CNTbody_h = 0;
-  02DD    01B2    CLR	0x32
-  02DE    01B3    CLR	0x33
+  02F4    01B2    CLR	0x32
+  02F5    01B3    CLR	0x33
 137:                                  CNTbody_l = 0;
-  02DF    01B0    CLR	0x30
-  02E0    01B1    CLR	0x31
+  02F6    01B0    CLR	0x30
+  02F7    01B1    CLR	0x31
 138:                                  SEQbody = 4;
-  02E1    3004    LDIA	0x4
-  02E2    00C5    LD	0x45,A
+  02F8    3004    LDIA	0x4
+  02F9    00C8    LD	0x48,A
 139:                                  break;
-  02E3    0008    RET
+  02FA    0008    RET
 140:                              }
 141:                          }
 142:                          else
 143:                          {
 144:                              CNTbody_l = 0;
-  02E4    01B0    CLR	0x30
-  02E5    01B1    CLR	0x31
-  02E6    0008    RET
+  02FB    01B0    CLR	0x30
+  02FC    01B1    CLR	0x31
+  02FD    0008    RET
 145:                          }
 146:                          break;
 147:                      /* 人离开判定开始 */
 148:                      case 4:
 149:                          Fbody = SET;
-  02E7    147A    SETB	0x7A,0
+  02FE    147A    SETB	0x7A,0
 150:                          FlightLeave = SET;
-  02E8    154D    SETB	0x4D,2
+  02FF    1550    SETB	0x50,2
 151:                          if(PIsensor == LOW)
-  02E9    1886    SZB	0x6,1
-  02EA    2AFA    JP	0x2FA
+  0300    1886    SZB	0x6,1
+  0301    2B11    JP	0x311
 152:                          {
 153:                              if(++CNTbody_h >= SENSOR_ERROR)
-  02EB    0AB2    INCR	0x32
-  02EC    1903    SZB	0x3,2
-  02ED    0AB3    INCR	0x33
-  02EE    3000    LDIA	0x0
-  02EF    0233    SUBA	0x33
-  02F0    3006    LDIA	0x6
-  02F1    1903    SZB	0x3,2
-  02F2    0232    SUBA	0x32
-  02F3    1C03    SNZB	0x3,0
-  02F4    2AFD    JP	0x2FD
+  0302    0AB2    INCR	0x32
+  0303    1903    SZB	0x3,2
+  0304    0AB3    INCR	0x33
+  0305    3000    LDIA	0x0
+  0306    0233    SUBA	0x33
+  0307    3006    LDIA	0x6
+  0308    1903    SZB	0x3,2
+  0309    0232    SUBA	0x32
+  030A    1C03    SNZB	0x3,0
+  030B    2B14    JP	0x314
 154:                              {
 155:                                  CNTbody_h = 0;
-  02F5    01B2    CLR	0x32
-  02F6    01B3    CLR	0x33
+  030C    01B2    CLR	0x32
+  030D    01B3    CLR	0x33
 156:                                  CNTbody_l = 0;
-  02F7    01B0    CLR	0x30
-  02F8    01B1    CLR	0x31
-  02F9    2ACC    JP	0x2CC
+  030E    01B0    CLR	0x30
+  030F    01B1    CLR	0x31
+  0310    2AE3    JP	0x2E3
 157:                                  SEQbody = 3;
 158:                                  break;
 159:                              }
@@ -1229,23 +1229,23 @@
 161:                          else
 162:                          {
 163:                              ++CNTbody_l;
-  02FA    0AB0    INCR	0x30
-  02FB    1903    SZB	0x3,2
-  02FC    0AB1    INCR	0x31
+  0311    0AB0    INCR	0x30
+  0312    1903    SZB	0x3,2
+  0313    0AB1    INCR	0x31
 164:                          }
 165:                          BufCntAdd = CNTbody_h +CNTbody_l;
-  02FD    231D    CALL	0x31D
-  02FE    120A    CLRB	0xA,4
-  02FF    118A    CLRB	0xA,3
+  0314    2334    CALL	0x334
+  0315    120A    CLRB	0xA,4
+  0316    118A    CLRB	0xA,3
 166:                          if(BufCntAdd >= SENSOR_BODY_EXIT_X_0S)      /* 暂改为5s */
-  0300    3001    LDIA	0x1
-  0301    022F    SUBA	0x2F
-  0302    30F4    LDIA	0xF4
-  0303    1903    SZB	0x3,2
-  0304    022E    SUBA	0x2E
-  0305    1C03    SNZB	0x3,0
-  0306    0008    RET
-  0307    2AA0    JP	0x2A0
+  0317    3001    LDIA	0x1
+  0318    022F    SUBA	0x2F
+  0319    30F4    LDIA	0xF4
+  031A    1903    SZB	0x3,2
+  031B    022E    SUBA	0x2E
+  031C    1C03    SNZB	0x3,0
+  031D    0008    RET
+  031E    2AB7    JP	0x2B7
 167:                          {
 168:                              SEQbody = 1;
 169:                              break;
@@ -1253,74 +1253,74 @@
 171:                          break;
 172:                      default:
 173:                          SEQbody = 0;
-  0308    01C5    CLR	0x45
+  031F    01C8    CLR	0x48
 174:                          FlightLeave = CLR;
-  0309    114D    CLRB	0x4D,2
+  0320    1150    CLRB	0x50,2
 175:                          break;
-  030A    0008    RET
-  030B    0845    LD	A,0x45
-  030C    3A00    XORIA	0x0
-  030D    1903    SZB	0x3,2
-  030E    2A8F    JP	0x28F
-  030F    3A01    XORIA	0x1
-  0310    1903    SZB	0x3,2
-  0311    2AA3    JP	0x2A3
-  0312    3A03    XORIA	0x3
-  0313    1903    SZB	0x3,2
-  0314    2ABB    JP	0x2BB
-  0315    3A01    XORIA	0x1
-  0316    1903    SZB	0x3,2
-  0317    2ACF    JP	0x2CF
-  0318    3A07    XORIA	0x7
-  0319    1903    SZB	0x3,2
-  031A    2AE7    JP	0x2E7
-  031B    2B08    JP	0x308
-  031C    0008    RET
+  0321    0008    RET
+  0322    0848    LD	A,0x48
+  0323    3A00    XORIA	0x0
+  0324    1903    SZB	0x3,2
+  0325    2AA6    JP	0x2A6
+  0326    3A01    XORIA	0x1
+  0327    1903    SZB	0x3,2
+  0328    2ABA    JP	0x2BA
+  0329    3A03    XORIA	0x3
+  032A    1903    SZB	0x3,2
+  032B    2AD2    JP	0x2D2
+  032C    3A01    XORIA	0x1
+  032D    1903    SZB	0x3,2
+  032E    2AE6    JP	0x2E6
+  032F    3A07    XORIA	0x7
+  0330    1903    SZB	0x3,2
+  0331    2AFE    JP	0x2FE
+  0332    2B1F    JP	0x31F
+  0333    0008    RET
 176:                  }
 177:              }
 178:              
 179:              void SensorControl(void)
 180:              {
 181:                  FbodyEnter = CLR;
-  0273    10FA    CLRB	0x7A,1
+  028A    10FA    CLRB	0x7A,1
 182:                  FbodyExit = CLR;
-  0274    117A    CLRB	0x7A,2
+  028B    117A    CLRB	0x7A,2
 183:                  if(Fbufbody != Fbody)
-  0275    1C7A    SNZB	0x7A,0
-  0276    2A79    JP	0x279
-  0277    3001    LDIA	0x1
-  0278    2A7A    JP	0x27A
-  0279    3000    LDIA	0x0
-  027A    00F2    LD	0x72,A
-  027B    1F7A    SNZB	0x7A,6
-  027C    2A7F    JP	0x27F
-  027D    3001    LDIA	0x1
-  027E    2A80    JP	0x280
-  027F    3000    LDIA	0x0
-  0280    0672    XORA	0x72
-  0281    1903    SZB	0x3,2
-  0282    0008    RET
+  028C    1C7A    SNZB	0x7A,0
+  028D    2A90    JP	0x290
+  028E    3001    LDIA	0x1
+  028F    2A91    JP	0x291
+  0290    3000    LDIA	0x0
+  0291    00F2    LD	0x72,A
+  0292    1F7A    SNZB	0x7A,6
+  0293    2A96    JP	0x296
+  0294    3001    LDIA	0x1
+  0295    2A97    JP	0x297
+  0296    3000    LDIA	0x0
+  0297    0672    XORA	0x72
+  0298    1903    SZB	0x3,2
+  0299    0008    RET
 184:                  {
 185:                      if(Fbody == SET)
-  0283    1C7A    SNZB	0x7A,0
-  0284    2A87    JP	0x287
+  029A    1C7A    SNZB	0x7A,0
+  029B    2A9E    JP	0x29E
 186:                      {
 187:                          FbodyEnter = SET;   /* 感应到人瞬间 */
-  0285    14FA    SETB	0x7A,1
+  029C    14FA    SETB	0x7A,1
 188:                      }
-  0286    2A88    JP	0x288
+  029D    2A9F    JP	0x29F
 189:                      else
 190:                      {
 191:                          FbodyExit = SET;    /* 人离开瞬间 */
-  0287    157A    SETB	0x7A,2
+  029E    157A    SETB	0x7A,2
 192:                      }
 193:                      Fbufbody = Fbody;
-  0288    1C7A    SNZB	0x7A,0
-  0289    2A8C    JP	0x28C
-  028A    177A    SETB	0x7A,6
-  028B    0008    RET
-  028C    137A    CLRB	0x7A,6
-  028D    0008    RET
+  029F    1C7A    SNZB	0x7A,0
+  02A0    2AA3    JP	0x2A3
+  02A1    177A    SETB	0x7A,6
+  02A2    0008    RET
+  02A3    137A    CLRB	0x7A,6
+  02A4    0008    RET
 194:                  }
 195:              }
 196:              
@@ -1431,7 +1431,7 @@
 301:              // }
 302:              
 303:              
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\light.c ----------------------------------------------------------------------
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\light.c ----------------------------------------------------------------------
 1:                #include "cfg_user.h"
 2:                #include "cfg_case.h"
 3:                
@@ -1450,23 +1450,23 @@
 16:               void GledLoop(void)
 17:               {
 18:               	LED_Time();
-  0453    245E    CALL	0x45E
-  0454    120A    CLRB	0xA,4
-  0455    118A    CLRB	0xA,3
+  033D    2348    CALL	0x348
+  033E    120A    CLRB	0xA,4
+  033F    118A    CLRB	0xA,3
 19:               	LED_Key();
-  0456    245D    CALL	0x45D
-  0457    120A    CLRB	0xA,4
-  0458    118A    CLRB	0xA,3
+  0340    2347    CALL	0x347
+  0341    120A    CLRB	0xA,4
+  0342    118A    CLRB	0xA,3
 20:               	LED_Judge();
-  0459    246B    CALL	0x46B
-  045A    120A    CLRB	0xA,4
-  045B    118A    CLRB	0xA,3
+  0343    23F7    CALL	0x3F7
+  0344    120A    CLRB	0xA,4
+  0345    118A    CLRB	0xA,3
 21:               	LED_Con();
-  045C    2C61    JP	0x461
+  0346    2B4B    JP	0x34B
 22:               }
 23:               
 24:               void LED_Key(void)
-  045D    0008    RET
+  0347    0008    RET
 25:               {
 26:               	// switch(SiCon_SETkey)
 27:               	// {	
@@ -1490,32 +1490,32 @@
 45:               void LED_Time(void)
 46:               {
 47:               	if(F1min_lgt == SET)
-  045E    184E    SZB	0x4E,0
+  0348    1851    SZB	0x51,0
 48:               	{
 49:               		F1min_lgt = CLR;
-  045F    104E    CLRB	0x4E,0
-  0460    0008    RET
+  0349    1051    CLRB	0x51,0
+  034A    0008    RET
 50:               	}
 51:               }
 52:               
 53:               void LED_Judge(void)
 54:               {
 55:               	if(Fbody == SET)	/* 感应到人开启 */
-  046B    1C7A    SNZB	0x7A,0
-  046C    2C71    JP	0x471
+  03F7    1C7A    SNZB	0x7A,0
+  03F8    2BFD    JP	0x3FD
 56:               	{
 57:               		Flight = SET;
-  046D    144D    SETB	0x4D,0
+  03F9    1450    SETB	0x50,0
 58:               		if(FbodyIn5s == CLR)	/* 检测到人5秒之内 */
-  046E    1E7A    SNZB	0x7A,4
+  03FA    1E7A    SNZB	0x7A,4
 59:               		{
 60:               			if(FlightLeave == SET)	/* 离开状态，熄灭指示灯 */
-  046F    1D4D    SNZB	0x4D,2
-  0470    0008    RET
+  03FB    1D50    SNZB	0x50,2
+  03FC    0008    RET
 61:               			{
 62:               				Flight = CLR;
-  0471    104D    CLRB	0x4D,0
-  0472    0008    RET
+  03FD    1050    CLRB	0x50,0
+  03FE    0008    RET
 63:               			}
 64:               		}
 65:               	}
@@ -1540,169 +1540,331 @@
 84:               void LED_Con(void)
 85:               {
 86:               	POlight	= Flight;
-  0461    1C4D    SNZB	0x4D,0
-  0462    2C67    JP	0x467
-  0463    1283    CLRB	0x3,5
-  0464    1303    CLRB	0x3,6
-  0465    1685    SETB	0x5,5
-  0466    0008    RET
-  0467    1283    CLRB	0x3,5
-  0468    1303    CLRB	0x3,6
-  0469    1285    CLRB	0x5,5
-  046A    0008    RET
+  034B    1C50    SNZB	0x50,0
+  034C    2B51    JP	0x351
+  034D    1283    CLRB	0x3,5
+  034E    1303    CLRB	0x3,6
+  034F    1685    SETB	0x5,5
+  0350    2B54    JP	0x354
+  0351    1283    CLRB	0x3,5
+  0352    1303    CLRB	0x3,6
+  0353    1285    CLRB	0x5,5
 87:               	/* 呼吸灯频率 */
-88:               	// if (Flight == SET)
-89:               	// {
-90:               	// 	if (FbreathDir == CLR)
-91:               	// 	{
-92:               	// 		if (CNTbreath_Led2 >= 80)	/* 亮度降低 */
-93:               	// 		{
-94:               	// 			CNTbreath_Led2 = 80;
-95:               	// 			if (++CNTbreath_Led3 > 10)	/* 100ms，min */
-96:               	// 			{
-97:               	// 				FbreathDir = SET;
-98:               	// 				CNTbreath_Led3 = 0;
-99:               	// 			}
-100:              	// 		}
-101:              	// 		else if (CNTbreath_Led2 > 45)	/* 35*4*10=1050ms */
-102:              	// 		{
-103:              	// 			if (++CNTbreath_Led1 >= 3)
-104:              	// 			{
-105:              	// 				CNTbreath_Led1 = 0;
-106:              	// 				CNTbreath_Led2++;
-107:              	// 			}
-108:              	// 		}
-109:              	// 		else if (CNTbreath_Led2 > 30)	/* 15*8*10 = 1200ms */
-110:              	// 		{
-111:              	// 			if (++CNTbreath_Led1 >= 8)
-112:              	// 			{
-113:              	// 				CNTbreath_Led1 = 0;
-114:              	// 				CNTbreath_Led2++;
-115:              	// 			}
-116:              	// 		}
-117:              	// 		else if (CNTbreath_Led2 > 10)	/* 1000ms */
-118:              	// 		{
-119:              	// 			if (++CNTbreath_Led1 >= 5)
-120:              	// 			{
-121:              	// 				CNTbreath_Led1 = 0;
-122:              	// 				CNTbreath_Led2++;
-123:              	// 			}
-124:              	// 		}
-125:              	// 		else
-126:              	// 		{
-127:              	// 			if (++CNTbreath_Led1 >= 11)	/* (11-5)*10=600ms，max */
-128:              	// 			{
-129:              	// 				CNTbreath_Led1 = 0;
-130:              	// 				CNTbreath_Led2++;
-131:              	// 			}
-132:              	// 		}
-133:              	// 	}
-134:              	// 	else
-135:              	// 	{
-136:              	// 		if (CNTbreath_Led2 < 5)	/* max */
-137:              	// 		{
-138:              	// 			CNTbreath_Led2 = 5;
-139:              	// 			FbreathDir = CLR;
-140:              	// 		}
-141:              	// 		else if (CNTbreath_Led2 < 10)
-142:              	// 		{
-143:              	// 			if (++CNTbreath_Led1 >= 6)	/* 600ms */
-144:              	// 			{
-145:              	// 				CNTbreath_Led1 = 0;
-146:              	// 				CNTbreath_Led2--;
-147:              	// 			}
-148:              	// 		}
-149:              	// 		else if (CNTbreath_Led2 < 30)
-150:              	// 		{
-151:              	// 			if (++CNTbreath_Led1 >= 6)	/* 1200ms */
-152:              	// 			{
-153:              	// 				CNTbreath_Led1 = 0;
-154:              	// 				CNTbreath_Led2--;
-155:              	// 			}
-156:              	// 		}
-157:              	// 		else if (CNTbreath_Led2 < 40)
-158:              	// 		{
-159:              	// 			if (++CNTbreath_Led1 >= 8)	/* 800ms */
-160:              	// 			{
-161:              	// 				CNTbreath_Led1 = 0;
-162:              	// 				CNTbreath_Led2--;
-163:              	// 			}
-164:              	// 		}
-165:              	// 		else if (CNTbreath_Led2 < 60)
-166:              	// 		{
-167:              	// 			if (++CNTbreath_Led1 >= 4)	/* 800ms */
-168:              	// 			{
-169:              	// 				CNTbreath_Led1 = 0;
-170:              	// 				CNTbreath_Led2--;
-171:              	// 			}
-172:              	// 		}
-173:              	// 		else
-174:              	// 		{
-175:              	// 			if (++CNTbreath_Led1 >= 3)	/* 600ms，min */
-176:              	// 			{
-177:              	// 				CNTbreath_Led1 = 0;
-178:              	// 				CNTbreath_Led2--;
-179:              	// 			}
-180:              	// 		}
-181:              	// 	}
-182:              	// }
-183:              	// else
-184:              	// {
-185:              	// 	CNTbreath_Led1 = 0;
-186:              	// 	CNTbreath_Led2 = 0;
-187:              	// 	CNTbreath_Led3 = 0;
-188:              	// 	FbreathDir = CLR;
-189:              	// 	POlight = OFF;
-190:              	// }
+88:               	if (Flight == SET)
+  0354    1C50    SNZB	0x50,0
+  0355    2BEE    JP	0x3EE
+89:               	{
+90:               		if (FbreathDir == CLR)
+  0356    19D0    SZB	0x50,3
+  0357    2BA4    JP	0x3A4
+91:               		{
+92:               			if (CNTbreath_Led2 >= 80)	/* 亮度降低 */
+  0358    3000    LDIA	0x0
+  0359    023D    SUBA	0x3D
+  035A    3050    LDIA	0x50
+  035B    1903    SZB	0x3,2
+  035C    023C    SUBA	0x3C
+  035D    1C03    SNZB	0x3,0
+  035E    2B70    JP	0x370
+93:               			{
+94:               				CNTbreath_Led2 = 80;
+  035F    3050    LDIA	0x50
+  0360    00BC    LD	0x3C,A
+  0361    01BD    CLR	0x3D
+95:               				if (++CNTbreath_Led3 > 10)	/* 100ms，min */
+  0362    0ABA    INCR	0x3A
+  0363    1903    SZB	0x3,2
+  0364    0ABB    INCR	0x3B
+  0365    3000    LDIA	0x0
+  0366    023B    SUBA	0x3B
+  0367    300B    LDIA	0xB
+  0368    1903    SZB	0x3,2
+  0369    023A    SUBA	0x3A
+  036A    1C03    SNZB	0x3,0
+  036B    0008    RET
+96:               				{
+97:               					FbreathDir = SET;
+  036C    15D0    SETB	0x50,3
+98:               					CNTbreath_Led3 = 0;
+  036D    01BA    CLR	0x3A
+  036E    01BB    CLR	0x3B
+  036F    0008    RET
+99:               				}
+100:              			}
+101:              			else if (CNTbreath_Led2 > 45)	/* 35*4*10=1050ms */
+  0370    3000    LDIA	0x0
+  0371    023D    SUBA	0x3D
+  0372    302E    LDIA	0x2E
+  0373    1903    SZB	0x3,2
+  0374    023C    SUBA	0x3C
+  0375    1C03    SNZB	0x3,0
+  0376    2B8F    JP	0x38F
+102:              			{
+103:              				if (++CNTbreath_Led1 >= 3)
+  0377    2405    CALL	0x405
+  0378    120A    CLRB	0xA,4
+  0379    118A    CLRB	0xA,3
+  037A    2B85    JP	0x385
+104:              				{
+105:              					CNTbreath_Led1 = 0;
+  0389    01BE    CLR	0x3E
+  038A    01BF    CLR	0x3F
+106:              					CNTbreath_Led2++;
+  038B    0ABC    INCR	0x3C
+  038C    1903    SZB	0x3,2
+  038D    0ABD    INCR	0x3D
+  038E    0008    RET
+107:              				}
+108:              			}
+109:              			else if (CNTbreath_Led2 > 30)	/* 15*8*10 = 1200ms */
+  038F    3000    LDIA	0x0
+  0390    023D    SUBA	0x3D
+  0391    301F    LDIA	0x1F
+  0392    1903    SZB	0x3,2
+  0393    023C    SUBA	0x3C
+  0394    1803    SZB	0x3,0
+  0395    2B7B    JP	0x37B
+110:              			{
+111:              				if (++CNTbreath_Led1 >= 8)
+  037B    23FF    CALL	0x3FF
+  037C    120A    CLRB	0xA,4
+  037D    118A    CLRB	0xA,3
+  037E    2B85    JP	0x385
+112:              				{
+113:              					CNTbreath_Led1 = 0;
+114:              					CNTbreath_Led2++;
+115:              				}
+116:              			}
+117:              			else if (CNTbreath_Led2 > 10)	/* 1000ms */
+  0396    3000    LDIA	0x0
+  0397    023D    SUBA	0x3D
+  0398    300B    LDIA	0xB
+  0399    1903    SZB	0x3,2
+  039A    023C    SUBA	0x3C
+  039B    1803    SZB	0x3,0
+  039C    2B7F    JP	0x37F
+118:              			{
+119:              				if (++CNTbreath_Led1 >= 5)
+  037F    0ABE    INCR	0x3E
+  0380    1903    SZB	0x3,2
+  0381    0ABF    INCR	0x3F
+  0382    3000    LDIA	0x0
+  0383    023F    SUBA	0x3F
+  0384    3005    LDIA	0x5
+  0385    1903    SZB	0x3,2
+  0386    023E    SUBA	0x3E
+  0387    1C03    SNZB	0x3,0
+  0388    0008    RET
+120:              				{
+121:              					CNTbreath_Led1 = 0;
+122:              					CNTbreath_Led2++;
+123:              				}
+124:              			}
+125:              			else
+126:              			{
+127:              				if (++CNTbreath_Led1 >= 11)	/* (11-5)*10=600ms，max */
+  039D    0ABE    INCR	0x3E
+  039E    1903    SZB	0x3,2
+  039F    0ABF    INCR	0x3F
+  03A0    3000    LDIA	0x0
+  03A1    023F    SUBA	0x3F
+  03A2    300B    LDIA	0xB
+  03A3    2B85    JP	0x385
+128:              				{
+129:              					CNTbreath_Led1 = 0;
+130:              					CNTbreath_Led2++;
+131:              				}
+132:              			}
+133:              		}
+134:              		else
+135:              		{
+136:              			if (CNTbreath_Led2 < 5)	/* max */
+  03A4    3000    LDIA	0x0
+  03A5    023D    SUBA	0x3D
+  03A6    3005    LDIA	0x5
+  03A7    1903    SZB	0x3,2
+  03A8    023C    SUBA	0x3C
+  03A9    1803    SZB	0x3,0
+  03AA    2BB0    JP	0x3B0
+137:              			{
+138:              				CNTbreath_Led2 = 5;
+  03AB    3005    LDIA	0x5
+  03AC    00BC    LD	0x3C,A
+  03AD    01BD    CLR	0x3D
+139:              				FbreathDir = CLR;
+  03AE    11D0    CLRB	0x50,3
+140:              			}
+  03AF    0008    RET
+141:              			else if (CNTbreath_Led2 < 10)
+  03B0    3000    LDIA	0x0
+  03B1    023D    SUBA	0x3D
+  03B2    300A    LDIA	0xA
+  03B3    1903    SZB	0x3,2
+  03B4    023C    SUBA	0x3C
+  03B5    1803    SZB	0x3,0
+  03B6    2BD5    JP	0x3D5
+142:              			{
+143:              				if (++CNTbreath_Led1 >= 6)	/* 600ms */
+144:              				{
+145:              					CNTbreath_Led1 = 0;
+  03CC    01BE    CLR	0x3E
+  03CD    01BF    CLR	0x3F
+146:              					CNTbreath_Led2--;
+  03CE    3001    LDIA	0x1
+  03CF    02BC    SUBR	0x3C
+  03D0    3000    LDIA	0x0
+  03D1    1C03    SNZB	0x3,0
+  03D2    03BD    DECR	0x3D
+  03D3    02BD    SUBR	0x3D
+  03D4    0008    RET
+147:              				}
+148:              			}
+149:              			else if (CNTbreath_Led2 < 30)
+  03D5    3000    LDIA	0x0
+  03D6    023D    SUBA	0x3D
+  03D7    301E    LDIA	0x1E
+  03D8    1903    SZB	0x3,2
+  03D9    023C    SUBA	0x3C
+  03DA    1C03    SNZB	0x3,0
+  03DB    2BB7    JP	0x3B7
+150:              			{
+151:              				if (++CNTbreath_Led1 >= 6)	/* 1200ms */
+  03B7    0ABE    INCR	0x3E
+  03B8    1903    SZB	0x3,2
+  03B9    0ABF    INCR	0x3F
+  03BA    3000    LDIA	0x0
+  03BB    023F    SUBA	0x3F
+  03BC    3006    LDIA	0x6
+  03BD    2BC8    JP	0x3C8
+152:              				{
+153:              					CNTbreath_Led1 = 0;
+154:              					CNTbreath_Led2--;
+155:              				}
+156:              			}
+157:              			else if (CNTbreath_Led2 < 40)
+  03DC    3000    LDIA	0x0
+  03DD    023D    SUBA	0x3D
+  03DE    3028    LDIA	0x28
+  03DF    1903    SZB	0x3,2
+  03E0    023C    SUBA	0x3C
+  03E1    1C03    SNZB	0x3,0
+  03E2    2BBE    JP	0x3BE
+158:              			{
+159:              				if (++CNTbreath_Led1 >= 8)	/* 800ms */
+  03BE    23FF    CALL	0x3FF
+  03BF    120A    CLRB	0xA,4
+  03C0    118A    CLRB	0xA,3
+  03C1    2BC8    JP	0x3C8
+160:              				{
+161:              					CNTbreath_Led1 = 0;
+162:              					CNTbreath_Led2--;
+163:              				}
+164:              			}
+165:              			else if (CNTbreath_Led2 < 60)
+  03E3    3000    LDIA	0x0
+  03E4    023D    SUBA	0x3D
+  03E5    303C    LDIA	0x3C
+  03E6    1903    SZB	0x3,2
+  03E7    023C    SUBA	0x3C
+  03E8    1C03    SNZB	0x3,0
+  03E9    2BC2    JP	0x3C2
+166:              			{
+167:              				if (++CNTbreath_Led1 >= 4)	/* 800ms */
+  03C2    0ABE    INCR	0x3E
+  03C3    1903    SZB	0x3,2
+  03C4    0ABF    INCR	0x3F
+  03C5    3000    LDIA	0x0
+  03C6    023F    SUBA	0x3F
+  03C7    3004    LDIA	0x4
+  03C8    1903    SZB	0x3,2
+  03C9    023E    SUBA	0x3E
+  03CA    1C03    SNZB	0x3,0
+  03CB    0008    RET
+168:              				{
+169:              					CNTbreath_Led1 = 0;
+170:              					CNTbreath_Led2--;
+171:              				}
+172:              			}
+173:              			else
+174:              			{
+175:              				if (++CNTbreath_Led1 >= 3)	/* 600ms，min */
+  03EA    2405    CALL	0x405
+  03EB    120A    CLRB	0xA,4
+  03EC    118A    CLRB	0xA,3
+  03ED    2BC8    JP	0x3C8
+176:              				{
+177:              					CNTbreath_Led1 = 0;
+178:              					CNTbreath_Led2--;
+179:              				}
+180:              			}
+181:              		}
+182:              	}
+183:              	else
+184:              	{
+185:              		CNTbreath_Led1 = 0;
+  03EE    01BE    CLR	0x3E
+  03EF    01BF    CLR	0x3F
+186:              		CNTbreath_Led2 = 0;
+  03F0    01BC    CLR	0x3C
+  03F1    01BD    CLR	0x3D
+187:              		CNTbreath_Led3 = 0;
+  03F2    01BA    CLR	0x3A
+  03F3    01BB    CLR	0x3B
+188:              		FbreathDir = CLR;
+  03F4    11D0    CLRB	0x50,3
+189:              		POlight = OFF;
+  03F5    1285    CLRB	0x5,5
+  03F6    0008    RET
+190:              	}
 191:              }
 192:              
 193:              void INT_LED_SHOW(void)
 194:              {
 195:              	// if((Flight == SET) && (FfctTest == CLR))
 196:              	if((Flight == SET) && (FfctTest == CLR))
-  0439    184D    SZB	0x4D,0
-  043A    1851    SZB	0x51,0
-  043B    0008    RET
+  0511    1850    SZB	0x50,0
+  0512    1854    SZB	0x54,0
+  0513    0008    RET
 197:              	{
 198:              		if (++CNTbreath_Led == 80)
-  043C    0AC0    INCR	0x40
-  043D    1903    SZB	0x3,2
-  043E    0AC1    INCR	0x41
-  043F    3050    LDIA	0x50
-  0440    0640    XORA	0x40
-  0441    0441    ORA	0x41
-  0442    1D03    SNZB	0x3,2
-  0443    2C47    JP	0x447
+  0514    0AC0    INCR	0x40
+  0515    1903    SZB	0x3,2
+  0516    0AC1    INCR	0x41
+  0517    3050    LDIA	0x50
+  0518    0640    XORA	0x40
+  0519    0441    ORA	0x41
+  051A    1D03    SNZB	0x3,2
+  051B    2D1F    JP	0x51F
 199:              		{
 200:              			CNTbreath_Led = 0;
-  0444    01C0    CLR	0x40
-  0445    01C1    CLR	0x41
+  051C    01C0    CLR	0x40
+  051D    01C1    CLR	0x41
 201:              			POlight = OFF;
-  0446    1285    CLRB	0x5,5
+  051E    1285    CLRB	0x5,5
 202:              		}
 203:              		if (CNTbreath_Led >= CNTbreath_Led2)
-  0447    083D    LD	A,0x3D
-  0448    0241    SUBA	0x41
-  0449    1D03    SNZB	0x3,2
-  044A    2C4D    JP	0x44D
-  044B    083C    LD	A,0x3C
-  044C    0240    SUBA	0x40
-  044D    1C03    SNZB	0x3,0
-  044E    2C51    JP	0x451
+  051F    083D    LD	A,0x3D
+  0520    0241    SUBA	0x41
+  0521    1D03    SNZB	0x3,2
+  0522    2D25    JP	0x525
+  0523    083C    LD	A,0x3C
+  0524    0240    SUBA	0x40
+  0525    1C03    SNZB	0x3,0
+  0526    2D29    JP	0x529
 204:              		{
 205:              			POlight = ON;
-  044F    1685    SETB	0x5,5
+  0527    1685    SETB	0x5,5
 206:              		}
-  0450    0008    RET
+  0528    0008    RET
 207:              		else
 208:              		{
 209:              			POlight = OFF;
-  0451    1285    CLRB	0x5,5
-  0452    0008    RET
+  0529    1285    CLRB	0x5,5
+  052A    0008    RET
 210:              		}
 211:              	}
 212:              }
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\flush.c ----------------------------------------------------------------------
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c ----------------------------------------------------------------------
 1:                #include "cfg_user.h"
 2:                #include "cfg_case.h"
 3:                
@@ -1724,7 +1886,7 @@
   001D    120A    CLRB	0xA,4
   001E    118A    CLRB	0xA,3
 18:                   FlushJudge();
-  001F    20EC    CALL	0xEC
+  001F    20FC    CALL	0xFC
   0020    120A    CLRB	0xA,4
   0021    118A    CLRB	0xA,3
 19:                   FlushCon();
@@ -1742,55 +1904,55 @@
 29:                   /* 请求判定 */
 30:                   #if DUBLE_FLUSH_MODE
 31:                   if(FbodyIn60s == SET)   /* 感应到60秒以上，大冲请求置位 */
-  00EC    1DFA    SNZB	0x7A,3
-  00ED    28F1    JP	0xF1
+  00FC    1DFA    SNZB	0x7A,3
+  00FD    2901    JP	0x101
 32:                   {
 33:                       YKfls_Big = SET;
-  00EE    1448    SETB	0x48,0
+  00FE    144B    SETB	0x4B,0
 34:                       YKfls_Sml = CLR;
-  00EF    1148    CLRB	0x48,2
+  00FF    114B    CLRB	0x4B,2
 35:                   }
-  00F0    2907    JP	0x107
+  0100    2917    JP	0x117
 36:                   else if(FbodyIn5s == SET)   /* 感应到人5秒以上，小冲请求置位 */
-  00F1    1E7A    SNZB	0x7A,4
-  00F2    28F5    JP	0xF5
+  0101    1E7A    SNZB	0x7A,4
+  0102    2905    JP	0x105
 37:                   {
 38:                       YKfls_Sml = SET;
-  00F3    1548    SETB	0x48,2
-  00F4    28F9    JP	0xF9
+  0103    154B    SETB	0x4B,2
+  0104    2909    JP	0x109
 39:                       YKfls_Big = CLR;
 40:                   }
 41:                   else if (SEQflsuh)
-  00F5    0847    LD	A,0x47
-  00F6    1903    SZB	0x3,2
-  00F7    28FB    JP	0xFB
+  0105    084A    LD	A,0x4A
+  0106    1903    SZB	0x3,2
+  0107    290B    JP	0x10B
 42:                   {
 43:                       YKfls_Sml = CLR;
-  00F8    1148    CLRB	0x48,2
+  0108    114B    CLRB	0x4B,2
 44:                       YKfls_Big = CLR;
-  00F9    1048    CLRB	0x48,0
+  0109    104B    CLRB	0x4B,0
 45:                   }
-  00FA    2907    JP	0x107
+  010A    2917    JP	0x117
 46:                   else
 47:                   {
 48:                       Key_Step = GkeyLoop();
-  00FB    211B    CALL	0x11B
-  00FC    120A    CLRB	0xA,4
-  00FD    118A    CLRB	0xA,3
-  00FE    00F6    LD	0x76,A
+  010B    212B    CALL	0x12B
+  010C    120A    CLRB	0xA,4
+  010D    118A    CLRB	0xA,3
+  010E    00F6    LD	0x76,A
 49:                       if (Key_Step)
-  00FF    0876    LD	A,0x76
-  0100    1903    SZB	0x3,2
-  0101    28F8    JP	0xF8
+  010F    0876    LD	A,0x76
+  0110    1903    SZB	0x3,2
+  0111    2908    JP	0x108
 50:                       {
 51:                           SEQflsuh = Key_Step;
-  0102    0876    LD	A,0x76
-  0103    00C7    LD	0x47,A
+  0112    0876    LD	A,0x76
+  0113    00CA    LD	0x4A,A
 52:                           CNTflush = 0;
-  0104    01B4    CLR	0x34
-  0105    01B5    CLR	0x35
+  0114    01B4    CLR	0x34
+  0115    01B5    CLR	0x35
 53:                           Flush_AutoLeaveWait = SET;
-  0106    17C8    SETB	0x48,7
+  0116    17CB    SETB	0x4B,7
 54:                       }else
 55:                       {
 56:                          YKfls_Sml = CLR;
@@ -1814,105 +1976,103 @@
 74:                   /*********************************************/
 75:               	/*	自动冲水判断	*/
 76:               	if (FbodyExit == SET)	/* 离开冲水 */
-  0107    197A    SZB	0x7A,2
+  0117    197A    SZB	0x7A,2
 77:               	{
 78:                       Flush_AutoLeaveWait = SET;
-  0108    17C8    SETB	0x48,7
+  0118    17CB    SETB	0x4B,7
 79:               	}
 80:               	if (Flush_AutoLeaveWait == SET) /*	离开自动冲水	*/
-  0109    1FC8    SNZB	0x48,7
-  010A    0008    RET
+  0119    1FCB    SNZB	0x4B,7
+  011A    0008    RET
 81:               	{
 82:               		if (f_STSflush == SET)
-  010B    1F48    SNZB	0x48,6
-  010C    2910    JP	0x110
+  011B    1F4B    SNZB	0x4B,6
+  011C    2920    JP	0x120
 83:               		{
 84:                           YKfls_Sml = CLR;
-  010D    1148    CLRB	0x48,2
+  011D    114B    CLRB	0x4B,2
 85:                           YKfls_Big = CLR;    /* 正在冲水，请求清除 */
-  010E    1048    CLRB	0x48,0
+  011E    104B    CLRB	0x4B,0
 86:               			return;
-  010F    0008    RET
+  011F    0008    RET
 87:               		}
 88:               		Flush_AutoLeaveWait = CLR;
-  0110    13C8    CLRB	0x48,7
+  0120    13CB    CLRB	0x4B,7
 89:                       if(YKfls_Big == SET)
-  0111    1C48    SNZB	0x48,0
-  0112    2916    JP	0x116
+  0121    1C4B    SNZB	0x4B,0
+  0122    2926    JP	0x126
 90:                       {
 91:                           YKfls_Big = CLR;
-  0113    1048    CLRB	0x48,0
+  0123    104B    CLRB	0x4B,0
 92:                           OKfls_Big = SET;
-  0114    14C8    SETB	0x48,1
+  0124    14CB    SETB	0x4B,1
 93:                           return;
-  0115    0008    RET
+  0125    0008    RET
 94:                       }
 95:               		if(YKfls_Sml == SET)
-  0116    1D48    SNZB	0x48,2
-  0117    0008    RET
+  0126    1D4B    SNZB	0x4B,2
+  0127    0008    RET
 96:                       {
 97:                           YKfls_Sml = CLR;
-  0118    1148    CLRB	0x48,2
+  0128    114B    CLRB	0x4B,2
 98:                           OKfls_Sml = SET;
-  0119    15C8    SETB	0x48,3
-  011A    0008    RET
+  0129    15CB    SETB	0x4B,3
+  012A    0008    RET
 99:                       }
 100:              		return;
 101:              	}
-102:              	/*	自动冲水判断	*/
-103:              	/******************************************/
-104:              }
-105:              
-106:              /* 主阀气泵控制函数 */
-107:              void FlushCon(void)
-108:              {
-109:                  switch (SEQflsuh)
-  0024    28C8    JP	0xC8
-110:                  {
-111:                      case FLUSH_INIT_0:
-112:                          f_STSflush = CLR;
-  0025    1348    CLRB	0x48,6
-113:                          POairPump = OFF;
+102:              }
+103:              
+104:              /* 主阀气泵控制函数 */
+105:              void FlushCon(void)
+106:              {
+107:                  switch (SEQflsuh)
+  0024    28D5    JP	0xD5
+108:                  {
+109:                      case FLUSH_INIT_0:
+110:                          f_STSflush = CLR;
+  0025    134B    CLRB	0x4B,6
+111:                          POairPump = OFF;
   0026    1105    CLRB	0x5,2
-114:                          POmainValue = OFF;
+112:                          POmainValue = OFF;
   0027    1205    CLRB	0x5,4
-115:                          POdirectValue = OFF;
+113:                          POdirectValue = OFF;
   0028    1085    CLRB	0x5,1
-116:                          if((OKfls_Big == SET) || (OKfls_Sml == SET))
-  0029    18C8    SZB	0x48,1
+114:                          if((OKfls_Big == SET) || (OKfls_Sml == SET))
+  0029    18CB    SZB	0x4B,1
   002A    282D    JP	0x2D
-  002B    1DC8    SNZB	0x48,3
+  002B    1DCB    SNZB	0x4B,3
   002C    0008    RET
-117:                          {
-118:                              SEQflsuh = FLUSH_INIT_1;
+115:                          {
+116:                              SEQflsuh = FLUSH_INIT_1;
   002D    3001    LDIA	0x1
   002E    2830    JP	0x30
-119:                              CNTflush = 0;
+117:                              CNTflush = 0;
   0031    01B4    CLR	0x34
   0032    01B5    CLR	0x35
   0033    0008    RET
-120:                          }
-121:                          break;
-122:                      case FLUSH_INIT_1:
-123:                          f_STSflush = SET;
-  0034    1748    SETB	0x48,6
-124:                          POairPump = OFF;
+118:                          }
+119:                          break;
+120:                      case FLUSH_INIT_1:
+121:                          f_STSflush = SET;
+  0034    174B    SETB	0x4B,6
+122:                          POairPump = OFF;
   0035    1105    CLRB	0x5,2
-125:                          POmainValue = OFF;
+123:                          POmainValue = OFF;
   0036    1205    CLRB	0x5,4
-126:                          POdirectValue = OFF;
+124:                          POdirectValue = OFF;
   0037    1085    CLRB	0x5,1
-127:                          if(Fbody == SET)        /* 检测到有人，流程跳到结束阶段 */
+125:                          if(Fbody == SET)      
   0038    187A    SZB	0x7A,0
   0039    282F    JP	0x2F
-128:                          {
-129:                              SEQflsuh = FLUSH_END_0;
-  002F    3009    LDIA	0x9
-  0030    00C7    LD	0x47,A
-130:                              CNTflush = 0;
-131:                              break;
-132:                          }
-133:                          if(++CNTflush >= 5)
+126:                          {
+127:                              SEQflsuh = FLUSH_END_0;
+  002F    300A    LDIA	0xA
+  0030    00CA    LD	0x4A,A
+128:                              CNTflush = 0;
+129:                              break;
+130:                          }
+131:                          if(++CNTflush >= 5)
   003A    0AB4    INCR	0x34
   003B    1903    SZB	0x3,2
   003C    0AB5    INCR	0x35
@@ -1923,314 +2083,340 @@
   0041    0234    SUBA	0x34
   0042    1C03    SNZB	0x3,0
   0043    0008    RET
-134:                          {
-135:                              CNTflush = 0;
+132:                          {
+133:                              CNTflush = 0;
   0044    01B4    CLR	0x34
   0045    01B5    CLR	0x35
-136:                              SEQflsuh = FLUSH_INIT_2;
+134:                              SEQflsuh = FLUSH_INIT_2;
   0046    3002    LDIA	0x2
-  0047    00C7    LD	0x47,A
+  0047    00CA    LD	0x4A,A
   0048    0008    RET
-137:                          }
-138:                          break;
-139:                      case FLUSH_INIT_2:
-140:                          f_STSflush = SET;
-  0049    1748    SETB	0x48,6
-141:                          POairPump = OFF;        /* 冲水关闭 */
+135:                          }
+136:                          break;
+137:                      case FLUSH_INIT_2:
+138:                          f_STSflush = SET;
+  0049    174B    SETB	0x4B,6
+139:                          POairPump = OFF;       
   004A    1105    CLRB	0x5,2
-142:                          POmainValue = OFF;      /* 冲水通道1  默认冲水通道,先假设无默认尝试*/ 
+140:                          POmainValue = OFF;      
   004B    1205    CLRB	0x5,4
-143:                          POdirectValue = OFF;
+141:                          POdirectValue = OFF;
   004C    1085    CLRB	0x5,1
-144:                          if(Fbody == SET)        /* 检测到有人，流程跳到结束阶段 */
+142:                          if(Fbody == SET)        
   004D    187A    SZB	0x7A,0
   004E    282F    JP	0x2F
-145:                          {
-146:                              SEQflsuh = FLUSH_END_0;
-147:                              CNTflush = 0;
-148:                              break;
-149:                          }
-150:              
-151:                          if(OKfls_Big == SET)
-  004F    1CC8    SNZB	0x48,1
+143:                          {
+144:                              SEQflsuh = FLUSH_END_0;
+145:                              CNTflush = 0;
+146:                              break;
+147:                          }
+148:              
+149:                          if(OKfls_Big == SET)
+  004F    1CCB    SNZB	0x4B,1
   0050    2854    JP	0x54
-152:                          {
-153:                              SEQflsuh = FLUSH_BIG_0;
+150:                          {
+151:                              SEQflsuh = FLUSH_BIG_0;
   0051    3003    LDIA	0x3
-  0052    00C7    LD	0x47,A
-154:                          }
+  0052    00CA    LD	0x4A,A
+152:                          }
   0053    0008    RET
-155:                          else if(OKfls_Sml == SET)
-  0054    1DC8    SNZB	0x48,3
+153:                          else if(OKfls_Sml == SET)
+  0054    1DCB    SNZB	0x4B,3
   0055    0008    RET
-156:                          {
-157:                              SEQflsuh = FLUSH_SML_0;
-  0056    3006    LDIA	0x6
-  0057    00C7    LD	0x47,A
+154:                          {
+155:                              SEQflsuh = FLUSH_SML_0;
+  0056    3007    LDIA	0x7
+  0057    00CA    LD	0x4A,A
   0058    0008    RET
-158:                          }
-159:                          break;
-160:                      case FLUSH_BIG_0:   /* 大冲阶段 */
-161:                          f_STSflush = SET;
-162:                          POairPump = OFF;        /* 大冲先开电磁阀换大冲，后开气泵冲水 */
-163:                          POmainValue = ON;            /* 大冲*/
-164:                          POdirectValue = ON;
-165:                          if(++CNTflush >= 10)    /* 延迟100ms后打开气泵冲水 */
-  0059    221F    CALL	0x21F
+156:                          }
+157:                          break;
+158:                      case FLUSH_BIG_0:   
+159:                          f_STSflush = SET;
+160:                          POairPump = OFF;       
+161:                          POmainValue = ON;           
+162:                          POdirectValue = ON;
+163:                          if(++CNTflush >= 10)   
+  0059    222F    CALL	0x22F
   005A    120A    CLRB	0xA,4
   005B    118A    CLRB	0xA,3
   005C    1903    SZB	0x3,2
   005D    0234    SUBA	0x34
   005E    1C03    SNZB	0x3,0
   005F    0008    RET
-166:                          {
-167:                              CNTflush = 0;
+164:                          {
+165:                              CNTflush = 0;
   0060    01B4    CLR	0x34
   0061    01B5    CLR	0x35
-168:                              SEQflsuh = FLUSH_BIG_1;
+166:                              SEQflsuh = FLUSH_BIG_1;
   0062    3004    LDIA	0x4
-  0063    00C7    LD	0x47,A
+  0063    00CA    LD	0x4A,A
   0064    0008    RET
-169:                          }
-170:                          break;
-171:                      case FLUSH_BIG_1:
-172:                          f_STSflush = SET;
-  0065    1748    SETB	0x48,6
-173:                          POairPump = ON;
+167:                          }
+168:                          break;
+169:                      case FLUSH_BIG_1:
+170:                          f_STSflush = SET;
+  0065    174B    SETB	0x4B,6
+171:                          POairPump = ON;
   0066    1505    SETB	0x5,2
-174:                          POmainValue = ON;
+172:                          POmainValue = ON;
   0067    1605    SETB	0x5,4
-175:                          POdirectValue = ON;
-  0068    1485    SETB	0x5,1
-176:              #if ABM007_FLUSH_2
-177:                          if(++CNTflush >= 100)   /* 冲水1s */
-  0069    0AB4    INCR	0x34
-  006A    1903    SZB	0x3,2
-  006B    0AB5    INCR	0x35
-  006C    3000    LDIA	0x0
-  006D    0235    SUBA	0x35
-  006E    3064    LDIA	0x64
-  006F    1903    SZB	0x3,2
-  0070    0234    SUBA	0x34
-  0071    1C03    SNZB	0x3,0
-  0072    0008    RET
-178:                          {
-179:                              CNTflush = 0;
-  0073    01B4    CLR	0x34
-  0074    01B5    CLR	0x35
-180:                              SEQflsuh = FLUSH_BIG_2;
-  0075    3005    LDIA	0x5
-  0076    00C7    LD	0x47,A
-  0077    0008    RET
-181:                          }
-182:              #else
-183:                          //if(++CNTflush >= 200)   /* 冲水2s */
-184:                          if(++CNTflush >= 100)   /* 冲水1s */
-185:                          {
-186:                              CNTflush = 0;
-187:                              SEQflsuh = FLUSH_BIG_2;
-188:                          }
-189:              #endif
-190:                          break;
-191:                      case FLUSH_BIG_2:
-192:                          f_STSflush = SET;
-193:                          POairPump = OFF;        /* 关气泵，停止冲水 */
-194:                          POmainValue = SET;      /* 大冲先关气泵停止冲水，后关主阀 */    /* 冲水通道2 */
-195:                          POdirectValue = SET;
-196:                          if(++CNTflush >= 10)
-  0078    221F    CALL	0x21F
-  0079    120A    CLRB	0xA,4
-  007A    118A    CLRB	0xA,3
-  007B    1903    SZB	0x3,2
-  007C    0234    SUBA	0x34
-  007D    1C03    SNZB	0x3,0
-  007E    0008    RET
-197:                          {
-198:                              CNTflush = 0;
-  007F    01B4    CLR	0x34
-  0080    01B5    CLR	0x35
-199:                              SEQflsuh = FLUSH_END_0;
-  0081    3009    LDIA	0x9
-  0082    00C7    LD	0x47,A
-  0083    0008    RET
-200:                          }
-201:                          break;
-202:              
-203:                      case FLUSH_SML_0:           /* 小冲阶段 */
-204:                          f_STSflush = SET;
-205:                          POairPump = OFF;        /* 小冲先开主阀阀换小冲，后开气泵冲水 */
-206:                          POmainValue = ON;      /* 冲水通道1 */
-207:                          POdirectValue = OFF;
-208:                          if(++CNTflush >= 5)
-  0084    2215    CALL	0x215
+173:                          POdirectValue = ON;
+174:              #if ABM007_FLUSH_2
+175:                          if(++CNTflush >= 100)  
+  0068    2240    CALL	0x240
+  0069    120A    CLRB	0xA,4
+  006A    118A    CLRB	0xA,3
+  006B    3064    LDIA	0x64
+  006C    1903    SZB	0x3,2
+  006D    0234    SUBA	0x34
+  006E    1C03    SNZB	0x3,0
+  006F    0008    RET
+176:                          {
+177:                              CNTflush = 0;
+  0070    01B4    CLR	0x34
+  0071    01B5    CLR	0x35
+178:                              SEQflsuh = FLUSH_BIG_2;
+  0072    3005    LDIA	0x5
+  0073    00CA    LD	0x4A,A
+  0074    0008    RET
+179:                          }
+180:              #else
+181:                          //if(++CNTflush >= 200)   
+182:                          if(++CNTflush >= 100) 
+183:                          {
+184:                              CNTflush = 0;
+185:                              SEQflsuh = FLUSH_BIG_2;
+186:                          }
+187:              #endif
+188:                          break;
+189:                      case FLUSH_BIG_2:
+190:                          f_STSflush = SET;
+191:                          POairPump = OFF;       
+192:                          POmainValue = ON;       
+193:                          POdirectValue = ON;
+194:                          if(++CNTflush >= 10)
+  0075    222F    CALL	0x22F
+  0076    120A    CLRB	0xA,4
+  0077    118A    CLRB	0xA,3
+  0078    1903    SZB	0x3,2
+  0079    0234    SUBA	0x34
+  007A    1C03    SNZB	0x3,0
+  007B    0008    RET
+195:                          {
+196:                              CNTflush = 0;
+  007C    01B4    CLR	0x34
+  007D    01B5    CLR	0x35
+197:                              SEQflsuh = FLUSH_BIG_3;
+  007E    3006    LDIA	0x6
+  007F    00CA    LD	0x4A,A
+  0080    0008    RET
+198:                          }
+199:                          break;
+200:                      case FLUSH_BIG_3:
+201:                          f_STSflush = SET;
+  0081    174B    SETB	0x4B,6
+202:                          POairPump = OFF;    
+  0082    1105    CLRB	0x5,2
+203:                          POmainValue = OFF;    
+  0083    1205    CLRB	0x5,4
+204:                          POdirectValue = ON;
+205:                          if(++CNTflush >= 200)  
+  0084    2240    CALL	0x240
   0085    120A    CLRB	0xA,4
   0086    118A    CLRB	0xA,3
-  0087    1903    SZB	0x3,2
-  0088    0234    SUBA	0x34
-  0089    1C03    SNZB	0x3,0
-  008A    0008    RET
-209:                          {
-210:                              CNTflush = 0;
-  008B    01B4    CLR	0x34
-  008C    01B5    CLR	0x35
-211:                              SEQflsuh = FLUSH_SML_1;
-  008D    3007    LDIA	0x7
-  008E    00C7    LD	0x47,A
-  008F    0008    RET
-212:                          }
-213:                          break;
-214:                      case FLUSH_SML_1:
-215:                          f_STSflush = SET;
-  0090    1748    SETB	0x48,6
-216:                          POairPump = ON;         /* 冲水 */
-  0091    1505    SETB	0x5,2
-217:                          POmainValue = ON;      /* 冲水通道1 */
-  0092    1605    SETB	0x5,4
-218:                          POdirectValue = OFF;
-219:                          // if(++CNTflush >= 200)
-220:                          if(++CNTflush >= 100)
-  0093    2229    CALL	0x229
-  0094    120A    CLRB	0xA,4
-  0095    118A    CLRB	0xA,3
-  0096    3064    LDIA	0x64
-  0097    1903    SZB	0x3,2
-  0098    0234    SUBA	0x34
-  0099    1C03    SNZB	0x3,0
-  009A    0008    RET
-221:                          {
-222:                              CNTflush = 0;
-  009B    01B4    CLR	0x34
-  009C    01B5    CLR	0x35
-223:                              SEQflsuh = FLUSH_SML_2;
-  009D    3008    LDIA	0x8
-  009E    00C7    LD	0x47,A
-  009F    0008    RET
-224:                          }
-225:                          break;
-226:                      case FLUSH_SML_2:
-227:                          f_STSflush = SET;
-228:                          POairPump = OFF;        /* 关气泵，停止冲水 */
-229:                          POmainValue = ON;      /* 冲水通道1 */
-230:                          POdirectValue = OFF;
-231:                          if(++CNTflush >= 5)
-  00A0    2215    CALL	0x215
+  0087    30C8    LDIA	0xC8
+  0088    1903    SZB	0x3,2
+  0089    0234    SUBA	0x34
+  008A    1C03    SNZB	0x3,0
+  008B    0008    RET
+206:                          {
+207:                              CNTflush = 0;
+  008C    01B4    CLR	0x34
+  008D    01B5    CLR	0x35
+208:                              SEQflsuh = FLUSH_END_0;
+  008E    300A    LDIA	0xA
+  008F    00CA    LD	0x4A,A
+  0090    0008    RET
+209:                          }
+210:                          break;
+211:                      case FLUSH_SML_0:         
+212:                          f_STSflush = SET;
+213:                          POairPump = OFF;      
+214:                          POmainValue = ON;      
+215:                          POdirectValue = OFF;
+216:                          if(++CNTflush >= 5)
+  0091    2225    CALL	0x225
+  0092    120A    CLRB	0xA,4
+  0093    118A    CLRB	0xA,3
+  0094    1903    SZB	0x3,2
+  0095    0234    SUBA	0x34
+  0096    1C03    SNZB	0x3,0
+  0097    0008    RET
+217:                          {
+218:                              CNTflush = 0;
+  0098    01B4    CLR	0x34
+  0099    01B5    CLR	0x35
+219:                              SEQflsuh = FLUSH_SML_1;
+  009A    3008    LDIA	0x8
+  009B    00CA    LD	0x4A,A
+  009C    0008    RET
+220:                          }
+221:                          break;
+222:                      case FLUSH_SML_1:
+223:                          f_STSflush = SET;
+  009D    174B    SETB	0x4B,6
+224:                          POairPump = ON;         
+  009E    1505    SETB	0x5,2
+225:                          POmainValue = ON;    
+  009F    1605    SETB	0x5,4
+226:                          POdirectValue = OFF;
+227:                          // if(++CNTflush >= 200)
+228:                          if(++CNTflush >= 100)
+  00A0    2239    CALL	0x239
   00A1    120A    CLRB	0xA,4
   00A2    118A    CLRB	0xA,3
-  00A3    287B    JP	0x7B
-232:                          {
-233:                              CNTflush = 0;
-234:                              SEQflsuh = FLUSH_END_0;
-235:                          }
-236:                          break;
-237:              
-238:                      case FLUSH_END_0:
-239:                          f_STSflush = SET;
-  00A4    1748    SETB	0x48,6
-240:                          POairPump = OFF;        /* 停止冲水 */
-  00A5    1105    CLRB	0x5,2
-241:                          POmainValue = OFF;      /* 返回通道1 */
-  00A6    1205    CLRB	0x5,4
-242:                          POdirectValue = OFF;
-243:                          if(++CNTflush >= 5)
-  00A7    2229    CALL	0x229
-  00A8    120A    CLRB	0xA,4
-  00A9    118A    CLRB	0xA,3
-  00AA    3005    LDIA	0x5
-  00AB    1903    SZB	0x3,2
-  00AC    0234    SUBA	0x34
-  00AD    1C03    SNZB	0x3,0
-  00AE    0008    RET
-244:                          {
-245:                              CNTflush = 0;
-  00AF    01B4    CLR	0x34
-  00B0    01B5    CLR	0x35
-246:                              SEQflsuh = FLUSH_END_1;
-  00B1    300A    LDIA	0xA
-  00B2    00C7    LD	0x47,A
-  00B3    0008    RET
-247:                          }
-248:                          break;
-249:                      case FLUSH_END_1:
-250:                          f_STSflush = CLR;
-  00B4    1348    CLRB	0x48,6
-251:                          POairPump = OFF;
-  00B5    1105    CLRB	0x5,2
-252:                          POmainValue = OFF;
-  00B6    1205    CLRB	0x5,4
-253:                          POdirectValue = OFF;
-  00B7    1085    CLRB	0x5,1
-254:                          SEQflsuh = FLUSH_INIT_0;
-  00B8    01C7    CLR	0x47
-255:                          CNTflush = 0;
-  00B9    01B4    CLR	0x34
-  00BA    01B5    CLR	0x35
-256:                          OKfls_Big = CLR;
-  00BB    10C8    CLRB	0x48,1
-257:                          OKfls_Sml = CLR;
-  00BC    11C8    CLRB	0x48,3
-258:                          break;
-  00BD    0008    RET
-259:                      default:
-260:                          f_STSflush = CLR;
-  00BE    1348    CLRB	0x48,6
-261:                          POairPump = OFF;
-  00BF    1105    CLRB	0x5,2
-262:                          POmainValue = OFF;
-  00C0    1205    CLRB	0x5,4
-263:                          POdirectValue = OFF;
-  00C1    1085    CLRB	0x5,1
+  00A3    3064    LDIA	0x64
+  00A4    1903    SZB	0x3,2
+  00A5    0234    SUBA	0x34
+  00A6    1C03    SNZB	0x3,0
+  00A7    0008    RET
+229:                          {
+230:                              CNTflush = 0;
+  00A8    01B4    CLR	0x34
+  00A9    01B5    CLR	0x35
+231:                              SEQflsuh = FLUSH_SML_2;
+  00AA    3009    LDIA	0x9
+  00AB    00CA    LD	0x4A,A
+  00AC    0008    RET
+232:                          }
+233:                          break;
+234:                      case FLUSH_SML_2:
+235:                          f_STSflush = SET;
+236:                          POairPump = OFF;       
+237:                          POmainValue = ON;     
+238:                          POdirectValue = OFF;
+239:                          if(++CNTflush >= 5)
+  00AD    2225    CALL	0x225
+  00AE    120A    CLRB	0xA,4
+  00AF    118A    CLRB	0xA,3
+  00B0    2888    JP	0x88
+240:                          {
+241:                              CNTflush = 0;
+242:                              SEQflsuh = FLUSH_END_0;
+243:                          }
+244:                          break;
+245:              
+246:                      case FLUSH_END_0:
+247:                          f_STSflush = SET;
+  00B1    174B    SETB	0x4B,6
+248:                          POairPump = OFF;        
+  00B2    1105    CLRB	0x5,2
+249:                          POmainValue = OFF;   
+  00B3    1205    CLRB	0x5,4
+250:                          POdirectValue = OFF;
+251:                          if(++CNTflush >= 5)
+  00B4    2239    CALL	0x239
+  00B5    120A    CLRB	0xA,4
+  00B6    118A    CLRB	0xA,3
+  00B7    3005    LDIA	0x5
+  00B8    1903    SZB	0x3,2
+  00B9    0234    SUBA	0x34
+  00BA    1C03    SNZB	0x3,0
+  00BB    0008    RET
+252:                          {
+253:                              CNTflush = 0;
+  00BC    01B4    CLR	0x34
+  00BD    01B5    CLR	0x35
+254:                              SEQflsuh = FLUSH_END_1;
+  00BE    300B    LDIA	0xB
+  00BF    00CA    LD	0x4A,A
+  00C0    0008    RET
+255:                          }
+256:                          break;
+257:                      case FLUSH_END_1:
+258:                          f_STSflush = CLR;
+  00C1    134B    CLRB	0x4B,6
+259:                          POairPump = OFF;
+  00C2    1105    CLRB	0x5,2
+260:                          POmainValue = OFF;
+  00C3    1205    CLRB	0x5,4
+261:                          POdirectValue = OFF;
+  00C4    1085    CLRB	0x5,1
+262:                          SEQflsuh = FLUSH_INIT_0;
+  00C5    01CA    CLR	0x4A
+263:                          CNTflush = 0;
+  00C6    01B4    CLR	0x34
+  00C7    01B5    CLR	0x35
 264:                          OKfls_Big = CLR;
-  00C2    10C8    CLRB	0x48,1
+  00C8    10CB    CLRB	0x4B,1
 265:                          OKfls_Sml = CLR;
-  00C3    11C8    CLRB	0x48,3
-266:                          SEQflsuh = FLUSH_INIT_0;
-  00C4    01C7    CLR	0x47
-267:                          CNTflush = 0;
-  00C5    01B4    CLR	0x34
-  00C6    01B5    CLR	0x35
-268:                          break;
-  00C7    0008    RET
-  00C8    0847    LD	A,0x47
-  00C9    3A00    XORIA	0x0
-  00CA    1903    SZB	0x3,2
-  00CB    2825    JP	0x25
-  00CC    3A01    XORIA	0x1
-  00CD    1903    SZB	0x3,2
-  00CE    2834    JP	0x34
-  00CF    3A03    XORIA	0x3
-  00D0    1903    SZB	0x3,2
-  00D1    2849    JP	0x49
-  00D2    3A01    XORIA	0x1
-  00D3    1903    SZB	0x3,2
-  00D4    2859    JP	0x59
-  00D5    3A07    XORIA	0x7
-  00D6    1903    SZB	0x3,2
-  00D7    2865    JP	0x65
-  00D8    3A01    XORIA	0x1
-  00D9    1903    SZB	0x3,2
-  00DA    2878    JP	0x78
-  00DB    3A03    XORIA	0x3
-  00DC    1903    SZB	0x3,2
-  00DD    2884    JP	0x84
-  00DE    3A01    XORIA	0x1
-  00DF    1903    SZB	0x3,2
-  00E0    2890    JP	0x90
-  00E1    3A0F    XORIA	0xF
-  00E2    1903    SZB	0x3,2
-  00E3    28A0    JP	0xA0
-  00E4    3A01    XORIA	0x1
-  00E5    1903    SZB	0x3,2
-  00E6    28A4    JP	0xA4
-  00E7    3A03    XORIA	0x3
-  00E8    1903    SZB	0x3,2
-  00E9    28B4    JP	0xB4
-  00EA    28BE    JP	0xBE
-  00EB    0008    RET
-269:                  }
-270:              }
-271:              
-272:              
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c ----------------------------------------------------------------------
+  00C9    11CB    CLRB	0x4B,3
+266:                          break;
+  00CA    0008    RET
+267:                      default:
+268:                          f_STSflush = CLR;
+  00CB    134B    CLRB	0x4B,6
+269:                          POairPump = OFF;
+  00CC    1105    CLRB	0x5,2
+270:                          POmainValue = OFF;
+  00CD    1205    CLRB	0x5,4
+271:                          POdirectValue = OFF;
+  00CE    1085    CLRB	0x5,1
+272:                          OKfls_Big = CLR;
+  00CF    10CB    CLRB	0x4B,1
+273:                          OKfls_Sml = CLR;
+  00D0    11CB    CLRB	0x4B,3
+274:                          SEQflsuh = FLUSH_INIT_0;
+  00D1    01CA    CLR	0x4A
+275:                          CNTflush = 0;
+  00D2    01B4    CLR	0x34
+  00D3    01B5    CLR	0x35
+276:                          break;
+  00D4    0008    RET
+  00D5    084A    LD	A,0x4A
+  00D6    3A00    XORIA	0x0
+  00D7    1903    SZB	0x3,2
+  00D8    2825    JP	0x25
+  00D9    3A01    XORIA	0x1
+  00DA    1903    SZB	0x3,2
+  00DB    2834    JP	0x34
+  00DC    3A03    XORIA	0x3
+  00DD    1903    SZB	0x3,2
+  00DE    2849    JP	0x49
+  00DF    3A01    XORIA	0x1
+  00E0    1903    SZB	0x3,2
+  00E1    2859    JP	0x59
+  00E2    3A07    XORIA	0x7
+  00E3    1903    SZB	0x3,2
+  00E4    2865    JP	0x65
+  00E5    3A01    XORIA	0x1
+  00E6    1903    SZB	0x3,2
+  00E7    2875    JP	0x75
+  00E8    3A03    XORIA	0x3
+  00E9    1903    SZB	0x3,2
+  00EA    2881    JP	0x81
+  00EB    3A01    XORIA	0x1
+  00EC    1903    SZB	0x3,2
+  00ED    2891    JP	0x91
+  00EE    3A0F    XORIA	0xF
+  00EF    1903    SZB	0x3,2
+  00F0    289D    JP	0x9D
+  00F1    3A01    XORIA	0x1
+  00F2    1903    SZB	0x3,2
+  00F3    28AD    JP	0xAD
+  00F4    3A03    XORIA	0x3
+  00F5    1903    SZB	0x3,2
+  00F6    28B1    JP	0xB1
+  00F7    3A01    XORIA	0x1
+  00F8    1903    SZB	0x3,2
+  00F9    28C1    JP	0xC1
+  00FA    28CB    JP	0xCB
+  00FB    0008    RET
+277:                  }
+278:              }
+279:              
+280:              
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\key.c ----------------------------------------------------------------------
 1:                #include "cfg_user.h"
 2:                #include "cfg_case.h"
 3:                #include "key_Private.h"
@@ -2240,135 +2426,135 @@
 7:                uint8_t GkeyLoop(void)
 8:                {
 9:                	for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
-  011B    01F9    CLR	0x79
-  011C    3002    LDIA	0x2
-  011D    0279    SUBA	0x79
-  011E    1803    SZB	0x3,0
-  011F    3400    RET	0x0
+  012B    01F9    CLR	0x79
+  012C    3002    LDIA	0x2
+  012D    0279    SUBA	0x79
+  012E    1803    SZB	0x3,0
+  012F    3400    RET	0x0
 10:               	{
 11:               		KeyLines[SeletedLine].flags.level =ScanKey(SeletedLine);
-  0120    0879    LD	A,0x79
-  0121    2202    CALL	0x202
-  0122    120A    CLRB	0xA,4
-  0123    118A    CLRB	0xA,3
-  0124    00F4    LD	0x74,A
-  0125    0879    LD	A,0x79
-  0126    00F5    LD	0x75,A
-  0127    3001    LDIA	0x1
-  0128    1003    CLRB	0x3,0
-  0129    0DF5    RLCR	0x75
-  012A    3EFF    ADDIA	0xFF
-  012B    1003    CLRB	0x3,0
-  012C    1D03    SNZB	0x3,2
-  012D    2929    JP	0x129
-  012E    0D75    RLCA	0x75
-  012F    3E52    ADDIA	0x52
-  0130    0084    LD	0x4,A
-  0131    0DF4    RLCR	0x74
-  0132    0DF4    RLCR	0x74
-  0133    1383    CLRB	0x3,7
-  0134    0800    LD	A,0x0
-  0135    0674    XORA	0x74
-  0136    39FB    ANDIA	0xFB
-  0137    0674    XORA	0x74
-  0138    0080    LD	0x0,A
+  0130    0879    LD	A,0x79
+  0131    2212    CALL	0x212
+  0132    120A    CLRB	0xA,4
+  0133    118A    CLRB	0xA,3
+  0134    00F4    LD	0x74,A
+  0135    0879    LD	A,0x79
+  0136    00F5    LD	0x75,A
+  0137    3001    LDIA	0x1
+  0138    1003    CLRB	0x3,0
+  0139    0DF5    RLCR	0x75
+  013A    3EFF    ADDIA	0xFF
+  013B    1003    CLRB	0x3,0
+  013C    1D03    SNZB	0x3,2
+  013D    2939    JP	0x139
+  013E    0D75    RLCA	0x75
+  013F    3E55    ADDIA	0x55
+  0140    0084    LD	0x4,A
+  0141    0DF4    RLCR	0x74
+  0142    0DF4    RLCR	0x74
+  0143    1383    CLRB	0x3,7
+  0144    0800    LD	A,0x0
+  0145    0674    XORA	0x74
+  0146    39FB    ANDIA	0xFB
+  0147    0674    XORA	0x74
+  0148    0080    LD	0x0,A
 12:               
 13:               		if(KeyLines[SeletedLine].flags.is_forbidden)
-  0139    0879    LD	A,0x79
-  013A    00F4    LD	0x74,A
-  013B    3001    LDIA	0x1
-  013C    1003    CLRB	0x3,0
-  013D    0DF4    RLCR	0x74
-  013E    3EFF    ADDIA	0xFF
-  013F    1003    CLRB	0x3,0
-  0140    1D03    SNZB	0x3,2
-  0141    293D    JP	0x13D
-  0142    0D74    RLCA	0x74
-  0143    3E52    ADDIA	0x52
-  0144    0084    LD	0x4,A
-  0145    1C00    SNZB	0x0,0
-  0146    2963    JP	0x163
+  0149    0879    LD	A,0x79
+  014A    00F4    LD	0x74,A
+  014B    3001    LDIA	0x1
+  014C    1003    CLRB	0x3,0
+  014D    0DF4    RLCR	0x74
+  014E    3EFF    ADDIA	0xFF
+  014F    1003    CLRB	0x3,0
+  0150    1D03    SNZB	0x3,2
+  0151    294D    JP	0x14D
+  0152    0D74    RLCA	0x74
+  0153    3E55    ADDIA	0x55
+  0154    0084    LD	0x4,A
+  0155    1C00    SNZB	0x0,0
+  0156    2973    JP	0x173
 14:               		{
 15:               			if (KeyLines[SeletedLine].flags.level)
-  0147    0879    LD	A,0x79
-  0148    00F4    LD	0x74,A
-  0149    3001    LDIA	0x1
-  014A    1003    CLRB	0x3,0
-  014B    0DF4    RLCR	0x74
-  014C    3EFF    ADDIA	0xFF
-  014D    1003    CLRB	0x3,0
-  014E    1D03    SNZB	0x3,2
-  014F    294B    JP	0x14B
-  0150    0D74    RLCA	0x74
-  0151    3E52    ADDIA	0x52
-  0152    0084    LD	0x4,A
-  0153    1D00    SNZB	0x0,2
-  0154    2983    JP	0x183
+  0157    0879    LD	A,0x79
+  0158    00F4    LD	0x74,A
+  0159    3001    LDIA	0x1
+  015A    1003    CLRB	0x3,0
+  015B    0DF4    RLCR	0x74
+  015C    3EFF    ADDIA	0xFF
+  015D    1003    CLRB	0x3,0
+  015E    1D03    SNZB	0x3,2
+  015F    295B    JP	0x15B
+  0160    0D74    RLCA	0x74
+  0161    3E55    ADDIA	0x55
+  0162    0084    LD	0x4,A
+  0163    1D00    SNZB	0x0,2
+  0164    2993    JP	0x193
 16:               			{
 17:               				KeyLines[SeletedLine].flags.is_forbidden = CLR;
-  0155    0879    LD	A,0x79
-  0156    00F4    LD	0x74,A
-  0157    3001    LDIA	0x1
-  0158    1003    CLRB	0x3,0
-  0159    0DF4    RLCR	0x74
-  015A    3EFF    ADDIA	0xFF
-  015B    1003    CLRB	0x3,0
-  015C    1D03    SNZB	0x3,2
-  015D    2959    JP	0x159
-  015E    0D74    RLCA	0x74
-  015F    3E52    ADDIA	0x52
-  0160    0084    LD	0x4,A
-  0161    1000    CLRB	0x0,0
-  0162    2983    JP	0x183
+  0165    0879    LD	A,0x79
+  0166    00F4    LD	0x74,A
+  0167    3001    LDIA	0x1
+  0168    1003    CLRB	0x3,0
+  0169    0DF4    RLCR	0x74
+  016A    3EFF    ADDIA	0xFF
+  016B    1003    CLRB	0x3,0
+  016C    1D03    SNZB	0x3,2
+  016D    2969    JP	0x169
+  016E    0D74    RLCA	0x74
+  016F    3E55    ADDIA	0x55
+  0170    0084    LD	0x4,A
+  0171    1000    CLRB	0x0,0
+  0172    2993    JP	0x193
 18:               			}
 19:               			continue;
 20:               		}
 21:               		if (KeyControl(&KeyLines[SeletedLine]))
-  0163    0879    LD	A,0x79
-  0164    00F4    LD	0x74,A
-  0165    3001    LDIA	0x1
-  0166    1003    CLRB	0x3,0
-  0167    0DF4    RLCR	0x74
-  0168    3EFF    ADDIA	0xFF
-  0169    1003    CLRB	0x3,0
-  016A    1D03    SNZB	0x3,2
-  016B    2967    JP	0x167
-  016C    0D74    RLCA	0x74
-  016D    3E52    ADDIA	0x52
-  016E    2185    CALL	0x185
-  016F    120A    CLRB	0xA,4
-  0170    118A    CLRB	0xA,3
-  0171    3A00    XORIA	0x0
-  0172    1D03    SNZB	0x3,2
-  0173    297B    JP	0x17B
-  0174    2983    JP	0x183
+  0173    0879    LD	A,0x79
+  0174    00F4    LD	0x74,A
+  0175    3001    LDIA	0x1
+  0176    1003    CLRB	0x3,0
+  0177    0DF4    RLCR	0x74
+  0178    3EFF    ADDIA	0xFF
+  0179    1003    CLRB	0x3,0
+  017A    1D03    SNZB	0x3,2
+  017B    2977    JP	0x177
+  017C    0D74    RLCA	0x74
+  017D    3E55    ADDIA	0x55
+  017E    2195    CALL	0x195
+  017F    120A    CLRB	0xA,4
+  0180    118A    CLRB	0xA,3
+  0181    3A00    XORIA	0x0
+  0182    1D03    SNZB	0x3,2
+  0183    298B    JP	0x18B
+  0184    2993    JP	0x193
 22:               		{
 23:               			switch (SeletedLine)
 24:               			{
 25:               			case PortA:
 26:               				YKfls_Big = SET;
-  0175    1448    SETB	0x48,0
+  0185    144B    SETB	0x4B,0
 27:               				KeyLines[PortB].flags.is_forbidden = SET;
-  0176    1456    SETB	0x56,0
+  0186    1459    SETB	0x59,0
 28:               				return FLUSH_BIG_0;
-  0177    3403    RET	0x3
+  0187    3403    RET	0x3
 29:               			case PortB:
 30:               				YKfls_Sml = SET;
-  0178    1548    SETB	0x48,2
+  0188    154B    SETB	0x4B,2
 31:               				KeyLines[PortA].flags.is_forbidden = SET;
-  0179    1452    SETB	0x52,0
+  0189    1455    SETB	0x55,0
 32:               				return FLUSH_SML_0;
-  017A    3406    RET	0x6
-  017B    0879    LD	A,0x79
-  017C    3A00    XORIA	0x0
-  017D    1903    SZB	0x3,2
-  017E    2975    JP	0x175
-  017F    3A01    XORIA	0x1
-  0180    1903    SZB	0x3,2
-  0181    2978    JP	0x178
-  0182    2983    JP	0x183
-  0183    0AF9    INCR	0x79
-  0184    291C    JP	0x11C
+  018A    3407    RET	0x7
+  018B    0879    LD	A,0x79
+  018C    3A00    XORIA	0x0
+  018D    1903    SZB	0x3,2
+  018E    2985    JP	0x185
+  018F    3A01    XORIA	0x1
+  0190    1903    SZB	0x3,2
+  0191    2988    JP	0x188
+  0192    2993    JP	0x193
+  0193    0AF9    INCR	0x79
+  0194    292C    JP	0x12C
 33:               			
 34:               			default:
 35:               				break;
@@ -2382,142 +2568,142 @@
 43:               
 44:               
 45:               uint8_t ScanKey(SignalLines line_num)   /*用于判断按键引脚的状态*/
-  0202    00F2    LD	0x72,A
+  0212    00F2    LD	0x72,A
 46:               {
 47:                   switch (line_num)
-  0203    2A0C    JP	0x20C
+  0213    2A1C    JP	0x21C
 48:               	{
 49:               	case PortA:
 50:               		return PIKey1;
-  0204    3000    LDIA	0x0
-  0205    1B05    SZB	0x5,6
-  0206    3001    LDIA	0x1
-  0207    0008    RET
+  0214    3000    LDIA	0x0
+  0215    1B05    SZB	0x5,6
+  0216    3001    LDIA	0x1
+  0217    0008    RET
 51:               	case PortB:
 52:               		return PIKey2;
-  0208    3000    LDIA	0x0
-  0209    1806    SZB	0x6,0
-  020A    3001    LDIA	0x1
-  020B    0008    RET
-  020C    0872    LD	A,0x72
-  020D    3A00    XORIA	0x0
-  020E    1903    SZB	0x3,2
-  020F    2A04    JP	0x204
-  0210    3A01    XORIA	0x1
-  0211    1903    SZB	0x3,2
-  0212    2A08    JP	0x208
-  0213    2A14    JP	0x214
-  0214    0008    RET
+  0218    3000    LDIA	0x0
+  0219    1806    SZB	0x6,0
+  021A    3001    LDIA	0x1
+  021B    0008    RET
+  021C    0872    LD	A,0x72
+  021D    3A00    XORIA	0x0
+  021E    1903    SZB	0x3,2
+  021F    2A14    JP	0x214
+  0220    3A01    XORIA	0x1
+  0221    1903    SZB	0x3,2
+  0222    2A18    JP	0x218
+  0223    2A24    JP	0x224
+  0224    0008    RET
 53:               	}
 54:               }
 55:               
 56:               
 57:               
 58:               uint8_t KeyControl(KEY_PRIVATE* this)/*用于按键的消除抖动处理*/
-  0185    00E0    LD	0x60,A
+  0195    00E3    LD	0x63,A
 59:               {
 60:                   if(!(this->flags.level))  //按键按下有效时间判定
-  0186    0084    LD	0x4,A
+  0196    0084    LD	0x4,A
 61:                   {
 62:               		if (this->flags.is_pressing)
-  0187    0860    LD	A,0x60
-  0188    1900    SZB	0x0,2
-  0189    29DB    JP	0x1DB
-  018A    0084    LD	0x4,A
+  0197    0863    LD	A,0x63
+  0198    1900    SZB	0x0,2
+  0199    29EB    JP	0x1EB
+  019A    0084    LD	0x4,A
 63:               		{
 64:               			this->cnt = CLR;
-  018B    0A60    INCA	0x60
-  018C    1C80    SNZB	0x0,1
-  018D    29C0    JP	0x1C0
-  018E    0084    LD	0x4,A
-  018F    0180    CLR	0x0
+  019B    0A63    INCA	0x63
+  019C    1C80    SNZB	0x0,1
+  019D    29D0    JP	0x1D0
+  019E    0084    LD	0x4,A
+  019F    0180    CLR	0x0
 65:               
 66:               			if (IncrementJudgeToCLR(this->cnt_timeout,CNTKeyOutTime))
-  0190    0860    LD	A,0x60
-  0191    3E02    ADDIA	0x2
-  0192    0084    LD	0x4,A
-  0193    3001    LDIA	0x1
-  0194    0780    ADDR	0x0
-  0195    0A84    INCR	0x4
-  0196    1803    SZB	0x3,0
-  0197    0A80    INCR	0x0
-  0198    0384    DECR	0x4
-  0199    0800    LD	A,0x0
-  019A    00F2    LD	0x72,A
-  019B    0A84    INCR	0x4
-  019C    0800    LD	A,0x0
-  019D    00F3    LD	0x73,A
-  019E    3002    LDIA	0x2
-  019F    0273    SUBA	0x73
-  01A0    3059    LDIA	0x59
-  01A1    1903    SZB	0x3,2
-  01A2    0272    SUBA	0x72
-  01A3    1803    SZB	0x3,0
-  01A4    29A7    JP	0x1A7
-  01A5    01DA    CLR	0x5A
-  01A6    29B7    JP	0x1B7
-  01A7    0860    LD	A,0x60
-  01A8    3E02    ADDIA	0x2
-  01A9    0084    LD	0x4,A
-  01AA    0180    CLR	0x0
+  01A0    0863    LD	A,0x63
+  01A1    3E02    ADDIA	0x2
+  01A2    0084    LD	0x4,A
+  01A3    3001    LDIA	0x1
+  01A4    0780    ADDR	0x0
+  01A5    0A84    INCR	0x4
+  01A6    1803    SZB	0x3,0
+  01A7    0A80    INCR	0x0
+  01A8    0384    DECR	0x4
+  01A9    0800    LD	A,0x0
+  01AA    00F2    LD	0x72,A
   01AB    0A84    INCR	0x4
-  01AC    0180    CLR	0x0
-  01AD    01F2    CLR	0x72
-  01AE    01F3    CLR	0x73
-  01AF    0872    LD	A,0x72
-  01B0    0473    ORA	0x73
-  01B1    1D03    SNZB	0x3,2
-  01B2    29B5    JP	0x1B5
-  01B3    3001    LDIA	0x1
-  01B4    29B6    JP	0x1B6
-  01B5    3000    LDIA	0x0
-  01B6    00DA    LD	0x5A,A
-  01B7    01DB    CLR	0x5B
-  01B8    085A    LD	A,0x5A
-  01B9    045B    ORA	0x5B
-  01BA    1903    SZB	0x3,2
-  01BB    3400    RET	0x0
+  01AC    0800    LD	A,0x0
+  01AD    00F3    LD	0x73,A
+  01AE    3002    LDIA	0x2
+  01AF    0273    SUBA	0x73
+  01B0    3059    LDIA	0x59
+  01B1    1903    SZB	0x3,2
+  01B2    0272    SUBA	0x72
+  01B3    1803    SZB	0x3,0
+  01B4    29B7    JP	0x1B7
+  01B5    01DD    CLR	0x5D
+  01B6    29C7    JP	0x1C7
+  01B7    0863    LD	A,0x63
+  01B8    3E02    ADDIA	0x2
+  01B9    0084    LD	0x4,A
+  01BA    0180    CLR	0x0
+  01BB    0A84    INCR	0x4
+  01BC    0180    CLR	0x0
+  01BD    01F2    CLR	0x72
+  01BE    01F3    CLR	0x73
+  01BF    0872    LD	A,0x72
+  01C0    0473    ORA	0x73
+  01C1    1D03    SNZB	0x3,2
+  01C2    29C5    JP	0x1C5
+  01C3    3001    LDIA	0x1
+  01C4    29C6    JP	0x1C6
+  01C5    3000    LDIA	0x0
+  01C6    00DD    LD	0x5D,A
+  01C7    01DE    CLR	0x5E
+  01C8    085D    LD	A,0x5D
+  01C9    045E    ORA	0x5E
+  01CA    1903    SZB	0x3,2
+  01CB    3400    RET	0x0
 67:               			{			
 68:               				this->flags.is_forbidden = SET;
-  01BC    0860    LD	A,0x60
-  01BD    0084    LD	0x4,A
-  01BE    1400    SETB	0x0,0
-  01BF    3400    RET	0x0
+  01CC    0863    LD	A,0x63
+  01CD    0084    LD	0x4,A
+  01CE    1400    SETB	0x0,0
+  01CF    3400    RET	0x0
 69:               			}
 70:               
 71:               		}else
 72:               		{
 73:               			if (IncrementJudgeToCLR(this->cnt,CNTKeyTime))
-  01C0    0084    LD	0x4,A
-  01C1    300B    LDIA	0xB
-  01C2    0A80    INCR	0x0
-  01C3    0200    SUBA	0x0
-  01C4    1803    SZB	0x3,0
-  01C5    29C8    JP	0x1C8
-  01C6    01DC    CLR	0x5C
-  01C7    29D1    JP	0x1D1
-  01C8    0A60    INCA	0x60
-  01C9    0084    LD	0x4,A
-  01CA    0180    CLR	0x0
-  01CB    1D03    SNZB	0x3,2
-  01CC    29CF    JP	0x1CF
-  01CD    3001    LDIA	0x1
-  01CE    29D0    JP	0x1D0
-  01CF    3000    LDIA	0x0
-  01D0    00DC    LD	0x5C,A
-  01D1    01DD    CLR	0x5D
-  01D2    085C    LD	A,0x5C
-  01D3    045D    ORA	0x5D
-  01D4    1903    SZB	0x3,2
-  01D5    3400    RET	0x0
+  01D0    0084    LD	0x4,A
+  01D1    300B    LDIA	0xB
+  01D2    0A80    INCR	0x0
+  01D3    0200    SUBA	0x0
+  01D4    1803    SZB	0x3,0
+  01D5    29D8    JP	0x1D8
+  01D6    01DF    CLR	0x5F
+  01D7    29E1    JP	0x1E1
+  01D8    0A63    INCA	0x63
+  01D9    0084    LD	0x4,A
+  01DA    0180    CLR	0x0
+  01DB    1D03    SNZB	0x3,2
+  01DC    29DF    JP	0x1DF
+  01DD    3001    LDIA	0x1
+  01DE    29E0    JP	0x1E0
+  01DF    3000    LDIA	0x0
+  01E0    00DF    LD	0x5F,A
+  01E1    01E0    CLR	0x60
+  01E2    085F    LD	A,0x5F
+  01E3    0460    ORA	0x60
+  01E4    1903    SZB	0x3,2
+  01E5    3400    RET	0x0
 74:               			{
 75:               				this->flags.is_pressing = SET;
-  01D6    0860    LD	A,0x60
-  01D7    0084    LD	0x4,A
-  01D8    3001    LDIA	0x1
-  01D9    1480    SETB	0x0,1
+  01E6    0863    LD	A,0x63
+  01E7    0084    LD	0x4,A
+  01E8    3001    LDIA	0x1
+  01E9    1480    SETB	0x0,1
 76:               				return TRUE;
-  01DA    0008    RET
+  01EA    0008    RET
 77:               			}
 78:               		}	
 79:               
@@ -2525,60 +2711,60 @@
 81:                    else
 82:                   {
 83:               		if (this->flags.is_pressing)
-  01DB    0084    LD	0x4,A
+  01EB    0084    LD	0x4,A
 84:               		{
 85:               			if (IncrementJudgeToCLR(this->cnt,CNTKeyTime))
-  01DC    0A60    INCA	0x60
-  01DD    1C80    SNZB	0x0,1
-  01DE    29F9    JP	0x1F9
-  01DF    0084    LD	0x4,A
-  01E0    300B    LDIA	0xB
-  01E1    0A80    INCR	0x0
-  01E2    0200    SUBA	0x0
-  01E3    1803    SZB	0x3,0
-  01E4    29E7    JP	0x1E7
-  01E5    01DE    CLR	0x5E
-  01E6    29F0    JP	0x1F0
-  01E7    0A60    INCA	0x60
-  01E8    0084    LD	0x4,A
-  01E9    0180    CLR	0x0
-  01EA    1D03    SNZB	0x3,2
-  01EB    29EE    JP	0x1EE
-  01EC    3001    LDIA	0x1
-  01ED    29EF    JP	0x1EF
-  01EE    3000    LDIA	0x0
-  01EF    00DE    LD	0x5E,A
-  01F0    01DF    CLR	0x5F
-  01F1    085E    LD	A,0x5E
-  01F2    045F    ORA	0x5F
-  01F3    1903    SZB	0x3,2
-  01F4    3400    RET	0x0
+  01EC    0A63    INCA	0x63
+  01ED    1C80    SNZB	0x0,1
+  01EE    2A09    JP	0x209
+  01EF    0084    LD	0x4,A
+  01F0    300B    LDIA	0xB
+  01F1    0A80    INCR	0x0
+  01F2    0200    SUBA	0x0
+  01F3    1803    SZB	0x3,0
+  01F4    29F7    JP	0x1F7
+  01F5    01E1    CLR	0x61
+  01F6    2A00    JP	0x200
+  01F7    0A63    INCA	0x63
+  01F8    0084    LD	0x4,A
+  01F9    0180    CLR	0x0
+  01FA    1D03    SNZB	0x3,2
+  01FB    29FE    JP	0x1FE
+  01FC    3001    LDIA	0x1
+  01FD    29FF    JP	0x1FF
+  01FE    3000    LDIA	0x0
+  01FF    00E1    LD	0x61,A
+  0200    01E2    CLR	0x62
+  0201    0861    LD	A,0x61
+  0202    0462    ORA	0x62
+  0203    1903    SZB	0x3,2
+  0204    3400    RET	0x0
 86:               			{
 87:               				this->flags.is_pressing = CLR;
-  01F5    0860    LD	A,0x60
-  01F6    0084    LD	0x4,A
-  01F7    1080    CLRB	0x0,1
-  01F8    3400    RET	0x0
+  0205    0863    LD	A,0x63
+  0206    0084    LD	0x4,A
+  0207    1080    CLRB	0x0,1
+  0208    3400    RET	0x0
 88:               			}
 89:               		}else
 90:               		{
 91:               			this->cnt = CLR;
-  01F9    0084    LD	0x4,A
-  01FA    0180    CLR	0x0
+  0209    0084    LD	0x4,A
+  020A    0180    CLR	0x0
 92:               			this->cnt_timeout = CLR;
-  01FB    0860    LD	A,0x60
-  01FC    3E02    ADDIA	0x2
-  01FD    0084    LD	0x4,A
-  01FE    0180    CLR	0x0
-  01FF    0A84    INCR	0x4
-  0200    0180    CLR	0x0
+  020B    0863    LD	A,0x63
+  020C    3E02    ADDIA	0x2
+  020D    0084    LD	0x4,A
+  020E    0180    CLR	0x0
+  020F    0A84    INCR	0x4
+  0210    0180    CLR	0x0
 93:               		}
 94:                  
 95:                   }
 96:               	return FALSE;
-  0201    3400    RET	0x0
+  0211    3400    RET	0x0
 97:               }
----- C:\Users\汪强升\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c ----------------------------------------------------------------------
+---- C:\Users\汪强升\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c ----------------------------------------------------------------------
 1:                #include "cfg_user.h"
 2:                #include "cfg_case.h"
 3:                
@@ -2586,232 +2772,288 @@
 5:                
 6:                // #define FfctTest fctBits001.bits.bit_0
 7:                
-8:                volatile unsigned int CNTfctStart;
-9:                volatile unsigned char CNTfctSensior;
-10:               volatile unsigned char CNTfctFlashLed;
-11:               volatile unsigned int CNTfct;
-12:               volatile unsigned int CNTkey1;
-13:               volatile unsigned int CNTkey2;
-14:               volatile unsigned int flag_time;
-15:               
-16:               unsigned int Flag_G_Key = 0;
+8:                unsigned char FCT = 0;
+9:                
+10:               volatile unsigned int CNTfctStart;
+11:               volatile unsigned char CNTfctSensior;
+12:               volatile unsigned char CNTfctFlashLed;
+13:               volatile unsigned int CNTfct;
+14:               volatile unsigned int CNTkey1;
+15:               volatile unsigned int CNTkey2;
+16:               volatile unsigned int flag_time;
 17:               
-18:               void FCTkey(void);
-19:               void FCTjudge(void);
-20:               
-21:               void FCTloop(void)
-22:               {
-23:                   FCTkey();
-  0326    2360    CALL	0x360
-  0327    120A    CLRB	0xA,4
-  0328    118A    CLRB	0xA,3
-24:                   FCTjudge();
-  0329    2B2A    JP	0x32A
-25:               }
-26:               
-27:               /* void FCTkey(void)
-28:               {
-29:                   if(PItest == HIGH)
-30:                   {
-31:                       if(++CNTfctStart >= 100)
-32:                       {
-33:               //            CNTfctStart = 100;
-34:                           FfctTest = 1;
-35:               			if(PItest == HIGH)
-36:               			{
-37:               				if(++CNTfctStart >= 500)
-38:               				{
-39:               					FfctTest = 0;
-40:               					CNTfctStart = 0;
-41:               					return;
-42:               				}
-43:               			}
-44:               //			CNTfctStart = 0;
-45:               			return;
-46:                       }
-47:                   }
-48:               }
-49:               */
-50:               void FCTkey(void)
-51:               {
-52:               	if(FfctTest == 1)
-  0360    1851    SZB	0x51,0
-53:               	{
-54:               		if(PItest == HIGH)
-  0361    1D06    SNZB	0x6,2
-  0362    2B70    JP	0x370
-55:               		{
-56:               			Delay_nms(1000);
-  0363    30E8    LDIA	0xE8
-  0364    00F4    LD	0x74,A
-  0365    3003    LDIA	0x3
-  0366    00F5    LD	0x75,A
-  0367    237C    CALL	0x37C
-  0368    120A    CLRB	0xA,4
-  0369    118A    CLRB	0xA,3
-57:               			if(PItest == HIGH)
-  036A    1283    CLRB	0x3,5
-  036B    1303    CLRB	0x3,6
-  036C    1D06    SNZB	0x6,2
-  036D    2B70    JP	0x370
-58:               			{
-59:               				FfctTest = 0;
-  036E    1051    CLRB	0x51,0
-60:               				return;
-  036F    0008    RET
-61:               			}
-62:               		}
-63:               	}
-64:                   if(PItest == HIGH)
-  0370    1D06    SNZB	0x6,2
-  0371    0008    RET
-65:                   {
-66:               		Delay_nms(1000);
-  0372    30E8    LDIA	0xE8
-  0373    00F4    LD	0x74,A
-  0374    3003    LDIA	0x3
-  0375    00F5    LD	0x75,A
-  0376    237C    CALL	0x37C
-67:               		if(PItest == HIGH)
-  0377    1283    CLRB	0x3,5
-  0378    1303    CLRB	0x3,6
-  0379    1906    SZB	0x6,2
-68:               		{
-69:               			FfctTest = 1;
-  037A    1451    SETB	0x51,0
-70:               			return;
-  037B    0008    RET
-71:               		}
-72:               	}
-73:               }
-74:               
-75:               void G_KEY(void)
-76:               {
-77:               	POlight = LOW;
-  034C    1285    CLRB	0x5,5
-78:               	POairPump = LOW;
-  034D    1105    CLRB	0x5,2
-79:               	POmainValue = HIGH;
-  034E    1605    SETB	0x5,4
-80:               	POdirectValue = LOW;
-  034F    1085    CLRB	0x5,1
-  0350    0008    RET
-81:               }
-82:               
-83:               void R_KEY(void)
-84:               {
-85:               	POlight = LOW;
-  0351    1285    CLRB	0x5,5
-86:               	POairPump = HIGH;
-  0352    1505    SETB	0x5,2
-87:               	POmainValue = HIGH;
-  0353    1605    SETB	0x5,4
-88:               	POdirectValue = LOW;
-  0354    1085    CLRB	0x5,1
-  0355    0008    RET
-89:               }
-90:               
-91:               void key1(void)
-92:               {
-93:               	POlight = HIGH;
-  0356    1685    SETB	0x5,5
-94:               	POairPump = LOW;
-  0357    1105    CLRB	0x5,2
-95:               	POmainValue = HIGH;
-  0358    1605    SETB	0x5,4
-96:               	POdirectValue = LOW;
-  0359    1085    CLRB	0x5,1
-  035A    0008    RET
-97:               }
-98:               
-99:               void key2(void)
-100:              {
-101:              	POlight = LOW;
-  035B    1285    CLRB	0x5,5
-102:              	POairPump = LOW;
-  035C    1105    CLRB	0x5,2
-103:              	POmainValue = HIGH;
-  035D    1605    SETB	0x5,4
-104:              	POdirectValue = HIGH;
-  035E    1485    SETB	0x5,1
-  035F    0008    RET
-105:              }
-106:              
-107:              void FCTjudge(void)
-108:              {
-109:                  if(FfctTest == 1)
-  032A    1C51    SNZB	0x51,0
-  032B    2B43    JP	0x343
-110:                  {
-111:              		if(++flag_time == 1500)
-  032C    0AA0    INCR	0x20
-  032D    1903    SZB	0x3,2
-  032E    0AA1    INCR	0x21
-  032F    30DC    LDIA	0xDC
-  0330    0620    XORA	0x20
-  0331    3005    LDIA	0x5
-  0332    1903    SZB	0x3,2
-  0333    0621    XORA	0x21
-  0334    1D03    SNZB	0x3,2
-  0335    2B39    JP	0x339
-112:              		{
-113:              			FfctTest = 0;
-  0336    1051    CLRB	0x51,0
-114:              			flag_time = 0;
-  0337    01A0    CLR	0x20
-  0338    01A1    CLR	0x21
-115:              		}
-116:              		if(PIsensor == LOW)
-  0339    1886    SZB	0x6,1
-  033A    2B3C    JP	0x33C
-117:              		{
-118:              			R_KEY();
-  033B    2B51    JP	0x351
-119:              		}
-120:              		else
-121:              		{
-122:              			if(PIKey1 == LOW)
-  033C    1B05    SZB	0x5,6
-  033D    2B3F    JP	0x33F
-123:              			{
-124:              				key1();
-  033E    2B56    JP	0x356
-125:              			}
-126:              			else
-127:              			{
-128:              				if(PIKey2 == LOW)
-  033F    1806    SZB	0x6,0
-  0340    2B42    JP	0x342
-129:              				{
-130:              					key2();
-  0341    2B5B    JP	0x35B
-131:              				}
-132:              				else
-133:              				{
-134:              					G_KEY();
-  0342    2B4C    JP	0x34C
-135:              				}
-136:              			}
-137:              		}
-138:              	}
-139:                  else if(FfctTest == 0)
-  0343    1851    SZB	0x51,0
-  0344    0008    RET
-140:                  {
-141:              		POlight = LOW;
-  0345    1285    CLRB	0x5,5
-142:              		POairPump = LOW;
-  0346    1105    CLRB	0x5,2
-143:              		POmainValue = LOW;
-  0347    1205    CLRB	0x5,4
-144:              		POdirectValue = LOW;
-  0348    1085    CLRB	0x5,1
-145:              		flag_time = 0;
-  0349    01A0    CLR	0x20
-  034A    01A1    CLR	0x21
-  034B    0008    RET
-146:                  }
-147:              }
+18:               unsigned int Flag_G_Key = 0;
+19:               
+20:               void FCTkey(void);
+21:               void FCTjudge(void);
+22:               
+23:               void FCTloop(void)
+24:               {
+25:                   FCTkey();
+  040B    2441    CALL	0x441
+  040C    120A    CLRB	0xA,4
+  040D    118A    CLRB	0xA,3
+26:                   FCTjudge();
+  040E    2C0F    JP	0x40F
+27:               }
+28:               
+29:               /* void FCTkey(void)
+30:               {
+31:                   if(PItest == HIGH)
+32:                   {
+33:                       if(++CNTfctStart >= 100)
+34:                       {
+35:               //            CNTfctStart = 100;
+36:                           FfctTest = 1;
+37:               			if(PItest == HIGH)
+38:               			{
+39:               				if(++CNTfctStart >= 500)
+40:               				{
+41:               					FfctTest = 0;
+42:               					CNTfctStart = 0;
+43:               					return;
+44:               				}
+45:               			}
+46:               //			CNTfctStart = 0;
+47:               			return;
+48:                       }
+49:                   }
+50:               }
+51:               */
+52:               void FCTkey(void)
+53:               {
+54:               	if((FCT == 0) && (PItest == LOW))
+  0441    0847    LD	A,0x47
+  0442    1903    SZB	0x3,2
+  0443    1906    SZB	0x6,2
+  0444    2C47    JP	0x447
+55:               	{
+56:               		FCT = 3;
+  0445    3003    LDIA	0x3
+  0446    00C7    LD	0x47,A
+57:               	}
+58:               	
+59:               	if(FCT == 3)
+  0447    3003    LDIA	0x3
+  0448    0647    XORA	0x47
+  0449    1D03    SNZB	0x3,2
+  044A    2C5D    JP	0x45D
+60:               	{
+61:               		if(PItest == HIGH)
+  044B    1D06    SNZB	0x6,2
+  044C    2C5B    JP	0x45B
+  044D    2479    CALL	0x479
+  044E    120A    CLRB	0xA,4
+  044F    118A    CLRB	0xA,3
+  0450    1903    SZB	0x3,2
+  0451    0242    SUBA	0x42
+  0452    1803    SZB	0x3,0
+62:               		{
+63:               			if(++My_test_cnt > My_test_time)	
+64:               			{
+65:               				if(PItest == HIGH)
+  0453    1D06    SNZB	0x6,2
+  0454    2C5D    JP	0x45D
+66:               				{
+67:               					FfctTest = 1;
+  0455    1454    SETB	0x54,0
+68:               					My_test_cnt = CLR;
+  0456    01C2    CLR	0x42
+  0457    01C3    CLR	0x43
+69:               					FCT = 1;
+  0458    01C7    CLR	0x47
+  0459    0AC7    INCR	0x47
+70:               					return;
+  045A    0008    RET
+71:               				}
+72:               			}	
+73:               
+74:               		}
+75:               		else
+76:               		{
+77:               			My_test_cnt = CLR;
+  045B    01C2    CLR	0x42
+  045C    01C3    CLR	0x43
+78:               		}
+79:               	}
+80:               	
+81:               	if((FCT == 1) && (PItest == LOW))
+  045D    0B47    SZDECA	0x47
+  045E    2C63    JP	0x463
+  045F    1906    SZB	0x6,2
+  0460    2C63    JP	0x463
+82:               	{
+83:               		FCT = 2;
+  0461    3002    LDIA	0x2
+  0462    00C7    LD	0x47,A
+84:               	}
+85:               	
+86:               	if(FCT == 2)
+  0463    3002    LDIA	0x2
+  0464    0647    XORA	0x47
+  0465    1D03    SNZB	0x3,2
+  0466    0008    RET
+87:               	{
+88:               		if(PItest == HIGH)
+  0467    1D06    SNZB	0x6,2
+  0468    2C76    JP	0x476
+  0469    2479    CALL	0x479
+  046A    120A    CLRB	0xA,4
+  046B    118A    CLRB	0xA,3
+  046C    1903    SZB	0x3,2
+  046D    0242    SUBA	0x42
+  046E    1803    SZB	0x3,0
+89:               		{
+90:               			if(++My_test_cnt > My_test_time)
+91:               			{
+92:               
+93:               				if(PItest == HIGH)
+  046F    1D06    SNZB	0x6,2
+  0470    0008    RET
+94:               				{
+95:               					FfctTest = 0;
+  0471    1054    CLRB	0x54,0
+96:               					My_test_cnt = CLR;
+  0472    01C2    CLR	0x42
+  0473    01C3    CLR	0x43
+97:               					FCT = 0;
+  0474    01C7    CLR	0x47
+  0475    0008    RET
+98:               					return;
+99:               				}
+100:              			}
+101:              
+102:              		}
+103:              		else
+104:              		{
+105:              			My_test_cnt = CLR;
+  0476    01C2    CLR	0x42
+  0477    01C3    CLR	0x43
+  0478    0008    RET
+106:              		}
+107:              		
+108:              	}
+109:              }
+110:              
+111:              void G_KEY(void)
+112:              {
+113:              	POlight = LOW;
+  042D    1285    CLRB	0x5,5
+114:              	POairPump = LOW;
+  042E    1105    CLRB	0x5,2
+115:              	POmainValue = HIGH;
+  042F    1605    SETB	0x5,4
+116:              	POdirectValue = LOW;
+  0430    1085    CLRB	0x5,1
+  0431    0008    RET
+117:              }
+118:              
+119:              void R_KEY(void)
+120:              {
+121:              	POlight = LOW;
+  0432    1285    CLRB	0x5,5
+122:              	POairPump = HIGH;
+  0433    1505    SETB	0x5,2
+123:              	POmainValue = HIGH;
+  0434    1605    SETB	0x5,4
+124:              	POdirectValue = LOW;
+  0435    1085    CLRB	0x5,1
+  0436    0008    RET
+125:              }
+126:              
+127:              void key1(void)
+128:              {
+129:              	POlight = HIGH;
+  0437    1685    SETB	0x5,5
+130:              	POairPump = LOW;
+  0438    1105    CLRB	0x5,2
+131:              	POmainValue = HIGH;
+  0439    1605    SETB	0x5,4
+132:              	POdirectValue = LOW;
+  043A    1085    CLRB	0x5,1
+  043B    0008    RET
+133:              }
+134:              
+135:              void key2(void)
+136:              {
+137:              	POlight = LOW;
+  043C    1285    CLRB	0x5,5
+138:              	POairPump = LOW;
+  043D    1105    CLRB	0x5,2
+139:              	POmainValue = HIGH;
+  043E    1605    SETB	0x5,4
+140:              	POdirectValue = HIGH;
+  043F    1485    SETB	0x5,1
+  0440    0008    RET
+141:              }
+142:              
+143:              void FCTjudge(void)
+144:              {
+145:                  if(FfctTest == 1)
+  040F    1C54    SNZB	0x54,0
+  0410    2C28    JP	0x428
+146:                  {
+147:              		if(++flag_time == 1500)
+  0411    0AA0    INCR	0x20
+  0412    1903    SZB	0x3,2
+  0413    0AA1    INCR	0x21
+  0414    30DC    LDIA	0xDC
+  0415    0620    XORA	0x20
+  0416    3005    LDIA	0x5
+  0417    1903    SZB	0x3,2
+  0418    0621    XORA	0x21
+  0419    1D03    SNZB	0x3,2
+  041A    2C1E    JP	0x41E
+148:              		{
+149:              			FfctTest = 0;
+  041B    1054    CLRB	0x54,0
+150:              			flag_time = 0;
+  041C    01A0    CLR	0x20
+  041D    01A1    CLR	0x21
+151:              		}
+152:              		if(PIsensor == LOW)
+  041E    1886    SZB	0x6,1
+  041F    2C21    JP	0x421
+153:              		{
+154:              			R_KEY();
+  0420    2C32    JP	0x432
+155:              		}
+156:              		else
+157:              		{
+158:              			if(PIKey1 == LOW)
+  0421    1B05    SZB	0x5,6
+  0422    2C24    JP	0x424
+159:              			{
+160:              				key1();
+  0423    2C37    JP	0x437
+161:              			}
+162:              			else
+163:              			{
+164:              				if(PIKey2 == LOW)
+  0424    1806    SZB	0x6,0
+  0425    2C27    JP	0x427
+165:              				{
+166:              					key2();
+  0426    2C3C    JP	0x43C
+167:              				}
+168:              				else
+169:              				{
+170:              					G_KEY();
+  0427    2C2D    JP	0x42D
+171:              				}
+172:              			}
+173:              		}
+174:              	}
+175:                  else if(FfctTest == 0)
+  0428    1854    SZB	0x54,0
+  0429    0008    RET
+176:                  {
+177:              		flag_time = 0;
+  042A    01A0    CLR	0x20
+  042B    01A1    CLR	0x21
+  042C    0008    RET
+178:                  }
+179:              }
 ---- stringtab ------------------------------------------------------------------
 ---- reset_enter ------------------------------------------------------------------
   0000    120A    CLRB	0xA,4
@@ -2826,10 +3068,10 @@
   0011    01FA    CLR	0x7A
   0012    1383    CLRB	0x3,7
   0013    0084    LD	0x4,A
-  0014    305A    LDIA	0x5A
+  0014    305D    LDIA	0x5D
   0015    120A    CLRB	0xA,4
   0016    118A    CLRB	0xA,3
-  0017    24B2    CALL	0x4B2
+  0017    2595    CALL	0x595
 ---- interrupt_function_enter ----------------------------------------------------------
   0004    00FE    LD	0x7E,A
   0005    0E03    SWAPA	0x3
@@ -2838,53 +3080,78 @@
   0008    00F1    LD	0x71,A
   0009    120A    CLRB	0xA,4
   000A    118A    CLRB	0xA,3
-  000B    2C16    JP	0x416
+  000B    2CEE    JP	0x4EE
 ---- common_function ------------------------------------------------------------------
   0018    0183    CLR	0x3
   0019    120A    CLRB	0xA,4
   001A    118A    CLRB	0xA,3
-  001B    2BA7    JP	0x3A7
-  0215    1748    SETB	0x48,6
-  0216    1105    CLRB	0x5,2
-  0217    1605    SETB	0x5,4
-  0218    1085    CLRB	0x5,1
-  0219    0AB4    INCR	0x34
-  021A    1903    SZB	0x3,2
-  021B    0AB5    INCR	0x35
-  021C    3000    LDIA	0x0
-  021D    0235    SUBA	0x35
-  021E    3405    RET	0x5
-  021F    1748    SETB	0x48,6
-  0220    1105    CLRB	0x5,2
-  0221    1605    SETB	0x5,4
-  0222    1485    SETB	0x5,1
-  0223    0AB4    INCR	0x34
-  0224    1903    SZB	0x3,2
-  0225    0AB5    INCR	0x35
-  0226    3000    LDIA	0x0
-  0227    0235    SUBA	0x35
-  0228    340A    RET	0xA
-  0229    1085    CLRB	0x5,1
-  022A    0AB4    INCR	0x34
-  022B    1903    SZB	0x3,2
-  022C    0AB5    INCR	0x35
-  022D    3000    LDIA	0x0
-  022E    0235    SUBA	0x35
-  022F    0008    RET
-  031D    0830    LD	A,0x30
-  031E    0732    ADDA	0x32
-  031F    00AE    LD	0x2E,A
-  0320    0831    LD	A,0x31
-  0321    1803    SZB	0x3,0
-  0322    0A31    INCA	0x31
-  0323    0733    ADDA	0x33
-  0324    00AF    LD	0x2F,A
-  0325    0008    RET
-  04B2    0064    CLRWDT
-  04B3    0180    CLR	0x0
-  04B4    0A84    INCR	0x4
-  04B5    0604    XORA	0x4
-  04B6    1903    SZB	0x3,2
-  04B7    3400    RET	0x0
-  04B8    0604    XORA	0x4
-  04B9    2CB3    JP	0x4B3
+  001B    2C7F    JP	0x47F
+  0225    174B    SETB	0x4B,6
+  0226    1105    CLRB	0x5,2
+  0227    1605    SETB	0x5,4
+  0228    1085    CLRB	0x5,1
+  0229    0AB4    INCR	0x34
+  022A    1903    SZB	0x3,2
+  022B    0AB5    INCR	0x35
+  022C    3000    LDIA	0x0
+  022D    0235    SUBA	0x35
+  022E    3405    RET	0x5
+  022F    174B    SETB	0x4B,6
+  0230    1105    CLRB	0x5,2
+  0231    1605    SETB	0x5,4
+  0232    1485    SETB	0x5,1
+  0233    0AB4    INCR	0x34
+  0234    1903    SZB	0x3,2
+  0235    0AB5    INCR	0x35
+  0236    3000    LDIA	0x0
+  0237    0235    SUBA	0x35
+  0238    340A    RET	0xA
+  0239    1085    CLRB	0x5,1
+  023A    0AB4    INCR	0x34
+  023B    1903    SZB	0x3,2
+  023C    0AB5    INCR	0x35
+  023D    3000    LDIA	0x0
+  023E    0235    SUBA	0x35
+  023F    0008    RET
+  0240    1485    SETB	0x5,1
+  0241    0AB4    INCR	0x34
+  0242    1903    SZB	0x3,2
+  0243    0AB5    INCR	0x35
+  0244    3000    LDIA	0x0
+  0245    0235    SUBA	0x35
+  0246    0008    RET
+  0334    0830    LD	A,0x30
+  0335    0732    ADDA	0x32
+  0336    00AE    LD	0x2E,A
+  0337    0831    LD	A,0x31
+  0338    1803    SZB	0x3,0
+  0339    0A31    INCA	0x31
+  033A    0733    ADDA	0x33
+  033B    00AF    LD	0x2F,A
+  033C    0008    RET
+  03FF    0ABE    INCR	0x3E
+  0400    1903    SZB	0x3,2
+  0401    0ABF    INCR	0x3F
+  0402    3000    LDIA	0x0
+  0403    023F    SUBA	0x3F
+  0404    3408    RET	0x8
+  0405    0ABE    INCR	0x3E
+  0406    1903    SZB	0x3,2
+  0407    0ABF    INCR	0x3F
+  0408    3000    LDIA	0x0
+  0409    023F    SUBA	0x3F
+  040A    3403    RET	0x3
+  0479    0AC2    INCR	0x42
+  047A    1903    SZB	0x3,2
+  047B    0AC3    INCR	0x43
+  047C    3000    LDIA	0x0
+  047D    0243    SUBA	0x43
+  047E    3465    RET	0x65
+  0595    0064    CLRWDT
+  0596    0180    CLR	0x0
+  0597    0A84    INCR	0x4
+  0598    0604    XORA	0x4
+  0599    1903    SZB	0x3,2
+  059A    3400    RET	0x0
+  059B    0604    XORA	0x4
+  059C    2D96    JP	0x596

@@ -5,6 +5,8 @@ BYTE fctBits001;
 
 // #define FfctTest fctBits001.bits.bit_0
 
+unsigned char FCT = 0;
+
 volatile unsigned int CNTfctStart;
 volatile unsigned char CNTfctSensior;
 volatile unsigned char CNTfctFlashLed;
@@ -49,26 +51,60 @@ void FCTloop(void)
 */
 void FCTkey(void)
 {
-	if(FfctTest == 1)
+	if((FCT == 0) && (PItest == LOW))
+	{
+		FCT = 3;
+	}
+	
+	if(FCT == 3)
 	{
 		if(PItest == HIGH)
 		{
-			Delay_nms(1000);
-			if(PItest == HIGH)
+			if(++My_test_cnt > My_test_time)	
 			{
-				FfctTest = 0;
-				return;
-			}
+				if(PItest == HIGH)
+				{
+					FfctTest = 1;
+					My_test_cnt = CLR;
+					FCT = 1;
+					return;
+				}
+			}	
+
+		}
+		else
+		{
+			My_test_cnt = CLR;
 		}
 	}
-    if(PItest == HIGH)
-    {
-		Delay_nms(1000);
+	
+	if((FCT == 1) && (PItest == LOW))
+	{
+		FCT = 2;
+	}
+	
+	if(FCT == 2)
+	{
 		if(PItest == HIGH)
 		{
-			FfctTest = 1;
-			return;
+			if(++My_test_cnt > My_test_time)
+			{
+
+				if(PItest == HIGH)
+				{
+					FfctTest = 0;
+					My_test_cnt = CLR;
+					FCT = 0;
+					return;
+				}
+			}
+
 		}
+		else
+		{
+			My_test_cnt = CLR;
+		}
+		
 	}
 }
 
@@ -138,10 +174,6 @@ void FCTjudge(void)
 	}
     else if(FfctTest == 0)
     {
-		POlight = LOW;
-		POairPump = LOW;
-		POmainValue = LOW;
-		POdirectValue = LOW;
 		flag_time = 0;
     }
 }

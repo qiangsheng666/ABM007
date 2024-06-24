@@ -16,6 +16,7 @@ enum{
     FLUSH_BIG_0,
     FLUSH_BIG_1,
     FLUSH_BIG_2,
+    FLUSH_BIG_3,
     FLUSH_SML_0,
     FLUSH_SML_1,
     FLUSH_SML_2,

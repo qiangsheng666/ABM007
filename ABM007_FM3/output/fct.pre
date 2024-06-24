@@ -1,17 +1,17 @@
 
-# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c"
+# 1 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
 
-# 26 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
+# 26 "D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\xc8debug.h"
+# 13 "D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 16 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h"
+# 16 "D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h"
 volatile unsigned char INDF @ 0x00;
 volatile unsigned char TMR0 @ 0x01;
 volatile unsigned char PCL @ 0x02;
@@ -572,7 +572,7 @@ volatile bit COM17EN @ ((unsigned)&LCDCON2*8)+1;
 volatile bit COM16EN @ ((unsigned)&LCDCON2*8)+0;
 
 
-# 27 "D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms.h"
+# 27 "D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms.h"
 #pragma intrinsic(__nop)
 extern void __nop(void);
 
@@ -589,7 +589,7 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 25 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h"
+# 25 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h"
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 typedef unsigned short USHORT;
@@ -624,13 +624,13 @@ volatile BYTE Fsys1;
 volatile BYTE Fsys1s;
 volatile BYTE Fsys1m;
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\light_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light_user.h"
 extern BYTE FledBits01;
 
 # 10
 extern void GledLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush_user.h"
 extern BYTE Fflush1;
 
 # 12
@@ -641,6 +641,7 @@ FLUSH_INIT_2,
 FLUSH_BIG_0,
 FLUSH_BIG_1,
 FLUSH_BIG_2,
+FLUSH_BIG_3,
 FLUSH_SML_0,
 FLUSH_SML_1,
 FLUSH_SML_2,
@@ -650,31 +651,36 @@ FLUSH_END_2,
 };
 extern void GflushLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\sensor_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor_user.h"
 extern BYTE Fbodysensor;
 
 # 25
 extern void GsensorLoop(void);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct_user.h"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h"
 extern BYTE fctBits001;
 
 
 
 
+uint16_t My_test_time = 100;
+uint16_t My_test_cnt;
+
 extern void FCTloop(void);
 
-# 9 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_user.h"
+# 9 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key_user.h"
 uint8_t GkeyLoop();
 
-# 12 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_case.h"
+# 12 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_case.h"
 extern void Delay(unsigned int dtemp);
 extern void Delay_nms(unsigned int inittempl);
 
-# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\fct.c"
+# 4 "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
 BYTE fctBits001;
 
 
+
+unsigned char FCT = 0;
 
 volatile unsigned int CNTfctStart;
 volatile unsigned char CNTfctSensior;
@@ -695,29 +701,63 @@ FCTkey();
 FCTjudge();
 }
 
-# 50
+# 52
 void FCTkey(void)
 {
-if(fctBits001.bits.bit_0 == 1)
+if((FCT == 0) && (RB2 == 0))
+{
+FCT = 3;
+}
+
+if(FCT == 3)
 {
 if(RB2 == 1)
 {
-Delay_nms(1000);
-if(RB2 == 1)
+if(++My_test_cnt > My_test_time)
 {
-fctBits001.bits.bit_0 = 0;
-return;
-}
-}
-}
-if(RB2 == 1)
-{
-Delay_nms(1000);
 if(RB2 == 1)
 {
 fctBits001.bits.bit_0 = 1;
+My_test_cnt = 0;
+FCT = 1;
 return;
 }
+}
+
+}
+else
+{
+My_test_cnt = 0;
+}
+}
+
+if((FCT == 1) && (RB2 == 0))
+{
+FCT = 2;
+}
+
+if(FCT == 2)
+{
+if(RB2 == 1)
+{
+if(++My_test_cnt > My_test_time)
+{
+
+if(RB2 == 1)
+{
+fctBits001.bits.bit_0 = 0;
+My_test_cnt = 0;
+FCT = 0;
+return;
+}
+}
+
+}
+else
+{
+My_test_cnt = 0;
+}
+
 }
 }
 
@@ -787,10 +827,6 @@ G_KEY();
 }
 else if(fctBits001.bits.bit_0 == 0)
 {
-RA5 = 0;
-RA2 = 0;
-RA4 = 0;
-RA1 = 0;
 flag_time = 0;
 }
 }

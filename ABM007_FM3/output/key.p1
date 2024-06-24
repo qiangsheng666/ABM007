@@ -1,13 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"39 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [s S1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 :1 `Vuc 1 ]
 [n S1 . bit_0 bit_1 bit_2 bit_3 bit_4 bit_5 bit_6 bit_7 ]
 "50
 [u S2 `Vuc 1 `S1 1 ]
 [n S2 . byte bits ]
-"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_Private.h
-[c E876 0 1 .. ]
-[n E876 _SignalLines PortA PortB  ]
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key_Private.h
+[c E879 0 1 .. ]
+[n E879 _SignalLines PortA PortB  ]
 "23
 [s S4 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S4 . is_forbidden is_pressing level . . . . . ]
@@ -15,18 +15,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [s S3 `S4 1 `uc 1 `ui 1 ]
 [n S3 _KEY_PRIVATE flags cnt cnt_timeout ]
 "44
-[v _ScanKey `(uc ~T0 @X0 0 ef1`E876 ]
+[v _ScanKey `(uc ~T0 @X0 0 ef1`E879 ]
 "45
 [v _KeyControl `(uc ~T0 @X0 0 ef1`*S3 ]
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\flush_user.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush_user.h
 [v _Fflush1 `S2 ~T0 @X0 0 e ]
-"28 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c
-[c E849 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
-[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
+"28 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c
+[c E849 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
+[n E849 . FLUSH_INIT_0 FLUSH_INIT_1 FLUSH_INIT_2 FLUSH_BIG_0 FLUSH_BIG_1 FLUSH_BIG_2 FLUSH_BIG_3 FLUSH_SML_0 FLUSH_SML_1 FLUSH_SML_2 FLUSH_END_0 FLUSH_END_1 FLUSH_END_2  ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
-"16 D:\soft.download\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
+"16 D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\include\cms79f13x.h
 [v _INDF `Vuc ~T0 @X0 1 e@0 ]
 [; ;cms79f13x.h: 16: volatile unsigned char INDF @ 0x00;
 "17
@@ -1381,7 +1381,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cfg_user.h: 51: v_uint8 byte;
 [; ;cfg_user.h: 52: BIT bits;
 [; ;cfg_user.h: 53: } BYTE;
-"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\cfg_user.h
+"55 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\cfg_user.h
 [v _Fsys1 `VS2 ~T0 @X0 1 e ]
 [; ;cfg_user.h: 55: volatile BYTE Fsys1;
 "56
@@ -1400,22 +1400,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;flush_user.h: 16: FLUSH_BIG_0,
 [; ;flush_user.h: 17: FLUSH_BIG_1,
 [; ;flush_user.h: 18: FLUSH_BIG_2,
-[; ;flush_user.h: 19: FLUSH_SML_0,
-[; ;flush_user.h: 20: FLUSH_SML_1,
-[; ;flush_user.h: 21: FLUSH_SML_2,
-[; ;flush_user.h: 22: FLUSH_END_0,
-[; ;flush_user.h: 23: FLUSH_END_1,
-[; ;flush_user.h: 24: FLUSH_END_2,
-[; ;flush_user.h: 25: };
-[; ;flush_user.h: 26: extern void GflushLoop(void);
+[; ;flush_user.h: 19: FLUSH_BIG_3,
+[; ;flush_user.h: 20: FLUSH_SML_0,
+[; ;flush_user.h: 21: FLUSH_SML_1,
+[; ;flush_user.h: 22: FLUSH_SML_2,
+[; ;flush_user.h: 23: FLUSH_END_0,
+[; ;flush_user.h: 24: FLUSH_END_1,
+[; ;flush_user.h: 25: FLUSH_END_2,
+[; ;flush_user.h: 26: };
+[; ;flush_user.h: 27: extern void GflushLoop(void);
 [; ;sensor_user.h: 4: extern BYTE Fbodysensor;
 [; ;sensor_user.h: 25: extern void GsensorLoop(void);
 [; ;fct_user.h: 4: extern BYTE fctBits001;
-[; ;fct_user.h: 9: extern void FCTloop(void);
+"9 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct_user.h
+[v _My_test_time `ui ~T0 @X0 1 e ]
+[i _My_test_time
+-> -> 100 `i `ui
+]
+[; ;fct_user.h: 9: uint16_t My_test_time = 100;
+"10
+[v _My_test_cnt `ui ~T0 @X0 1 e ]
+[; ;fct_user.h: 10: uint16_t My_test_cnt;
+[; ;fct_user.h: 12: extern void FCTloop(void);
 [; ;key_user.h: 9: uint8_t GkeyLoop();
 [; ;cfg_case.h: 12: extern void Delay(unsigned int dtemp);
 [; ;cfg_case.h: 13: extern void Delay_nms(unsigned int inittempl);
-"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key_Private.h
+"4 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key_Private.h
 [v _CurrentIO `Vuc ~T0 @X0 1 e ]
 [; ;key_Private.h: 4: volatile uint8_t CurrentIO;
 [; ;key_Private.h: 5: typedef enum _SignalLines{
@@ -1423,7 +1433,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key_Private.h: 7: PortB,
 [; ;key_Private.h: 8: }SignalLines;
 "9
-[v _SeletedLine `VE876 ~T0 @X0 1 e ]
+[v _SeletedLine `VE879 ~T0 @X0 1 e ]
 [; ;key_Private.h: 9: volatile SignalLines SeletedLine;
 [; ;key_Private.h: 20: typedef struct _KEY_PRIVATE
 [; ;key_Private.h: 21: {
@@ -1447,7 +1457,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key_Private.h: 43: uint8_t GkeyLoop();
 [; ;key_Private.h: 44: uint8_t ScanKey(SignalLines line_num) ;
 [; ;key_Private.h: 45: uint8_t KeyControl(KEY_PRIVATE* this);
-"7 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_79F133_\ABM007_79F133\source\key.c
+"7 C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c
 [v _GkeyLoop `(uc ~T0 @X0 1 ef ]
 "8
 {
@@ -1458,7 +1468,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 9: for ( SeletedLine = 0; SeletedLine < 2; SeletedLine++)
 "9
 {
-[e = _SeletedLine -> -> 0 `i `VE876 ]
+[e = _SeletedLine -> -> 0 `i `VE879 ]
 [e $ < -> _SeletedLine `i -> 2 `i 6  ]
 [e $U 7  ]
 "10
@@ -1514,7 +1524,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 0 -> -> 1 `i `uc ]
 [; ;key.c: 27: KeyLines[PortB].flags.is_forbidden = 1;
 "27
-[e = . . *U + &U _KeyLines * -> . `E876 1 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[e = . . *U + &U _KeyLines * -> . `E879 1 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
 [; ;key.c: 28: return FLUSH_BIG_0;
 "28
 [e ) -> . `E849 3 `uc ]
@@ -1527,10 +1537,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _Fflush1 1 2 -> -> 1 `i `uc ]
 [; ;key.c: 31: KeyLines[PortA].flags.is_forbidden = 1;
 "31
-[e = . . *U + &U _KeyLines * -> . `E876 0 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
+[e = . . *U + &U _KeyLines * -> . `E879 0 `ux -> -> # *U &U _KeyLines `ui `ux 0 0 -> -> 1 `i `uc ]
 [; ;key.c: 32: return FLUSH_SML_0;
 "32
-[e ) -> . `E849 6 `uc ]
+[e ) -> . `E849 7 `uc ]
 [e $UE 5  ]
 [; ;key.c: 34: default:
 "34
@@ -1544,8 +1554,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 12  ]
 "23
 [e :U 13 ]
-[e [\ _SeletedLine , $ . `E876 0 14
- , $ . `E876 1 15
+[e [\ _SeletedLine , $ . `E879 0 14
+ , $ . `E879 1 15
  16 ]
 "36
 [e :U 12 ]
@@ -1556,7 +1566,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "9
 [e :U 8 ]
-[e ++ _SeletedLine -> -> 1 `i `VE876 ]
+[e ++ _SeletedLine -> -> 1 `i `VE879 ]
 [e $ < -> _SeletedLine `i -> 2 `i 6  ]
 [e :U 7 ]
 "39
@@ -1572,14 +1582,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 5 ]
 }
 "45
-[v _ScanKey `(uc ~T0 @X0 1 ef1`E876 ]
+[v _ScanKey `(uc ~T0 @X0 1 ef1`E879 ]
 "46
 {
 [; ;key.c: 45: uint8_t ScanKey(SignalLines line_num)
 [; ;key.c: 46: {
 [e :U _ScanKey ]
 "45
-[v _line_num `E876 ~T0 @X0 1 r1 ]
+[v _line_num `E879 ~T0 @X0 1 r1 ]
 "46
 [f ]
 [; ;key.c: 47: switch (line_num)
@@ -1608,8 +1618,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 18  ]
 "47
 [e :U 19 ]
-[e [\ _line_num , $ . `E876 0 20
- , $ . `E876 1 21
+[e [\ _line_num , $ . `E879 0 20
+ , $ . `E879 1 21
  18 ]
 "53
 [e :U 18 ]
