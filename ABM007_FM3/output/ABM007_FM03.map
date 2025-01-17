@@ -5,7 +5,7 @@ Linker command line:
 -W-2 \
   --edf=D:\soft.anzhuang\CMS_IDE_V2.03.25\CMS_IDE_V2.03.25\data\dat\en_msgs.txt \
   -cs -h+ABM007_FM03.sym --cmf=ABM007_FM03.cmf -z -Q79F133 \
-  -oC:\Users\ÍôÇ¿Éý\AppData\Local\Temp\seqs.2 -MABM007_FM03.map -E1 \
+  -oC:\Users\ÍôÇ¿Éý\AppData\Local\Temp\seqg.2 -MABM007_FM03.map -E1 \
   -ver=XC8 -ASTACK=0A0h-0efh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
   -AENTRY=00h-0FFhx32 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
@@ -489,7 +489,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 473 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 473 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -526,7 +526,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_TIMER2 *****************
  Defined at:
-		line 174 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 174 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -556,7 +556,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_TIMER1 *****************
  Defined at:
-		line 152 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 152 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -586,7 +586,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_IC *****************
  Defined at:
-		line 96 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 96 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -616,7 +616,7 @@ Total ram usage:        0 bytes
 
  *************** function _Init_GPIO *****************
  Defined at:
-		line 62 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 62 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -646,7 +646,7 @@ Total ram usage:        0 bytes
 
  *************** function _GsensorLoop *****************
  Defined at:
-		line 19 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c"
+		line 19 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -679,7 +679,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorTime *****************
  Defined at:
-		line 33 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c"
+		line 33 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -709,7 +709,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorKey *****************
  Defined at:
-		line 27 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c"
+		line 27 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -739,7 +739,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorJudge *****************
  Defined at:
-		line 73 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c"
+		line 73 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -769,7 +769,7 @@ Total ram usage:        0 bytes
 
  *************** function _SensorControl *****************
  Defined at:
-		line 179 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c"
+		line 179 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -799,7 +799,7 @@ Total ram usage:        1 bytes
 
  *************** function _GledLoop *****************
  Defined at:
-		line 16 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 16 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -832,7 +832,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Time *****************
  Defined at:
-		line 45 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 45 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -862,7 +862,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Key *****************
  Defined at:
-		line 24 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 24 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -892,7 +892,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Judge *****************
  Defined at:
-		line 53 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 53 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -922,7 +922,7 @@ Total ram usage:        0 bytes
 
  *************** function _LED_Con *****************
  Defined at:
-		line 84 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 84 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -952,7 +952,7 @@ Total ram usage:        0 bytes
 
  *************** function _GflushLoop *****************
  Defined at:
-		line 15 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c"
+		line 15 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -984,7 +984,7 @@ Total ram usage:        0 bytes
 
  *************** function _FlushTime *****************
  Defined at:
-		line 22 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c"
+		line 22 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1014,7 +1014,7 @@ Total ram usage:        0 bytes
 
  *************** function _FlushJudge *****************
  Defined at:
-		line 26 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c"
+		line 26 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1044,7 +1044,7 @@ Total ram usage:        1 bytes
 
  *************** function _GkeyLoop *****************
  Defined at:
-		line 7 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c"
+		line 7 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1075,7 +1075,7 @@ Total ram usage:        2 bytes
 
  *************** function _ScanKey *****************
  Defined at:
-		line 45 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c"
+		line 45 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key.c"
  Parameters:    Size  Location     Type
   line_num        1    wreg     enum E879
  Auto vars:     Size  Location     Type
@@ -1105,7 +1105,7 @@ Total ram usage:        1 bytes
 
  *************** function _KeyControl *****************
  Defined at:
-		line 58 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c"
+		line 58 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key.c"
  Parameters:    Size  Location     Type
   this            1    wreg     PTR struct _KEY_PRIVATE
 		 -> KeyLines(8), 
@@ -1137,7 +1137,7 @@ Total ram usage:        9 bytes
 
  *************** function _FlushCon *****************
  Defined at:
-		line 105 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c"
+		line 105 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1167,7 +1167,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTloop *****************
  Defined at:
-		line 23 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 23 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1198,7 +1198,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTkey *****************
  Defined at:
-		line 52 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 52 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1228,7 +1228,7 @@ Total ram usage:        0 bytes
 
  *************** function _FCTjudge *****************
  Defined at:
-		line 143 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 143 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1261,7 +1261,7 @@ Total ram usage:        0 bytes
 
  *************** function _key2 *****************
  Defined at:
-		line 135 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 135 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1291,7 +1291,7 @@ Total ram usage:        0 bytes
 
  *************** function _key1 *****************
  Defined at:
-		line 127 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 127 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1321,7 +1321,7 @@ Total ram usage:        0 bytes
 
  *************** function _R_KEY *****************
  Defined at:
-		line 119 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 119 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1351,7 +1351,7 @@ Total ram usage:        0 bytes
 
  *************** function _G_KEY *****************
  Defined at:
-		line 111 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c"
+		line 111 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1381,7 +1381,7 @@ Total ram usage:        0 bytes
 
  *************** function _Delay_nms *****************
  Defined at:
-		line 35 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 35 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
   inittempl       2    4[COMMON] unsigned int 
  Auto vars:     Size  Location     Type
@@ -1412,7 +1412,7 @@ Total ram usage:        5 bytes
 
  *************** function _Delay *****************
  Defined at:
-		line 27 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 27 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
   dtemp           2    2[COMMON] unsigned int 
  Auto vars:     Size  Location     Type
@@ -1442,7 +1442,7 @@ Total ram usage:        2 bytes
 
  *************** function _Int_ALL *****************
  Defined at:
-		line 563 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c"
+		line 563 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1472,7 +1472,7 @@ Total ram usage:        2 bytes
 
  *************** function _INT_LED_SHOW *****************
  Defined at:
-		line 193 in file "C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c"
+		line 193 in file "D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1503,16 +1503,15 @@ Total ram usage:        0 bytes
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c
-		_SensorControl 		CODE           	028A	0000	28
-		_GsensorLoop   		CODE           	0247	0000	11
-		_SensorKey     		CODE           	0251	0000	2
-		_SensorTime    		CODE           	0252	0000	57
-		_SensorJudge   		CODE           	02A5	0000	144
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c
+		_FlushTime     		CODE           	0023	0000	2
+		_FlushCon      		CODE           	0024	0000	217
+		_GflushLoop    		CODE           	001C	0000	8
+		_FlushJudge    		CODE           	00FC	0000	48
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\sensor.c estimated size: 242
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\flush.c estimated size: 275
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c
 		_FCTkey        		CODE           	0441	0000	57
 		_G_KEY         		CODE           	042D	0000	6
 		_FCTjudge      		CODE           	040F	0000	31
@@ -1521,17 +1520,9 @@ C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c
 		_key1          		CODE           	0437	0000	6
 		_key2          		CODE           	043C	0000	6
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\fct.c estimated size: 117
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\fct.c estimated size: 117
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c
-		_FlushTime     		CODE           	0023	0000	2
-		_FlushCon      		CODE           	0024	0000	217
-		_GflushLoop    		CODE           	001C	0000	8
-		_FlushJudge    		CODE           	00FC	0000	48
-
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\flush.c estimated size: 275
-
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c
 		_LED_Time      		CODE           	0348	0000	4
 		_LED_Judge     		CODE           	03F7	0000	9
 		_LED_Key       		CODE           	0347	0000	2
@@ -1539,9 +1530,9 @@ C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c
 		_LED_Con       		CODE           	034B	0000	173
 		_INT_LED_SHOW  		CODE           	0511	0000	27
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\light.c estimated size: 226
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\light.c estimated size: 226
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c
 		_Delay_nms     		CODE           	052B	0000	32
 		_Init_TIMER1   		CODE           	057D	0000	14
 		_Init_TIMER2   		CODE           	058A	0000	12
@@ -1551,7 +1542,14 @@ C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c
 		_Delay         		CODE           	054A	0000	13
 		_Int_ALL       		CODE           	04EE	0000	36
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\main.c estimated size: 260
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\main.c estimated size: 260
+
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key.c
+		_GkeyLoop      		CODE           	012B	0000	107
+		_ScanKey       		CODE           	0212	0000	20
+		_KeyControl    		CODE           	0195	0000	126
+
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\key.c estimated size: 253
 
 shared
 		PL12           		CODE           	0479	0000	7
@@ -1566,10 +1564,12 @@ shared
 
 shared estimated size: 79
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c
-		_GkeyLoop      		CODE           	012B	0000	107
-		_ScanKey       		CODE           	0212	0000	20
-		_KeyControl    		CODE           	0195	0000	126
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c
+		_SensorControl 		CODE           	028A	0000	28
+		_GsensorLoop   		CODE           	0247	0000	11
+		_SensorKey     		CODE           	0251	0000	2
+		_SensorTime    		CODE           	0252	0000	57
+		_SensorJudge   		CODE           	02A5	0000	144
 
-C:\Users\ÍôÇ¿Éý\Desktop\ABM007_FM3\ABM007_FM3\source\key.c estimated size: 253
+D:\mywork.wqs\SOUOCETREE\ABM\ABM007_FM3\source\sensor.c estimated size: 242
 

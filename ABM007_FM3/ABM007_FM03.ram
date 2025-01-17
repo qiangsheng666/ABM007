@@ -64,4 +64,3 @@ Delay_nms@i=09,0076,02,00
 Delay_nms@gtemp=07,0078,01,00
 Delay_nms@inittempl=09,0074,02,00
 Delay@dtemp=09,0072,02,00
-[R FCT,
